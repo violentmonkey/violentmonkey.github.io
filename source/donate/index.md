@@ -8,8 +8,29 @@ date: 2017-03-13 18:26:46
 
 Wanna buy me a coffee?
 
-[![PayPal](/static/paypal.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=gera2ld@163.com&no_shipping=1&lc=US&currency_code=USD)
 {% raw %}
-<a href="#" id="donate-alipay"><img src="/static/alipay.png"></a>
-<form id="submit-alipay" action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK" style="display:none"><input name="optEmail" type="hidden" value="gera2ld@163.com"><input name="payAmount" type="hidden" value="10"><input id="title" name="title" type="hidden" value="To Violentmonkey"><input name="memo" type="hidden" value="Buy a coffee for author of Violentmonkey"></form><script>document.getElementById('donate-alipay').addEventListener('click',function(e){e.preventDefault();document.getElementById('submit-alipay').submit();},false);</script>
+<link rel="stylesheet" href="donate.css">
+<script src="donate.js"></script>
+<div id="vm-donate"></div>
+<script>
+donate.initDonate({
+  el: '#vm-donate',
+  logo: {
+    image: '/static/vm.png',
+    text: 'Donate',
+  },
+  paypal: {
+    image: 'paypal.svg',
+    account: 'gera2ld@163.com',
+  },
+  alipay: {
+    image: 'alipay.svg',
+    qrcode: 'qr_alipay.png',
+  },
+  wechatpay: {
+    image: 'wechat.svg',
+    qrcode: 'qr_wechat.png',
+  },
+});
+</script>
 {% endraw %}

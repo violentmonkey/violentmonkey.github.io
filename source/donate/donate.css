@@ -1,0 +1,124 @@
+.donate-widget {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 14em;
+  padding: 5em 2em;
+  font-size: 12px;
+}
+
+.donate-wrap {
+  position: relative;
+  -webkit-transition: -webkit-filter .3s;
+  transition: -webkit-filter .3s;
+  transition: filter .3s;
+  transition: filter .3s, -webkit-filter .3s;
+}
+
+.donate-popup-active .donate-wrap {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+}
+
+.donate-logo {
+  position: absolute;
+  top: -3.5em;
+  left: 3em;
+  width: 3em;
+  padding: 1em 1em 2em;
+  border-radius: 50%;
+  background: #f0f0f0;
+  z-index: -1;
+  text-align: center;
+  line-height: 1;
+  color: dodgerblue;
+}
+
+.donate-logo > img {
+  max-width: 2em;
+  max-height: 2em;
+  -webkit-transform: rotateZ(-15deg);
+          transform: rotateZ(-15deg);
+  // transform-origin: bottom left;
+}
+
+.donate-logo > div {
+  position: absolute;
+  top: 1.5em;
+  left: 70%;
+  border-top-right-radius: .5em;
+  padding: .5em 1em;
+  background: inherit;
+}
+
+.donate-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.donate-item {
+  padding: .3em 1em;
+  border: 1px solid #ddd;
+  border-right-width: 0;
+  cursor: pointer;
+  color: #333;
+  background: white;
+  text-align: center;
+}
+
+.donate-item > img {
+  height: 12px;
+  vertical-align: middle;
+  -webkit-transition: -webkit-filter .3s;
+  transition: -webkit-filter .3s;
+  transition: filter .3s;
+  transition: filter .3s, -webkit-filter .3s;
+  -webkit-filter: grayscale(1) opacity(.5);
+          filter: grayscale(1) opacity(.5);
+}
+
+.donate-item > span {
+  -webkit-transition: -webkit-filter .3s;
+  transition: -webkit-filter .3s;
+  transition: filter .3s;
+  transition: filter .3s, -webkit-filter .3s;
+  -webkit-filter: opacity(.5);
+          filter: opacity(.5);
+}
+
+.donate-item:hover > img {
+  -webkit-filter: grayscale(0) opacity(1);
+          filter: grayscale(0) opacity(1);
+}
+
+.donate-item:hover > span {
+  -webkit-filter: opacity(1);
+          filter: opacity(1);
+}
+
+.donate-item:first-child {
+  border-top-left-radius: .5em;
+  border-bottom-left-radius: .5em;
+}
+
+.donate-item:last-child {
+  border-right-width: 1px;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+}
+
+.donate-popup {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -30%);
+          transform: translate(-50%, -30%);
+  border-radius: .5em;
+  background: white
+}
+
+.donate-popup-active .donate-popup {
+  display: block;
+}
