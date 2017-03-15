@@ -1,0 +1,38 @@
+<%- js('js/app.js') %>
+<% const {meta} = site.data;
+if (meta) {
+if (meta.disqus_shortname) { %>
+<script>
+var disqus_shortname = <%- JSON.stringify(meta.disqus_shortname) %>;
+<% if (page.permalink) { %>
+var disqus_url = <%- JSON.stringify(page.permalink) %>;
+<% } %>
+(function(){
+var dsq = document.createElement('script');
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+document.head.appendChild(dsq);
+})();
+</script>
+<% }
+if (meta.duoshuo_shortname) { %>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'<%= meta.duoshuo_shortname %>'};
+(function() {
+var ds=document.createElement('script');ds.type='text/javascript';ds.async=true;
+ds.src='//static.duoshuo.com/embed.js';ds.charset='UTF-8';document.head.appendChild(ds);
+})();
+</script>
+<% }
+if (meta.google_analytics) { %>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', <%- JSON.stringify(meta.google_analytics) %>, 'auto');
+ga('send', 'pageview');
+</script>
+<% }
+} %>
