@@ -1,0 +1,57 @@
+---
+title: Smart rules for blacklist
+date: 2017-04-15 21:44:21
+tags:
+  - blacklist
+  - exclude
+  - match
+---
+
+Userscripts are injected into web pages according to predefined rules. However, the rules do not always satisfy users for different reasons. In such cases, we need blacklist to exclude some web pages for all scripts.
+
+### Blacklist use cases
+
+- hostnames
+
+  In most cases, we may want to add simply hostnames to exclude.
+
+- `@exclude-match` rules
+
+  Since match patterns are safer to match URLs, we prefer to use `@exclude-match` rules to exclude URLs more flexibly.
+
+- `@exclude` rules
+
+  They are commonly supported by userscripts, so we should just keep them work.
+
+### Blacklist patterns
+
+Taken all use cases into account, the blacklist may have following patterns:
+
+- hostnames
+
+  A string without slashes, e.g. `example.com`, `*.example.com`.
+
+- [match patterns](https://developer.chrome.com/extensions/match_patterns)
+
+  A string with scheme, hostname and pathname patterns, e.g. `*://*/*`, `https://www.google.com/`.
+
+- [`@exclude` rules](https://wiki.greasespot.net/Include_and_exclude_rules)
+
+  A string prefixed with `@exclude `, e.g. `@exclude https://*`.
+
+- comments
+
+  A string starting with `#`, will be ignored.
+
+Here is a full example:
+
+```
+# hostnames
+www.google.com
+
+# @exclude-match rules
+*://twitter.com/*
+
+# @exclude rules
+@exclude https://example.com/*
+```
