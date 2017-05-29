@@ -3,15 +3,18 @@ title: Get Violentmonkey
 date: 2017-03-13 18:16:24
 ---
 
+Violentmonkey is built with web extension APIs. It supports a lot of browsers.
+
 If you're using...
 
-Chromium-based browsers
+Browsers with WebExtension support
 ---
-Chrome, Chromium, Opera 15+, QQBrowser, etc.
+Chrome, Chromium, Opera 15+, QQBrowser, Firefox 57+, etc.
 
 **Stores**
 - Chrome webstore: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
 - Opera add-ons: [Go](https://addons.opera.com/extensions/details/violent-monkey/)
+- Mozilla add-ons: [Go](https://addons.mozilla.org/firefox/addon/violentmonkey/)
 
 **Releases**
 - GitHub: [Go](https://github.com/violentmonkey/violentmonkey/releases)
@@ -43,12 +46,6 @@ Maxthon 4 and 5.
 ---
 
 Edge
----
-Not supported yet.
-
----
-
-Firefox
 ---
 Not supported yet.
 

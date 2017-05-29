@@ -7,11 +7,12 @@ What is it?
 ---
 Violentmonkey is a userscript manager to support running userscripts in web pages.
 
-Violentmonkey supports a lot of browsers, including:
+Violentmonkey is built with web extension APIs. It supports a lot of browsers, including:
 
 - Chrome and all Chromium based browsers
 - Opera (both Presto- and Chromium-based Opera)
 - Maxthon
+- Firefox
 
 [Get it!](/get-it/)
 
