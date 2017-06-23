@@ -73,3 +73,5 @@ deploy:
   type: git
   repo: git@github.com:violentmonkey/violentmonkey.github.io.git
   branch: master
+  name: Gerald
+  email: gera2ld@163.com
