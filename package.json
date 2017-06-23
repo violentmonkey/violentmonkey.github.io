@@ -1,14 +1,15 @@
 {
   "name": "hexo-site",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
+    "hexo": "hexo",
     "dev": "hexo server",
     "predeploy": "hexo clean",
     "deploy": "hexo generate -d"
   },
   "hexo": {
-    "version": "3.2.2"
+    "version": "3.3.7"
   },
   "dependencies": {
     "hexo": "^3.2.0",
