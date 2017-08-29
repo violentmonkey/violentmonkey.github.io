@@ -23,5 +23,5 @@ Transifex
 More
 ---
 Technically we can have a smarter and more flexible way to localize different
-Violentmonkey projects while keeping most of the shared parts. But not yet.
-Help is welcome.
+Violentmonkey projects while keeping most of the shared parts but not ready yet.
+Any help would be appreciated.
