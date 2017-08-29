@@ -66,6 +66,7 @@ pagination_dir: page
 theme: daily
 favicon: /static/vm.png
 logo: /static/vm.png
+# google_ad: ca-pub-5213885820020186
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

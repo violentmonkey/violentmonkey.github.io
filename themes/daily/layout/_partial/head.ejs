@@ -78,4 +78,13 @@
 
     --------------------------->
 
+  <% if (config.google_ad) { %>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: <%- JSON.stringify(config.google_ad) %>,
+    enable_page_level_ads: true
+  });
+</script>
+  <% } %>
 </head>
