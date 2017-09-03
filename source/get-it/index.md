@@ -13,8 +13,7 @@ Chrome, Chromium, Opera 15+, QQBrowser, Firefox 57+, etc.
 
 **Stores**
 - Chrome webstore: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
-- Opera add-ons: [Go](https://addons.opera.com/extensions/details/violent-monkey/)
-- Mozilla add-ons: [Go](https://addons.mozilla.org/firefox/addon/violentmonkey/)
+- Mozilla add-ons: see releases below
 
 **Releases**
 - GitHub: [Go](https://github.com/violentmonkey/violentmonkey/releases)
