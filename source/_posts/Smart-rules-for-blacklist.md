@@ -43,7 +43,7 @@ Taken all use cases into account, the blacklist may have following patterns:
 
   A string starting with `#`, will be ignored.
 
-Here is a full example:
+Here is a full example for blacklist:
 
 ```
 # hostnames
@@ -54,4 +54,34 @@ www.google.com
 
 # @exclude rules
 @exclude https://example.com/*
+```
+
+### Whitelist patterns
+
+For some people who want to disable Violentmonkey for most websites, a whitelist is needed.
+
+To work as a whitelist, we can use following patterns:
+
+- [`@match` rules](https://developer.chrome.com/extensions/match_patterns)
+
+  A string prefixed with `@match `, and followed by a match pattern, e.g. `@match https://www.google.com/*`.
+
+- [`@include` rules](https://wiki.greasespot.net/Include_and_exclude_rules)
+
+  A string prefixed with `@include `, e.g. `@include https://*`.
+
+If any of the rules above are matched, the URL bypasses the blacklist.
+To make it a whitelist, we should block all other URLs by a rule at the end: `*`.
+
+Here is a full example for whitelist:
+
+```
+# match rules
+@match https://www.google.com/*
+
+# include rules
+@include https://example.com/*
+
+# block everything else
+*
 ```
