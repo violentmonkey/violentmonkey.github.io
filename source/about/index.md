@@ -14,7 +14,7 @@ Violentmonkey is built with web extension APIs. It supports a lot of browsers, i
 - Maxthon
 - Firefox
 
-[Get it!](/get-it/)
+[Get it!](/get-it/) or [Donate](/donate/)
 
 Contribution
 ---
