@@ -9,6 +9,10 @@ tags:
   - mx
 ---
 
+**Note:** Firefox users please see [Known issues](#Known-issues).
+
+---
+
 For anyone who uses Violentmonkey, it is easy to find a way to edit a script like this:
 
 {% asset_img editor-1.png %}
@@ -45,3 +49,7 @@ Edit and sync
 After installation, the confirmation page will keep watching the file before the page is closed. Once the file is changed, the new version will be installed automatically. As a result, you edit the script in your favorite editor, and the changes are synced to Violentmonkey immediately.
 
 {% asset_img editor-5.png %}
+
+Known issues
+---
+- This won't work on Firefox due to the strict limitation on access to local files. See also [this on bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1266960).
