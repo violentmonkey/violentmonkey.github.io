@@ -11,10 +11,9 @@ Browsers with WebExtension support
 ---
 Chrome, Chromium, Opera 15+, QQBrowser, Firefox 57+, etc.
 
-For firefox users, pleases install from GitHub releases. See [why](/faq/#Why-is-Violentmonkey-newer-on-GitHub-than-AMO).
-
 **Stores**
 - Chrome webstore: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
+- Firefox AMO: [Go](https://addons.mozilla.org/firefox/addon/violentmonkey/)
 
 **Releases**
 - GitHub: [Go](https://github.com/violentmonkey/violentmonkey/releases)
