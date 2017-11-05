@@ -12,11 +12,14 @@ Browsers with WebExtension support
 Chrome, Chromium, Opera 15+, QQBrowser, Firefox 57+, etc.
 
 **Stores**
-- Chrome webstore: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
+- Chrome Web Store: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
 - Firefox AMO: [Go](https://addons.mozilla.org/firefox/addon/violentmonkey/)
 
 **Releases**
 - GitHub: [Go](https://github.com/violentmonkey/violentmonkey/releases)
+
+**Notes**
+- **Opera users** please [install from Chrome Web Store](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) because it seems Opera team will no longer review the extension. They think Violentmonkey is too complicated and they don't have time to review it. 😞
 
 ---
 
