@@ -9,10 +9,6 @@ tags:
   - mx
 ---
 
-**Note:** Firefox users please see [Known issues](#Known-issues).
-
----
-
 For anyone who uses Violentmonkey, it is easy to find a way to edit a script like this:
 
 {% asset_img editor-1.png %}
@@ -32,10 +28,24 @@ First, copy the script to your favorite editor and save it to a file.
 
 VIM is my favorite editor, and the script is saved at `D:/Source/vm-script.user.js`. Note that the script file must have a name ending with `.user.js`, otherwise won't be recognized by Violentmonkey.
 
-Drag into the browser
+Install a local script
 ---
 
-Drag the file into the browser. If it is named with a suffix of `.user.js`, it will be recognized by Violentmonkey and loaded in the confirmation page.
+First make sure the local script is named with a suffix of `.user.js`.
+
+There are two ways to install a local script:
+
+- *Easy way:* drag the file into the browser.
+
+  It will be recognized by Violentmonkey and loaded in the confirmation page.
+
+- *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.
+
+  If you have Python 3 installed, just type `python3 -m http.server` at the directory of your script to start a server.
+
+  Make sure the hostname is `localhost` and the script name ends with `.user.js`.
+
+Note that due to a [known issue](#Known-issues), the *easy way* **won't work for Firefox users**.
 
 {% asset_img editor-3.png %}
 
@@ -52,4 +62,4 @@ After installation, the confirmation page will keep watching the file before the
 
 Known issues
 ---
-- This won't work on Firefox due to the strict limitation on access to local files. See also [this on bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1266960).
+- In Firefox Violentmonkey is not allowed to access local files, so we have to start a local HTTP server for tracking. See [this on bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1266960).
