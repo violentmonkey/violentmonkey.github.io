@@ -5,8 +5,14 @@
       <aside>
         <h1 class="widget-title"><%= site.data.widget ? site.data.widget.title : theme.widget.title  %></h1>
         <div class="custom-widget-content">
-          <% var widget_content = site.data.widget ? site.data.widget.content : (config.description || theme.widget.content) %>
+          <% const widget_content = site.data.widget ? site.data.widget.content : (config.description || theme.widget.content) %>
+          <% if (Array.isArray(widget_content)) {
+            widget_content.forEach(link => {
+          %><div><a href="<%= link.url %>"><%= link.title %></a></div><%
+            })
+          } else { %>
           <%- widget_content %>
+          <% } %>
         </div>
       </aside>
     </div>

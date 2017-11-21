@@ -1,2 +1,6 @@
-title: Contribute
-content: <a href="/localization/">Localization</a>
+title: Pages
+content:
+  - url: /privacy/
+    title: Privacy Policy
+  - url: /faq/
+    title: FAQ

@@ -3,6 +3,7 @@ title: FAQ
 date: 2017-09-22 14:41:11
 ---
 
+<!--
 ### Why is Violentmonkey newer on GitHub than AMO?
 
 <details><summary>Because review on AMO takes quite long time, new releases are kept on GitHub.</summary><blockquote
@@ -12,6 +13,7 @@ Violentmonkey is written in ES6 and packed with Webpack. The generated code is q
 
 As a result, *I decide not to publish new releases on AMO*, and *keep them on GitHub under releases tab*.
 </blockquote></details>
+-->
 
 ### Why does Violentmonkey requires `clipboard` permission?
 
