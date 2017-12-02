@@ -504,3 +504,16 @@ Footer
 h3:target {
   background: #FCEBB6;
 }
+
+.label {
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 14px;
+  background: #87766c;
+  color: white;
+  font-size: 12px;
+  &-primary {
+    background: #3d8eb9;
+    color: white;
+  }
+}
