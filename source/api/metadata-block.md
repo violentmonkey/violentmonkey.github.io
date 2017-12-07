@@ -98,6 +98,8 @@ Require another script to execute before the current one. The value is the URL t
 
 The required script will be downloaded along with installation and execute before the script.
 
+Local files are not allowed to be required due to security concern. Also it does not make sense since scripts are supposed to work on different devices.
+
 Examples:
 
 ```js
