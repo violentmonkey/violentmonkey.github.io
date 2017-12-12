@@ -76,7 +76,7 @@ A brief summary to describe the script.
 Examples:
 
 ```js
-// @description         This script rock.
+// @description         This script rocks.
 // @description:zh-CN   这个脚本很棒！
 ```
 
