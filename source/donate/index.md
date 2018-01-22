@@ -19,18 +19,22 @@ donate.initDonate({
     image: '/static/vm.png',
     text: 'Donate',
   },
-  paypal: {
+  entries: [{
+    type: 'url',
+    text: 'PayPal',
     image: 'paypal.svg',
-    account: 'gera2ld@163.com',
-  },
-  alipay: {
+    url: 'https://www.paypal.me/gera2ld/5',
+  }, {
+    type: 'qrcode',
+    text: 'AliPay',
     image: 'alipay.svg',
     qrcode: 'qr_alipay.png',
-  },
-  wechatpay: {
+  }, {
+    type: 'qrcode',
+    text: 'WeChat Pay',
     image: 'wechat.svg',
     qrcode: 'qr_wechat.png',
-  },
+  }],
 });
 </script>
 {% endraw %}
