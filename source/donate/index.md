@@ -9,8 +9,8 @@ date: 2017-03-13 18:26:46
 Wanna buy me a coffee?
 
 {% raw %}
-<link rel="stylesheet" href="donate.css">
-<script src="donate.js"></script>
+<link rel="stylesheet" href="assets/donate.css">
+<script src="assets/donate.js"></script>
 <div id="vm-donate"></div>
 <script>
 donate.initDonate({
@@ -22,18 +22,18 @@ donate.initDonate({
   entries: [{
     type: 'url',
     text: 'PayPal',
-    image: 'paypal.svg',
+    image: 'assets/paypal.svg',
     url: 'https://www.paypal.me/gera2ld/5',
   }, {
     type: 'qrcode',
     text: 'AliPay',
-    image: 'alipay.svg',
-    qrcode: 'qr_alipay.png',
+    image: 'assets/alipay.svg',
+    qrcode: 'assets/qr_alipay.png',
   }, {
     type: 'qrcode',
     text: 'WeChat Pay',
-    image: 'wechat.svg',
-    qrcode: 'qr_wechat.png',
+    image: 'assets/wechat.svg',
+    qrcode: 'assets/qr_wechat.png',
   }],
 });
 </script>
