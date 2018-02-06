@@ -39,6 +39,10 @@ There are two ways to install a local script:
 
   It will be recognized by Violentmonkey and loaded in the confirmation page.
 
+  Make sure *"Allow access to file URLs"* is checked in your *Chrome extension settings* (`chrome://extensions`).
+
+  {% asset_img editor-6.png %}
+
 - *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.
 
   If you have Python 3 installed, just type `python3 -m http.server` at the directory of your script to start a server.
