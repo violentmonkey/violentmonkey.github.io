@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Gerald">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="How to edit scripts with your favorite editor?"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Violentmonkey"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>How to edit scripts with your favorite editor? - Violentmonkey</title>
+
+
+  <link rel="shortcut icon" href="/static/vm.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+  
+</head>
+
+<body>
+<header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/static/vm.png" alt="Violentmonkey" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Blog
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/get-it/">
+                
+                  Get it
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/api/">
+                
+                  API
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about/">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            How to edit scripts with your favorite editor?
+            
+          </h1>
+          <p class="posted-on">
+          2017-03-14
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/editor/" rel="tag">
+                  editor
+                </a>
+              
+                <a href="/tags/crx/" rel="tag">
+                  crx
+                </a>
+              
+                <a href="/tags/nex/" rel="tag">
+                  nex
+                </a>
+              
+                <a href="/tags/oex/" rel="tag">
+                  oex
+                </a>
+              
+                <a href="/tags/mx/" rel="tag">
+                  mx
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>For anyone who uses Violentmonkey, it is easy to find a way to edit a script like this:</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-1.png">
+<p>However, it is really hard to make everyone love it. <em>A</em> probably likes a theme of <code>monokai</code>, while <em>B</em> prefers <code>eclipse</code>. <em>C</em> might use 2 spaces for indentation while <em>D</em> prefers tabs.</p>
+<p>It is impossible to satisfy every single user. Lots of configurations may be added for this, but are they really worth it? A user would have to face lots of choices before he could use it just as a script manager, or have to look for a simple option among lots of unrelated editor options. What is worse, the browser may inhibit some shortcuts or operations that a local editor can have. In other words, an editor inside Violentmonkey will never be as good as your favorite one.</p>
+<p>Here comes the question: How to edit my script with my favorite editor?</p>
+<h2 id="Save-to-a-file"><a href="#Save-to-a-file" class="headerlink" title="Save to a file"></a>Save to a file</h2><p>First, copy the script to your favorite editor and save it to a file.</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-2.png">
+<p>VIM is my favorite editor, and the script is saved at <code>D:/Source/vm-script.user.js</code>. Note that the script file must have a name ending with <code>.user.js</code>, otherwise won’t be recognized by Violentmonkey.</p>
+<h2 id="Install-a-local-script"><a href="#Install-a-local-script" class="headerlink" title="Install a local script"></a>Install a local script</h2><p>First make sure the local script is named with a suffix of <code>.user.js</code>.</p>
+<p>There are two ways to install a local script:</p>
+<ul>
+<li><p><em>Easy way:</em> drag the file into the browser.</p>
+<p>It will be recognized by Violentmonkey and loaded in the confirmation page.</p>
+<p>Make sure <em>“Allow access to file URLs”</em> is checked in your <em>Chrome extension settings</em> (<code>chrome://extensions</code>).</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-6.png">
+</li>
+<li><p><em>Hard way:</em> start a local HTTP server, then open the local script with a URL like <code>http://localhost:8080/my-script.user.js</code>.</p>
+<p>If you have Python 3 installed, just type <code>python3 -m http.server</code> at the directory of your script to start a server.</p>
+<p>Make sure the hostname is <code>localhost</code> and the script name ends with <code>.user.js</code>.</p>
+</li>
+</ul>
+<p>Note that due to a <a href="#Known-issues">known issue</a>, the <em>easy way</em> <strong>won’t work for Firefox users</strong>.</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-3.png">
+<p>Make sure the <code>track local file</code> option is checked and then confirm installation.</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-4.png">
+<h2 id="Edit-and-sync"><a href="#Edit-and-sync" class="headerlink" title="Edit and sync"></a>Edit and sync</h2><p>After installation, the confirmation page will keep watching the file before the page is closed. Once the file is changed, the new version will be installed automatically. As a result, you edit the script in your favorite editor, and the changes are synced to Violentmonkey immediately.</p>
+<img src="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/editor-5.png">
+<h2 id="Known-issues"><a href="#Known-issues" class="headerlink" title="Known issues"></a>Known issues</h2><ul>
+<li>In Firefox Violentmonkey is not allowed to access local files, so we have to start a local HTTP server for tracking. See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1266960" target="_blank" rel="noopener">this on bugzilla</a>.</li>
+</ul>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2017/04/15/Smart-rules-for-blacklist/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Pages</h1>
+        <div class="custom-widget-content">
+          
+          <div><a href="/privacy/">Privacy Policy</a></div><div><a href="/faq/">FAQ</a></div>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/violentmonkey" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:i@gerald.top" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Violentmonkey &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+<script src="/js/app.js"></script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', "UA-93752732-1", 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>

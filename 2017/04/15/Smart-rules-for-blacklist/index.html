@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Gerald">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Smart rules for blacklist"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Violentmonkey"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Smart rules for blacklist - Violentmonkey</title>
+
+
+  <link rel="shortcut icon" href="/static/vm.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+  
+</head>
+
+<body>
+<header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/static/vm.png" alt="Violentmonkey" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Blog
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/get-it/">
+                
+                  Get it
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/api/">
+                
+                  API
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about/">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Smart rules for blacklist
+            
+          </h1>
+          <p class="posted-on">
+          2017-04-15
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/blacklist/" rel="tag">
+                  blacklist
+                </a>
+              
+                <a href="/tags/exclude/" rel="tag">
+                  exclude
+                </a>
+              
+                <a href="/tags/match/" rel="tag">
+                  match
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>Userscripts are injected into web pages according to predefined rules. However, the rules do not always satisfy users for different reasons. In such cases, we need blacklist to exclude some web pages for all scripts.</p>
+<h3 id="Blacklist-use-cases"><a href="#Blacklist-use-cases" class="headerlink" title="Blacklist use cases"></a>Blacklist use cases</h3><ul>
+<li><p>hostnames</p>
+<p>In most cases, we may want to add simply hostnames to exclude.</p>
+</li>
+<li><p><code>@exclude-match</code> rules</p>
+<p>Since match patterns are safer to match URLs, we prefer to use <code>@exclude-match</code> rules to exclude URLs more flexibly.</p>
+</li>
+<li><p><code>@exclude</code> rules</p>
+<p>They are commonly supported by userscripts, so we should just keep them work.</p>
+</li>
+</ul>
+<h3 id="Blacklist-patterns"><a href="#Blacklist-patterns" class="headerlink" title="Blacklist patterns"></a>Blacklist patterns</h3><p>Taken all use cases into account, the blacklist may have following patterns:</p>
+<ul>
+<li><p>hostnames</p>
+<p>A string without slashes, e.g. <code>example.com</code>, <code>*.example.com</code>.</p>
+</li>
+<li><p><a href="https://developer.chrome.com/extensions/match_patterns" target="_blank" rel="noopener">match patterns</a></p>
+<p>A string with scheme, hostname and pathname patterns, e.g. <code>*://*/*</code>, <code>https://www.google.com/</code>.</p>
+</li>
+<li><p><a href="https://wiki.greasespot.net/Include_and_exclude_rules" target="_blank" rel="noopener"><code>@exclude</code> rules</a></p>
+<p>A string prefixed with <code>@exclude</code>, e.g. <code>@exclude https://*</code>.</p>
+</li>
+<li><p>comments</p>
+<p>A string starting with <code>#</code>, will be ignored.</p>
+</li>
+</ul>
+<p>Here is a full example for blacklist:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># hostnames</span><br><span class="line">www.google.com</span><br><span class="line"></span><br><span class="line"># @exclude-match rules</span><br><span class="line">*://twitter.com/*</span><br><span class="line"></span><br><span class="line"># @exclude rules</span><br><span class="line">@exclude https://example.com/*</span><br></pre></td></tr></table></figure>
+<h3 id="Whitelist-patterns"><a href="#Whitelist-patterns" class="headerlink" title="Whitelist patterns"></a>Whitelist patterns</h3><p>For some people who want to disable Violentmonkey for most websites, a whitelist is needed.</p>
+<p>To work as a whitelist, we can use following patterns:</p>
+<ul>
+<li><p><a href="https://developer.chrome.com/extensions/match_patterns" target="_blank" rel="noopener"><code>@match</code> rules</a></p>
+<p>A string prefixed with <code>@match</code>, and followed by a match pattern, e.g. <code>@match https://www.google.com/*</code>.</p>
+</li>
+<li><p><a href="https://wiki.greasespot.net/Include_and_exclude_rules" target="_blank" rel="noopener"><code>@include</code> rules</a></p>
+<p>A string prefixed with <code>@include</code>, e.g. <code>@include https://*</code>.</p>
+</li>
+</ul>
+<p>If any of the rules above are matched, the URL bypasses the blacklist.<br>To make it a whitelist, we should block all other URLs by a rule at the end: <code>*</code>.</p>
+<p>Here is a full example for whitelist:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># match rules</span><br><span class="line">@match https://www.google.com/*</span><br><span class="line"></span><br><span class="line"># include rules</span><br><span class="line">@include https://example.com/*</span><br><span class="line"></span><br><span class="line"># block everything else</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2017/10/28/Inject-scripts-with-BLOB-URLs/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Pages</h1>
+        <div class="custom-widget-content">
+          
+          <div><a href="/privacy/">Privacy Policy</a></div><div><a href="/faq/">FAQ</a></div>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/violentmonkey" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:i@gerald.top" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Violentmonkey &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+<script src="/js/app.js"></script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', "UA-93752732-1", 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>
