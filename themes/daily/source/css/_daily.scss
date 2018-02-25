@@ -517,3 +517,23 @@ h3:target {
     color: white;
   }
 }
+
+#jobs {
+  display: inline;
+  position: relative;
+  top: -20px;
+  margin: 8px 0;
+  padding: 0 4px;
+  color: #71ba51;
+  border: 1px solid currentColor;
+  background-image: url(https://violentmonkey.top/count/jobs);
+  background-color: rgba(113,186,81,.1);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 767px) {
+  #jobs {
+    display: none;
+  }
+}
