@@ -1104,3 +1104,25 @@ pre {
   .footer-widgets .inside-wrapper {
     padding-left: 5px;
     padding-right: 5px; } }
+
+.more-toggle::before {
+  content: '[Show detail]';
+  font-size: 12px;
+  color: #aaa; }
+
+.more-body {
+  display: none;
+  padding: 0 16px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  transition: transform .3s;
+  transform-origin: 0 0; }
+
+.more.active .more-toggle::before {
+  content: '[Hide detail]'; }
+
+.more.active .more-body {
+  display: block; }
+
+.more.hide .more-body {
+  transform: scale(0); }
