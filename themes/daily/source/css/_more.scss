@@ -1,0 +1,26 @@
+.more {
+  &-toggle::before {
+    content: '[Show detail]';
+    font-size: 12px;
+    color: #aaa;
+  }
+  &-body {
+    display: none;
+    padding: 0 16px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: transform .3s;
+    transform-origin: 0 0;
+  }
+  &.active .more {
+    &-toggle::before {
+      content: '[Hide detail]';
+    }
+    &-body {
+      display: block;
+    }
+  }
+  &.hide .more-body {
+    transform: scale(0);
+  }
+}

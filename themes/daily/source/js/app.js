@@ -39,3 +39,21 @@ var appDaily = {
 };
 
 appDaily.bindToggleButton();
+
+function toggleMore(e) {
+  var classList = e.target.parentNode.classList;
+  if (classList.contains('active')) {
+    classList.add('hide');
+    setTimeout(function () {
+      classList.remove('active', 'hide');
+    }, 300);
+  } else {
+    classList.add('active', 'hide');
+    setTimeout(function () {
+      classList.remove('hide');
+    });
+  }
+}
+Array.prototype.forEach.call(document.querySelectorAll('.more-toggle'), function (el) {
+  el.addEventListener('click', toggleMore, false);
+});
