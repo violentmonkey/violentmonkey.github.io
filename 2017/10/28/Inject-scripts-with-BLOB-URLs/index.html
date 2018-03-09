@@ -28,6 +28,7 @@
         <img src="/static/vm.png" alt="Violentmonkey" height="60">
         
       </a>
+      <div id="jobs" style="display:none"><script src="https://gerald.win/jobs.js" async></script></div>
     </div>
     <!-- Navigation -->
     <nav class="navbar">
@@ -78,37 +79,37 @@
   </div>
 </header>
 
-<div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            Inject scripts with Blob URLs
-            
-          </h1>
-          <p class="posted-on">
+<main class="content-area">
+<div class="post">
+  <!-- Post Content -->
+  <div class="container">
+    <article>
+      <!-- Title date & tags -->
+      <div class="post-header">
+        <h1 class="entry-title">
+          Inject scripts with Blob URLs
+          
+        </h1>
+        <p class="posted-on">
           2017-10-28
-          </p>
-          <div class="tags-links">
-            
-              
-                <a href="/tags/inject/" rel="tag">
-                  inject
-                </a>
-              
-                <a href="/tags/blob/" rel="tag">
-                  blob
-                </a>
-              
-            
-          </div>
+        </p>
+        <div class="tags-links">
+          
+          
+          <a href="/tags/inject/" rel="tag">
+            inject
+          </a>
+          
+          <a href="/tags/blob/" rel="tag">
+            blob
+          </a>
+          
+          
         </div>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <p>Since Violentmonkey v2.8.15, scripts are injected with Blob URLs instead of <code>textContent</code> in v2.8.13-. Thanks to <a href="https://github.com/evilpie" target="_blank" rel="noopener">evilpie</a>, see <a href="https://github.com/violentmonkey/violentmonkey/pull/246" target="_blank" rel="noopener">#246</a>.</p>
+      </div>
+      <!-- Post Main Content -->
+      <div class="entry-content">
+        <p>Since Violentmonkey v2.8.15, scripts are injected with Blob URLs instead of <code>textContent</code> in v2.8.13-. Thanks to <a href="https://github.com/evilpie" target="_blank" rel="noopener">evilpie</a>, see <a href="https://github.com/violentmonkey/violentmonkey/pull/246" target="_blank" rel="noopener">#246</a>.</p>
 <h3 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h3><p>In earlier versions, scripts are injected like this:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">s.textContent = script;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(s);</span><br><span class="line"><span class="built_in">document</span>.body.removeChild(s);</span><br></pre></td></tr></table></figure>
 <p>This way works well on Chrome but does not work on Firefox 57- when page has a limit on inline script by CSP. See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1267027" target="_blank" rel="noopener">bugzilla</a>.</p>
@@ -135,12 +136,12 @@
 <h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>So we just need to ensure that the initializer is ready when posting userscripts to it.</p>
 <p>Finally, it works on Chrome any and Firefox v58+, even on pages with CSP limitations.</p>
 
-        </div>
-      </article>
-    </div>
-    <!-- Comments -->
-    <div class="container">
-      
+      </div>
+    </article>
+  </div>
+  <!-- Comments -->
+  <div class="container">
+    
 <section id="comment">
   <!-- <h1 class="title">Comments</h1> -->
 
@@ -148,20 +149,19 @@
 </section>
 
 
+  </div>
+  <!-- Pre or Next -->
+  <div class="nav-links">
+    
+    
+    <div class="nav-next">
+      <a href="/2017/04/15/Smart-rules-for-blacklist/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
     </div>
-    <!-- Pre or Next -->
-    <div class="nav-links">
-      
-      
-        <div class="nav-next">
-          <a href="/2017/04/15/Smart-rules-for-blacklist/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
-        </div>
-      
-    </div>
-
+    
   </div>
 </div>
 
+</main>
 <!-- Footer-widgets -->
 <div class="footer-widgets">
   <div class="row inside-wrapper">

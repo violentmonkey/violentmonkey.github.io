@@ -28,6 +28,7 @@
         <img src="/static/vm.png" alt="Violentmonkey" height="60">
         
       </a>
+      <div id="jobs" style="display:none"><script src="https://gerald.win/jobs.js" async></script></div>
     </div>
     <!-- Navigation -->
     <nav class="navbar">
@@ -78,27 +79,27 @@
   </div>
 </header>
 
-<div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            Metadata Block
-            
-          </h1>
-          <p class="posted-on">
+<main class="content-area">
+<div class="post">
+  <!-- Post Content -->
+  <div class="container">
+    <article>
+      <!-- Title date & tags -->
+      <div class="post-header">
+        <h1 class="entry-title">
+          Metadata Block
+          
+        </h1>
+        <p class="posted-on">
           2017-12-02
-          </p>
-          <div class="tags-links">
-            
-          </div>
+        </p>
+        <div class="tags-links">
+          
         </div>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <p>The metadata must follow the format:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @key value</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br></pre></td></tr></table></figure></p>
+      </div>
+      <!-- Post Main Content -->
+      <div class="entry-content">
+        <p>The metadata must follow the format:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @key value</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br></pre></td></tr></table></figure></p>
 <p>Each line of the block must start with <code>//</code>, the first line must be <code>// ==UserScript==</code> and the last line must be <code>// ==/UserScript==</code>. No extra space is allowed at the beginning or ending of line.</p>
 <p>Some of the keys can be localized for multiple languages, by adding a colon and the locale code to the key, e.g. <code>@name:zh-CN</code>. The locale code is case insensitive.</p>
 <p>Labels:</p>
@@ -165,12 +166,12 @@
 <p>If any special API is used, it must be granted:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @grant GM_getValue</span></span><br><span class="line"><span class="comment">// @grant GM_setValue</span></span><br></pre></td></tr></table></figure>
 
-        </div>
-      </article>
-    </div>
-    <!-- Comments -->
-    <div class="container">
-      
+      </div>
+    </article>
+  </div>
+  <!-- Comments -->
+  <div class="container">
+    
 <section id="comment">
   <!-- <h1 class="title">Comments</h1> -->
 
@@ -178,16 +179,15 @@
 </section>
 
 
-    </div>
-    <!-- Pre or Next -->
-    <div class="nav-links">
-      
-      
-    </div>
-
+  </div>
+  <!-- Pre or Next -->
+  <div class="nav-links">
+    
+    
   </div>
 </div>
 
+</main>
 <!-- Footer-widgets -->
 <div class="footer-widgets">
   <div class="row inside-wrapper">

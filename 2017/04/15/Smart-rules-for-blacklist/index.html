@@ -28,6 +28,7 @@
         <img src="/static/vm.png" alt="Violentmonkey" height="60">
         
       </a>
+      <div id="jobs" style="display:none"><script src="https://gerald.win/jobs.js" async></script></div>
     </div>
     <!-- Navigation -->
     <nav class="navbar">
@@ -78,41 +79,41 @@
   </div>
 </header>
 
-<div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            Smart rules for blacklist
-            
-          </h1>
-          <p class="posted-on">
+<main class="content-area">
+<div class="post">
+  <!-- Post Content -->
+  <div class="container">
+    <article>
+      <!-- Title date & tags -->
+      <div class="post-header">
+        <h1 class="entry-title">
+          Smart rules for blacklist
+          
+        </h1>
+        <p class="posted-on">
           2017-04-15
-          </p>
-          <div class="tags-links">
-            
-              
-                <a href="/tags/blacklist/" rel="tag">
-                  blacklist
-                </a>
-              
-                <a href="/tags/exclude/" rel="tag">
-                  exclude
-                </a>
-              
-                <a href="/tags/match/" rel="tag">
-                  match
-                </a>
-              
-            
-          </div>
+        </p>
+        <div class="tags-links">
+          
+          
+          <a href="/tags/blacklist/" rel="tag">
+            blacklist
+          </a>
+          
+          <a href="/tags/exclude/" rel="tag">
+            exclude
+          </a>
+          
+          <a href="/tags/match/" rel="tag">
+            match
+          </a>
+          
+          
         </div>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <p>Userscripts are injected into web pages according to predefined rules. However, the rules do not always satisfy users for different reasons. In such cases, we need blacklist to exclude some web pages for all scripts.</p>
+      </div>
+      <!-- Post Main Content -->
+      <div class="entry-content">
+        <p>Userscripts are injected into web pages according to predefined rules. However, the rules do not always satisfy users for different reasons. In such cases, we need blacklist to exclude some web pages for all scripts.</p>
 <h3 id="Blacklist-use-cases"><a href="#Blacklist-use-cases" class="headerlink" title="Blacklist use cases"></a>Blacklist use cases</h3><ul>
 <li><p>hostnames</p>
 <p>In most cases, we may want to add simply hostnames to exclude.</p>
@@ -155,12 +156,12 @@
 <p>Here is a full example for whitelist:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># match rules</span><br><span class="line">@match https://www.google.com/*</span><br><span class="line"></span><br><span class="line"># include rules</span><br><span class="line">@include https://example.com/*</span><br><span class="line"></span><br><span class="line"># block everything else</span><br><span class="line">*</span><br></pre></td></tr></table></figure>
 
-        </div>
-      </article>
-    </div>
-    <!-- Comments -->
-    <div class="container">
-      
+      </div>
+    </article>
+  </div>
+  <!-- Comments -->
+  <div class="container">
+    
 <section id="comment">
   <!-- <h1 class="title">Comments</h1> -->
 
@@ -168,24 +169,23 @@
 </section>
 
 
+  </div>
+  <!-- Pre or Next -->
+  <div class="nav-links">
+    
+    <div class="nav-previous">
+      <a href="/2017/10/28/Inject-scripts-with-BLOB-URLs/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
     </div>
-    <!-- Pre or Next -->
-    <div class="nav-links">
-      
-        <div class="nav-previous">
-          <a href="/2017/10/28/Inject-scripts-with-BLOB-URLs/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
-      
-        <div class="nav-next">
-          <a href="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
-        </div>
-      
+    
+    
+    <div class="nav-next">
+      <a href="/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
     </div>
-
+    
   </div>
 </div>
 
+</main>
 <!-- Footer-widgets -->
 <div class="footer-widgets">
   <div class="row inside-wrapper">
