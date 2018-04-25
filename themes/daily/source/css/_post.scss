@@ -26,6 +26,20 @@
       z-index: 29;
     }
   }
+  .headerlink {
+    display: inline-block;
+    width: 20px;
+    margin-left: -20px;
+  }
+  *[id] {
+    padding-top: 80px;
+    margin-top: -80px;
+  }
+  *:hover > .headerlink {
+    &::before {
+      content: '#';
+    }
+  }
 }
 .entry-content {
   font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
