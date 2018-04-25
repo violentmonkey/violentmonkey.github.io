@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="author" content="Gerald">
+
+<meta property="og:title" content="GM_* APIs">
+
+<meta property="og:site_name" content="Violentmonkey">
+<meta property="og:type" content="article">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+<title>GM_* APIs - Violentmonkey</title>
+<link rel="shortcut icon" href="/static/vm.png">
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/static/vm.png" alt="Violentmonkey" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Blog
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/get-it/">
+                
+                  Get it
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/api/">
+                
+                  API
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about/">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+<main class="content-area">
+<div class="post">
+  <!-- Post Content -->
+  <div class="container">
+    <article>
+      <!-- Title date & tags -->
+      <div class="post-header">
+        <h1 class="entry-title">
+          GM_* APIs
+          
+        </h1>
+        <p class="posted-on">
+          2018-04-25
+        </p>
+        <div class="tags-links">
+          
+        </div>
+      </div>
+      <!-- Post Main Content -->
+      <div class="entry-content">
+        <p><code>GM_*</code> are a group of special APIs provided by Violentmonkey.</p>
+<h3 id="GM-info"><a href="#GM-info" class="headerlink" title="GM_info"></a>GM_info</h3><p>An object that exposes information about the current userscript. It has following properties:</p>
+<ul>
+<li><p><code>uuid</code></p>
+<p>A unique ID of the script.</p>
+</li>
+<li><p><code>scriptMetaStr</code></p>
+<p>The meta block of the script.</p>
+</li>
+<li><p><code>scriptWillUpdate</code></p>
+<p>Whether the script will be updated automatically.</p>
+</li>
+<li><p><code>scriptHandler</code></p>
+<p>The name of userscript manager, which should be the string <code>Violentmonkey</code>.</p>
+</li>
+<li><p><code>version</code></p>
+<p>Version of Violentmonkey.</p>
+</li>
+<li><p><code>script</code></p>
+<p>An object containing structured fields from the <a href="metadata-block.html">Metadata Block</a>:</p>
+<ul>
+<li><code>description</code> <em>string</em></li>
+<li><code>excludes</code> <em>array</em></li>
+<li><code>includes</code> <em>array</em></li>
+<li><code>matches</code> <em>array</em></li>
+<li><code>name</code> <em>string</em></li>
+<li><code>namespace</code> <em>string</em></li>
+<li><code>resources</code> <em>array &lt;string name, string url&gt;</em></li>
+<li><code>runAt</code> <em>string</em></li>
+<li><code>version</code> <em>string</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="GM-getValue"><a href="#GM-getValue" class="headerlink" title="GM_getValue"></a>GM_getValue</h3><p>Retrieve a value for current script from storage.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_getValue(key, <span class="keyword">default</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>key</code> <em>string</em></p>
+<p>The name for <code>value</code> to load.</p>
+</li>
+<li><p><code>default</code> <em>any</em></p>
+<p>The default value to return if no value exists in the storage.</p>
+</li>
+</ul>
+<p>Returns the retrieved value or default value.</p>
+<h3 id="GM-setValue"><a href="#GM-setValue" class="headerlink" title="GM_setValue"></a>GM_setValue</h3><p>Set a key / value pair for current script to storage.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_setValue(key, value)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>key</code> <em>string</em></p>
+<p>The unique name for <code>value</code> within this script.</p>
+</li>
+<li><p><code>value</code> <em>any</em></p>
+<p>The value to be stored, which must be <strong>JSON serializable</strong>.</p>
+</li>
+</ul>
+<p>Returns nothing.</p>
+<h3 id="GM-deleteValue"><a href="#GM-deleteValue" class="headerlink" title="GM_deleteValue"></a>GM_deleteValue</h3><p>Delete an existing key / value pair for current script from storage.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_deleteValue(key)</span><br></pre></td></tr></table></figure>
+<p>Returns nothing.</p>
+<h3 id="GM-listValues"><a href="#GM-listValues" class="headerlink" title="GM_listValues"></a>GM_listValues</h3><p>Retrieve the list of keys of all available values within this script.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_listValues()</span><br></pre></td></tr></table></figure>
+<p>Returns an array of all available keys.</p>
+<h3 id="GM-getResourceURL"><a href="#GM-getResourceURL" class="headerlink" title="GM_getResourceURL"></a>GM_getResourceURL</h3><p>Retrieve a BLOB URL of the predefined resource.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_getResourceURL(name)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>name</code> <em>string</em></p>
+<p>Name of resource that is defined in <a href="metadata-block.html#resource">metadata block</a>.</p>
+</li>
+</ul>
+<p>Returns a BLOB URL.</p>
+<h3 id="GM-addStyle"><a href="#GM-addStyle" class="headerlink" title="GM_addStyle"></a>GM_addStyle</h3><p>Creates a <code>&lt;style&gt;</code> element and injects some CSS.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GM_addStyle(css)</span><br><span class="line">.then(<span class="function"><span class="params">style</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'This is the &lt;style&gt; element:'</span>, style);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>css</code> <em>string</em></p>
+<p>The CSS code to inject.</p>
+</li>
+</ul>
+<p>Returns a Promise-like object with a <code>.then</code> method, which accepts a callback whose first argument is the injected <code>&lt;style&gt;</code> element.</p>
+<h3 id="GM-openInTab"><a href="#GM-openInTab" class="headerlink" title="GM_openInTab"></a>GM_openInTab</h3><p>Open URL in a new tab.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GM_openInTab(url, options)</span><br><span class="line">GM_openInTab(url, openInBackground)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>url</code> <em>string</em></p>
+<p>The URL to open in a new tab. URL relative to current page is also allowed.</p>
+<p>Note: Firefox does not support data URLs.</p>
+</li>
+<li><p><code>options</code> <em>object optional</em></p>
+<ul>
+<li><p><code>options.active</code> <em>boolean</em></p>
+<p>Whether the new tab should be loaded and activated.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The second usage is compatible with Greasemonkey.</p>
+<ul>
+<li><p><code>openInBackground</code> <em>boolean</em></p>
+<p><code>openInBackground = true</code> is the same as <code>options = { active: false }</code>.</p>
+</li>
+</ul>
+<p>Returns an object with following properties:</p>
+<ul>
+<li><p><code>onclose</code></p>
+<p>Can be assigned to a function. If provided, it will be called when the tab opened is closed.</p>
+</li>
+<li><p><code>closed</code> <em>boolean</em></p>
+<p>Whether the tab opened is closed.</p>
+</li>
+<li><p><code>close</code> <em>function</em></p>
+<p>A function to explicitly close the tab opened.</p>
+</li>
+</ul>
+<h3 id="GM-registerMenuCommand"><a href="#GM-registerMenuCommand" class="headerlink" title="GM_registerMenuCommand"></a>GM_registerMenuCommand</h3><p>Register a command to Violentmonkey popup menu.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_registerMenuCommand(caption, func)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>caption</code> <em>string</em></p>
+<p>The name to show in the popup menu.</p>
+</li>
+<li><p><code>func</code> <em>function</em></p>
+<p>The function to execute when clicked in the menu.</p>
+</li>
+</ul>
+<h3 id="GM-unregisterMenuCommand"><a href="#GM-unregisterMenuCommand" class="headerlink" title="GM_unregisterMenuCommand"></a>GM_unregisterMenuCommand</h3><p>Unregister a command which has been registered to Violentmonkey popup menu.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_unregisterMenuCommand(caption)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>caption</code> <em>string</em></p>
+<p>The name of command to be unregistered.</p>
+</li>
+</ul>
+<h3 id="GM-notification"><a href="#GM-notification" class="headerlink" title="GM_notification"></a>GM_notification</h3><p>Show a HTML5 desktop notification.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GM_notification(options)</span><br><span class="line">GM_notification(text, title, image, onclick)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>options</code> <em>object</em></p>
+<ul>
+<li><p><code>options.text</code> <em>string required</em></p>
+<p>Main text of the notification.</p>
+</li>
+<li><p><code>options.title</code> <em>string</em></p>
+<p>Title of the notification.</p>
+</li>
+<li><p><code>options.image</code> <em>string</em></p>
+<p>URL of an image to show in the notification.</p>
+</li>
+<li><p><code>options.onclick</code> <em>function</em></p>
+<p>Callback when the notification is clicked by user.</p>
+</li>
+<li><p><code>options.ondone</code> <em>function</em></p>
+<p>Callback when the notification is closed, either by user or by system.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The second usage is compatible with Greasemonkey.</p>
+<ul>
+<li><code>text</code> <em>string required</em></li>
+<li><code>title</code> <em>string</em></li>
+<li><code>image</code> <em>string</em></li>
+<li><code>onclick</code> <em>function</em></li>
+</ul>
+<h3 id="GM-setClipboard"><a href="#GM-setClipboard" class="headerlink" title="GM_setClipboard"></a>GM_setClipboard</h3><p>Set data to system clipboard.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_setClipboard(data, type)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>data</code></p>
+<p>The data to be copied to system clipboard.</p>
+</li>
+<li><p><code>type</code> <em>string</em></p>
+<p>The type of data to copy. Default as <code>text/plain</code>.</p>
+</li>
+</ul>
+<h3 id="GM-xmlhttpRequest"><a href="#GM-xmlhttpRequest" class="headerlink" title="GM_xmlhttpRequest"></a>GM_xmlhttpRequest</h3><p>Make an xmlhttpRequest, with some special abilities.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GM_xmlhttpRequest(details)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>details</code></p>
+<p>An object with following properties:</p>
+<ul>
+<li><p><code>details.url</code> <em>string required</em></p>
+<p>URL relative to current page is also allowed.</p>
+</li>
+<li><p><code>details.method</code> <em>string</em></p>
+<p>Default as <code>GET</code>.</p>
+</li>
+<li><p><code>details.user</code> <em>string</em></p>
+<p>User for authentication.</p>
+</li>
+<li><p><code>details.password</code> <em>string</em></p>
+<p>Password for authentication.</p>
+</li>
+<li><p><code>details.overrideMimetype</code> <em>string</em></p>
+<p>A Mimetype to specify with the request.</p>
+</li>
+<li><p><code>details.headers</code> <em>object</em></p>
+<p>Some special headers are also allowed:</p>
+<ul>
+<li><code>Cookie</code></li>
+<li><code>Host</code></li>
+<li><code>Origin</code></li>
+<li><code>Referer</code></li>
+<li><code>User-Agent</code></li>
+</ul>
+</li>
+<li><p><code>details.responseType</code> <em>string</em></p>
+<p>One of <code>json</code>, <code>blob</code> and <code>arraybuffer</code>.</p>
+</li>
+<li><p><code>details.data</code> <em>string | formdata</em></p>
+<p>Data to send with the request, usually for <code>POST</code> and <code>PUT</code> requests.</p>
+</li>
+<li><p><code>details.context</code> <em>any</em></p>
+<p>It can be an object and will be assigned to <code>context</code> of the response object.</p>
+</li>
+<li><p>Event handlers:</p>
+<ul>
+<li><code>details.onabort</code></li>
+<li><code>details.onerror</code></li>
+<li><code>details.onload</code></li>
+<li><code>details.onloadend</code></li>
+<li><code>details.onprogress</code></li>
+<li><code>details.onreadystatechange</code></li>
+<li><code>details.ontimeout</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Returns an object with following properties:</p>
+<ul>
+<li><p><code>abort</code> <em>function</em></p>
+<p>A function to abort the request.</p>
+</li>
+</ul>
+<p>The response object will be passed to each event handler, with following properties:</p>
+<ul>
+<li><p><code>status</code></p>
+<p>Same as a standard <code>XMLHttpRequest</code>.</p>
+</li>
+<li><p><code>statusText</code></p>
+<p>Same as a standard <code>XMLHttpRequest</code>.</p>
+</li>
+<li><p><code>readyState</code></p>
+<p>Same as a standard <code>XMLHttpRequest</code>.</p>
+</li>
+<li><p><code>responseHeaders</code></p>
+<p>An object of all response headers.</p>
+</li>
+<li><p><code>reponseText</code></p>
+<p>Same as a standard <code>XMLHttpRequest</code>, only provided when available.</p>
+</li>
+<li><p><code>finalUrl</code></p>
+<p>The final URL after redirection.</p>
+</li>
+<li><p><code>context</code></p>
+<p>The same object passed to the original request.</p>
+</li>
+</ul>
+
+      </div>
+    </article>
+  </div>
+  <!-- Comments -->
+  <div class="container">
+    
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+  </div>
+  <!-- Pre or Next -->
+  <div class="nav-links">
+    
+    
+  </div>
+</div>
+
+</main>
+<!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Pages</h1>
+        <div class="custom-widget-content">
+          
+          <div><a href="/privacy/">Privacy Policy</a></div><div><a href="/faq/">FAQ</a></div>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/violentmonkey" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:i@gerald.top" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Violentmonkey &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+<script src="/js/app.js"></script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', "UA-93752732-1", 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+</html>
