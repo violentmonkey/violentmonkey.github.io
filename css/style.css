@@ -708,9 +708,6 @@ Footer
     text-decoration: none;
     color: #666666; }
 
-h3:target {
-  background: #FCEBB6; }
-
 .label {
   display: inline-block;
   padding: 3px 5px;
@@ -838,6 +835,15 @@ h3:target {
     bottom: 64px;
     right: 50px;
     z-index: 29; }
+  .post .headerlink {
+    display: inline-block;
+    width: 20px;
+    margin-left: -20px; }
+  .post *[id] {
+    padding-top: 80px;
+    margin-top: -80px; }
+  .post *:hover > .headerlink::before {
+    content: '#'; }
 
 .entry-content {
   font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
