@@ -187,6 +187,8 @@ GM_registerMenuCommand(caption, func)
 
   The function to execute when clicked in the menu.
 
+If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
+
 ### GM_unregisterMenuCommand
 
 Unregister a command which has been registered to Violentmonkey popup menu.
