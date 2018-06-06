@@ -301,6 +301,10 @@ GM_xmlhttpRequest(details)
 
     One of `json`, `blob` and `arraybuffer`.
 
+  - `details.timeout` *integer* *v2.9.5+*
+
+    Time to wait for the request, none by default.
+
   - `details.data` *string | formdata*
 
     Data to send with the request, usually for `POST` and `PUT` requests.
@@ -358,3 +362,39 @@ The response object will be passed to each event handler, with following propert
 - `context`
 
   The same object passed to the original request.
+
+### GM_download
+
+*v2.9.5+*
+
+Download a URL and save it as a local file.
+
+```js
+GM_download(options)
+// or
+GM_download(url, name)
+```
+
+- `options`
+
+  An object with following properties:
+
+  - `options.url` *string required*
+
+     The URL to download.
+
+  - `options.name` *string*
+
+     The filename to save as.
+
+  - `options.onload` *function*
+
+     The function to call when download started successfully.
+
+  Properties below is the same as those for `GM_xmlhttpRequest`:
+
+  - `options.headers` *object*
+  - `options.timeout` *integer*
+  - `options.onerror` *function*
+  - `options.onprogress` *function*
+  - `options.ontimeout` *function*
