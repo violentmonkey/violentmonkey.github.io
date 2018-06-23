@@ -64,7 +64,7 @@ In short, a script will execute if it matches any `@match` or `@include` rule an
 
 Here is the long version:
 
-- If any `@exclude-match` or `@exclude` rule matches, the script matches.
+- If any `@exclude-match` or `@exclude` rule matches, the script does not match.
 - Otherwise if any `@match` rule is defined, the script matches only if some of the `@match` rules match.
 - If no `@match` rule is defined, we fallback to `@include` rules and the script matches only if some of the `@include` rules match.
 - If neither `@match` nor `@include` rule is defined, the script is assumed to match.
