@@ -14,6 +14,8 @@ It is recommended to use `@match` / `@exclude-match` rather than `@include` / `@
 
 For more details, see the document on [Match Patterns](https://developer.chrome.com/extensions/match_patterns) for Chrome extensions.
 
+Note that match patterns only work on scheme, host and path, i.e. match patterns always ignore query string and hash.
+
 Examples:
 
 ```js
