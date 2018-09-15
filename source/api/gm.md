@@ -99,6 +99,20 @@ GM_listValues()
 
 Returns an array of all available keys.
 
+### GM_getResourceText
+
+Retrieve the predefined text resource.
+
+```js
+GM_getResourceText(name)
+```
+
+- `name` *string*
+
+  Name of resource that is defined in [metadata block](metadata-block.html#resource).
+
+Returns the predefined text content.
+
 ### GM_getResourceURL
 
 Retrieve a BLOB URL of the predefined resource.
