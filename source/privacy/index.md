@@ -15,13 +15,15 @@ We use your Personal Information for providing and improving the Service. By usi
 
 While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you.
 
+Currently we do not collect any of your personal data.
+
 ### Service Providers
 
 We may employ third party companies and individuals to facilitate our Service, to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
 
 These third parties have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
 
-We use popular cloud storage services to synchronize extension data after your authorization.
+We use popular cloud storage services to synchronize extension data after your authorization. Your script code and setting may be synced to your cloud service directly, without transit to other servers.
 
 ### Security
 
