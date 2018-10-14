@@ -1,0 +1,32 @@
+.donate {
+  text-align: center;
+  &-group {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    &:last-child {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    &:not(:last-child) {
+      border-right: none;
+    }
+    > img {
+      height: 14px;
+      filter: grayscale(1) opacity(.5);
+      transition: filter .5s;
+    }
+    &:hover > img,
+    &.active > img {
+      filter: grayscale(0) opacity(1);
+    }
+  }
+  &-image {
+    width: 222px;
+    margin: 0 auto;
+  }
+}

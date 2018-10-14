@@ -1,0 +1,37 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.index {
+  &-header {
+    @include margin-bottom(2);
+    text-align: center;
+  }
+  &-logo {
+    display: inline-block;
+    img {
+      width: 96px;
+    }
+  }
+  &-title {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  &-subtitle {
+    font-size: 24px;
+  }
+  &-buttons {
+    margin-top: 24px;
+    a {
+      display: inline-block;
+      margin-top: 8px;
+      margin-left: 12px;
+      margin-right: 12px;
+      padding: 8px 16px;
+      border: 1px solid currentColor;
+      border-radius: 24px;
+      &[target=_blank] {
+        color: gray;
+      }
+    }
+  }
+}

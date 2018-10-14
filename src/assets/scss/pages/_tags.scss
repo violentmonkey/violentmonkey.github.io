@@ -1,0 +1,18 @@
+/** 
+ * Tags
+ */
+
+.tags {
+    &__list {
+        &-item {
+            &-link {
+                color: $color-base;
+                &:hover,
+                &:focus {
+                    color: $color-primary;
+                    border-bottom: 1px solid $color-primary;
+                }
+            }
+        }
+    }
+}

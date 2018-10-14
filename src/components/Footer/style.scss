@@ -1,0 +1,14 @@
+.footer {
+  padding: 24px;
+  border-top: 1px solid #ddd;
+  &-copyright {
+    float: left;
+  }
+  &-list {
+    float: right;
+    &-item {
+      display: inline-block;
+      list-style: none;
+    }
+  }
+}

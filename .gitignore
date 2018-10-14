@@ -1,9 +1,9 @@
-.DS_Store
-Thumbs.db
-db.json
-*.log
-*.lock
-package-lock.json
 node_modules/
+.cache/
 public/
-.deploy*/
+npm-debug.log
+.eslintcache
+.gatsby-context.js
+.idea
+gatsby-starter-lumen.iml
+yarn.lock
