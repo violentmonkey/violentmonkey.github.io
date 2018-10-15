@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "name": "hexo-site",
-  "description": "Blog by Gerald",
+  "name": "violentmonkey.github.io",
+  "description": "Site for Violentmonkey",
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
@@ -48,15 +48,16 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sass": "^2.0.1",
     "gatsby-plugin-sitemap": "^2.0.1",
+    "gatsby-remark-autolink-headers": "^2.0.6",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-remark-prismjs": "^3.0.1",
     "gatsby-remark-responsive-iframe": "^2.0.5",
     "gatsby-source-filesystem": "^2.0.1",
     "gatsby-transformer-remark": "^2.1.5",
     "gh-pages": "^2.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "lost": "^8.2.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.9.4",
     "postcss-pxtorem": "^4.0.1",
     "prettier": "^1.10.2",
     "prismjs": "^1.15.0",
@@ -64,11 +65,5 @@
     "react-disqus-comments": "^1.1.1",
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0"
-  },
-  "hexo": {
-    "version": "3.7.1"
-  },
-  "dependencies": {
-    "gatsby-remark-autolink-headers": "^2.0.6"
   }
 }
