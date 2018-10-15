@@ -141,6 +141,12 @@ figcaption {
     text-align: center;
 }
 
+details {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
 .layout {
     lost-center: $layout-width;
 }
