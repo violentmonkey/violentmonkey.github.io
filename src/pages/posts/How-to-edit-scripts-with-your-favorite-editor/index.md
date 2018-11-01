@@ -42,16 +42,18 @@ There are two ways to install a local script:
   It will be recognized by Violentmonkey and loaded in the confirmation page.
 
   Make sure *"Allow access to file URLs"* is checked in your *Chrome extension settings* (`chrome://extensions`).
-
+  
   ![](editor-6.png)
+  
+  **Note** that due to a [known issue](#known-issues), the *easy way* **won't work for Firefox users**.
 
 - *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.
 
-  If you have Python 3 installed, just type `python3 -m http.server` at the directory of your script to start a server.
+  One of the best way is to use node/npm's [indexzero/http-server](https://github.com/indexzero/http-server#readme). If you have it installed, just type `http-server -c5` at the directory of your script to start a server.
 
   Make sure the hostname is `localhost` and the script name ends with `.user.js`.
 
-Note that due to a [known issue](#Known-issues), the *easy way* **won't work for Firefox users**.
+  **Note** that due to a [known issue](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758), the *hard way* needs to handle caching. In `http-server -c5` option `-c5` sets cache time for max-age header to 5 seconds, thus forcing a browser to query the server URL every 5 seconds. The caching can be disabled with `-c-1` option.
 
 ![](editor-3.png)
 
@@ -69,3 +71,4 @@ After installation, the confirmation page will keep watching the file before the
 Known issues
 ---
 - In Firefox Violentmonkey is not allowed to access local files, so we have to start a local HTTP server for tracking. See [this on bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1266960).
+- The older the file is, the more seldom a browser will query it. See [this Violentmonkey's issue](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758).
