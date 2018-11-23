@@ -129,7 +129,7 @@ Decide when the script will execute.
 
 Several values can be set for `@run-at`:
 
-- `document-end` <span class="label label-primary">default</span>
+- `document-end` <span class="label">default</span>
 
   The script executes when `DOMContentLoaded` is fired. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
 
@@ -171,3 +171,34 @@ If any special API is used, it must be granted:
 // @grant GM_getValue
 // @grant GM_setValue
 ```
+
+### @inject-into
+
+*Added in Violentmonkey 2.10.0.*
+
+Decide which context the script will be injected into.
+
+If not set in the metadata block, the default value `page` will be used.
+However, you can change the default value in Violentmonkey settings.
+
+Possible values:
+
+- `page` <span class="label">default</span>
+
+    Inject into context of the web page.
+
+    In this mode, `unsafeWindow` refers to the `window` object,
+    allowing the script to access JavaScript objects of the web page,
+    just like normal page scripts can.
+
+- `content`
+
+    Inject as a content script.
+
+    In this mode, `unsafeWindow` refers to the `global` object in content script.
+    As a result, the script can access and modify the page's DOM,
+    but cannot access JavaScript objects of the web page.
+
+- `auto`
+
+    Try to inject into context of the web page. If blocked by CSP rules, inject as a content script.
