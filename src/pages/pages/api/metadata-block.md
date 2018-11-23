@@ -174,7 +174,7 @@ If any special API is used, it must be granted:
 
 ### @inject-into
 
-*Added in Violentmonkey 2.10.0.*
+*Added in Violentmonkey v2.10.0*
 
 Decide which context the script will be injected into.
 
@@ -193,7 +193,7 @@ Possible values:
 
 - `content`
 
-    Inject as a content script.
+    Inject into context of [content scripts](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts).
 
     In this mode, `unsafeWindow` refers to the `global` object in content script.
     As a result, the script can access and modify the page's DOM,

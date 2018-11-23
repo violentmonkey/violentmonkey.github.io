@@ -45,6 +45,10 @@ An object that exposes information about the current userscript. It has followin
     - `runAt` *string*
     - `version` *string*
 
+- `injectInto` *added in Violentmonkey v2.10.0*
+
+    The injection mode of current script. See [`@inject-mode`](/api/metadata-block/#inject-into) for more information.
+
 ### GM_getValue
 
 Retrieve a value for current script from storage.
