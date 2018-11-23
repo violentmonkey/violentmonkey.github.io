@@ -36,7 +36,7 @@ export default class Donate extends React.Component {
             <div className="page__body autolink-fix">
               <ul>
                 <li>Did you enjoy surfing the Internet with Violentmonkey?</li>
-                <li>Yes, I do. And ...</li>
+                <li>Yes, I do. 😏</li>
               </ul>
               <p>Wanna buy me a coffee?</p>
               <div className="donate">
