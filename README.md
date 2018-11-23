@@ -1,10 +1,8 @@
-Violentmonkey website
----
+# Violentmonkey
 
-This is the website of Violentmonkey built with [Hexo](https://hexo.io/).
+This is the website of Violentmonkey.
 
-Deploy
----
+## Deploy
 ``` sh
 $ npm run deploy
 ```

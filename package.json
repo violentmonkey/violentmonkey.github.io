@@ -3,7 +3,7 @@
   "name": "violentmonkey.github.io",
   "description": "Site for Violentmonkey",
   "scripts": {
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "build": "gatsby build",
     "clean:public": "rm -rf public",
     "clean": "npm run clean:public",
