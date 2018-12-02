@@ -1,0 +1,51 @@
+@import '#/common/variables.css';
+
+.postitem {
+  margin-bottom: 20px;
+  &-title {
+    margin-top: 0;
+    font-size: calc($typographic-base-font-size * 1.6875);
+    &-link {
+      color: $color-base;
+      &:hover,
+      &:focus {
+        color: $color-base;
+        border-bottom: 1px solid $color-base;
+      }
+    }
+  }
+  &-description {
+    margin-bottom: 20px;
+    font-size: $typographic-base-font-size;
+  }
+  &-meta {
+    &-time {
+      margin-right: 8px;
+      font-size: $typographic-small-font-size;
+      color: $color-base;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    &-category {
+      &-link {
+        font-size: $typographic-small-font-size;
+        color: $color-secondary;
+        font-weight: 500;
+        text-transform: uppercase;
+        &:hover,
+        &:focus {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+  &-readmore {
+    font-size: $typographic-base-font-size;
+    color: $color-primary;
+    &:hover,
+    &:focus {
+      color: $color-primary;
+      border-bottom: 1px solid $color-primary;
+    }
+  }
+}

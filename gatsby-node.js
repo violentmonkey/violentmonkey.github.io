@@ -46,11 +46,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postsTemplate = path.resolve('./src/templates/posts-template.jsx');
-  const postTemplate = path.resolve('./src/templates/post-template.jsx');
-  const pageTemplate = path.resolve('./src/templates/page-template.jsx');
-  const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
-  const categoryTemplate = path.resolve('./src/templates/category-template.jsx');
+  const postsTemplate = path.resolve('./src/templates/posts-template.js');
+  const postTemplate = path.resolve('./src/templates/post-template.js');
+  const pageTemplate = path.resolve('./src/templates/page-template.js');
+  const tagTemplate = path.resolve('./src/templates/tag-template.js');
+  const categoryTemplate = path.resolve('./src/templates/category-template.js');
   const result = await graphql(`
     {
       allMarkdownRemark(

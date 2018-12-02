@@ -1,0 +1,35 @@
+@import '#/common/variables.css';
+@import '#/common/mixins.css';
+
+.layout {
+  max-width: $layout-width;
+  margin: 0 auto;
+}
+
+.content {
+  margin-top: 65px;
+  padding: 25px 20px;
+  @include breakpoint-sm {
+    padding: 30px 20px;
+  }
+  @include breakpoint-md {
+    padding: 40px 35px;
+  }
+}
+
+.page {
+  &-title {
+    max-width: $layout-post-width;
+    margin: 0 auto 40px;
+    font-size: calc($typographic-base-font-size * 2);
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    @include breakpoint-md {
+      font-size: calc($typographic-base-font-size * 3);
+    }
+  }
+  &-body {
+    font-size: $typographic-base-font-size;
+  }
+}

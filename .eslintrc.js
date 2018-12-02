@@ -5,7 +5,13 @@ module.exports = {
     'airbnb-base/rules/strict',
     'airbnb/rules/react',
   ],
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+  },
   rules: {
+    'react/jsx-filename-extension': 'off',
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
     'import/no-extraneous-dependencies': 'off',

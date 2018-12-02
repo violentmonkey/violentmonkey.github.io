@@ -1,11 +1,17 @@
-const lost = require('lost');
-const pxtorem = require('postcss-pxtorem');
+const path = require('path');
+const scssParser = require('postcss-scss');
+const px2rem = require('postcss-plugin-px2rem');
+const atImport = require('postcss-import');
+const precss = require('precss');
+const color = require('postcss-color-function');
+const calc = require('postcss-calc');
 
 module.exports = {
   siteMetadata: {
     url: 'https://violentmonkey.github.io/',
     title: 'Violentmonkey',
     subtitle: 'An open source userscript manager.',
+    copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
       {
@@ -80,12 +86,6 @@ module.exports = {
       options: { trackingId: 'UA-93752732-1' },
     },
     {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: ['roboto:400,400i,500,700'],
-      },
-    },
-    {
       resolve: 'gatsby-plugin-sitemap',
       options: {
         query: `
@@ -122,37 +122,25 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-plugin-sass',
+      resolve: 'gatsby-plugin-postcss',
       options: {
+        parser: scssParser,
         postCssPlugins: [
-          lost(),
-          pxtorem({
-            rootValue: 16,
-            unitPrecision: 5,
-            propList: [
-              'font',
-              'font-size',
-              'line-height',
-              'letter-spacing',
-              'margin',
-              'margin-top',
-              'margin-left',
-              'margin-bottom',
-              'margin-right',
-              'padding',
-              'padding-top',
-              'padding-left',
-              'padding-bottom',
-              'padding-right',
-              'border-radius',
-              'width',
-              'max-width',
-            ],
-            selectorBlackList: [],
-            replace: true,
-            mediaQuery: false,
-            minPixelValue: 0,
+          // Transform @import, resolve `#` to `$PWD/src`
+          atImport({
+            resolve(id) {
+              if (id.startsWith('#/')) return path.resolve(`src/${id.slice(2)}`);
+              return id;
+            },
           }),
+          // Transform SCSS into CSS
+          precss,
+          // Transform colors
+          color,
+          // Calculate at compile time
+          calc,
+          // px to rem
+          px2rem({ rootValue: 16 }),
         ],
       },
     },
