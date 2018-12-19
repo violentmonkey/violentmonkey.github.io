@@ -319,7 +319,7 @@ GM_xmlhttpRequest(details)
 
     - `details.responseType` *string*
 
-        One of `json`, `blob` and `arraybuffer`.
+        One of `text`, `json`, `blob` and `arraybuffer`. The default value is `text`.
 
     - `details.timeout` *integer* *v2.9.5+*
 
@@ -371,7 +371,7 @@ The response object will be passed to each event handler, with following propert
 
     An object of all response headers.
 
-- `reponseText`
+- `responseText`
 
     Same as a standard `XMLHttpRequest`, only provided when available.
 
