@@ -277,7 +277,7 @@ GM_setClipboard(data, type)
 
 ### GM_xmlhttpRequest
 
-Make an xmlhttpRequest, with some special abilities.
+Make a request like XMLHttpRequest, with some special capabilities.
 
 ```js
 GM_xmlhttpRequest(details)
@@ -332,6 +332,10 @@ GM_xmlhttpRequest(details)
     - `details.context` *any*
 
         It can be an object and will be assigned to `context` of the response object.
+
+    - `details.anonymous` *boolean* *v2.10.1+*
+
+        When set to `true`, no cookie will be sent with the request. The default value is `false`.
 
     - Event handlers:
 
