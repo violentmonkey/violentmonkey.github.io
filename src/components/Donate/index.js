@@ -33,11 +33,11 @@ export default class Donate extends React.Component {
         <div className="page">
           <h1 className="page-title">Donate</h1>
           <div className="page-body">
-            <ul>
-              <li>Did you enjoy surfing the Internet with Violentmonkey?</li>
-              <li>Yes, I do. 😏</li>
-            </ul>
-            <p>Wanna buy me a coffee?</p>
+            <p>
+              If you enjoyed surfing the Internet with Violentmonkey, and wanna buy me a coffee,
+              please follow one of the links below...
+            </p>
+            <p>Thanks. 😏</p>
             <div className="donate">
               <a className="donate-group" href="https://www.paypal.me/gera2ld/5" target="_blank" rel="noopener noreferrer">
                 <img src={paypal} />
