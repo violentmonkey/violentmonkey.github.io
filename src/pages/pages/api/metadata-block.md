@@ -63,9 +63,13 @@ See [more about matching](../matching/).
 
 Version of the script, it can be used to check if a script has new versions. It is composed of several parts, joined by `.`. Each part must start with numbers, and can be followed by alphabetic characters.
 
+**Note:** If no `@version` is specified, the script will not be updated automatically.
+
 Examples:
 
 ```js
+// @version 1.0
+
 // @version 1.2a.3
 ```
 
