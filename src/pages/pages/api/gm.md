@@ -321,11 +321,11 @@ GM_xmlhttpRequest(details)
 
         One of `text`, `json`, `blob` and `arraybuffer`. The default value is `text`.
 
-    - `details.timeout` *integer* *v2.9.5+*
+    - `details.timeout` *number* *v2.9.5+*
 
         Time to wait for the request, none by default.
 
-    - `details.data` *string | formdata*
+    - `details.data` *string | FormData | Blob*
 
         Data to send with the request, usually for `POST` and `PUT` requests.
 
@@ -418,7 +418,7 @@ GM_download(url, name)
     Properties below is the same as those for `GM_xmlhttpRequest`:
 
     - `options.headers` *object*
-    - `options.timeout` *integer*
+    - `options.timeout` *number*
     - `options.onerror` *function*
     - `options.onprogress` *function*
     - `options.ontimeout` *function*
