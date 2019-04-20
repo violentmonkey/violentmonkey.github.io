@@ -14,9 +14,15 @@ It is recommended to use `@match` / `@exclude-match` rather than `@include` / `@
 
 `@match` defines a URL matching rule. `@exclude-match` defines a match rule but used to exclude the matched URLs, similar to `@exclude`.
 
-For more details, see the document on [Match Patterns](https://developer.chrome.com/extensions/match_patterns) for Chrome extensions.
+For more details, see [Match Patterns](https://developer.chrome.com/extensions/match_patterns) for Chrome extensions.
 
 Note that match patterns only work on scheme, host and path, i.e. match patterns always ignore query string and hash.
+
+Since Violentmonkey v2.10.4, some additional rules are accepted:
+
+- the scheme part accepts `http*` to match `http` or `https`;
+- the host part accepts wildcards (`*`) at any position, e.g. `www.google.*`;
+- the host part accepts `.tld` to match any top level domain suffix.
 
 Examples:
 
@@ -28,9 +34,13 @@ Examples:
 @include / @exclude
 ---
 
-Each `@include` and `@exclude` rule can be the following:
+Each `@include` and `@exclude` rule can be one of the following:
 
-- A string with one or more wildcards (`*`), each of which matches any characters.
+- a normal string
+
+  If the string does not start or end with a slash (`/`), it will be used as a normal string.
+
+  If there are wildcards (`*`), each of them matches any characters.
 
   e.g. `https://www.google.com/*` matches the following:
   - `https://www.google.com/`
@@ -40,11 +50,17 @@ Each `@include` and `@exclude` rule can be the following:
   - `http://www.google.com/`
   - `https://www.google.com.hk/`
 
-- A string without any wildcard. This way the rule matches the entire URL.
+  If there is no wildcard in the string, the rule matches the entire URL.
 
   e.g. `https://www.google.com/` matches only `https://www.google.com/` but not `https://www.google.com/any/subview`.
 
-- A string starting and ending with a slash (`/`). This way the rule will be regarded as a regular expression.
+  The host part accepts `.tld` to match top level domain suffix.
+
+  e.g. `https://www.google.tld/` matches both `https://www.google.com/` and `https://www.google.co.jp/`.
+
+- a regular expression
+
+  If the string starts and ends with a slash (`/`), it will be compiled as a regular expression.
 
   e.g. `/\.google\.com[\.\/]/` matches the following:
   - `https://www.google.com/`,
