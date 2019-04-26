@@ -1,33 +1,17 @@
 ---
 title: Privacy Policy
-date: 2017-11-21 12:43:17
+date: 2019-04-27 00:00:00
 ---
 
-Violentmonkey ("us", "we", or "our") operates the [Violentmonkey extension](/get-it/) (the "Service").
+Effective date: April 27, 2019
 
-This page informs you of our policies regarding the collection, use and disclosure of Personal Information when you use our Service.
-
-We will not use or share your information with anyone except as described in this Privacy Policy. Privacy Policy created by TermsFeed for Violentmonkey.
-
-We use your Personal Information for providing and improving the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible in Violentmonkey.
-
-### Information Collection And Use
-
-While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you.
-
-Currently we do not collect any of your personal data.
+Violentmonkey ("we") does not collect any of your personal data, period.
 
 ### Service Providers
 
-We may employ third party companies and individuals to facilitate our Service, to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
+We use popular cloud storage services (Dropbox, Google Drive, OneDrive) to synchronize extension data with your authorization. Your script code and settings may be synced to the cloud service directly, without transit to other servers.
 
-These third parties have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-
-We use popular cloud storage services to synchronize extension data after your authorization. Your script code and setting may be synced to your cloud service directly, without transit to other servers.
-
-### Security
-
-The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. Extension data is stored locally at most times, only synchronized to cloud storages after your authorization. While we try to protect your Personal Information, we cannot guarantee its absolute security.
+We do not disclose your personal data and extension data to any other third party.
 
 ### Links To Other Sites
 
