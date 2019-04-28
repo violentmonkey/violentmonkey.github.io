@@ -11,6 +11,8 @@ Violentmonkey ("we") does not collect any of your personal data, period.
 
 We use popular cloud storage services (Dropbox, Google Drive, OneDrive) to synchronize extension data with your authorization. Your script code and settings may be synced to the cloud service directly, without transit to other servers.
 
+We may use Google Analytics to collect your browser information anonymously to help improve compatibility.
+
 We do not disclose your personal data and extension data to any other third party.
 
 ### Links To Other Sites
