@@ -26,7 +26,7 @@
       padding: 8px 16px;
       border: 1px solid currentColor;
       border-radius: 24px;
-      &[target=_blank] {
+      &[target=_blank]:not(:hover) {
         color: gray;
       }
     }

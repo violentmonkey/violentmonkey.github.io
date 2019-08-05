@@ -118,3 +118,9 @@ details {
   border: 1px solid currentColor;
   border-radius: 16px;
 }
+
+.note {
+  padding: 8px 16px;
+  background: #f7f8f9;
+  color: #66758c;
+}

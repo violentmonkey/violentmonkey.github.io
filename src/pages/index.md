@@ -9,9 +9,19 @@ Violentmonkey provides userscripts support for browsers.
 
 ### Features
 
+It allows you to customize the way a web page displays or behaves by using userscripts.
+
 - Run userscripts in web pages
-- Sync your scripts to Dropbox, OneDrive or Google Drive
+- Sync your scripts to Dropbox, OneDrive, Google Drive, or a WebDAV service
 - Sync between browsers
+
+<div class="note">
+
+**Note:** This extension does not contain any ads and does not modify web pages automatically.
+Any changes and modifications on the sites are done by installed scripts.
+Therefore, please install only scripts that you trust.
+
+</div>
 
 ### Supported Browsers
 
