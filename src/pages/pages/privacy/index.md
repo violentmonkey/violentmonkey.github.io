@@ -23,9 +23,9 @@ We have no control over, and assume no responsibility for the content, privacy p
 
 ### Changes To This Privacy Policy
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+Changes to this Privacy Policy are effective when they are posted on this page.
 
-You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+History of changes will be kept in this [repository](https://github.com/violentmonkey/violentmonkey.github.io).
 
 ### Contact Us
 
