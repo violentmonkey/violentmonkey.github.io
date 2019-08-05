@@ -7,6 +7,11 @@ Effective date: April 27, 2019
 
 Violentmonkey ("we") does not collect any of your personal data, period.
 
+We may collect the following information **anonymously** in the future to help improve functions:
+
+- operating system type / version / language
+- browser type / version / language
+
 ### Service Providers
 
 We use popular cloud storage services (Dropbox, Google Drive, OneDrive) to synchronize extension data with your authorization. Your script code and settings may be synced to the cloud service directly, without transit to other servers.
