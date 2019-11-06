@@ -1,60 +1,34 @@
-import React from 'react';
 import { graphql } from 'gatsby';
+import React from 'react';
+
 import Layout from '../components/layout';
-import TagTemplateDetails from '../components/content-tag';
+import PostItem from '../components/post-item';
 
 export default function TagTemplate(props) {
   const {
-    data: {
-      site: {
-        siteMetadata: {
-          title, menu, footer, copyright,
-        },
-      },
-    },
     pageContext: { tag },
+    data: {
+      allMarkdownRemark: { edges },
+    },
   } = props;
-  const siteMeta = {
-    title: `All Posts tagged as "${tag}" - ${title}`,
-    menu,
-    footer,
-    copyright,
-  };
   return (
-    <Layout {...siteMeta}>
-      <TagTemplateDetails {...props} />
+    <Layout>
+      <main>
+        <h1>
+          {'Tag: '}
+          {tag}
+        </h1>
+        {edges.map(edge => <PostItem data={edge} key={edge.node.fields.slug} />)}
+      </main>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
   query TagPage($tag: String) {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        footer {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
-        }
-      }
-    }
     allMarkdownRemark(
         limit: 1000,
-        filter: { frontmatter: { tags: { in: [$tag] }, layout: { eq: "post" }, draft: { ne: true } } },
+        filter: { frontmatter: { tags: { in: [$tag] }, type: { eq: "post" }, draft: { ne: true } } },
         sort: { order: DESC, fields: [frontmatter___date] }
       ){
       edges {

@@ -1,27 +1,54 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 import './style.css';
 
-export default function Footer(props) {
-  const { footer, copyright } = props;
+function Footer(props) {
+  const {
+    data: {
+      site: {
+        siteMetadata: {
+          copyright,
+          footer,
+        },
+      },
+    },
+  } = props;
   return (
-    <footer className="footer clearfix">
-      <div className="footer-copyright">
+    <footer className="footer d-flex">
+      <div>
         Violentmonkey
         {' '}
         {copyright}
       </div>
-      <div className="footer-list">
-        {footer.map(item => (
-          <Link
-            className="footer-list-item"
-            key={item.path}
-            to={item.path}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </div>
+      <div className="flex-spacer" />
+      {footer.map(item => (
+        <Link
+          className="footer-link-item"
+          key={item.path}
+          to={item.path}
+        >
+          {item.label}
+        </Link>
+      ))}
     </footer>
   );
 }
+
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            copyright
+            footer {
+              label
+              path
+            }
+          }
+        }
+      }
+    `}
+    render={data => <Footer {...props} data={data} />}
+  />
+);

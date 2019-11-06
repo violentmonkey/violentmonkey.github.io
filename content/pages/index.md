@@ -2,7 +2,7 @@
 title: Violentmonkey
 date: 2017-03-13 18:15:24
 path: "/"
-layout: index
+type: index
 ---
 
 Violentmonkey provides userscripts support for browsers.

@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const path = require('path');
 const slash = require('slash');
-const createPaginatedPages = require('gatsby-paginate');
 const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -9,22 +8,23 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === 'File') {
     const parsedFilePath = path.parse(node.absolutePath);
-    const slug = `/${parsedFilePath.dir.split('---')[1]}/`;
+    const name = path.basename(parsedFilePath.dir).match(/^(?:(.*?)--)?(.*)$/)[2];
+    const slug = `/${name}/`;
     createNodeField({ node, name: 'slug', value: slug });
   } else if (
     node.internal.type === 'MarkdownRemark'
     && typeof node.slug === 'undefined'
   ) {
-    const fileNode = getNode(node.parent);
     node.frontmatter.description = node.frontmatter.description || '';
     node.frontmatter.draft = !!node.frontmatter.draft;
     let slug = node.frontmatter.path;
-    if (fileNode.relativePath.startsWith('pages/')) {
-      node.frontmatter.layout = node.frontmatter.layout || 'page';
-      if (!slug) slug = createFilePath({ node, getNode, basePath: 'pages' });
+    const fileNode = getNode(node.parent);
+    if (fileNode.sourceInstanceName === 'page') {
+      node.frontmatter.type = node.frontmatter.type || 'page';
+      if (!slug) slug = createFilePath({ node, getNode, basePath: 'content/pages' });
     } else {
-      node.frontmatter.layout = node.frontmatter.layout || 'post';
-      if (!slug) slug = createFilePath({ node, getNode, basePath: '.' });
+      node.frontmatter.type = node.frontmatter.type || 'post';
+      if (!slug) slug = createFilePath({ node, getNode, basePath: 'content' });
     }
     createNodeField({
       node,
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
               category
               description
               tags
-              layout
+              type
             }
           }
         }
@@ -78,24 +78,27 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
   if (result.errors) throw result.errors;
-  createPaginatedPages({
-    edges: result.data.allMarkdownRemark.edges.filter(edge => _.get(edge, 'node.frontmatter.layout') === 'post'),
-    createPage,
-    pageTemplate: postsTemplate,
-    pathPrefix: 'posts/',
+  createPage({
+    path: '/posts/',
+    component: slash(postsTemplate),
   });
   result.data.allMarkdownRemark.edges.forEach(edge => {
-    if (_.get(edge, 'node.frontmatter.layout') === 'page') {
+    if (_.get(edge, 'node.frontmatter.type') === 'page') {
       createPage({
         path: edge.node.fields.slug,
         component: slash(pageTemplate),
-        context: { slug: edge.node.fields.slug },
+        context: {
+          slug: edge.node.fields.slug,
+        },
       });
-    } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
+    } else if (_.get(edge, 'node.frontmatter.type') === 'post') {
       createPage({
         path: edge.node.fields.slug,
         component: slash(postTemplate),
-        context: { slug: edge.node.fields.slug },
+        context: {
+          slug: edge.node.fields.slug,
+          type: 'post',
+        },
       });
 
       let tags = new Set();

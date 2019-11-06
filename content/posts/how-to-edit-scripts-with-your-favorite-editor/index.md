@@ -8,7 +8,9 @@ tags:
   - nex
   - oex
   - mx
-path: "/2017/03/14/How-to-edit-scripts-with-your-favorite-editor/"
+path: /posts/how-to-edit-scripts-with-your-favorite-editor/
+redirect_from:
+  - /2017/03/14/How-to-edit-scripts-with-your-favorite-editor/
 ---
 
 For anyone who uses Violentmonkey, it is easy to find a way to edit a script like this:
@@ -42,9 +44,9 @@ There are two ways to install a local script:
   It will be recognized by Violentmonkey and loaded in the confirmation page.
 
   Make sure *"Allow access to file URLs"* is checked in your *Chrome extension settings* (`chrome://extensions`).
-  
+
   ![](editor-6.png)
-  
+
   **Note** that due to a [known issue](#known-issues), the *easy way* **won't work for Firefox users**.
 
 - *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.

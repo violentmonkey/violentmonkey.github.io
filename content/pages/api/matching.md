@@ -1,7 +1,6 @@
 ---
 title: Matching
 date: 2017-12-2 22:32:50
-layout: page
 path: "/api/matching/"
 ---
 

@@ -1,54 +1,46 @@
-import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/layout';
-import IndexContent from '../components/content-posts';
+import React from 'react';
 
-export default function IndexRoute(props) {
+import Layout from '../components/layout';
+import PostItem from '../components/post-item';
+
+export default function PostsTemplate(props) {
   const {
     data: {
-      site: {
-        siteMetadata: {
-          title, subtitle, menu, footer, copyright,
-        },
+      allMarkdownRemark: {
+        edges,
       },
     },
   } = props;
-  const siteMeta = {
-    title,
-    subtitle,
-    menu,
-    footer,
-    copyright,
-  };
   return (
-    <Layout {...siteMeta}>
-      <IndexContent {...props} />
+    <Layout>
+      <main>
+        <h1>Posts</h1>
+        {edges.map(edge => <PostItem data={edge} key={edge.node.fields.slug} />)}
+      </main>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
   query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        footer {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
+    allMarkdownRemark(
+        limit: 1000,
+        filter: { frontmatter: { type: { eq: "post" }, draft: { ne: true } } },
+        sort: { order: DESC, fields: [frontmatter___date] }
+      ){
+      edges {
+        node {
+          fields {
+            slug
+            categorySlug
+          }
+          frontmatter {
+            title
+            date
+            category
+            description
+          }
         }
       }
     }

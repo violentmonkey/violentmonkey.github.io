@@ -1,14 +1,8 @@
 const path = require('path');
-const scssParser = require('postcss-scss');
-const px2rem = require('postcss-plugin-px2rem');
-const atImport = require('postcss-import');
-const precss = require('precss');
-const color = require('postcss-color-function');
-const calc = require('postcss-calc');
 
 module.exports = {
   siteMetadata: {
-    url: 'https://violentmonkey.github.io/',
+    siteUrl: 'https://violentmonkey.github.io/',
     title: 'Violentmonkey',
     subtitle: 'An open source userscript manager.',
     copyright: '© All rights reserved.',
@@ -37,50 +31,50 @@ module.exports = {
         path: '/privacy/',
       },
     ],
-    author: {
-      name: 'Gerald L.',
-      email: 'i@gerald.top',
-      telegram: 'gera2ld',
-      twitter: 'gera2ld',
-      github: 'gera2ld',
-      rss: '',
-    },
   },
   plugins: [
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/pages`,
-        name: 'pages',
+        path: `${__dirname}/content/pages`,
+        name: 'page',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/posts`,
+        name: 'post',
       },
     },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-autolink-headers',
-          // {
-          //   resolve: 'gatsby-remark-images',
-          //   options: {
-          //     maxWidth: 960
-          //   }
-          // },
           {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: { wrapperStyle: 'margin-bottom: 1.0725rem' },
-          },
-          'gatsby-remark-prismjs',
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            // set ignoreFileExtensions to empty since `gatsby-remark-image` is disabled
+            resolve: 'gatsby-remark-autolink-headers',
             options: {
-              ignoreFileExtensions: [],
+              offsetY: 70,
             },
           },
+          'gatsby-remark-mermaid',
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 600,
+            }
+          },
+          {
+            resolve: 'gatsby-remark-responsive-iframe',
+            options: {
+              wrapperStyle: 'margin-bottom: 1.0725rem',
+            },
+          },
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
         ],
       },
     },
-    // 'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: { trackingId: 'UA-93752732-1' },
@@ -92,7 +86,7 @@ module.exports = {
             {
               site {
                 siteMetadata {
-                  url
+                  siteUrl
                 }
               }
               allSitePage(
@@ -110,7 +104,7 @@ module.exports = {
         output: '/sitemap.xml',
         serialize: ({ site, allSitePage }) => allSitePage.edges.map(edge => {
           return {
-            url: site.siteMetadata.url + edge.node.path,
+            url: site.siteMetadata.siteUrl + edge.node.path,
             changefreq: 'daily',
             priority: 0.7,
           };
@@ -124,25 +118,29 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
-        parser: scssParser,
+        parser: require('postcss-scss'),
         postCssPlugins: [
           // Transform @import, resolve `#` to `$PWD/src`
-          atImport({
+          require('postcss-import')({
             resolve(id) {
               if (id.startsWith('#/')) return path.resolve(`src/${id.slice(2)}`);
               return id;
             },
           }),
           // Transform SCSS into CSS
-          precss,
+          require('precss'),
           // Transform colors
-          color,
+          require('postcss-color-function'),
           // Calculate at compile time
-          calc,
+          require('postcss-calc'),
           // px to rem
-          px2rem({ rootValue: 16 }),
+          require('postcss-plugin-px2rem')({ rootValue: 16 }),
         ],
       },
     },
+    // Put sharp after postcss so that its CSS will be kept
+    'gatsby-plugin-sharp',
+    'gatsby-redirect-from',
+    'gatsby-plugin-meta-redirect',
   ],
 };

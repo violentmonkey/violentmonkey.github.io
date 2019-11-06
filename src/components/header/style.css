@@ -1,0 +1,43 @@
+@import "#/common/variables.css";
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fefeff;
+  z-index: 1;
+}
+
+nav {
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 0 5px #ccc;
+  > a {
+    display: block;
+    margin: 0 10px;
+    padding: 0;
+    font-size: $typographic-base-font-size;
+    color: $typographic-base-font-color;
+  }
+}
+
+.nav-link {
+  &:hover,
+  &:focus,
+  &.active {
+    color: $color-base;
+    border-bottom: 1px solid currentColor;
+  }
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+}
+
+.logo {
+  padding: 8px;
+  img {
+    height: 48px;
+  }
+}

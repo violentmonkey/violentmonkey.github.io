@@ -4,7 +4,9 @@ date: 2018-11-23 23:35:11
 category: feature
 tags:
   - inject
-path: "/2018/11/23/inject-into-context/"
+path: /posts/inject-into-context/
+redirect_from:
+  - /2018/11/23/inject-into-context/
 ---
 
 Since Violentmonkey v2.10.0, a new type of metadata named [`@inject-into`](/api/metadata-block/#inject-into) is introduced. With its help, **scripts can be injected into CSP restricted pages in Firefox now!**

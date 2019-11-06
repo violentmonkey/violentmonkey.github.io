@@ -1,7 +1,6 @@
 ---
 title: Metadata Block
 date: 2017-12-02 21:20:04
-layout: page
 path: "/api/metadata-block/"
 ---
 

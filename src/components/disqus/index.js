@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDisqusComments from 'react-disqus-comments';
+import { StaticQuery, graphql } from 'gatsby';
 
-export default class Disqus extends Component {
+class Disqus extends Component {
   constructor(props) {
     super(props);
     this.state = { toasts: [] };
@@ -22,21 +23,47 @@ export default class Disqus extends Component {
   }
 
   render() {
-    const { postNode, siteMetadata } = this.props;
-    if (!siteMetadata.disqusShortname) {
+    const {
+      postNode,
+      data: {
+        site: {
+          siteMetadata: {
+            siteUrl,
+            disqusShortname,
+          },
+        },
+      },
+    } = this.props;
+    if (!disqusShortname) {
       return null;
     }
     const post = postNode.frontmatter;
-    const url = siteMetadata.url + postNode.fields.slug;
+    const fullUrl = siteUrl + postNode.fields.slug;
     return (
       <ReactDisqusComments
-        shortname={siteMetadata.disqusShortname}
+        shortname={disqusShortname}
         identifier={post.title}
         title={post.title}
-        url={url}
+        url={fullUrl}
         category_id={post.category_id}
         onNewComment={this.notifyAboutComment}
       />
     );
   }
 }
+
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            siteUrl
+            disqusShortname
+          }
+        }
+      }
+    `}
+    render={data => <Disqus {...props} data={data} />}
+  />
+);

@@ -6,7 +6,9 @@ tags:
   - blacklist
   - exclude
   - match
-path: "/2017/04/15/Smart-rules-for-blacklist/"
+path: /posts/smart-rules-for-blacklist/
+redirect_from: 
+  - /2017/04/15/Smart-rules-for-blacklist/
 ---
 
 Userscripts are injected into web pages according to predefined rules. However, the rules do not always satisfy users for different reasons. In such cases, we need blacklist to exclude some web pages for all scripts.

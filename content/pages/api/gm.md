@@ -1,7 +1,6 @@
 ---
 title: GM_* APIs
 date: 2018-04-25 15:15:15
-layout: page
 path: "/api/gm/"
 ---
 

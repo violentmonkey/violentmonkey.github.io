@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import Layout from '../components/layout';
@@ -8,42 +9,33 @@ export default function TagsRoute(props) {
     data: {
       site: {
         siteMetadata: {
-          title, menu, footer, copyright,
+          title,
         },
       },
       allMarkdownRemark: { group },
     },
   } = props;
-  const siteMeta = {
-    menu,
-    footer,
-    copyright,
-    title: `All Tags - ${title}`,
-  };
   return (
-    <Layout {...siteMeta}>
-      <div className="content">
-        <div className="page">
-          <h1 className="page-title">Tags</h1>
-          <div className="page-body">
-            <div className="tags">
-              <ul className="tags-list">
-                {group.map(tag => (
-                  <li key={tag.fieldValue} className="tags-list-item">
-                    <Link to={`/tags/${kebabCase(tag.fieldValue)}/`} className="tags-list-item-link">
-                      {tag.fieldValue}
-                      {' '}
-                      (
-                      {tag.totalCount}
-                      )
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <Layout>
+      <Helmet>
+        <title>{`All Tags - ${title}`}</title>
+      </Helmet>
+      <main>
+        <h1>Tags</h1>
+        <ul>
+          {group.map(tag => (
+            <li key={tag.fieldValue}>
+              <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                {tag.fieldValue}
+                {' '}
+                (
+                {tag.totalCount}
+                )
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </main>
     </Layout>
   );
 }
@@ -53,29 +45,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        footer {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
-        }
       }
     }
     allMarkdownRemark(
       limit: 2000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
+      filter: { frontmatter: { type: { eq: "post" }, draft: { ne: true } } }
     ) {
       group(field: frontmatter___tags) {
         fieldValue

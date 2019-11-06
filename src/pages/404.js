@@ -1,61 +1,13 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import Layout from '../components/layout';
+import Layout from '#/components/layout';
 
-export default function NotFoundRoute(props) {
-  const {
-    data: {
-      site: {
-        siteMetadata: {
-          title, menu, footer, copyright,
-        },
-      },
-    },
-  } = props;
-  const siteMeta = {
-    menu,
-    footer,
-    copyright,
-    title: `Not Found - ${title}`,
-  };
+export default function NotFoundRoute() {
   return (
-    <Layout {...siteMeta}>
-      <div className="content">
-        <div className="page">
-          <h1 className="page-title">NOT FOUND</h1>
-          <div className="page-body">
-            <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-          </div>
-        </div>
-      </div>
+    <Layout>
+      <main>
+        <h1>Not Found</h1>
+        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      </main>
     </Layout>
   );
 }
-
-export const pageQuery = graphql`
-  query NotFoundQuery {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        footer {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
-        }
-      }
-    }
-  }
-`;

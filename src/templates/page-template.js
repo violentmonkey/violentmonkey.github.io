@@ -1,34 +1,35 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import Layout from '../components/layout';
-import PageTemplateDetails from '../components/content-page';
+import Layout from '#/components/layout';
 
 export default function PageTemplate(props) {
   const {
     data: {
       site: {
         siteMetadata: {
-          title, subtitle, menu, footer, copyright,
+          title,
         },
       },
       markdownRemark: {
+        html,
         frontmatter: {
           title: pageTitle,
-          description: pageDescription,
+          description,
         },
       },
     },
   } = props;
-  const siteMeta = {
-    title: `${pageTitle} - ${title}`,
-    description: pageDescription !== null ? pageDescription : subtitle,
-    menu,
-    footer,
-    copyright,
-  };
   return (
-    <Layout {...siteMeta}>
-      <PageTemplateDetails {...props} />
+    <Layout>
+      <Helmet>
+        <title>{`${pageTitle} - ${title}`}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <main className="post">
+        <h1>{pageTitle}</h1>
+        <article dangerouslySetInnerHTML={{ __html: html }} />
+      </main>
     </Layout>
   );
 }
@@ -38,32 +39,12 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        footer {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
-        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
       html
       frontmatter {
         title
-        date
         description
       }
     }

@@ -1,35 +1,45 @@
 @import '#/common/variables.css';
 @import '#/common/mixins.css';
 
-.layout {
-  max-width: $layout-width;
-  margin: 0 auto;
-}
-
 .content {
-  margin-top: 65px;
-  padding: 25px 20px;
-  @include breakpoint-sm {
-    padding: 30px 20px;
-  }
-  @include breakpoint-md {
-    padding: 40px 35px;
-  }
-}
-
-.page {
-  &-title {
-    max-width: $layout-post-width;
-    margin: 0 auto 40px;
-    font-size: calc($typographic-base-font-size * 2);
-    font-weight: 500;
-    line-height: 1;
-    text-align: center;
-    @include breakpoint-md {
-      font-size: calc($typographic-base-font-size * 3);
+  box-sizing: border-box;
+  max-width: $layout-width;
+  margin: 70px auto 0;
+  > main {
+    min-height: 60vh;
+    padding: 20px;
+    > h1:first-child {
+      margin-top: 0;
+      text-align: center;
     }
   }
-  &-body {
-    font-size: $typographic-base-font-size;
+}
+
+.post {
+  a {
+    text-decoration: underline;
+  }
+  &-tag {
+    list-style: none;
+    padding: 0;
+    &-item {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 0;
+      > a {
+        background: $color-gray-bg;
+        border: 0;
+        border-radius: 3px;
+        color: color($color-base tint(20%));
+        line-height: $typographic-base-line-height;
+        padding: 8px 16px;
+        &:hover,
+        &:focus {
+          color: $color-base;
+          background: color($color-gray-bg shade(5%));
+          border: 0;
+        }
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { format } from 'date-fns/esm';
+import { format, parseISO } from 'date-fns/esm';
 import './style.css';
 
 class Post extends React.Component {
@@ -17,12 +17,15 @@ class Post extends React.Component {
         },
       },
     } = this.props;
+    const dateObj = parseISO(date);
     return (
       <div className="postitem">
         <div className="postitem-meta">
-          <time className="postitem-meta-time" dateTime={format(date, 'MMMM d, yyyy')}>
-            {format(date, 'MMMM yyyy')}
-          </time>
+          {date && (
+            <time className="postitem-meta-time" dateTime={format(dateObj, 'MMMM d, yyyy')}>
+              {format(dateObj, 'MMMM yyyy')}
+            </time>
+          )}
           <span className="postitem-meta-category" key={categorySlug}>
             <Link to={categorySlug} className="postitem-meta-category-link">
               {category}

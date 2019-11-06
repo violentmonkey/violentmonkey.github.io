@@ -5,7 +5,9 @@ category: update
 tags:
   - inject
   - blob
-path: "/2017/10/28/Inject-scripts-with-BLOB-URLs/"
+path: /posts/inject-scripts-with-blob-urls/
+redirect_from: 
+  - /2017/10/28/Inject-scripts-with-BLOB-URLs/
 ---
 
 Since Violentmonkey v2.8.15, scripts are injected with Blob URLs instead of `textContent` in v2.8.13-. Thanks to [evilpie](https://github.com/evilpie), see [#246](https://github.com/violentmonkey/violentmonkey/pull/246).
