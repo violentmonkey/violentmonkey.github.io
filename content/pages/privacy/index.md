@@ -3,14 +3,11 @@ title: Privacy Policy
 date: 2019-04-27 00:00:00
 ---
 
-Effective date: April 27, 2019
+Effective date: November 7, 2019
 
-Violentmonkey ("we") does not collect any of your personal data, period.
+**Violentmonkey ("we") does not collect any of your personal data, period.**
 
-We may collect the following information **anonymously** in the future to help improve functions:
-
-- operating system type / version / language
-- browser type / version / language
+As discussed in [this issue](https://github.com/violentmonkey/violentmonkey/issues/602), we will not collect any of your usage data, even anonymously.
 
 ### Service Providers
 
@@ -30,7 +27,7 @@ We have no control over, and assume no responsibility for the content, privacy p
 
 Changes to this Privacy Policy are effective when they are posted on this page.
 
-History of changes will be kept in this [repository](https://github.com/violentmonkey/violentmonkey.github.io).
+History of changes will be kept in [this repository](https://github.com/violentmonkey/violentmonkey.github.io).
 
 ### Contact Us
 
