@@ -10,3 +10,6 @@ li > p:first-child > .language-text:first-child {
   font-weight: bold;
 }
 
+.toc li {
+  margin-bottom: 0;
+}

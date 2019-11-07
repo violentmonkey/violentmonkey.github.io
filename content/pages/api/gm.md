@@ -6,6 +6,8 @@ path: "/api/gm/"
 
 `GM_*` are a group of special APIs provided by Violentmonkey.
 
+<div class="toc">
+
 * [GM_addStyle](#gm_addstyle)
 * [GM_addValueChangeListener](#gm_addvaluechangelistener)
 * [GM_deleteValue](#gm_deletevalue)
@@ -36,6 +38,8 @@ path: "/api/gm/"
 * [GM.setClipboard](#gm_setclipboard)
 * [GM.setValue](#gm_setvalue)
 * [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase
+
+</div>
 
 ### GM_info
 
@@ -223,7 +227,7 @@ Opens URL in a new tab.
 
     - `url` *string*
 
-        The URL to open in a new tab. URL relative to current page is also allowed.
+        The URL to open in a new tab. URL relative to current page is also allowed.  
         Note: Firefox does not support data URLs.
 
     - `options` *object* (optional)
@@ -240,10 +244,8 @@ Opens URL in a new tab.
 
     - `openInBackground` *boolean*
 
-        Open the tab in background.
-        
-        Note this is a reverse of the first usage method
-        so for example `true` is the same as `{ active: false }`.
+        Open the tab in background.  
+        Note, this is a reverse of the first usage method so for example `true` is the same as `{ active: false }`.
 
 Returns an object with following properties:
 - `onclose`
