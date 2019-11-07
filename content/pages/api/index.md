@@ -7,7 +7,6 @@ path: "/api/"
 Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them work the same way.
 
 - [Metadata Block](metadata-block/)
-- [GM_*](gm/)
+- [`GM_*` and `GM.*`](gm/)
 
-### See also
-- [Greasemonkey Manual](https://wiki.greasespot.net/Greasemonkey_Manual:API)
+`GM.*` [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases were added in VM2.12.0.
