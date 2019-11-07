@@ -6,6 +6,7 @@ li > p:nth-child(2) {
   margin-top: .25em;
 }
 
+li > .language-text:first-child,
 li > p:first-child > .language-text:first-child {
   font-weight: bold;
 }

@@ -444,9 +444,9 @@ let control = GM_xmlhttpRequest(details)
     - `onreadystatechange` *function*
     - `ontimeout` *function*
 
-    > Note:
-    >
-    > - `synchronous` is not supported.
+> Note:
+>
+> - `synchronous` is not supported.
 
 Returns a control object with the following properties:
 
