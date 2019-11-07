@@ -1,0 +1,12 @@
+li > p:first-child {
+  margin-bottom: .25em;
+}
+
+li > p:nth-child(2) {
+  margin-top: .25em;
+}
+
+li > p:first-child > .language-text:first-child {
+  font-weight: bold;
+}
+

@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '#/components/layout';
+import './page-template.css';
 
 export default function PageTemplate(props) {
   const {
