@@ -6,69 +6,98 @@ path: "/api/gm/"
 
 `GM_*` are a group of special APIs provided by Violentmonkey.
 
+* [GM_addStyle](#gm_addstyle)
+* [GM_addValueChangeListener](#gm_addvaluechangelistener)
+* [GM_deleteValue](#gm_deletevalue)
+* [GM_download](#gm_download)
+* [GM_getResourceText](#gm_getresourcetext)
+* [GM_getResourceURL](#gm_getresourceurl)
+* [GM_getValue](#gm_getvalue)
+* [GM_info](#gm_info)
+* [GM_listValues](#gm_listvalues)
+* [GM_notification](#gm_notification)
+* [GM_openInTab](#gm_openintab)
+* [GM_registerMenuCommand](#gm_registermenucommand)
+* [GM_removeValueChangeListener](#gm_removevaluechangelistener)
+* [GM_setClipboard](#gm_setclipboard)
+* [GM_setValue](#gm_setvalue)
+* [GM_unregisterMenuCommand](#gm_unregistermenucommand)
+* [GM_xmlhttpRequest](#gm_xmlhttprequest) - note `h` is lowercase (the historical spelling)
+
+`GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
+
+* [GM.deleteValue](#gm_deletevalue)
+* [GM.getResourceURL](#gm_getresourceurl)
+* [GM.getValue](#gm_getvalue)
+* [GM.info](#gm_info)
+* [GM.listValues](#gm_listvalues)
+* [GM.notification](#gm_notification)
+* [GM.openInTab](#gm_openintab)
+* [GM.setClipboard](#gm_setclipboard)
+* [GM.setValue](#gm_setvalue)
+* [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase
+
 ### GM_info
 
 An object that exposes information about the current userscript. It has following properties:
 
-- `uuid`
+- `uuid` *string*
 
     A unique ID of the script.
 
-- `scriptMetaStr`
+- `scriptMetaStr` *string*
 
     The meta block of the script.
 
-- `scriptWillUpdate`
+- `scriptWillUpdate` *boolean*
 
     Whether the script will be updated automatically.
 
-- `scriptHandler`
+- `scriptHandler` *string*
 
     The name of userscript manager, which should be the string `Violentmonkey`.
 
-- `version`
+- `version` *string*
 
     Version of Violentmonkey.
 
-- `script`
+- `script` *object*
 
-    An object containing structured fields from the [Metadata Block](../metadata-block/):
+    Contains structured fields from the [Metadata Block](../metadata-block/):
 
     - `description` *string*
-    - `excludes` *array*
-    - `includes` *array*
-    - `matches` *array*
+    - `excludes` *array of string*
+    - `includes` *array of string*
+    - `matches` *array of string*
     - `name` *string*
     - `namespace` *string*
-    - `resources` *array &lt;string name, string url&gt;*
+    - `resources` *array of {name, url}*
     - `runAt` *string*
     - `version` *string*
 
-- `injectInto` *added in Violentmonkey v2.10.0*
+- `injectInto` *string* *(since VM2.10.0)*
 
     The injection mode of current script. See [`@inject-mode`](/api/metadata-block/#inject-into) for more information.
 
 ### GM_getValue
 
-Retrieve a value for current script from storage.
+Retrieves a value for current script from storage.
 
 ```js
-GM_getValue(key, default)
+let value = GM_getValue(key, defaultValue)
 ```
 
 - `key` *string*
 
     The name for `value` to load.
 
-- `default` *any*
+- `defaultValue` *any*
 
     The default value to return if no value exists in the storage.
 
-Returns the retrieved value or default value.
-
 ### GM_setValue
 
-Set a key / value pair for current script to storage.
+Sets a key / value pair for current script to storage.
 
 ```js
 GM_setValue(key, value)
@@ -80,129 +109,174 @@ GM_setValue(key, value)
 
 - `value` *any*
 
-    The value to be stored, which must be **JSON serializable**.
-
-Returns nothing.
+    The value to be stored, which must be *JSON serializable* (string, number, boolean, null, or an array/object consisting of these types) so for example you can't store DOM elements or objects with cyclic dependencies.
 
 ### GM_deleteValue
 
-Delete an existing key / value pair for current script from storage.
+Deletes an existing key / value pair for current script from storage.
 
 ```js
 GM_deleteValue(key)
 ```
 
-Returns nothing.
+- `key` *string*
+
+    The unique name for `value` within this script.
 
 ### GM_listValues
 
-Retrieve the list of keys of all available values within this script.
+Returns an array of keys of all available values within this script.
 
 ```js
-GM_listValues()
+let arrayOfKeys = GM_listValues()
 ```
 
-Returns an array of all available keys.
+### GM_addValueChangeListener
+
+Adds a change listener to the storage and returns the listener ID.
+
+```js
+let listenerId = GM_addValueChangeListener(name, callback)
+```
+
+* `name` *string*
+
+    The name of the observed variable
+
+* `callback` *function(name, oldValue, newValue, remote) {}*
+
+    * `name` *string*
+
+        The name of the observed variable
+
+    * `oldValue` *any*
+
+        The old value of the observed variable (`undefined` if it was created)
+
+    * `newValue` *any*
+
+        The new value of the observed variable (`undefined` if it was deleted)
+
+    * `remote` *boolean*
+
+        `true` if modified by the userscript instance of another tab or `false` for this script instance. Can be used by scripts of different browser tabs to communicate with each other.
+
+### GM_removeValueChangeListener
+
+Removes a change listener by its ID.
+
+```js
+GM_removeValueChangeListener(listenerId)
+```
+
+- `listenerId` *string*
 
 ### GM_getResourceText
 
-Retrieve the predefined text resource.
+Retrieves a text resource from the metadata block.
 
 ```js
-GM_getResourceText(name)
+let text = GM_getResourceText(name)
 ```
 
 - `name` *string*
 
-    Name of resource that is defined in [metadata block](../metadata-block/#resource).
-
-Returns the predefined text content.
+    Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
 ### GM_getResourceURL
 
-Retrieve a BLOB URL of the predefined resource.
+Retrieves a `Blob` URL of a resource from the metadata block.
 
 ```js
-GM_getResourceURL(name)
+let blobUrl = GM_getResourceURL(name)
 ```
 
 - `name` *string*
 
-    Name of resource that is defined in [metadata block](../metadata-block/#resource).
-
-Returns a BLOB URL.
+    Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
 ### GM_addStyle
 
-Creates a `<style>` element and injects some CSS.
+Appends and returns a `<style>` element with the specified CSS.
 
 ```js
-GM_addStyle(css)
-.then(style => {
-  console.log('This is the <style> element:', style);
-});
+let styleElement = GM_addStyle(css);
 ```
 
 - `css` *string*
 
     The CSS code to inject.
 
-Returns a Promise-like object with a `.then` method, which accepts a callback whose first argument is the injected `<style>` element.
+Older versions of Violentmonkey (prior to 2.12.0) returned an imitation of Promise,
+which is still maintained for compatibility, so don't be surprised if you see code like
+`GM_addStyle(css).then(el => { /* whatever */ });`
 
 ### GM_openInTab
 
-Open URL in a new tab.
+Opens URL in a new tab.
 
-```js
-GM_openInTab(url, options)
-GM_openInTab(url, openInBackground)
-```
+1. using an object
 
-- `url` *string*
+    ```js
+    let tabControl = GM_openInTab(url, options)
+    ```
 
-    The URL to open in a new tab. URL relative to current page is also allowed.
+    - `url` *string*
 
-    Note: Firefox does not support data URLs.
+        The URL to open in a new tab. URL relative to current page is also allowed.
+        Note: Firefox does not support data URLs.
 
-- `options` *object optional*
+    - `options` *object* (optional)
 
-    - `options.active` *boolean*
+        - `active` *boolean*
 
-        Whether the new tab should be loaded and activated.
+            Make the new tab active (i.e. open in foreground).
 
-The second usage is compatible with Greasemonkey.
+2. Using a boolean, compatible with Greasemonkey:
 
-- `openInBackground` *boolean*
+    ```js
+    let tabControl = GM_openInTab(url, openInBackground)
+    ```
 
-    `openInBackground = true` is the same as `options = { active: false }`.
+    - `openInBackground` *boolean*
+
+        Open the tab in background.
+        
+        Note this is a reverse of the first usage method
+        so for example `true` is the same as `{ active: false }`.
 
 Returns an object with following properties:
-
 - `onclose`
 
-    Can be assigned to a function. If provided, it will be called when the tab opened is closed.
+    Сan be assigned to a function. If provided, it will be called when the opened tab is closed.
 
 - `closed` *boolean*
 
-    Whether the tab opened is closed.
+    Whether the opened tab is closed.
 
 - `close` *function*
 
-    A function to explicitly close the tab opened.
+    A function to explicitly close the opened tab.
+
+```js
+let tabControl = GM_openInTab(url);
+tabControl.onclose = () => console.log('tab is closed');
+tabControl.close();
+```
 
 ### GM_registerMenuCommand
 
-Register a command to Violentmonkey popup menu.
+Registers a command in Violentmonkey popup menu.
 
 ```js
-GM_registerMenuCommand(caption, func)
+GM_registerMenuCommand(caption, onClick)
 ```
 
 - `caption` *string*
 
     The name to show in the popup menu.
 
-- `func` *function*
+- `onClick` *function*
 
     The function to execute when clicked in the menu.
 
@@ -210,7 +284,7 @@ If you want to add a shortcut, please see [vm.shortcut](https://github.com/viole
 
 ### GM_unregisterMenuCommand
 
-Unregister a command which has been registered to Violentmonkey popup menu.
+Unregisters a command which has been registered to Violentmonkey popup menu.
 
 ```js
 GM_unregisterMenuCommand(caption)
@@ -218,139 +292,161 @@ GM_unregisterMenuCommand(caption)
 
 - `caption` *string*
 
-    The name of command to be unregistered.
+    The name of command to unregister.
 
 ### GM_notification
 
-Show a HTML5 desktop notification.
+Shows an HTML5 desktop notification.
 
-```js
-GM_notification(options)
-GM_notification(text, title, image, onclick)
-```
+1. using an object:
 
-- `options` *object*
+    ```js
+    GM_notification(options)
+    ```
 
-    - `options.text` *string required*
+    - `options` *object*
+
+        - `text` *string* (required)
+
+            Main text of the notification.
+
+        - `title` *string*
+
+            Title of the notification.
+
+        - `image` *string*
+
+            URL of an image to show in the notification.
+
+        - `onclick` *function*
+
+            Callback when the notification is clicked by user.
+
+        - `ondone` *function*
+
+            Callback when the notification is closed, either by user or by system.
+
+2. Using separate parameters, compatible with Greasemonkey:
+
+    ```js
+    GM_notification(text, title, image, onclick)
+    ```
+
+    - `text` *string* (required)
 
         Main text of the notification.
 
-    - `options.title` *string*
+    - `title` *string*
 
         Title of the notification.
 
-    - `options.image` *string*
+    - `image` *string*
 
         URL of an image to show in the notification.
 
-    - `options.onclick` *function*
+    - `onclick` *function*
 
         Callback when the notification is clicked by user.
 
-    - `options.ondone` *function*
-
-        Callback when the notification is closed, either by user or by system.
-
-The second usage is compatible with Greasemonkey.
-
-- `text` *string required*
-- `title` *string*
-- `image` *string*
-- `onclick` *function*
-
 ### GM_setClipboard
 
-Set data to system clipboard.
+Sets data to system clipboard.
 
 ```js
 GM_setClipboard(data, type)
 ```
 
-- `data`
+- `data` *string*
 
     The data to be copied to system clipboard.
 
 - `type` *string*
 
-    The type of data to copy. Default as `text/plain`.
+    The MIME type of data to copy. Default as `text/plain`.
 
 ### GM_xmlhttpRequest
 
-Make a request like XMLHttpRequest, with some special capabilities.
+Makes a request like XMLHttpRequest, with some special capabilities, not restricted by same-origin policy.
 
 ```js
-GM_xmlhttpRequest(details)
+let control = GM_xmlhttpRequest(details)
 ```
 
-- `details`
+- `details` *object*:
 
-    An object with following properties:
-
-    - `details.url` *string required*
+    - `url` *string* (required)
 
         URL relative to current page is also allowed.
 
-    - `details.method` *string*
+    - `method` *string*
 
-        Default as `GET`.
+        Usually `GET`.
 
-    - `details.user` *string*
+    - `user` *string*
 
         User for authentication.
 
-    - `details.password` *string*
+    - `password` *string*
 
         Password for authentication.
 
-    - `details.overrideMimetype` *string*
+    - `overrideMimetype` *string*
 
-        A Mimetype to specify with the request.
+        A MIME type to specify with the request.
 
-    - `details.headers` *object*
+    - `headers` *object*
+
+        For example `{ 'name1': 'value1', 'name2': 'value2' }`.
 
         Some special headers are also allowed:
 
-        - `Cookie`
-        - `Host`
-        - `Origin`
-        - `Referer`
-        - `User-Agent`
+        - `'Cookie'`
+        - `'Host'`
+        - `'Origin'`
+        - `'Referer'`
+        - `'User-Agent'`
 
-    - `details.responseType` *string*
+    - `responseType` *string*
 
-        One of `text`, `json`, `blob` and `arraybuffer`. The default value is `text`.
+        One of the following:
 
-    - `details.timeout` *number* *v2.9.5+*
+        - `'text'` *(default value)*
+        - `'json'`
+        - `'blob'`
+        - `'arraybuffer'`
+        - `'document'` *(since VM2.12.0)*
+
+    - `timeout` *number* *(since VM2.9.5)*
 
         Time to wait for the request, none by default.
 
-    - `details.data` *string | FormData | Blob*
+    - `data` *string | FormData | Blob*
 
         Data to send with the request, usually for `POST` and `PUT` requests.
 
-    - `details.context` *any*
+    - `context` *any*
 
-        It can be an object and will be assigned to `context` of the response object.
+        Can be an object and will be assigned to `context` of the response object.
 
-    - `details.anonymous` *boolean* *v2.10.1+*
+    - `anonymous` *boolean* *(since VM2.10.1)*
 
         When set to `true`, no cookie will be sent with the request. The default value is `false`.
 
-    - Event handlers:
+    Event handlers:
 
-        - `details.onabort`
-        - `details.onerror`
-        - `details.onload`
-        - `details.onloadend`
-        - `details.onprogress`
-        - `details.onreadystatechange`
-        - `details.ontimeout`
+    - `onabort` *function*
+    - `onerror` *function*
+    - `onload` *function*
+    - `onloadend` *function*
+    - `onprogress` *function*
+    - `onreadystatechange` *function*
+    - `ontimeout` *function*
 
-> Note:
->
-> - `details.synchronous` is not supported.
+    > Note:
+    >
+    > - `synchronous` is not supported.
 
-Returns an object with following properties:
+Returns a control object with the following properties:
 
 - `abort` *function*
 
@@ -360,15 +456,15 @@ The response object will be passed to each event handler, with following propert
 
 - `status`
 
-    Same as a standard `XMLHttpRequest`.
+    Same as the standard `XMLHttpRequest`.
 
 - `statusText`
 
-    Same as a standard `XMLHttpRequest`.
+    Same as the standard `XMLHttpRequest`.
 
 - `readyState`
 
-    Same as a standard `XMLHttpRequest`.
+    Same as the standard `XMLHttpRequest`.
 
 - `responseHeaders`
 
@@ -376,7 +472,7 @@ The response object will be passed to each event handler, with following propert
 
 - `responseText`
 
-    Same as a standard `XMLHttpRequest`, only provided when available.
+    Same as the standard `XMLHttpRequest`, only provided when available.
 
 - `finalUrl`
 
@@ -388,36 +484,48 @@ The response object will be passed to each event handler, with following propert
 
 ### GM_download
 
-*v2.9.5+*
+*Since VM2.9.5*
 
-Download a URL and save it as a local file.
+Downloads a URL to a local file.
 
-```js
-GM_download(options)
-// or
-GM_download(url, name)
-```
+1. using an object:
 
-- `options`
+    ```js
+    GM_download(options)
+    ```
 
-    An object with following properties:
+    - `options` *object*:
 
-    - `options.url` *string required*
+        - `url` *string* (required)
+
+            The URL to download.
+
+        - `name` *string*
+
+            The filename to save as.
+
+        - `onload` *function*
+
+            The function to call when download starts successfully.
+
+        These are the same as in [GM_xmlhttpRequest](#gm_xmlhttprequest):
+
+        - `headers` *object*
+        - `timeout` *number*
+        - `onerror` *function*
+        - `onprogress` *function*
+        - `ontimeout` *function*
+
+2. using separate parameters:
+
+    ```js
+    GM_download(url, name)
+    ```
+
+    - `url` *string* (required)
 
         The URL to download.
 
-    - `options.name` *string*
+    - `name` *string*
 
         The filename to save as.
-
-    - `options.onload` *function*
-
-        The function to call when download started successfully.
-
-    Properties below is the same as those for `GM_xmlhttpRequest`:
-
-    - `options.headers` *object*
-    - `options.timeout` *number*
-    - `options.onerror` *function*
-    - `options.onprogress` *function*
-    - `options.ontimeout` *function*
