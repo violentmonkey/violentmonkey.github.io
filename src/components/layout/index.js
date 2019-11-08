@@ -1,22 +1,29 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 import icon from '#/assets/vm.png';
 import '#/common/style.css';
 import Header from '../header';
 import Footer from '../footer';
 import './style.css';
 
-export default function Layout(props) {
+function Layout(props) {
   const {
     children,
-    title,
-    description,
+    data: {
+      site: {
+        siteMetadata: {
+          title,
+          subtitle,
+        },
+      },
+    },
   } = props;
   return (
     <>
       <Helmet>
         <title>{title}</title>
-        <meta name="description" content={description} />
+        <meta name="description" content={subtitle} />
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
       <Header />
@@ -27,3 +34,19 @@ export default function Layout(props) {
     </>
   );
 }
+
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            subtitle
+          }
+        }
+      }
+    `}
+    render={data => <Layout {...props} data={data} />}
+  />
+);
