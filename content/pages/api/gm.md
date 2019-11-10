@@ -392,7 +392,7 @@ let control = GM_xmlhttpRequest(details)
 
         Password for authentication.
 
-    - `overrideMimetype` *string*
+    - `overrideMimeType` *string*
 
         A MIME type to specify with the request.
 
