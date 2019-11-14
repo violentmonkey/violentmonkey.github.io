@@ -422,6 +422,10 @@ let control = GM_xmlhttpRequest(details)
 
         Time to wait for the request, none by default.
 
+    - `binary` *boolean* *(since VM2.12.2)*
+
+        Enforce the data to send with the request as `Blob`. The default value is `false`.
+
     - `data` *string | FormData | Blob*
 
         Data to send with the request, usually for `POST` and `PUT` requests.
