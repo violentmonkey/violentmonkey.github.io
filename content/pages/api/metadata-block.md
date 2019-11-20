@@ -205,3 +205,16 @@ Possible values:
 - `auto`
 
     Try to inject into context of the web page. If blocked by CSP rules, inject as a content script.
+
+### @downloadURL
+
+The URL the script can be downloaded from.  Checked for updates automatically at a regular interval, and also manually on user request.  Automatically added when using "Install from URL."
+
+### @supportURL
+
+If supplied, the question mark icon in the user scripts list will link to this.
+
+### @homepageURL
+
+If supplied, the home icon in the user scripts list will link to this.
+
