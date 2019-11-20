@@ -426,6 +426,10 @@ let control = GM_xmlhttpRequest(details)
 
         Data to send with the request, usually for `POST` and `PUT` requests.
 
+    - `binary` *boolean* *(since VM2.12.2)*
+
+        Send the `data` string as a `blob`. This is for compatibility with Tampermonkey/Greasemonkey, where only `string` type is allowed in `data`.
+
     - `context` *any*
 
         Can be an object and will be assigned to `context` of the response object.
