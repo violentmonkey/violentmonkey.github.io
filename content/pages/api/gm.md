@@ -4,42 +4,9 @@ date: 2018-04-25 15:15:15
 path: "/api/gm/"
 ---
 
+## GM_*
+
 `GM_*` are a group of special APIs provided by Violentmonkey.
-
-<div class="toc">
-
-* [GM_addStyle](#gm_addstyle)
-* [GM_addValueChangeListener](#gm_addvaluechangelistener)
-* [GM_deleteValue](#gm_deletevalue)
-* [GM_download](#gm_download)
-* [GM_getResourceText](#gm_getresourcetext)
-* [GM_getResourceURL](#gm_getresourceurl)
-* [GM_getValue](#gm_getvalue)
-* [GM_info](#gm_info)
-* [GM_listValues](#gm_listvalues)
-* [GM_notification](#gm_notification)
-* [GM_openInTab](#gm_openintab)
-* [GM_registerMenuCommand](#gm_registermenucommand)
-* [GM_removeValueChangeListener](#gm_removevaluechangelistener)
-* [GM_setClipboard](#gm_setclipboard)
-* [GM_setValue](#gm_setvalue)
-* [GM_unregisterMenuCommand](#gm_unregistermenucommand)
-* [GM_xmlhttpRequest](#gm_xmlhttprequest) - note `h` is lowercase (the historical spelling)
-
-`GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
-
-* [GM.deleteValue](#gm_deletevalue)
-* [GM.getResourceURL](#gm_getresourceurl)
-* [GM.getValue](#gm_getvalue)
-* [GM.info](#gm_info)
-* [GM.listValues](#gm_listvalues)
-* [GM.notification](#gm_notification)
-* [GM.openInTab](#gm_openintab)
-* [GM.setClipboard](#gm_setclipboard)
-* [GM.setValue](#gm_setvalue)
-* [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase
-
-</div>
 
 ### GM_info
 
@@ -227,7 +194,7 @@ Opens URL in a new tab.
 
     - `url` *string*
 
-        The URL to open in a new tab. URL relative to current page is also allowed.  
+        The URL to open in a new tab. URL relative to current page is also allowed.
         Note: Firefox does not support data URLs.
 
     - `options` *object* (optional)
@@ -244,7 +211,7 @@ Opens URL in a new tab.
 
     - `openInBackground` *boolean*
 
-        Open the tab in background.  
+        Open the tab in background.
         Note, this is a reverse of the first usage method so for example `true` is the same as `{ active: false }`.
 
 Returns an object with following properties:
@@ -369,6 +336,8 @@ GM_setClipboard(data, type)
 ### GM_xmlhttpRequest
 
 Makes a request like XMLHttpRequest, with some special capabilities, not restricted by same-origin policy.
+
+**Note:** `h` is lowercase (the historical spelling)
 
 ```js
 let control = GM_xmlhttpRequest(details)
@@ -535,3 +504,18 @@ Downloads a URL to a local file.
     - `name` *string*
 
         The filename to save as.
+
+## GM.*
+
+`GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
+
+* [GM.deleteValue](#gm_deletevalue)
+* [GM.getResourceURL](#gm_getresourceurl)
+* [GM.getValue](#gm_getvalue)
+* [GM.info](#gm_info)
+* [GM.listValues](#gm_listvalues)
+* [GM.notification](#gm_notification)
+* [GM.openInTab](#gm_openintab)
+* [GM.setClipboard](#gm_setclipboard)
+* [GM.setValue](#gm_setvalue)
+* [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase

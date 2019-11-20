@@ -1,7 +1,6 @@
 ---
 title: Inject scripts into different contexts
 date: 2018-11-23 23:35:11
-category: feature
 tags:
   - inject
 path: /posts/inject-into-context/

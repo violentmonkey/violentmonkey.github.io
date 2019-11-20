@@ -1,12 +1,11 @@
 ---
 title: Inject scripts with Blob URLs
 date: 2017-10-28 13:48:00
-category: update
 tags:
   - inject
   - blob
 path: /posts/inject-scripts-with-blob-urls/
-redirect_from: 
+redirect_from:
   - /2017/10/28/Inject-scripts-with-BLOB-URLs/
 ---
 

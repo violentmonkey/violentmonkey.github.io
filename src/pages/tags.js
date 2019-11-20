@@ -49,7 +49,12 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 2000
-      filter: { frontmatter: { type: { eq: "post" }, draft: { ne: true } } }
+      filter: {
+        fields: {
+          type: { eq: "posts" }
+          draft: { ne: true }
+        }
+      }
     ) {
       group(field: frontmatter___tags) {
         fieldValue

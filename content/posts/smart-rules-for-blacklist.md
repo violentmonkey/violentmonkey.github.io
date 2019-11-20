@@ -1,13 +1,12 @@
 ---
 title: Smart rules for blacklist
 date: 2017-04-15 21:44:21
-category: guide
 tags:
   - blacklist
   - exclude
   - match
 path: /posts/smart-rules-for-blacklist/
-redirect_from: 
+redirect_from:
   - /2017/04/15/Smart-rules-for-blacklist/
 ---
 

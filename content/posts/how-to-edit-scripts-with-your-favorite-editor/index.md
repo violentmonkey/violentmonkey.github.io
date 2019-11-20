@@ -1,7 +1,6 @@
 ---
 title: How to edit scripts with your favorite editor?
 date: 2017-03-14 14:37:09
-category: guide
 tags:
   - editor
   - crx

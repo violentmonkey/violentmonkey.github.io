@@ -27,21 +27,29 @@ export default function TagTemplate(props) {
 export const pageQuery = graphql`
   query TagPage($tag: String) {
     allMarkdownRemark(
-        limit: 1000,
-        filter: { frontmatter: { tags: { in: [$tag] }, type: { eq: "post" }, draft: { ne: true } } },
-        sort: { order: DESC, fields: [frontmatter___date] }
-      ){
+      limit: 1000
+      filter: {
+        frontmatter: {
+          tags: { in: [$tag] }
+        }
+        fields: {
+          type: { eq: "posts" }
+          draft: { ne: true }
+        }
+      }
+      sort: {
+        order: DESC
+        fields: [frontmatter___date]
+      }
+    ) {
       edges {
         node {
           fields {
             slug
-            categorySlug
           }
           frontmatter {
             title
             date
-            category
-            description
           }
         }
       }

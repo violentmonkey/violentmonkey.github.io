@@ -33,20 +33,13 @@ module.exports = {
     ],
   },
   plugins: [
-    {
+    ...['pages', 'posts'].map(type => ({
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/pages`,
-        name: 'page',
+        path: `${__dirname}/content/${type}`,
+        name: type,
       },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/content/posts`,
-        name: 'post',
-      },
-    },
+    })),
     {
       resolve: 'gatsby-transformer-remark',
       options: {

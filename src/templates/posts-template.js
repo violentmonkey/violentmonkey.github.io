@@ -25,21 +25,26 @@ export default function PostsTemplate(props) {
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(
-        limit: 1000,
-        filter: { frontmatter: { type: { eq: "post" }, draft: { ne: true } } },
-        sort: { order: DESC, fields: [frontmatter___date] }
-      ){
+      limit: 1000
+      filter: {
+        fields: {
+          type: { eq: "posts" }
+          draft: { ne: true }
+        }
+      }
+      sort: {
+        order: DESC
+        fields: [frontmatter___date]
+      }
+    ) {
       edges {
         node {
           fields {
             slug
-            categorySlug
           }
           frontmatter {
             title
             date
-            category
-            description
           }
         }
       }

@@ -3,7 +3,7 @@
 
 .content {
   box-sizing: border-box;
-  max-width: $layout-width;
+  max-width: $layout-post-width;
   margin: 70px auto 0;
   > main {
     min-height: 60vh;

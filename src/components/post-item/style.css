@@ -14,10 +14,6 @@
       }
     }
   }
-  &-description {
-    margin-bottom: 20px;
-    font-size: $typographic-base-font-size;
-  }
   &-meta {
     &-time {
       margin-right: 8px;
@@ -25,18 +21,6 @@
       color: $color-base;
       font-weight: 500;
       text-transform: uppercase;
-    }
-    &-category {
-      &-link {
-        font-size: $typographic-small-font-size;
-        color: $color-secondary;
-        font-weight: 500;
-        text-transform: uppercase;
-        &:hover,
-        &:focus {
-          color: $color-primary;
-        }
-      }
     }
   }
   &-readmore {

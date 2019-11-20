@@ -1,6 +1,7 @@
 $color-base: #222;
 $color-primary: #5d93ff;
 $color-secondary: #f7a046;
+$color-subtle: color($color-base tint(50%));
 
 $color-white: color($color-base tint(100%));
 $color-gray-border: color($color-base tint(87%));
@@ -8,15 +9,14 @@ $color-gray-bg: color($color-base tint(90%));
 
 $typographic-font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
-$typographic-base-font-size: 16px;
-$typographic-small-font-size: 14px;
+$typographic-base-font-size: 14px;
+$typographic-small-font-size: 12px;
 
 $typographic-base-line-height: 1.625;
 
 $typographic-base-font-color: $color-base;
 
-$layout-post-max-width: 945px;
-$layout-post-width: calc($layout-post-max-width - 305px);
+$layout-post-width: 700px;
 
 $layout-width: 1070px;
 $layout-breakpoint-sm: 685px;

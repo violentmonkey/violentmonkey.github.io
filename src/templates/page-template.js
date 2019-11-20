@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '#/components/layout';
+import TOC from '#/components/toc';
 import './page-template.css';
 
 export default function PageTemplate(props) {
@@ -16,20 +17,21 @@ export default function PageTemplate(props) {
         html,
         frontmatter: {
           title: pageTitle,
-          description,
         },
+        tableOfContents,
       },
     },
   } = props;
+  const articleRef = useRef();
   return (
     <Layout>
       <Helmet>
         <title>{`${pageTitle} - ${title}`}</title>
-        <meta name="description" content={description} />
       </Helmet>
       <main className="post">
         <h1>{pageTitle}</h1>
-        <article dangerouslySetInnerHTML={{ __html: html }} />
+        <TOC data={tableOfContents} articleRef={articleRef} />
+        <article ref={articleRef} dangerouslySetInnerHTML={{ __html: html }} />
       </main>
     </Layout>
   );
@@ -46,8 +48,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        description
       }
+      tableOfContents
     }
   }
 `;

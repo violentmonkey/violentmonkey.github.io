@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import logo from '#/assets/vm.png';
+import ScrollIndicator from '#/components/scroll-indicator';
 import './style.css';
 
 function Header(props) {
@@ -18,6 +19,7 @@ function Header(props) {
           </Link>
         ))}
       </nav>
+      <ScrollIndicator />
     </header>
   );
 }
