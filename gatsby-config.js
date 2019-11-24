@@ -50,7 +50,6 @@ module.exports = {
               offsetY: 70,
             },
           },
-          'gatsby-remark-mermaid',
           {
             resolve: 'gatsby-remark-images',
             options: {
