@@ -2,19 +2,19 @@ import React from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import logo from '#/assets/vm.png';
 import ScrollIndicator from '#/components/scroll-indicator';
-import './style.css';
+import styles from './style.module.css';
 
 function Header(props) {
   const { data } = props;
   return (
     <header>
       <nav className="d-flex">
-        <Link to="/" className="logo">
+        <Link to="/" className={styles.logo}>
           <img src={logo} />
         </Link>
-        <div className="flex-spacer" />
+        <span className="flex-auto" />
         {data.site.siteMetadata.menu.map(item => (
-          <Link key={item.path} to={item.path} className="nav-link" activeClassName="active">
+          <Link key={item.path} to={item.path} className={styles.link} activeClassName="active">
             {item.label}
           </Link>
         ))}

@@ -1,10 +1,10 @@
 @import 'normalize.css/normalize.css';
-@import '#/common/variables.css';
+@import './variables.css';
 
 body {
   font-family: $typographic-font-family;
   color: #333;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 h1,
@@ -13,66 +13,34 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 48px;
+  margin-bottom: 24px;
   font-weight: 500;
+  line-height: 1;
 }
 
 h1 {
-  margin-top: 60px;
   font-size: calc($typographic-base-font-size * 2.5);
 }
 
 h2 {
-  margin-top: 40px;
   font-size: calc($typographic-base-font-size * 1.6875);
-  .page-body & {
-    padding-top: 80px;
-    margin-top: -60px;
-  }
 }
 
 h3 {
-  margin-top: 40px;
   font-size: calc($typographic-base-font-size * 1.375);
-  .page-body & {
-    padding-top: 80px;
-    margin-top: -60px;
-  }
 }
 
 h4 {
-  margin-top: 20px;
   font-size: calc($typographic-base-font-size * 1.2);
-  .page-body & {
-    padding-top: 80px;
-    margin-top: -80px;
-  }
 }
 
 h5 {
-  margin-top: 16px;
   font-size: $typographic-base-font-size;
-  .page-body & {
-    padding-top: 80px;
-    margin-top: -84px;
-  }
 }
 
 h6 {
-  margin-top: 16px;
   font-size: $typographic-base-font-size;
-  .page-body & {
-    padding-top: 80px;
-    margin-top: -84px;
-  }
-}
-
-ul {
-  list-style: square;
-  margin-bottom: 20px;
-  li {
-    padding: 0 5px;
-    margin-bottom: 10px;
-  }
 }
 
 a {
@@ -83,17 +51,25 @@ a {
   }
 }
 
+p {
+  margin: 0 0 16px;
+}
+
 hr {
   width: 100px;
-  height: 4px;
+  height: 2px;
   margin: 60px auto;
   border: none;
-  background: #666;
+  background: #ccc;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+summary + p {
+  margin-top: 1em;
 }
 
 details {
@@ -102,29 +78,42 @@ details {
   border-radius: 8px;
 }
 
-.d-flex {
-  display: flex;
+blockquote {
+  margin: 16px 0;
+  padding: 8px 0 8px 16px;
+  background: #fbfbfb;
+  color: #666;
+  border-left: 8px solid #ccc;
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
-.flex-spacer {
-  flex: auto;
+ul,
+ol {
+  padding-left: 40px;
 }
 
-.label {
-  padding: 4px 8px;
-  color: #3498db;
-  font-size: 12px;
-  border: 1px solid currentColor;
-  border-radius: 16px;
+ul {
+  margin-bottom: 20px;
+  list-style: square;
 }
 
-.note {
-  padding: 8px 16px;
-  background: #f7f8f9;
-  color: #66758c;
+li {
+  margin-bottom: 10px;
+}
+
+kbd {
+  padding: 2px 4px;
+  font-size: 14px;
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0,0,0,.2), 0 2px 0 0 rgba(255,255,255,.7) inset;
 }
 
 :not(pre) > code[class*="language-"] {
+  margin: 0 3px;
   word-break: break-word;
 }
 
@@ -168,4 +157,12 @@ details {
 
 .mermaid {
   overflow-x: auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-auto {
+  flex: auto;
 }

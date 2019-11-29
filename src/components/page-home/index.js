@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, StaticQuery, graphql } from 'gatsby';
 import logo from '#/assets/vm.png';
-import './style.css';
+import styles from './style.module.css';
 
 function IndexContent(props) {
   const {
@@ -17,20 +17,22 @@ function IndexContent(props) {
     },
   } = props;
   return (
-    <main className="page-index">
-      <section className="page-index-header">
-        <picture className="page-index-logo">
+    <main className={styles.main}>
+      <section className={styles.header}>
+        <picture>
           <img src={logo} />
         </picture>
         <h1>{title}</h1>
         <h2>{subtitle}</h2>
-        <div className="page-index-buttons">
+        <div className={styles.buttons}>
           <Link to="/get-it/">Get it!</Link>
           <Link to="/donate/">Donate</Link>
           <a href="https://github.com/violentmonkey/violentmonkey" target="_blank" rel="noopener noreferrer">Github</a>
         </div>
       </section>
-      <div className="page-index-body" dangerouslySetInnerHTML={{ __html: html }} />
+      <section>
+        <article dangerouslySetInnerHTML={{ __html: html }} />
+      </section>
     </main>
   );
 }

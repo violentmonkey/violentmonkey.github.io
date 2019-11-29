@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { format, parseISO } from 'date-fns/esm';
-import './style.css';
+import { format } from 'date-fns';
+import styles from './style.module.css';
 
-export default function Post(props) {
+export default function PostItem(props) {
   const {
     data: {
       node: {
         frontmatter: {
-          title, date,
+          title, date: dateStr,
         },
         fields: {
           slug,
@@ -16,20 +16,17 @@ export default function Post(props) {
       },
     },
   } = props;
-  const dateObj = parseISO(date);
+  const date = new Date(dateStr);
   return (
-    <div className="postitem">
-      <div className="postitem-meta">
-        {date && (
-          <time className="postitem-meta-time" dateTime={format(dateObj, 'MMMM d, yyyy')}>
-            {format(dateObj, 'MMMM yyyy')}
-          </time>
-        )}
-      </div>
-      <h2 className="postitem-title">
-        <Link className="postitem-title-link" to={slug}>{title}</Link>
+    <div className={styles.post}>
+      <h2>
+        <Link to={slug}>{title}</Link>
       </h2>
-      <Link className="postitem-readmore" to={slug}>Read</Link>
+      <div className={styles.meta}>
+        <time dateTime={format(date, 'MMMM d, yyyy')}>
+          {format(date, 'MMMM d, yyyy')}
+        </time>
+      </div>
     </div>
   );
 }

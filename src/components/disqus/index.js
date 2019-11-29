@@ -26,25 +26,20 @@ class Disqus extends Component {
     const {
       postNode,
       data: {
-        site: {
-          siteMetadata: {
-            siteUrl,
-            disqusShortname,
-          },
-        },
+        site: { siteMetadata },
       },
     } = this.props;
-    if (!disqusShortname) {
+    if (!siteMetadata.disqusShortname) {
       return null;
     }
     const post = postNode.frontmatter;
-    const fullUrl = siteUrl + postNode.fields.slug;
+    const url = siteMetadata.siteUrl + postNode.fields.slug;
     return (
       <ReactDisqusComments
-        shortname={disqusShortname}
+        shortname={siteMetadata.disqusShortname}
         identifier={post.title}
         title={post.title}
-        url={fullUrl}
+        url={url}
         onNewComment={this.notifyAboutComment}
       />
     );
@@ -57,12 +52,14 @@ export default props => (
       query {
         site {
           siteMetadata {
-            siteUrl
             disqusShortname
+            siteUrl
           }
         }
       }
     `}
-    render={data => <Disqus {...props} data={data} />}
+    render={data => (
+      <Disqus {...props} data={data} />
+    )}
   />
 );

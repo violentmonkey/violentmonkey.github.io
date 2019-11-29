@@ -7,7 +7,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'MarkdownRemark') {
-    node.frontmatter.description = node.frontmatter.description || '';
     let slug = node.frontmatter.path;
     const parentNode = getNode(node.parent);
     const type = parentNode.sourceInstanceName;
@@ -43,9 +42,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postsTemplate = path.resolve('./src/templates/posts-template.js');
+  const postsTemplate = path.resolve('./src/templates/index-template.js');
   const postTemplate = path.resolve('./src/templates/post-template.js');
-  const pageTemplate = path.resolve('./src/templates/page-template.js');
   const tagTemplate = path.resolve('./src/templates/tag-template.js');
   const result = await graphql(`
     {
@@ -77,13 +75,16 @@ exports.createPages = async ({ graphql, actions }) => {
   createPage({
     path: '/posts/',
     component: slash(postsTemplate),
+    context: {
+      type: 'posts',
+    },
   });
   result.data.allMarkdownRemark.edges.forEach(edge => {
     const { slug, type } = edge.node.fields;
     if (type === 'pages') {
       createPage({
         path: slug,
-        component: slash(pageTemplate),
+        component: slash(postTemplate),
         context: {
           slug,
           type,

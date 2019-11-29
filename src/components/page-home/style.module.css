@@ -1,0 +1,52 @@
+@import '#/common/variables.css';
+
+.main {
+  max-width: 700px;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  picture {
+    display: block;
+    width: 96px;
+    margin: 30px auto;
+    > img {
+      display: block;
+      width: 100%;
+    }
+  }
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+}
+
+.buttons {
+  margin-top: 24px;
+  a {
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 8px 16px;
+    border: 1px solid currentColor;
+    border-radius: 24px;
+    &[target=_blank]:not(:hover) {
+      color: gray;
+    }
+  }
+}
+
+:global(.note) {
+  padding: 24px 16px;
+  background: #f7f8f9;
+  color: #66758c;
+  > p:last-child {
+    margin-bottom: 0;
+  }
+}

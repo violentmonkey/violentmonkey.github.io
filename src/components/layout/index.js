@@ -5,11 +5,10 @@ import icon from '#/assets/vm.png';
 import '#/common/style.css';
 import Header from '../header';
 import Footer from '../footer';
-import './style.css';
+import styles from './style.module.css';
 
 function Layout(props) {
   const {
-    children,
     data: {
       site: {
         siteMetadata: {
@@ -18,16 +17,18 @@ function Layout(props) {
         },
       },
     },
+    hideHeader,
+    children,
   } = props;
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{title}</title>
         <meta name="description" content={subtitle} />
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
-      <Header />
-      <div className="content">
+      {!hideHeader && <Header />}
+      <div className={styles.body}>
         {children}
         <Footer />
       </div>

@@ -1,39 +1,23 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-
+import IndexPage from '#/components/index-page';
 import Layout from '#/components/layout';
-import PostItem from '#/components/post-item';
 
-export default function TagTemplate(props) {
-  const {
-    pageContext: { tag },
-    data: {
-      allMarkdownRemark: { edges },
-    },
-  } = props;
+export default function PostsPage(props) {
   return (
     <Layout>
-      <main>
-        <h1>
-          {'Tag: '}
-          {tag}
-        </h1>
-        {edges.map(edge => <PostItem data={edge} key={edge.node.fields.slug} />)}
-      </main>
+      <IndexPage {...props} />
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query PostsByType($type: String!) {
     allMarkdownRemark(
       limit: 1000
       filter: {
-        frontmatter: {
-          tags: { in: [$tag] }
-        }
         fields: {
-          type: { eq: "posts" }
+          type: { eq: $type }
           draft: { ne: true }
         }
       }
@@ -48,6 +32,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
+            tags
           }
         }
       }

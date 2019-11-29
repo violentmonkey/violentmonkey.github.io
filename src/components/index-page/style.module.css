@@ -1,0 +1,14 @@
+@import '#/common/variables.css';
+
+.main {
+  max-width: $layout-post-width;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.desc {
+  margin-bottom: 30px;
+  color: $color-subtle;
+}

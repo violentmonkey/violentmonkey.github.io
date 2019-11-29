@@ -3,6 +3,8 @@
     "babel-preset-gatsby",
   ],
   "plugins": [
+    ["@babel/plugin-proposal-optional-chaining", { "loose": true }],
+
     ["module-resolver", {
       "alias": {
         "#": "./src",

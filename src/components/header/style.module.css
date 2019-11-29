@@ -22,10 +22,10 @@ nav {
   }
 }
 
-.nav-link {
+.link {
   &:hover,
   &:focus,
-  &.active {
+  &:global(.active) {
     color: $color-base;
     border-bottom: 1px solid currentColor;
   }
