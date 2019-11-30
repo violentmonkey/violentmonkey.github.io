@@ -1,6 +1,6 @@
 @import '#/common/variables.css';
 
-.main {
+main.main {
   // padding | placeholder |   space  |        main        |   space  |     toc    | padding
   //   $gap  |  $toc-width | 2 * $gap | $layout-post-width | 2 * $gap | $toc-width |   $gap
   max-width: calc($layout-post-width + 2 * $toc-width + 6 * $gap);
