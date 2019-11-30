@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import paypal from './assets/paypal.svg';
 import alipay from './assets/alipay.svg';
 import wechat from './assets/wechat.svg';
@@ -13,32 +13,21 @@ const qrcodes = {
   [WECHAT]: qrWechat,
 };
 
-export default class Donate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: null,
-    };
-  }
-
-  handleShowAlipay = () => {
-    this.setState({ active: ALIPAY });
-  }
-
-  handleShowWechat = () => {
-    this.setState({ active: WECHAT });
-  }
-
-  render() {
-    const { active } = this.state;
-    return (
-      <main>
+export default function Donate() {
+  const [active, setActive] = useState(null);
+  const handleShowAlipay = () => { setActive(ALIPAY); };
+  const handleShowWechat = () => { setActive(WECHAT); };
+  return (
+    <main>
+      <section>
         <h1>Donate</h1>
         <p>
           If you enjoyed surfing the Internet with Violentmonkey, and wanna buy me a coffee,
           please follow one of the links below...
         </p>
         <p>Thanks. 😏</p>
+      </section>
+      <section>
         <div className="donate">
           <a className="donate-group" href="https://www.paypal.me/gera2ld/5" target="_blank" rel="noopener noreferrer">
             <img src={paypal} />
@@ -46,24 +35,24 @@ export default class Donate extends React.Component {
           <a
             className={`donate-group ${active === ALIPAY ? 'active' : ''}`}
             href="#"
-            onClick={this.handleShowAlipay}
+            onClick={handleShowAlipay}
           >
             <img src={alipay} />
           </a>
           <a
             className={`donate-group ${active === WECHAT ? 'active' : ''}`}
             href="#"
-            onClick={this.handleShowWechat}
+            onClick={handleShowWechat}
           >
             <img src={wechat} />
           </a>
         </div>
         {active && (
-          <div className="donate-image" onClick={() => { this.setState({ active: null }); }}>
+          <div className="donate-image" onClick={() => { setActive(null); }}>
             <img src={qrcodes[active]} />
           </div>
         )}
-      </main>
-    );
-  }
+      </section>
+    </main>
+  );
 }

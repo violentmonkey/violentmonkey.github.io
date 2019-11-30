@@ -17,7 +17,7 @@ function IndexContent(props) {
     },
   } = props;
   return (
-    <main className={styles.main}>
+    <main>
       <section className={styles.header}>
         <picture>
           <img src={logo} />

@@ -1,9 +1,5 @@
 @import '#/common/variables.css';
 
-.main {
-  max-width: 700px;
-}
-
 .header {
   margin-bottom: 40px;
   text-align: center;
