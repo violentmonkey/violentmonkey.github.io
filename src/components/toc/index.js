@@ -15,12 +15,13 @@ export default function TOC(props) {
       const { articleRef } = props;
       if (!articleRef.current || !ref.current) return;
       const { scrollTop } = document.body;
-      const headings = Array.from(articleRef.current.querySelectorAll('[id]'), el => {
-        return {
+      const headings = Array.from(articleRef.current.children, el => {
+        return el.id && {
           id: el.id,
           offset: el.getBoundingClientRect().top - scrollTop - 70,
         };
-      });
+      })
+      .filter(Boolean);
       const { id } = headings.find((_, i) => {
         const next = headings[i + 1];
         return next && next.offset > 0;
