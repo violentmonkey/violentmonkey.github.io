@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - source
 
 jobs:
   build:
@@ -9,11 +12,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Build
+      run: yarn && yarn build
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@2.0.3
-      env:
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: source
         BRANCH: master
         FOLDER: public
-        BUILD_SCRIPT: yarn && yarn build
