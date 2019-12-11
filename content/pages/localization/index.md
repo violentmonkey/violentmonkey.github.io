@@ -5,9 +5,15 @@ date: 2017-03-13 20:07:10
 
 There are several ways to help with localization of Violentmonkey.
 
+Transifex
+---
+
+A popular translation platform with an easy and convenient online editor. Click the picture below to start translating into your language:
+  
+[![Transifex](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/chart/image_png)](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/)
+
 Pull Requests
 ---
-This way always works and is recommended at the moment.
 
 1. Fork Violentmonkey from [GitHub](https://github.com/violentmonkey/violentmonkey).
 1. Copy `src/_locales/en/messages.yml` into `src/_locales/<your_locale>/messages.yml`.
@@ -15,10 +21,6 @@ This way always works and is recommended at the moment.
    Make sure the modified `messages.yml` is valid yaml.
    If you have Node.js 8+ installed, you can check and reformat it by running `npm run i18n`.
 1. Commit changes and create a pull request.
-
-Transifex
----
-[![Transifex](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/chart/image_png)](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/)
 
 More
 ---
