@@ -25,6 +25,7 @@ function Layout(props) {
       <Helmet defer={false}>
         <title>{title}</title>
         <meta name="description" content={subtitle} />
+        <meta name="google-site-verification" content="OKMYmcVuMfm9H_UjfNXPzRb2c0QoBtmZ7v1KwHNXnRQ" />
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
       {!hideHeader && <Header />}
