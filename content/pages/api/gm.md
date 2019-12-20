@@ -32,6 +32,24 @@ An object that exposes information about the current userscript. It has followin
 
     Version of Violentmonkey.
 
+- `platform` *object* *(since VM2.12.4)*
+
+    Unlike `navigator.userAgent`, which can be overriden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
+
+    - `arch` *string*
+    
+        One of "arm", "mips", "mips64", "x86-32", "x86-64".
+            
+    - `browserName` *string*
+    
+        "chrome", "firefox" or whatever was returned by the API.
+
+    - `browserVersion` *string*
+
+    - `os` *string*
+    
+        One of "android", "cros", "linux", "mac", "openbsd", "win".
+             
 - `script` *object*
 
     Contains structured fields from the [Metadata Block](../metadata-block/):
