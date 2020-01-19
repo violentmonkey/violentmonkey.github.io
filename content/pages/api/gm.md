@@ -423,17 +423,19 @@ let control = GM_xmlhttpRequest(details)
 
     - `anonymous` *boolean* *(since VM2.10.1)*
 
-        When set to `true`, no cookie will be sent with the request. The default value is `false`.
+        When set to `true`, no cookie will be sent with the request and since VM2.12.5 the response cookies will be ignored. The default value is `false`.
 
     Event handlers:
 
-    - `onabort` *function*
-    - `onerror` *function*
-    - `onload` *function*
-    - `onloadend` *function*
-    - `onprogress` *function*
-    - `onreadystatechange` *function*
-    - `ontimeout` *function*
+    - `onabort`
+    - `onerror`
+    - `onload`
+    - `onloadend`
+    - `onprogress`
+    - `onreadystatechange`
+    - `ontimeout`
+    
+    Each event handler is a *function* that accepts one argument `responseObject`
 
 > Note:
 >
@@ -441,39 +443,20 @@ let control = GM_xmlhttpRequest(details)
 
 Returns a control object with the following properties:
 
-- `abort` *function*
+- `abort` *function()*
 
     A function to abort the request.
 
-The response object will be passed to each event handler, with following properties:
+The response object is passed to each event handler with the following properties, most of which are identical to those provided by the standard [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest):
 
-- `status`
-
-    Same as the standard `XMLHttpRequest`.
-
-- `statusText`
-
-    Same as the standard `XMLHttpRequest`.
-
-- `readyState`
-
-    Same as the standard `XMLHttpRequest`.
-
-- `responseHeaders`
-
-    An object of all response headers.
-
-- `responseText`
-
-    Same as the standard `XMLHttpRequest`, only provided when available.
-
-- `finalUrl`
-
-    The final URL after redirection.
-
-- `context`
-
-    The same object passed to the original request.
+- `status` *number*
+- `statusText` *string*
+- `readyState` *number*
+- `responseHeaders` *string*
+- `response` *string | Blob | ArrayBuffer | Document | Object | null*
+- `responseText` *string | undefined*, only provided when available
+- `finalUrl` *string*, the final URL after redirection
+- `context` *any*, the same `context` object you specified in `details`
 
 ### GM_download
 
