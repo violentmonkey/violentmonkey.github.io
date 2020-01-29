@@ -217,10 +217,25 @@ Opens URL in a new tab.
 
     - `options` *object* (optional)
 
-        - `active` *boolean*
+        - `active` *boolean*, default: `true` 
 
             Make the new tab active (i.e. open in foreground).
+            
+        - `container` *number* *(since VM2.12.5, Firefox-only)*
+                  
+            Set [tab's container](https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers) in Firefox:
+            * not specified = reuse script's tab container
+            * `0` = default (main) container
+            * `1`, `2`, etc. = internal container index
 
+        - `insert` *boolean* *(since VM2.11.0)*, default: `true`
+         
+            Insert the new tab next to the current tab and set its "openerTab" so when it's closed the original tab will be focused automatically. When `false` or not specified, the usual browser behavior is to open the tab at the end of the tab list.
+
+        - `pinned` *boolean* *(since VM2.12.5)*, default: `false`
+                  
+            Pin the tab (i.e. show without a title at the beginning of the tab list).
+            
 2. Using a boolean, compatible with Greasemonkey:
 
     ```js
