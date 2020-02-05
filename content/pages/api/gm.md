@@ -446,6 +446,7 @@ let control = GM_xmlhttpRequest(details)
     - `onerror`
     - `onload`
     - `onloadend`
+    - `onloadstart` *(since VM2.12.5)*
     - `onprogress`
     - `onreadystatechange`
     - `ontimeout`
