@@ -303,7 +303,7 @@ Shows an HTML5 desktop notification.
 1. using an object:
 
     ```js
-    GM_notification(options)
+    let control = GM_notification(options)
     ```
 
     - `options` *object*
@@ -349,6 +349,12 @@ Shows an HTML5 desktop notification.
     - `onclick` *function*
 
         Callback when the notification is clicked by user.
+
+**As of VM2.12.8** returns a control object with the following properties:
+
+- `remove` *function(): Promise*
+
+    A function to remove the notification.
 
 ### GM_setClipboard
 
