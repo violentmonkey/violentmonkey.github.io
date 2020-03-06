@@ -166,3 +166,49 @@ kbd {
 .flex-auto {
   flex: auto;
 }
+
+.icon-list {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+    margin-top: 24px;
+    > .gatsby-resp-image-wrapper {
+      width: 48px;
+      height: 48px;
+      margin-right: 8px !important;
+    }
+  }
+}
+
+.button-list {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+  li > a {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-top: 16px;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    &:hover {
+      border-color: #bbb;
+    }
+    .gatsby-resp-image-wrapper {
+      display: inline-block !important;
+      width: 48px;
+      height: 48px;
+      margin-right: 8px !important;
+    }
+  }
+}

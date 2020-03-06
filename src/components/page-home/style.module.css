@@ -1,12 +1,12 @@
 @import '#/common/variables.css';
 
 .header {
-  margin-bottom: 40px;
+  margin: 80px 0 100px;
   text-align: center;
   picture {
     display: block;
     width: 96px;
-    margin: 30px auto;
+    margin: 0 auto 30px;
     > img {
       display: block;
       width: 100%;
@@ -16,24 +16,65 @@
     margin-top: 30px;
     margin-bottom: 0;
   }
-  h2 {
-    margin-top: 20px;
-    margin-bottom: 0;
-  }
+}
+
+.subtitle {
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #666;
+  font-size: 24px;
 }
 
 .buttons {
   margin-top: 24px;
+  font-size: 16px;
   a {
     display: inline-block;
-    margin-top: 8px;
-    margin-left: 12px;
-    margin-right: 12px;
-    padding: 8px 16px;
+    margin: 8px;
+    padding: 12px 28px;
     border: 1px solid currentColor;
     border-radius: 24px;
+    text-transform: uppercase;
     &[target=_blank]:not(:hover) {
       color: gray;
+    }
+    &.button-primary {
+      background: $color-primary;
+      border-color: $color-primary;
+      color: white;
+    }
+    &.button-white {
+      color: $color-primary;
+    }
+    &.button-gray {
+      background: #f0f0f0;
+      border-color: #f0f0f0;
+      color: #333;
+    }
+  }
+}
+
+:global(.features) {
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  > ul {
+    @media (min-width: 768px) {
+      display: flex;
+    }
+    > li {
+      flex: 1;
+      padding: 16px;
+      > ul {
+        margin-bottom: 0;
+        color: #999;
+      }
+      > p {
+        font-size: 18px;
+        font-weight: 500;
+        color: #666;
+      }
     }
   }
 }

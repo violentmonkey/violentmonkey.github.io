@@ -80,7 +80,8 @@ exports.createPages = async ({ graphql, actions }) => {
     },
   });
   result.data.allMarkdownRemark.edges.forEach(edge => {
-    const { slug, type } = edge.node.fields;
+    const { slug } = edge.node.fields;
+    const type = edge.node.frontmatter.type || edge.node.fields.type;
     if (type === 'pages') {
       createPage({
         path: slug,

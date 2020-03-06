@@ -5,55 +5,39 @@ date: 2017-03-13 18:16:24
 
 Violentmonkey is built with web extension APIs. It supports a lot of browsers.
 
-If you're using...
+You can either install it from web stores or build from source code.
 
-Browsers with WebExtension support
----
-Chrome, Chromium, Opera 15+, QQBrowser, Firefox 57+, etc.
+## Chromium based browsers
 
-**Stores**
-- Chrome Web Store: [Go](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
-- Firefox AMO: [Go](https://addons.mozilla.org/firefox/addon/violentmonkey/)
+Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
-**Releases**
-- GitHub: [Go](https://github.com/violentmonkey/violentmonkey/releases)
+<div class="button-list">
 
-**Notes**
-- **Opera users** please [install from Chrome Web Store](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) because it seems Opera team will no longer review the extension. They think Violentmonkey is too complicated and they don't have time to review it. 😞
+- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
+- [![Firefox](../../assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
+- [![Edge](../../assets/browsers/edge.png) Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
+- [![Github](../../assets/github.png) Github Releases](https://github.com/violentmonkey/violentmonkey/releases)
 
----
+</div>
 
-Opera Presto
----
-Opera 12.
+**Note**
 
-**Stores**
-- Opera add-ons: [Go](https://addons.opera.com/extensions/details/violent-monkey/)
-
-**Releases**
-- GitHub: [Go](https://github.com/violentmonkey/violentmonkey-oex/releases)
+- **Opera users** please [install from Chrome Web Store](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) because the Opera team no longer reviews the extension because they think Violentmonkey is too complicated and they don't have time to review it. 😞
 
 ---
 
-Maxthon
----
+## Maxthon
+
 Maxthon 4 and 5.
 
-**Stores**
-- Maxthon extensions: [Go](http://extension.maxthon.com/detail/index.php?view_id=1680)
+<div class="button-list">
 
-**Releases**
-- GitHub: [Go](https://github.com/violentmonkey/violentmonkey-mx/releases)
-
----
-
-Edge
----
-Not supported yet.
+- [![Maxthon](../../assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
+- [![Github](../../assets/github.png) Github Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
 
 ---
 
-Not above?
----
+## Not above?
+
 Unfortunately your browser may be unable to support such extensions.
 Welcome to help improve it.

@@ -3,19 +3,53 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 import logo from '#/assets/vm.png';
 import styles from './style.module.css';
 
+const capitalize = str => {
+  if (!str) return str;
+  return str[0].toUpperCase() + str.slice(1);
+};
+
 function IndexContent(props) {
   const {
     data: {
       site: {
         siteMetadata: {
-          title, subtitle,
+          title,
         },
       },
       markdownRemark: {
         html,
+        frontmatter: {
+          actions,
+          subtitle,
+        },
       },
     },
   } = props;
+  const renderLink = (item, i) => {
+    const className = styles[`button${capitalize(item.type)}`];
+    if (item.url.includes('://')) {
+      return (
+        <a
+          key={i}
+          className={className}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {item.title}
+        </a>
+      );
+    }
+    return (
+      <Link
+        key={i}
+        className={className}
+        to={item.url}
+      >
+        {item.title}
+      </Link>
+    );
+  };
   return (
     <main>
       <section className={styles.header}>
@@ -23,11 +57,9 @@ function IndexContent(props) {
           <img src={logo} />
         </picture>
         <h1>{title}</h1>
-        <h2>{subtitle}</h2>
+        <div className={styles.subtitle}>{subtitle}</div>
         <div className={styles.buttons}>
-          <Link to="/get-it/">Get it!</Link>
-          <Link to="/donate/">Donate</Link>
-          <a href="https://github.com/violentmonkey/violentmonkey" target="_blank" rel="noopener noreferrer">Github</a>
+          {actions.map(renderLink)}
         </div>
       </section>
       <section>
@@ -44,11 +76,18 @@ export default props => (
         site {
           siteMetadata {
             title
-            subtitle
           }
         }
         markdownRemark(fields: { slug: { eq: "/" } }) {
           html
+          frontmatter {
+            subtitle
+            actions {
+              title
+              url
+              type
+            }
+          }
         }
       }
     `}

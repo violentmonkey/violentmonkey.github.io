@@ -33,7 +33,7 @@ module.exports = {
     ],
   },
   plugins: [
-    ...['pages', 'posts'].map(type => ({
+    ...['pages', 'posts', 'assets'].map(type => ({
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/${type}`,

@@ -11,14 +11,15 @@ header {
 
 nav {
   align-items: center;
+  height: 60px;
   padding: 0 16px;
   box-shadow: 0 0 5px #ccc;
   > a {
     display: block;
     margin: 0 10px;
     padding: 0;
-    font-size: $typographic-base-font-size;
-    color: $typographic-base-font-color;
+    font-size: 16px;
+    color: #666;
   }
 }
 
@@ -27,7 +28,7 @@ nav {
   &:focus,
   &:global(.active) {
     color: $color-base;
-    border-bottom: 1px solid currentColor;
+    border-bottom: 2px solid $color-primary;
   }
   &:hover,
   &:focus {
@@ -35,9 +36,9 @@ nav {
   }
 }
 
-.logo {
-  padding: 8px;
-  img {
-    height: 36px;
+.brand {
+  font-size: 20px;
+  @media (max-width: 512px) {
+    display: none;
   }
 }

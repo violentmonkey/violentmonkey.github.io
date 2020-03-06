@@ -1,6 +1,5 @@
 import React from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
-import logo from '#/assets/vm.png';
 import ScrollIndicator from '#/components/scroll-indicator';
 import styles from './style.module.css';
 
@@ -9,8 +8,8 @@ function Header(props) {
   return (
     <header>
       <nav className="d-flex">
-        <Link to="/" className={styles.logo}>
-          <img src={logo} />
+        <Link to="/" className={styles.brand}>
+          Violentmonkey
         </Link>
         <span className="flex-auto" />
         {data.site.siteMetadata.menu.map(item => (
