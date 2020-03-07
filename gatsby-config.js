@@ -13,6 +13,10 @@ module.exports = {
         path: '/get-it/',
       },
       {
+        label: 'Guide',
+        path: '/guide/',
+      },
+      {
         label: 'API',
         path: '/api/',
       },
@@ -139,5 +143,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-redirect-from',
     'gatsby-plugin-meta-redirect',
+    'gatsby-plugin-layout',
   ],
 };

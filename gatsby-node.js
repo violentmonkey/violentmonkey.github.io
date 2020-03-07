@@ -65,6 +65,10 @@ exports.createPages = async ({ graphql, actions }) => {
               date
               tags
               type
+              sidebar {
+                match
+                order
+              }
             }
           }
         }

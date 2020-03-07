@@ -20,7 +20,7 @@ function Footer(props) {
         {' '}
         {copyright}
       </div>
-      <div className="flex-auto" />
+      <div className="flex-1" />
       {footer.map(item => (
         <Link
           className="footer-link-item"

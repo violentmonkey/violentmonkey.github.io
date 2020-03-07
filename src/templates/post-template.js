@@ -2,7 +2,6 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import React from 'react';
 
-import Layout from '#/components/layout';
 import PostMain from '#/components/post-main';
 
 export default function PostTemplate(props) {
@@ -22,12 +21,12 @@ export default function PostTemplate(props) {
   } = post;
 
   return (
-    <Layout>
+    <>
       <Helmet defer={false}>
         <title>{`${postTitle} - ${title}`}</title>
       </Helmet>
       <PostMain data={data} />
-    </Layout>
+    </>
   );
 }
 
@@ -49,6 +48,10 @@ export const pageQuery = graphql`
         title
         tags
         date
+        sidebar {
+          match
+          order
+        }
       }
       tableOfContents
     }

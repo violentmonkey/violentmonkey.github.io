@@ -163,8 +163,9 @@ kbd {
   display: flex;
 }
 
-.flex-auto {
-  flex: auto;
+.flex-1 {
+  flex: 1;
+  min-width: 0;
 }
 
 .icon-list {

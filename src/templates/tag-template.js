@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Layout from '#/components/layout';
 import PostItem from '#/components/post-item';
 
 export default function TagTemplate(props) {
@@ -12,15 +11,13 @@ export default function TagTemplate(props) {
     },
   } = props;
   return (
-    <Layout>
-      <main>
-        <h1>
-          {'Tag: '}
-          {tag}
-        </h1>
-        {edges.map(edge => <PostItem data={edge} key={edge.node.fields.slug} />)}
-      </main>
-    </Layout>
+    <main>
+      <h1>
+        {'Tag: '}
+        {tag}
+      </h1>
+      {edges.map(edge => <PostItem data={edge} key={edge.node.fields.slug} />)}
+    </main>
   );
 }
 

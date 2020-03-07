@@ -1,9 +1,7 @@
 @import '#/common/variables.css';
 
-main.main {
-  // padding | placeholder |   space  |        main        |   space  |     toc    | padding
-  //   $gap  |  $toc-width | 2 * $gap | $layout-post-width | 2 * $gap | $toc-width |   $gap
-  max-width: calc($layout-post-width + 2 * $toc-width + 6 * $gap);
+.main > section {
+  padding: 0 $gap;
 }
 
 .header {
@@ -14,18 +12,24 @@ main.main {
   margin-bottom: 24px;
 }
 
+.toc {
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: $layout-breakpoint-md) {
-  .main > section {
-    margin-right: calc($toc-width + 2 * $gap);
-  }
-  .main > .body {
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    > article {
-      flex: 1;
-      width: 0;
-      margin-right: calc(2 * $gap);
+  .main {
+    > section {
+      margin-right: calc($toc-width + 2 * $gap);
+    }
+    > .body {
+      display: flex;
+      align-items: flex-start;
+      margin: 0;
+      > article {
+        flex: 1;
+        width: 0;
+        margin-right: calc(2 * $gap);
+      }
     }
   }
   .toc {
@@ -37,21 +41,6 @@ main.main {
     overflow: auto;
     h2 {
       display: none;
-    }
-  }
-}
-
-@media screen and (min-width: $layout-breakpoint-lg) {
-  .main > section {
-    margin-left: calc($toc-width + 2 * $gap);
-  }
-  .main > .body {
-    &::before {
-      content: '';
-      flex: 0 0 $toc-width;
-    }
-    > article {
-      margin-left: calc(2 * $gap);
     }
   }
 }

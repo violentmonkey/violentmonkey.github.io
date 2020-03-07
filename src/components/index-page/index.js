@@ -17,7 +17,7 @@ export default function IndexPage(props) {
     },
   } = props;
   return (
-    <main>
+    <main className={styles.main}>
       <section className={styles.header}>
         <h1>{title}</h1>
         {!!description && <div className={styles.desc}>{description}</div>}

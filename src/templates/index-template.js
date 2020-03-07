@@ -1,13 +1,10 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import IndexPage from '#/components/index-page';
-import Layout from '#/components/layout';
 
 export default function PostsPage(props) {
   return (
-    <Layout>
-      <IndexPage {...props} />
-    </Layout>
+    <IndexPage {...props} />
   );
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
-import Layout from '../components/layout';
 
 export default function TagsRoute(props) {
   const {
@@ -16,7 +15,7 @@ export default function TagsRoute(props) {
     },
   } = props;
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>{`All Tags - ${title}`}</title>
       </Helmet>
@@ -36,7 +35,7 @@ export default function TagsRoute(props) {
           ))}
         </ul>
       </main>
-    </Layout>
+    </>
   );
 }
 

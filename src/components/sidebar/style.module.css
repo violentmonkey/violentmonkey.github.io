@@ -1,0 +1,32 @@
+@import '#/common/variables.css';
+
+.sidebar {
+  flex: 0 0 auto;
+  width: 220px;
+  padding: 80px 20px 20px;
+  ul {
+    position: sticky;
+    max-height: calc(100vh - 70px);
+    top: 80px;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  a:not(.active) {
+    color: #999;
+  }
+  @media screen and (max-width: $layout-breakpoint-md) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-120%);
+    background: white;
+    box-shadow: 0 0 5px #0002;
+    z-index: 1;
+    transition: transform .3s;
+    :global(.sidebar-open) & {
+      transform: none;
+    }
+  }
+}

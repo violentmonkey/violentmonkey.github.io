@@ -1,7 +1,7 @@
 @import "#/common/variables.css";
 
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -40,5 +40,38 @@ nav {
   font-size: 20px;
   @media (max-width: 512px) {
     display: none;
+  }
+}
+
+.toggle {
+  position: relative;
+  margin: 0;
+  padding: 6px 0;
+  cursor: pointer;
+  color: #666;
+  display: none;
+  @media screen and (max-width: $layout-breakpoint-md) {
+    display: block;
+  }
+  > i {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
   }
 }

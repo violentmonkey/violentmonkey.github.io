@@ -4,9 +4,9 @@ import styles from './style.module.css';
 
 export default function TOC(props) {
   const { className, data } = props;
-  if (!data) return null;
   const ref = useRef();
   useEffect(() => {
+    if (!data) return;
     const list = Array.from(ref.current.querySelectorAll('a'));
     list.forEach(a => {
       a.dataset.id = decodeURIComponent(a.href.split('#')[1] || '');
@@ -37,8 +37,12 @@ export default function TOC(props) {
   const html = data.replace(/&#x3C;/gi, '<');
   return (
     <section className={`${styles.toc} ${className || ''}`}>
-      <h2>Table of Contents</h2>
-      <div ref={ref} className={styles.list} dangerouslySetInnerHTML={{ __html: html }} />
+      {data && (
+        <>
+          <h2>Table of Contents</h2>
+          <div ref={ref} className={styles.list} dangerouslySetInnerHTML={{ __html: html }} />
+        </>
+      )}
     </section>
   );
 }

@@ -1,13 +1,12 @@
 @import '#/common/variables.css';
 
 .body {
-  padding-top: 60px;
+  position: relative;
+  min-height: 70vh;
+  z-index: 0;
   > main {
     max-width: 960px;
-    min-height: 70vh;
     margin: 0 auto;
-    > section {
-      padding: 0 $gap;
-    }
+    padding: 0 16px;
   }
 }
