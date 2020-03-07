@@ -1,8 +1,9 @@
 .donate {
+  margin-top: 24px;
   text-align: center;
   &-group {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 16px 24px;
     border: 1px solid #ddd;
     &:first-child {
       border-top-left-radius: 8px;
@@ -16,7 +17,7 @@
       border-right: none;
     }
     > img {
-      height: 14px;
+      height: 20px;
       filter: grayscale(1) opacity(.5);
       transition: filter .5s;
     }
