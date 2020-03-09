@@ -532,13 +532,16 @@ Downloads a URL to a local file.
 
 `GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
 
-* [GM.deleteValue](#gm_deletevalue)
-* [GM.getResourceURL](#gm_getresourceurl)
-* [GM.getValue](#gm_getvalue)
+* [GM.addStyle](#gm_addstyle)
+* [GM.deleteValue](#gm_deletevalue) *(async)*
+* [GM.getResourceURL](#gm_getresourceurl) *(async)*
+* [GM.getValue](#gm_getvalue) *(async)*
 * [GM.info](#gm_info)
-* [GM.listValues](#gm_listvalues)
+* [GM.listValues](#gm_listvalues) *(async)*
 * [GM.notification](#gm_notification)
 * [GM.openInTab](#gm_openintab)
 * [GM.setClipboard](#gm_setclipboard)
-* [GM.setValue](#gm_setvalue)
+* [GM.setValue](#gm_setvalue) *(async)*
 * [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase
+
+The `async` functions return a `Promise` that's resolved with the returned value.
