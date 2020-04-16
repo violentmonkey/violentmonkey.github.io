@@ -19,7 +19,9 @@ We do not disclose your personal data and extension data to any other third part
 
 ### Links To Other Sites
 
-Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
+Our service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
+
+Our service may run userscripts that contain code out of our control. If a userscript is installed, it can run in sites matching the rules in its metadata with high privilege APIs, for instance, sending requests with your credentials. We strongly advise you to only install userscripts that you believe and know, from trusted hosts.
 
 We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
 
