@@ -1,5 +1,14 @@
+@import '#/common/variables.css';
+
 .footer {
   margin-top: 40px;
   padding: 20px;
   border-top: 1px solid #ddd;
+  &-link-item {
+    margin: 0 8px;
+  }
+
+  @media screen and (max-width: $layout-breakpoint-md) {
+    padding-bottom: 60px;
+  }
 }
