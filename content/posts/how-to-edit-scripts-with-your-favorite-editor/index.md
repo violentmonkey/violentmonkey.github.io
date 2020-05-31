@@ -51,6 +51,8 @@ There are two ways to install a local script:
 - *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.
 
   One of the best way is to use node/npm's [indexzero/http-server](https://github.com/indexzero/http-server#readme). If you have it installed, just type `http-server -c5` at the directory of your script to start a server.
+  
+  If you already have a python (>3) interpreter installed, you can use it directly with: `python3 -m http.server 8080 --bind 127.0.0.1`.
 
   Make sure the hostname is `localhost` and the script name ends with `.user.js`.
 
