@@ -103,31 +103,32 @@ document.body.append(<div>hello, world</div>);
 
 ### CSS
 
-CSS in this project will be handled by PostCSS, enhanced by [PreCSS](https://github.com/jonathantneal/precss). In other words, we can use Sass-like markup and staged CSS features in `src/**/*.css`.
+CSS in this project will be handled by [rollup-plugin-postcss](https://github.com/egoist/rollup-plugin-postcss), enhanced by [PreCSS](https://github.com/jonathantneal/precss). In other words, Sass-like markup and staged CSS features are supported in `src/**/*.css`.
 
-We can get the compiled CSS string by `import`:
+Compiled CSS string can be imported:
 
 ```js
-import { css } from './style.css';
+// global CSS
+import globalCss from './style.css';
 
 const style = document.createElement('style');
-style.textContent = css;
+style.textContent = globalCss;
 document.head.append(style);
 
 // or use with JSX
-document.head.append(<style>{css}</style>);
+document.head.append(<style>{globalCss}</style>);
 ```
 
 ### CSS Modules
 
-CSS modules is enabled automatically for `src/**/*.module.css`. When importing from a `.module.css` file, we get an extra `classMap` object, mapping from original class names to hashed class names.
+CSS modules is enabled automatically for `src/**/*.module.css`. When importing from a `.module.css` file, we get an object as default export, mapping from original class names to hashed class names. The CSS string is imported from a named export `stylesheet`.
 
 ```js
-import { css, classMap } from './style.module.css';
+// CSS modules
+import styles, { stylesheet } from './style.module.css';
 
-GM_addStyle(css);
-
-document.body.append(<div className={classMap.container}>hello, world</div>);
+document.head.append(<style>{stylesheet}</style>);
+document.body.append(<div className={styles.container}>hello, world</div>);
 ```
 
 ```css
