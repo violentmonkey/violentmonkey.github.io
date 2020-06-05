@@ -56,3 +56,5 @@ For example, ESNext features that are not supported by the browser will fail as 
 Modern browsers like Chrome, Firefox, Edge support most of ES 6 features, so it is safe to use most of them if you are not targetting last century users.
 
 However there are exceptions. For example ES modules won't work in userscripts because they are supposed to inject into webpage as single-file scripts.
+
+If you want to write userscripts with some awesome features that are not supported by browsers yet or won't be supported, such as ES modules, CSS modules, please check out [How to use modern syntax in a userscript](../using-modern-syntax/).
