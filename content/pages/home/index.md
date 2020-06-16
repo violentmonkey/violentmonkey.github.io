@@ -11,7 +11,7 @@ actions:
   - title: Donate
     url: /donate/
     type: white
-  - title: Github
+  - title: GitHub
     url: https://github.com/violentmonkey/violentmonkey
     type: gray
 ---
