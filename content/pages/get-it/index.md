@@ -16,7 +16,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 - [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
 - [![Firefox](../../assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
 - [![Edge](../../assets/browsers/edge.png) Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
-- [![Github](../../assets/github.png) Github Releases](https://github.com/violentmonkey/violentmonkey/releases)
+- [![GitHub](../../assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey/releases)
 
 </div>
 
@@ -33,7 +33,7 @@ Maxthon 4 and 5.
 <div class="button-list">
 
 - [![Maxthon](../../assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
-- [![Github](../../assets/github.png) Github Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
+- [![GitHub](../../assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
 
 ---
 
