@@ -3,11 +3,11 @@ title: Get Violentmonkey
 date: 2017-03-13 18:16:24
 ---
 
-Violentmonkey is built with web extension APIs. It supports a lot of browsers.
+Violentmonkey is built with WebExtension APIs. It supports a lot of browsers.
 
 You can either install it from web stores or build from source code.
 
-## Chromium based browsers
+## WebExtension-compatible browsers
 
 Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
