@@ -138,6 +138,18 @@ document.body.append(<div className={styles.container}>hello, world</div>);
 }
 ```
 
+### TailwindCSS
+
+[TailwindCSS](https://tailwindcss.com/) is enabled by default, so you can easily compose classes to build your own CSS.
+
+```css
+body {
+  @apply bg-gray-200;
+}
+```
+
+However, we are building a userscript which should not pollute the global context too much, so we should not use TailwindCSS classes directly in JavaScript or HTML templates.
+
 ## Recap
 
 Thanks to Babel and Rollup, we can use a lot of modern features in a userscript:
@@ -146,3 +158,4 @@ Thanks to Babel and Rollup, we can use a lot of modern features in a userscript:
 - React-like JSX syntax
 - Sass-like CSS features
 - CSS modules
+- TailwindCSS
