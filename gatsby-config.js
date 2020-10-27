@@ -134,8 +134,6 @@ module.exports = {
           require('postcss-color-function'),
           // Calculate at compile time
           require('postcss-calc'),
-          // px to rem
-          require('postcss-plugin-px2rem')({ rootValue: 16 }),
         ],
       },
     },

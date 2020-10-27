@@ -52,7 +52,8 @@ a {
 }
 
 p {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
+  line-height: 1.5;
 }
 
 hr {
