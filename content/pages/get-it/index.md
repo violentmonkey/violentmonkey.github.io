@@ -11,6 +11,8 @@ You can either install it from web stores or build from source code.
 
 Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
+### Stable Release
+
 <div class="button-list">
 
 - [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
@@ -23,6 +25,17 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 **Note**
 
 - **Opera users** please [install from Chrome Web Store](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) because the Opera team no longer reviews the extension because they think Violentmonkey is too complicated and they don't have time to review it. 😞
+
+### Beta Release
+
+The beta version is published more frequently than the stable release, with bug fixes and new features that will be included in the next stable release.
+However it may have bugs and lead to data loss. Please **BACK UP YOUR DATA** and use it at your own risk.
+
+<div class="button-list">
+
+- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey/opokoaglpekkimldnlggpoagmjegichg)
+
+</div>
 
 ---
 
