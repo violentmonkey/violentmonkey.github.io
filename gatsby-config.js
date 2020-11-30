@@ -112,29 +112,36 @@ module.exports = {
         }),
       },
     },
-    'gatsby-plugin-manifest',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/vm.png',
+      },
+    },
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
-        parser: require('postcss-scss'),
-        postCssPlugins: [
-          // Transform @import, resolve `#` to `$PWD/src`
-          require('postcss-import')({
-            resolve(id) {
-              if (id.startsWith('#/')) return path.resolve(`src/${id.slice(2)}`);
-              return id;
-            },
-          }),
-          // Transform SCSS into CSS
-          require('precss'),
-          // Transform colors
-          require('postcss-color-function'),
-          // Calculate at compile time
-          require('postcss-calc'),
-        ],
+        postcssOptions: {
+          parser: require('postcss-scss'),
+          plugins: [
+            // Transform @import, resolve `#` to `$PWD/src`
+            require('postcss-import')({
+              resolve(id) {
+                if (id.startsWith('#/')) return path.resolve(`src/${id.slice(2)}`);
+                return id;
+              },
+            }),
+            // Transform SCSS into CSS
+            require('precss'),
+            // Transform colors
+            require('postcss-color-function'),
+            // Calculate at compile time
+            require('postcss-calc'),
+          ],
+        },
       },
     },
     // Put sharp after postcss so that its CSS will be kept

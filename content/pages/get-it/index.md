@@ -29,7 +29,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 ### Beta Release
 
 The beta version is published more frequently than the stable release, with bug fixes and new features that will be included in the next stable release.
-However it may have bugs and lead to data loss. Please **BACK UP YOUR DATA** and use it at your own risk.
+However it may have bugs and lead to data loss. Please **back up your data** and use it at your own risk.
 
 <div class="button-list">
 
