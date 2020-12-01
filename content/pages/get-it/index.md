@@ -33,7 +33,7 @@ However it may have bugs and lead to data loss. Please **back up your data** and
 
 <div class="button-list">
 
-- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey/opokoaglpekkimldnlggpoagmjegichg)
+- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
 
 </div>
 
