@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, StaticQuery, graphql } from 'gatsby';
-import './style.css';
 
 function Footer(props) {
   const {
@@ -14,7 +13,7 @@ function Footer(props) {
     },
   } = props;
   return (
-    <footer className="footer d-flex">
+    <footer className="flex mt-10 p-6 pb-16 border-t border-gray-400 lg:pb-6">
       <div>
         Violentmonkey
         {' '}
@@ -22,7 +21,7 @@ function Footer(props) {
       </div>
       {footer.map(item => (
         <Link
-          className="footer-link-item"
+          className="mx-2"
           key={item.path}
           to={item.path}
         >

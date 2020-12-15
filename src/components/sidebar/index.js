@@ -1,6 +1,5 @@
 import { Link, StaticQuery, graphql } from 'gatsby';
 import React, { useMemo } from 'react';
-import styles from './style.module.css';
 
 function Sidebar(props) {
   const {
@@ -17,14 +16,14 @@ function Sidebar(props) {
     .sort((a, b) => a.node.frontmatter.sidebar.order - b.node.frontmatter.sidebar.order);
   }, [active?.match]);
   return (
-    <aside className={styles.sidebar}>
+    <aside className="sidebar">
       {items && (
         <ul>
           {items.map((item, i) => (
             <li key={i}>
               <Link
                 to={item.node.fields.slug}
-                activeClassName={styles.active}
+                activeClassName="active"
               >
                 {item.node.frontmatter.title}
               </Link>

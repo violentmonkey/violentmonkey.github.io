@@ -4,23 +4,19 @@ date: 2017-03-13 18:15:24
 path: /
 type: home
 subtitle: An open source userscript manager.
-actions:
-  - title: Get started
-    url: /get-it/
-    type: primary
-  - title: Donate
-    url: /donate/
-    type: white
-  - title: GitHub
-    url: https://github.com/violentmonkey/violentmonkey
-    type: gray
 ---
+
+<div class="home-buttons" data-ga-category="home-buttons">
+  <a href="/get-it" class="button-primary" data-ga-label="get-started">Get Started</a>
+  <a href="/donate/" class="button-white" data-ga-label="donate">Donate</a>
+  <a href="https://github.com/violentmonkey/violentmonkey" class="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
+</div>
 
 Violentmonkey provides userscripts support for browsers.
 
 ## Features
 
-<div class="features">
+<div class="home-features">
 
 - Powerful
   - Customize web pages.
@@ -34,7 +30,7 @@ Violentmonkey provides userscripts support for browsers.
 
 </div>
 
-<div class="note">
+<div class="px-4 pt-6 pb-4 bg-gray-100 text-gray-600">
 
 **Note:** This extension does not contain any ads and does not modify web pages automatically.
 Any changes and modifications on the sites are done by installed scripts.

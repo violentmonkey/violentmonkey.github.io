@@ -4,7 +4,6 @@ import TOC from '../toc';
 import Disqus from '../disqus';
 import TagBlock from '../tag-block';
 import Sidebar from '../sidebar';
-import styles from './style.module.css';
 
 export default function PostMain(props) {
   const {
@@ -32,18 +31,18 @@ export default function PostMain(props) {
   return (
     <>
       <Sidebar active={sidebar} />
-      <main className={`flex-1 ${styles.main}`}>
-        <section className={styles.header}>
+      <main className="flex-1 has-toc">
+        <section className="mb-10 pt-1">
           <h1>{postTitle}</h1>
         </section>
-        <section className={styles.body}>
-          <TOC className={styles.toc} data={tableOfContents} articleRef={articleRef} />
-          <article ref={articleRef} dangerouslySetInnerHTML={{ __html: html }} />
+        <section className="lg:flex items-start with-toc">
+          <TOC data={tableOfContents} articleRef={articleRef} />
+          <article className="flex-1 min-w-0 mr-4" ref={articleRef} dangerouslySetInnerHTML={{ __html: html }} />
         </section>
         <section>
           <hr />
           {type === 'posts' && (
-            <div className={styles.date}>
+            <div className="mb-6">
               <em>Published at {format(new Date(date), 'MMMM d, yyyy')}</em>
             </div>
           )}

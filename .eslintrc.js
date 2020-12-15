@@ -1,55 +1,16 @@
 module.exports = {
-  parser: 'babel-eslint',
+  root: true,
   extends: [
-    'airbnb-base',
-    'airbnb-base/rules/strict',
-    'airbnb/rules/react',
+    require.resolve('@gera2ld/plaid/eslint'),
+    require.resolve('@gera2ld/plaid-common-react/eslint'),
   ],
-  env: {
-    browser: true,
-  },
-  settings: {
-    'import/resolver': {
-      'babel-module': {},
+  parserOptions: {
+    ecmaFeatures: {
+      legacyDecorators: true,
     },
   },
   rules: {
-    'arrow-body-style': 'off',
-    'arrow-parens': 'off',
-    'class-methods-use-this': 'off',
-    'consistent-return': 'off',
-    'import/default': 'error',
-    'import/prefer-default-export': 'off',
-    indent: ['error', 2, { MemberExpression: 0 }],
-    'max-len': ['error', 100, 2, { // airbnb-base + ignore comments
-      ignoreUrls: true,
-      ignoreComments: true,
-      ignoreRegExpLiterals: true,
-      ignoreStrings: true,
-      ignoreTemplateLiterals: true,
-    }],
-    'no-await-in-loop': 'off',
-    'no-bitwise': ['error', { int32Hint: true }],
-    'no-cond-assign': ['error', 'except-parens'],
-    'no-console': ['warn', {
-      allow: ['error', 'warn', 'info'],
-    }],
-    'no-lonely-if': 'off',
-    'no-mixed-operators': 'off',
-    'no-param-reassign': 'off',
-    'no-restricted-syntax': 'off',
-    'no-throw-literal': 'off',
-    'no-underscore-dangle': 'off',
-    'no-use-before-define': ['error', 'nofunc'],
-    'object-shorthand': ['error', 'always'],
-    'prefer-destructuring': ['error', { array: false }],
-    'prefer-promise-reject-errors': 'off',
-    'react/button-has-type': 'off',
-    'react/destructuring-assignment': 'off',
-    'react/jsx-filename-extension': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
-    'react/prop-types': 'off',
   },
 };

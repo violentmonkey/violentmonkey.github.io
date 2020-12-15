@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { format } from 'date-fns';
-import styles from './style.module.css';
 
 export default function PostItem(props) {
   const {
@@ -18,12 +17,12 @@ export default function PostItem(props) {
   } = props;
   const date = new Date(dateStr);
   return (
-    <div className={styles.post}>
+    <div className="mb-8">
       <h2>
-        <Link to={slug}>{title}</Link>
+        <Link className="text-gray-700" to={slug}>{title}</Link>
       </h2>
-      <div className={styles.meta}>
-        <time dateTime={format(date, 'MMMM d, yyyy')}>
+      <div>
+        <time className="mr-2 text-sm text-gray-400 uppercase" dateTime={format(date, 'MMMM d, yyyy')}>
           {format(date, 'MMMM d, yyyy')}
         </time>
       </div>

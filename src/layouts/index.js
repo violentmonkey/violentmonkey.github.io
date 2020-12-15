@@ -5,7 +5,6 @@ import icon from '#/assets/vm.png';
 import '#/common/style.css';
 import Header from '#/components/header';
 import Footer from '#/components/footer';
-import styles from './style.module.css';
 
 function Layout(props) {
   const {
@@ -42,7 +41,7 @@ function Layout(props) {
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
       {!hideHeader && <Header onToggle={handleToggle} />}
-      <div className={`d-flex ${styles.body} ${sidebar ? 'sidebar-open' : ''}`}>
+      <div className={`relative flex z-0 ${sidebar ? 'sidebar-open' : ''}`}>
         {children}
       </div>
       <Footer />

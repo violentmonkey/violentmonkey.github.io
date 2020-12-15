@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import onScroll from '#/common/scroller';
-import styles from './style.module.css';
 
 export default function TOC(props) {
   const { className, data } = props;
@@ -36,11 +35,11 @@ export default function TOC(props) {
   // Gatsby bug: https://github.com/gatsbyjs/gatsby/issues/8982
   const html = data.replace(/&#x3C;/gi, '<');
   return (
-    <section className={`${styles.toc} ${className || ''}`}>
+    <section className={`toc ${className || ''}`}>
       {data && (
         <>
           <h2>Table of Contents</h2>
-          <div ref={ref} className={styles.list} dangerouslySetInnerHTML={{ __html: html }} />
+          <div ref={ref} dangerouslySetInnerHTML={{ __html: html }} />
         </>
       )}
     </section>

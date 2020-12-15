@@ -1,15 +1,14 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styles from './style.module.css';
 
 export default function TagBlock(props) {
   const { tags, tagSlugs } = props;
   if (!tagSlugs?.length) return null;
   return (
-    <ul className={styles.list}>
+    <ul>
       {tagSlugs.map((tag, i) => (
-        <li className={styles.item} key={tag}>
-          <Link to={tag}>
+        <li className="inline-block mr-2 text-sm" key={tag}>
+          <Link className="block px-3 py-1 bg-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-600" to={tag}>
             {tags[i]}
           </Link>
         </li>

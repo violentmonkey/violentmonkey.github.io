@@ -1,8 +1,5 @@
 import React from 'react';
-
 import PostItem from '#/components/post-item';
-
-import styles from './style.module.css';
 
 export default function IndexPage(props) {
   const {
@@ -17,10 +14,10 @@ export default function IndexPage(props) {
     },
   } = props;
   return (
-    <main className={styles.main}>
-      <section className={styles.header}>
+    <main className="max-w-screen-lg mx-auto">
+      <section className="mb-10">
         <h1>{title}</h1>
-        {!!description && <div className={styles.desc}>{description}</div>}
+        {!!description && <div className="mb-8 text-gray-600">{description}</div>}
       </section>
       <section>
         {edges.map((item, i) => (

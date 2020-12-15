@@ -1,12 +1,6 @@
 import React from 'react';
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 import logo from '#/assets/vm.png';
-import styles from './style.module.css';
-
-const capitalize = str => {
-  if (!str) return str;
-  return str[0].toUpperCase() + str.slice(1);
-};
 
 function IndexContent(props) {
   const {
@@ -19,48 +13,19 @@ function IndexContent(props) {
       markdownRemark: {
         html,
         frontmatter: {
-          actions,
           subtitle,
         },
       },
     },
   } = props;
-  const renderLink = (item, i) => {
-    const className = styles[`button${capitalize(item.type)}`];
-    if (item.url.includes('://')) {
-      return (
-        <a
-          key={i}
-          className={className}
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {item.title}
-        </a>
-      );
-    }
-    return (
-      <Link
-        key={i}
-        className={className}
-        to={item.url}
-      >
-        {item.title}
-      </Link>
-    );
-  };
   return (
     <main>
-      <section className={styles.header}>
-        <picture>
-          <img src={logo} />
+      <section className="mt-20 text-center">
+        <picture className="block w-24 mx-auto">
+          <img className="block w-full" src={logo} />
         </picture>
-        <h1>{title}</h1>
-        <div className={styles.subtitle}>{subtitle}</div>
-        <div className={styles.buttons}>
-          {actions.map(renderLink)}
-        </div>
+        <h1 className="mt-8">{title}</h1>
+        <h3 className="mt-8 text-gray-600">{subtitle}</h3>
       </section>
       <section>
         <article dangerouslySetInnerHTML={{ __html: html }} />
@@ -82,11 +47,6 @@ export default props => (
           html
           frontmatter {
             subtitle
-            actions {
-              title
-              url
-              type
-            }
           }
         }
       }

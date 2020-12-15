@@ -77,6 +77,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-93752732-1',
+        anonymize: true,
         exclude: ['/auth_**'],
       },
     },
@@ -121,29 +122,7 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-postcss',
-      options: {
-        postcssOptions: {
-          parser: require('postcss-scss'),
-          plugins: [
-            // Transform @import, resolve `#` to `$PWD/src`
-            require('postcss-import')({
-              resolve(id) {
-                if (id.startsWith('#/')) return path.resolve(`src/${id.slice(2)}`);
-                return id;
-              },
-            }),
-            // Transform SCSS into CSS
-            require('precss'),
-            // Transform colors
-            require('postcss-color-function'),
-            // Calculate at compile time
-            require('postcss-calc'),
-          ],
-        },
-      },
-    },
+    'gatsby-plugin-postcss',
     // Put sharp after postcss so that its CSS will be kept
     'gatsby-plugin-sharp',
     'gatsby-redirect-from',

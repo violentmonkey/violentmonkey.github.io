@@ -1,29 +1,30 @@
 import React from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import ScrollIndicator from '#/components/scroll-indicator';
-import styles from './style.module.css';
 
 function Header(props) {
   const { data, onToggle } = props;
   return (
-    <header>
-      <nav className="d-flex">
-        <a className={styles.toggle} onClick={onToggle}><i /></a>
-        <Link to="/" className={styles.brand}>
+    <header className="sticky top-0 left-0 right-0 bg-white z-10">
+      <nav>
+        <a className="toggle" onClick={onToggle}><i /></a>
+        <Link to="/" className="brand">
           Violentmonkey
         </Link>
         <span className="flex-1" />
-        {data.site.siteMetadata.menu.map(item => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={styles.link}
-            activeClassName="active"
-            partiallyActive
-          >
-            {item.label}
-          </Link>
-        ))}
+        <div className="overflow-auto min-w-0 flex whitespace-no-wrap">
+          {data.site.siteMetadata.menu.map(item => (
+            <Link
+              className="nav-item"
+              key={item.path}
+              to={item.path}
+              activeClassName="active"
+              partiallyActive
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
       </nav>
       <ScrollIndicator />
     </header>

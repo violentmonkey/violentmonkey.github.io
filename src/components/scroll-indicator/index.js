@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import onScroll from '#/common/scroller';
-import './style.css';
 
 export default function ScrollIndicator() {
   const ref = useRef();
@@ -15,8 +14,8 @@ export default function ScrollIndicator() {
     return onScroll(listener);
   });
   return (
-    <div className="scroll-indicator">
-      <div ref={ref} />
+    <div className="w-full h-px">
+      <div className="w-full h-full origin-left bg-yellow-500 scale-x-0" ref={ref} />
     </div>
   );
 }

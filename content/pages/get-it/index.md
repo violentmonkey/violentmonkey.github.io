@@ -13,7 +13,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
 ### Stable Release
 
-<div class="button-list">
+<div class="button-list" data-ga-category="webext-stable">
 
 - [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
 - [![Firefox](../../assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
@@ -31,7 +31,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 The beta version is published more frequently than the stable release, with bug fixes and new features that will be included in the next stable release.
 However it may have bugs and lead to data loss. Please **back up your data** and use it at your own risk.
 
-<div class="button-list">
+<div class="button-list" data-ga-category="webext-beta">
 
 - [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
 
@@ -43,10 +43,12 @@ However it may have bugs and lead to data loss. Please **back up your data** and
 
 Maxthon 4 and 5.
 
-<div class="button-list">
+<div class="button-list" data-ga-category="maxthon">
 
 - [![Maxthon](../../assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
 - [![GitHub](../../assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
+
+</div>
 
 ---
 
