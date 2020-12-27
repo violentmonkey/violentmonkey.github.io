@@ -55,4 +55,4 @@ Maxthon 4 and 5.
 ## Not above?
 
 Unfortunately your browser may be unable to support such extensions.
-Welcome to help improve it.
+You are welcome to help improve it.
