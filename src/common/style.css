@@ -309,7 +309,7 @@ main {
     @apply translate-x-0;
   }
   @screen md {
-    @apply static min-w-0 p-4 pt-16;
+    @apply static min-w-0 p-4 pt-16 translate-x-0;
   }
   ul {
     @apply sticky list-none p-0;
