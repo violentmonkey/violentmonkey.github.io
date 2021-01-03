@@ -8,7 +8,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply leading-none mt-8 mb-4;
+  @apply mt-8 mb-4;
 }
 
 h1 {
@@ -119,6 +119,10 @@ nav {
       height: 2px;
     }
   }
+}
+
+.anchor > svg {
+  @apply inline;
 }
 
 $toc-width: 260px;
