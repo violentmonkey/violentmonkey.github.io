@@ -34,6 +34,7 @@ However it may have bugs and lead to data loss. Please **back up your data** and
 <div class="button-list" data-ga-category="webext-beta">
 
 - [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
+- <span data-action="install-beta-ff">[![Firefox](../../assets/browsers/firefox.png) Firefox AMO](#)</span>
 
 </div>
 
