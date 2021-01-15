@@ -35,7 +35,7 @@ export default function PostMain(props) {
         <section className="mb-10 pt-1">
           <h1>{postTitle}</h1>
         </section>
-        <section className="lg:flex items-start with-toc">
+        <section className="items-start with-toc">
           <TOC data={tableOfContents} articleRef={articleRef} />
           <article className="flex-1 min-w-0 mr-4" ref={articleRef} dangerouslySetInnerHTML={{ __html: html }} />
         </section>

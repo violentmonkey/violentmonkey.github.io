@@ -15,6 +15,7 @@ function Sidebar(props) {
     return edges.filter(edge => edge.node.frontmatter.sidebar?.match === active.match)
     .sort((a, b) => a.node.frontmatter.sidebar.order - b.node.frontmatter.sidebar.order);
   }, [active?.match]);
+  if (!items) return null;
   return (
     <aside className="sidebar">
       {items && (

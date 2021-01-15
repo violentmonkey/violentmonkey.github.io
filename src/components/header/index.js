@@ -7,7 +7,11 @@ function Header(props) {
   return (
     <header className="sticky top-0 left-0 right-0 bg-white z-10">
       <nav>
-        <a className="toggle" onClick={onToggle}><i /></a>
+        <a className="toggle" onClick={onToggle}>
+          <svg viewBox="0 0 24 24">
+            <path d="M0 0h24v4h-24zM0 10h24v4h-24zM0 20h24v4h-24z" />
+          </svg>
+        </a>
         <Link to="/" className="brand">
           Violentmonkey
         </Link>

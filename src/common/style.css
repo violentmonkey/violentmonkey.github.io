@@ -104,19 +104,12 @@ nav {
     @apply block mx-2 border-b-2 border-transparent;
   }
   .toggle {
-    @apply relative mr-2 w-5 h-4 cursor-pointer flex flex-col justify-between;
-    @screen md {
+    @apply relative mr-2 cursor-pointer;
+    @screen lg {
       @apply hidden;
     }
-    > i {
-      @apply block w-full bg-current;
-      height: 2px;
-    }
-    &::before,
-    &::after {
-      content: '';
-      @apply w-full bg-current;
-      height: 2px;
+    > svg {
+      @apply block w-5 h-5 fill-current;
     }
   }
 }
@@ -135,8 +128,13 @@ main {
   }
   @screen lg {
     &.has-toc {
-      > section:not(.with-toc) {
-        margin-right: calc($toc-width + 32px);
+      > section {
+        &.with-toc {
+          @apply flex;
+        }
+        &:not(.with-toc) {
+          margin-right: calc($toc-width + 32px);
+        }
       }
     }
   }
@@ -291,7 +289,7 @@ main {
     @apply p-0 list-none;
   }
   > ul {
-    @screen md {
+    @screen lg {
       @apply flex;
     }
     > li {
@@ -307,13 +305,15 @@ main {
 }
 
 .sidebar {
+  @apply fixed top-0 left-0 bottom-0 bg-white z-10 transition-transform duration-300 transform -translate-x-full p-4;
   width: 240px;
-  @apply fixed top-0 left-0 bottom-0 bg-white z-10 transition-transform duration-300 transform -translate-x-full p-4 shadow;
+  padding-top: 90px;
   .sidebar-open & {
-    @apply translate-x-0;
+    @apply translate-x-0 shadow;
   }
-  @screen md {
-    @apply static min-w-0 p-4 pt-16 translate-x-0;
+  @screen lg {
+    @apply static min-w-0 p-4 pt-16 translate-x-0 shadow-none;
+    padding-top: 60px;
   }
   ul {
     @apply sticky list-none p-0;
