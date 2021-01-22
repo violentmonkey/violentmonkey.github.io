@@ -10,11 +10,11 @@ A userscript runs in a browser, so it can only contain syntax that is supported 
 
 Violentmonkey itself is built for modern browsers, to be precise, for Chrome >= 55 and Firefox >= 53. So if your browser has Violentmonkey, it is likely it also supports many ES6 features natively, for example, arrow functions (`=>`), Promises, block-scoped variables, template literals (`` `hello, ${name}` ``), etc.
 
-However, there are many more cool features that are not fully supported by browsers, e.g. optional chaining.
+However, there are many more cool features that are not fully supported by browsers, or some features such as ES modules that won't be supported in userscripts.
 
 In this tutorial we are going to create a project to compile ESNext and other modern syntax to browser compliant code.
 
-## Prequisite
+## Prerequisite
 
 - Make sure you have Node.js >= v10.0 installed.
 
