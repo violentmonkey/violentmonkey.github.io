@@ -21,15 +21,15 @@ document.body.append(s);
 
 document.addEventListener('click', e => {
   const { target } = e;
-
-  const category = target.closest('[data-ga-category]')?.dataset.gaCategory;
-  let label = target.closest('[data-ga-label]')?.dataset.gaLabel;
-  if (category && !label) label = target.closest('a')?.textContent;
-  if (label) {
+  const data = collectData(target, {
+    action: 'click',
+  });
+  if (data.category && !data.label) data.label = target.closest('a')?.textContent;
+  if (data.label) {
     trackCustomEvent({
-      category: category || 'global',
-      action: 'click',
-      label,
+      category: data.category,
+      action: data.action,
+      label: data.label,
       transport: 'beacon',
     });
   }
@@ -52,4 +52,26 @@ async function installBetaFirefox() {
   } catch {
     location.assign('https://github.com/violentmonkey/violentmonkey/releases');
   }
+}
+
+function collectData(target, defaults) {
+  const fields = new Set(['action', 'category', 'label']);
+  const data = {};
+  while (target && fields.size) {
+    for (const field of fields) {
+      const capitalizedField = field[0].toUpperCase() + field.slice(1);
+      const key = `ga${capitalizedField}`;
+      const value = target.dataset?.[key];
+      if (value) {
+        fields.delete(key);
+        data[field] = value;
+      }
+    }
+    target = target.parentNode;
+  }
+  return {
+    category: 'global',
+    ...defaults,
+    ...data,
+  };
 }

@@ -1,6 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import ScrollIndicator from '#/components/scroll-indicator';
+
+const hiring = 'https://cdn.jsdelivr.net/gh/gxcl/x@master/hiring.js';
+
+function loadScript(url) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = url;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.body.append(s);
+    s.remove();
+  });
+}
+
+async function loadBanner() {
+  await loadScript(hiring);
+  const html = await window.initializeBanner?.();
+  return html;
+}
+
+function Banner() {
+  const [banner, setBanner] = useState(null);
+  useEffect(() => {
+    loadBanner().then(html => {
+      if (html) {
+        setBanner(html);
+        trackCustomEvent({
+          category: 'banner',
+          action: 'show',
+          label: 'show',
+          transport: 'beacon',
+        });
+      }
+    });
+  }, []);
+  const handleClose = () => {
+    setBanner(null);
+  };
+  if (!banner) return null;
+  return (
+    <div className="bg-orange-200 px-4 text-sm flex" data-ga-category="banner">
+      <div className="flex-1" dangerouslySetInnerHTML={{ __html: banner }} />
+      <div onClick={handleClose} className="cursor-pointer text-gray-600" data-ga-label="hide">
+        ✗
+      </div>
+    </div>
+  );
+}
 
 function Header(props) {
   const { data, onToggle } = props;
@@ -50,10 +99,13 @@ export default props => (
       }
     `}
     render={data => (
-      <Header
-        {...props}
-        data={data}
-      />
+      <>
+        <Banner />
+        <Header
+          {...props}
+          data={data}
+        />
+      </>
     )}
   />
 );
