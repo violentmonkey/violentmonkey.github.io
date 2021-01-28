@@ -4,10 +4,10 @@
   "description": "Site for Violentmonkey",
   "scripts": {
     "dev": "gatsby develop",
-    "build": "gatsby build",
+    "build": "npm run lint && gatsby build",
     "clean:public": "rm -rf public",
     "clean": "npm run clean:public",
-    "lint": "eslint --cache --ext .js,.jsx .",
+    "lint": "eslint --cache --ext .js,.jsx --config .eslintrc.prod.js .",
     "predeploy": "npm run build"
   },
   "keywords": [
@@ -18,8 +18,10 @@
   "author": "Gerald <i@gerald.top>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/eslint-plugin": "^7.12.1",
     "@gera2ld/plaid": "~2.2.1",
-    "@gera2ld/plaid-common-react": "~2.2.0"
+    "@gera2ld/plaid-common-react": "~2.2.0",
+    "eslint-config-airbnb-base": "^14.2.1"
   },
   "dependencies": {
     "date-fns": "^2.16.1",

@@ -10,6 +10,7 @@ module.exports = {
     },
   },
   rules: {
+    'import/no-extraneous-dependencies': 'warn',
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
   },

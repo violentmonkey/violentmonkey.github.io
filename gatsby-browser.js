@@ -42,6 +42,7 @@ document.addEventListener('click', e => {
 });
 
 async function installBetaFirefox() {
+  const { location } = window;
   try {
     const res = await fetch('https://api.github.com/repos/violentmonkey/violentmonkey/releases');
     const data = await res.json();
