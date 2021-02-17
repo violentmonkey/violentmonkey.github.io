@@ -1,5 +1,5 @@
 ---
-title: How to create a userscript
+title: Creating a userscript
 date: 2020-03-08 18:33:51+0800
 redirect_from:
   - /guide/

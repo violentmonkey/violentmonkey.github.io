@@ -1,5 +1,5 @@
 ---
-title: How to use modern syntax in a userscript
+title: Modern syntax
 date: 2020-03-08 23:31:12+0800
 sidebar:
   match: /guide/
@@ -14,7 +14,7 @@ However, there are many more cool features that are not fully supported by brows
 
 In this tutorial we are going to create a project to compile ESNext and other modern syntax to browser compliant code.
 
-## Prerequisite
+## Prerequisites
 
 - Make sure you have Node.js >= v10.0 installed.
 
