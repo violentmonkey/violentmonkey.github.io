@@ -1,63 +1,33 @@
-import { Link, StaticQuery, graphql } from 'gatsby';
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'gatsby';
+import { SidebarContainer } from '#/common/sidebar';
 
-function Sidebar(props) {
-  const {
-    active,
-    data: {
-      allMarkdownRemark: {
-        edges,
-      },
-    },
-  } = props;
-  const items = useMemo(() => {
-    if (!active?.match) return;
-    return edges.filter(edge => edge.node.frontmatter.sidebar?.match === active.match)
-    .sort((a, b) => a.node.frontmatter.sidebar.order - b.node.frontmatter.sidebar.order);
-  }, [active?.match]);
+export default function Sidebar() {
+  const { items, setShow } = SidebarContainer.useContainer();
+  useEffect(() => {
+    if (items) {
+      const onClick = () => {
+        setShow(false);
+      };
+      document.addEventListener('click', onClick);
+      return () => document.removeEventListener('click', onClick);
+    }
+  }, [items, setShow]);
   if (!items) return null;
   return (
     <aside className="sidebar">
-      {items && (
-        <ul>
-          {items.map((item, i) => (
-            <li key={i}>
-              <Link
-                to={item.node.fields.slug}
-                activeClassName="active"
-              >
-                {item.node.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {items.map((item, i) => (
+          <li key={i}>
+            <Link
+              to={item.node.fields.slug}
+              activeClassName="active"
+            >
+              {item.node.frontmatter.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </aside>
   );
 }
-
-export default props => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allMarkdownRemark {
-          edges {
-            node {
-              frontmatter {
-                title
-                sidebar {
-                  match
-                  order
-                }
-              }
-              fields {
-                slug
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Sidebar {...props} data={data} />}
-  />
-);

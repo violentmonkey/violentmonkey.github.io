@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import icon from '#/assets/vm.png';
 import '#/common/style.css';
+import { SidebarContainer } from '#/common/sidebar';
 import Header from '#/components/header';
 import Footer from '#/components/footer';
+import Sidebar from '#/components/sidebar';
 
 function Layout(props) {
   const {
@@ -15,23 +17,17 @@ function Layout(props) {
           subtitle,
         },
       },
+      allMarkdownRemark: {
+        edges,
+      },
     },
     hideHeader,
     children,
   } = props;
-  const [sidebar, setSidebar] = useState(false);
+  const { show, setEdges } = SidebarContainer.useContainer();
   useEffect(() => {
-    if (sidebar) {
-      const onClick = () => {
-        setSidebar(false);
-      };
-      document.addEventListener('click', onClick);
-      return () => document.removeEventListener('click', onClick);
-    }
-  }, [sidebar, setSidebar]);
-  const handleToggle = () => {
-    setSidebar(!sidebar);
-  };
+    setEdges(edges);
+  }, [edges, setEdges]);
   return (
     <>
       <Helmet defer={false}>
@@ -40,8 +36,9 @@ function Layout(props) {
         <meta name="google-site-verification" content="OKMYmcVuMfm9H_UjfNXPzRb2c0QoBtmZ7v1KwHNXnRQ" />
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
-      {!hideHeader && <Header onToggle={handleToggle} />}
-      <div className={`relative flex z-0 ${sidebar ? 'sidebar-open' : ''}`}>
+      {!hideHeader && <Header />}
+      <div className={`relative flex z-0 ${show ? 'sidebar-open' : ''}`}>
+        <Sidebar />
         {children || <div className="h-64" />}
       </div>
       <Footer />
@@ -59,8 +56,28 @@ export default props => (
             subtitle
           }
         }
+        allMarkdownRemark {
+          edges {
+            node {
+              frontmatter {
+                title
+                sidebar {
+                  match
+                  order
+                }
+              }
+              fields {
+                slug
+              }
+            }
+          }
+        }
       }
     `}
-    render={data => <Layout {...props} data={data} />}
+    render={data => (
+      <SidebarContainer.Provider>
+        <Layout {...props} data={data} />
+      </SidebarContainer.Provider>
+    )}
   />
 );

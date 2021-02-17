@@ -87,19 +87,13 @@ nav {
     }
   }
   .brand {
-    @apply text-lg hidden;
-    @screen sm {
-      @apply block;
-    }
+    @apply text-lg;
   }
   .nav-item {
     @apply block mx-2 border-b-2 border-transparent;
   }
-  .toggle {
+  .nav-icon {
     @apply relative mr-2 cursor-pointer;
-    @screen lg {
-      @apply hidden;
-    }
     > svg {
       @apply block w-5 h-5 fill-current;
     }
@@ -260,7 +254,7 @@ main {
   @apply mt-8 text-center;
   margin-bottom: 80px;
   a {
-    @apply inline-block mx-2 px-8 py-3 rounded-full border border-current uppercase;
+    @apply inline-block mx-2 mb-2 px-8 py-3 rounded-full border border-current uppercase;
     &[target=_blank]:not(:hover) {
       color: gray;
     }

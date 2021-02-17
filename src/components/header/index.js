@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import { SidebarContainer } from '#/common/sidebar';
 import ScrollIndicator from '#/components/scroll-indicator';
 
 const hiring = 'https://cdn.jsdelivr.net/gh/gxcl/x@master/hiring.js';
@@ -52,16 +53,28 @@ function Banner() {
 }
 
 function Header(props) {
-  const { data, onToggle } = props;
+  const { items, toggle } = SidebarContainer.useContainer();
+  const { data } = props;
+  const onToggle = (e) => {
+    e.stopPropagation();
+    toggle();
+  };
   return (
     <header className="sticky top-0 left-0 right-0 bg-white z-10">
       <nav>
-        <a className="toggle" onClick={onToggle}>
+        <Link to="/" className="nav-icon sm:hidden">
           <svg viewBox="0 0 24 24">
-            <path d="M0 0h24v4h-24zM0 10h24v4h-24zM0 20h24v4h-24z" />
+            <path d="M12 0l-12 12h4v12h5v-8h6v8h5v-12h4z" />
           </svg>
-        </a>
-        <Link to="/" className="brand">
+        </Link>
+        {items && (
+          <a className="nav-icon lg:hidden" onClick={onToggle}>
+            <svg viewBox="0 0 24 24">
+              <path d="M0 2h24v4h-24zM0 10h24v4h-24zM0 18h24v4h-24z" />
+            </svg>
+          </a>
+        )}
+        <Link to="/" className="brand hidden sm:block">
           Violentmonkey
         </Link>
         <span className="flex-1" />
