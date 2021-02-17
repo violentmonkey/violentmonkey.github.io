@@ -297,19 +297,18 @@ main {
 }
 
 .sidebar {
-  @apply fixed top-0 left-0 bottom-0 bg-white z-10 transition-transform duration-300 transform -translate-x-full p-4;
+  @apply absolute top-0 left-0 bottom-0 bg-white z-10 transition-transform duration-300 transform -translate-x-full p-4;
   width: 240px;
-  padding-top: 90px;
   .sidebar-open & {
-    @apply translate-x-0 shadow;
+    @apply translate-x-0 border-r border-gray-200;
   }
   @screen lg {
-    @apply static min-w-0 p-4 pt-16 translate-x-0 shadow-none;
+    @apply static min-w-0 p-4 pt-16 translate-x-0 border-none;
     padding-top: 60px;
   }
   ul {
     @apply sticky list-none p-0;
-    top: 80px;
+    top: 90px;
   }
   a:not(.active) {
     @apply text-gray-500;

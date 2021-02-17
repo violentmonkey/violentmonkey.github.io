@@ -42,7 +42,7 @@ function Layout(props) {
       </Helmet>
       {!hideHeader && <Header onToggle={handleToggle} />}
       <div className={`relative flex z-0 ${sidebar ? 'sidebar-open' : ''}`}>
-        {children}
+        {children || <div className="h-64" />}
       </div>
       <Footer />
     </>
