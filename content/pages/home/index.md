@@ -7,7 +7,7 @@ subtitle: An open source userscript manager.
 ---
 
 <div class="home-buttons" data-ga-category="home-buttons">
-  <a href="/get-it" class="button-primary" data-ga-label="get-started">Get Started</a>
+  <a href="/get-it/" class="button-primary" data-ga-label="get-started">Get Started</a>
   <a href="/donate/" class="button-white" data-ga-label="donate">Donate</a>
   <a href="https://github.com/violentmonkey/violentmonkey" class="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
 </div>
