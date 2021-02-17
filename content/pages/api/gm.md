@@ -2,7 +2,14 @@
 title: GM_* APIs
 date: 2018-04-25 15:15:15
 path: "/api/gm/"
+redirect_from:
+  - /api/
+sidebar:
+  match: /api/
+  order: 0
 ---
+
+Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them work the same way, `GM.*` [Greasemonkey v4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases were added in VM2.12.0.
 
 ## GM_*
 

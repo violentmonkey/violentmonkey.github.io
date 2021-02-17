@@ -2,6 +2,9 @@
 title: Matching
 date: 2017-12-2 22:32:50
 path: "/api/matching/"
+sidebar:
+  match: /api/
+  order: 2
 ---
 
 There are four types of rules: `@match` / `@exclude-match` / `@include` / `@exclude` in Violentmonkey.

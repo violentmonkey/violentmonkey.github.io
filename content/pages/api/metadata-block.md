@@ -2,6 +2,9 @@
 title: Metadata Block
 date: 2017-12-02 21:20:04
 path: "/api/metadata-block/"
+sidebar:
+  match: /api/
+  order: 1
 ---
 
 The metadata must follow the format:
