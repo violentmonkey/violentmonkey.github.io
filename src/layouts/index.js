@@ -10,6 +10,9 @@ import Sidebar from '#/components/sidebar';
 
 function Layout(props) {
   const {
+    location: {
+      pathname,
+    },
     data: {
       site: {
         siteMetadata: {
@@ -28,6 +31,7 @@ function Layout(props) {
   useEffect(() => {
     setEdges(edges);
   }, [edges, setEdges]);
+  if (pathname === '/offline-plugin-app-shell-fallback/') return null;
   return (
     <>
       <Helmet defer={false}>
@@ -39,7 +43,7 @@ function Layout(props) {
       {!hideHeader && <Header />}
       <div className={`relative flex z-0 ${show ? 'sidebar-open' : ''}`}>
         <Sidebar />
-        {children || <div className="h-64" />}
+        {children}
       </div>
       <Footer />
     </>
