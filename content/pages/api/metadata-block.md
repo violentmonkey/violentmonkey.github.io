@@ -24,7 +24,7 @@ Labels:
 
 ### @name
 
-<span class="label">required</span> <span class="label">multilingual</span>
+<span class="label">required</span><span class="label">multilingual</span>
 
 The name of the script, shown in script list and menus. It must be unique within a `@namespace`. If a script is being installed, and a script with the same `@namespace` and `@name` already exists, it will be replaced by the new one. Creating a script with same `@namespace` and `@name` will cause a conflict error.
 

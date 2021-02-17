@@ -308,3 +308,7 @@ main {
     @apply text-gray-500;
   }
 }
+
+.label {
+  @apply inline-block leading-none mr-1 p-1 text-xs bg-gray-300 border border-gray-300 rounded;
+}
