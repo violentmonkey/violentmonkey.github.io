@@ -32,3 +32,9 @@ With third-party sync services (Dropbox, Google Drive, etc.):
 They are stored in the [local storage area](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/local) of the browser extension. The storage may have different implementations in different browsers, so we can't tell exactly where or in what format is the data stored.
 
 In other words, you won't be able to find your scripts as normal files in your disk. They may be stored in some database maintained by the browser you use.
+
+### Why is the release minified?
+
+The short answer for this question is to make the code clean and efficient.
+
+To be clear, our extension is minified but not obfuscated in release. It is a very common workflow to compile and minify code for web apps, and we are using popular tools that are used all over the world. See [this post](/posts/violentmonkey-workflows/) to learn more about the workflows.
