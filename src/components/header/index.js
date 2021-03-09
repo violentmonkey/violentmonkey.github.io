@@ -4,7 +4,7 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { SidebarContainer } from '#/common/sidebar';
 import ScrollIndicator from '#/components/scroll-indicator';
 
-const hiring = 'https://cdn.jsdelivr.net/gh/gxcl/x@master/hiring.js';
+const hiring = 'https://cdn.jsdelivr.net/gh/gxcl/x@master/hiring.min.js';
 
 function loadScript(url) {
   return new Promise((resolve, reject) => {

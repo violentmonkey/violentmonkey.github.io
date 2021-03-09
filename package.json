@@ -50,5 +50,8 @@
     "react-helmet": "^6.1.0",
     "unstated-next": "^1.1.0",
     "webfontloader": "^1.6.28"
+  },
+  "resolutions": {
+    "download": "https://registry.npmjs.org/downloadex/-/downloadex-8.0.3.tgz"
   }
 }
