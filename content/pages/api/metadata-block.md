@@ -165,18 +165,32 @@ Specify which special APIs should be granted and can be used when the script exe
 
 If no `@grant` is present, `@grant none` is assumed.
 
-```js
-// @grant none
-```
+* In case you don't need special API or sandboxing
 
-In this case, no special APIs are granted.
+    ```js
+    // @grant none
+    ```
 
-If any special API is used, it must be granted:
+    Sandbox is disabled in this mode, meaning the script can add/modify globals directly without the need to use `unsafeWindow`.
+    
+* In case any special API is used, it must be explicitly granted
 
-```js
-// @grant GM_getValue
-// @grant GM_setValue
-```
+    ```js
+    // @grant GM_getValue
+    // @grant GM_setValue
+    ```
+
+In addition to [GM API](../gm/) the following privileges may be granted:
+
+* `// @grant window.close`
+
+  *Since VM2.6.2*  
+  Allows closing the tab via `window.close()`
+
+* `// @grant window.focus`
+
+  *Since VM2.12.10*  
+  Allows focusing the tab via `window.focus()` even if the user didn't interact with it first.
 
 ### @inject-into
 
