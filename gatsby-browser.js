@@ -75,3 +75,12 @@ function collectData(target, defaults) {
     ...data,
   };
 }
+
+export function onRouteUpdate() {
+  const target = document.querySelector(':target');
+  if (target) {
+    const rect = target.getBoundingClientRect();
+    const el = document.scrollingElement;
+    el.scrollTop = el.scrollTop + rect.top - 70;
+  }
+}
