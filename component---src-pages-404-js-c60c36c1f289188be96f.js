@@ -1,0 +1,2 @@
+(self.webpackChunkviolentmonkey_github_io=self.webpackChunkviolentmonkey_github_io||[]).push([[883],{9616:function(e,t,n){"use strict";n.r(t),n.d(t,{default:function(){return l}});var u=n(7294);function l(){return u.createElement("main",null,u.createElement("h1",null,"Not Found"),u.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-c60c36c1f289188be96f.js.map
