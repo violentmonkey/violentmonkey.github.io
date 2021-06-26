@@ -10,7 +10,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   @apply mt-8 mb-4;
   &:target {
-    @apply bg-orange-200;
+    @apply bg-yellow-200;
   }
 }
 
@@ -107,7 +107,9 @@ nav {
   @apply inline;
 }
 
-$toc-width: 260px;
+:root {
+  --toc-width: 260px;
+}
 
 main {
   @apply max-w-screen-lg min-w-0 mx-auto px-4;
@@ -122,7 +124,7 @@ main {
           @apply flex;
         }
         &:not(.with-toc) {
-          margin-right: calc($toc-width + 32px);
+          margin-right: calc(var(--toc-width) + 32px);
         }
       }
     }
@@ -133,7 +135,7 @@ main {
   @apply mb-5;
   @screen lg {
     @apply order-3 sticky overflow-auto;
-    width: $toc-width;
+    width: var(--toc-width);
     top: 80px;
     h2 {
       @apply hidden;
