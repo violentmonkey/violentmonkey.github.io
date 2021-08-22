@@ -191,6 +191,55 @@ let blobUrl = GM_getResourceURL(name)
 
     Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
+### GM_addElement
+
+*Since VM2.13.1*
+
+Appends and returns an element with the specified attributes.
+
+```js
+let element1 = GM_addElement(tagName, attributes);
+let element2 = GM_addElement(parentNode, tagName, attributes);
+```
+
+* `parentNode` *Node | Element | ShadowRoot* (optional)
+
+    The parent node to which the new node will be appended.
+
+    It can be inside ShadowDOM: `someElement.shadowRoot`.
+
+    When omitted, it'll be determined automatically:
+    1. `document.head` (`<head>`) for `script`, `link`, `style`, `meta` tags.
+    2. `document.body` (`<body>`) for other tags or when there's no `<head>`.
+    3. `document.documentElement` (`<html>` or an XML root node) otherwise.
+
+* `tagName` *string*
+
+    A tag name like `'script'`. Any valid HTML tag can be used, but the only motivation for this API was to add `script`, `link`, `style` elements when they are disallowed by a strict `Content-Security-Policy` of the site e.g. github.com, twitter.com.
+
+* `attributes` *object* (optional)
+
+    The keys are HTML attributes, not DOM properties, except `textContent` which sets DOM property `textContent`. The values are strings so if you want to assign a private function to `onload` you can do it after the element is created. 
+  
+Examples:
+```js
+// using a private function in `onload`
+let el = GM_addElement('script', { src: 'https://....' });
+el.onload = () => console.log('loaded', el);
+```
+```js
+// same as GM_addStyle('a { color:red }')
+let el = GM_addElement('style', { textContent: 'a { color:red }' });
+```
+```js
+// appending to an arbitary node
+let el = GM_addElement(parentElement.shadowRoot, 'iframe', { src: url });
+```
+Notes:
+* The element is returned immediately (synchronously) even with `GM.addElement`, no need for `.then()`, but you can use it if you want, just once though as it's auto-removed to avoid recursion. The API is synchronous because Violentmonkey runs scripts only when the root element appears, so there's always a node to serve as a parent.
+* Invalid arguments will raise an exception, which can be caught using `try {} catch (e) {}`, just like standard DOM API `document.createElement`.
+* This API is experimental in Tampermonkey, and hence subject to change.
+
 ### GM_addStyle
 
 Appends and returns a `<style>` element with the specified CSS.
@@ -540,6 +589,8 @@ Downloads a URL to a local file.
 `GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
 
 * [GM.addStyle](#gm_addstyle)
+* [GM.addElement](#gm_addelement) - *since VM2.13.1*
+* [GM.registerMenuCommand](#gm_registermenucommand) - *since VM2.12.10, GM4.11*
 * [GM.deleteValue](#gm_deletevalue) *(async)*
 * [GM.getResourceURL](#gm_getresourceurl) *(async)*
 * [GM.getValue](#gm_getvalue) *(async)*
