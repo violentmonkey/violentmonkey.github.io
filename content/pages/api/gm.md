@@ -328,6 +328,8 @@ Registers a command in Violentmonkey popup menu.
 
 ```js
 GM_registerMenuCommand(caption, onClick)
+// v2.12.5 and newer return an `id` equal to `caption` for compatibility with TM
+const id = GM_registerMenuCommand(caption, onClick)
 ```
 
 - `caption` *string*
@@ -336,7 +338,9 @@ GM_registerMenuCommand(caption, onClick)
 
 - `onClick` *function*
 
-    The function to execute when clicked in the menu.
+    When the command is clicked in the menu, this function will run with the following parameter:
+
+    * `event` *[MouseEvent](https://developer.mozilla.org/docs/Web/API/MouseEvent) | [KeyboardEvent](https://developer.mozilla.org/docs/Web/API/KeyboardEvent)* *(since VM2.13.1)* is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on. 
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
 
