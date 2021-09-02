@@ -86,7 +86,19 @@ module.exports = {
         icon: 'src/assets/vm.png',
       },
     },
-    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /\/auth_\w+\.html/,
+              handler: 'NetworkOnly',
+            },
+          ],
+        },
+      },
+    },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-postcss',
