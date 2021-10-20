@@ -596,7 +596,7 @@ Downloads a URL to a local file.
 * [GM.addElement](#gm_addelement) - *since VM2.13.1*
 * [GM.registerMenuCommand](#gm_registermenucommand) - *since VM2.12.10, GM4.11*
 * [GM.deleteValue](#gm_deletevalue) *(async)*
-* [GM.getResourceURL](#gm_getresourceurl) *(async)*
+* [GM.getResourceUrl](#gm_getresourceurl) *(async)* - in VM2.12.0...2.13.0 it was misspelled as `GM.getResourceURL`
 * [GM.getValue](#gm_getvalue) *(async)*
 * [GM.info](#gm_info)
 * [GM.listValues](#gm_listvalues) *(async)*
