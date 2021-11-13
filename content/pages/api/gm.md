@@ -232,7 +232,7 @@ el.onload = () => console.log('loaded', el);
 let el = GM_addElement('style', { textContent: 'a { color:red }' });
 ```
 ```js
-// appending to an arbitary node
+// appending to an arbitrary node
 let el = GM_addElement(parentElement.shadowRoot, 'iframe', { src: url });
 ```
 Notes:
