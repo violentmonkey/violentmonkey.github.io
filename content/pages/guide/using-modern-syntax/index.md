@@ -16,7 +16,7 @@ In this tutorial we are going to create a project to compile ESNext and other mo
 
 ## Prerequisites
 
-- Make sure you have Node.js >= v10.0 installed.
+- Make sure you have Node.js >= v12 installed.
 
 ## Initialization
 
@@ -41,7 +41,7 @@ Now we should get a project with following structure:
 │  ├── index.js
 │  ├── meta.js
 │  └── style.module.css
-├── .babelrc.js
+├── babel.config.js
 ├── .eslintrc.js
 ├── package.json
 └── README.md
@@ -75,7 +75,7 @@ $ npm run build
 
 In this way the source code will be compiled exactly once, and saved in `dist`.
 
-The version of our userscript will be synced with that in `package.json`.
+The version and author of our userscript will be synced with that in `package.json`.
 
 ## Features
 
@@ -83,7 +83,7 @@ With Babel and plenty of plugins, we can easily use cool ESNext features. All fe
 
 ### JSX
 
-[JSX](https://facebook.github.io/jsx/) is usually bound with React, compiled to React Nodes. However, we can port the syntax to DOM and simplify our DOM operations, which is exactly what [@violentmonkey/dom](https://github.com/violentmonkey/vm-dom) does.
+[JSX](https://facebook.github.io/jsx/) is usually bound with React, compiled to React Nodes. However, we can port the syntax to DOM and facilitate DOM operations, which is exactly what [@violentmonkey/dom](https://github.com/violentmonkey/vm-dom) does.
 
 To use JSX, we need to require a JSX runtime first. Add this in `src/meta.js`:
 
@@ -91,19 +91,21 @@ To use JSX, we need to require a JSX runtime first. Add this in `src/meta.js`:
 // ==UserScript==
 // ...
 // highlight-next-line
-// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
+// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
 ```
 
 Then we can operate DOM elements easily:
 
 ```js
-document.body.append(<div>hello, world</div>);
+document.body.append(VM.m(<div>hello, world</div>));
 ```
+
+Note that `VM.m` is required to transform virtual DOM to real DOM elements. See [documentation](https://violentmonkey.github.io/vm-dom/) for more details.
 
 ### CSS
 
-CSS in this project will be handled by [rollup-plugin-postcss](https://github.com/egoist/rollup-plugin-postcss), enhanced by [PreCSS](https://github.com/jonathantneal/precss). In other words, Sass-like markup and staged CSS features are supported in `src/**/*.css`.
+CSS in this project will be handled by [rollup-plugin-postcss](https://github.com/egoist/rollup-plugin-postcss), enhanced by [Tailwind CSS](https://tailwindcss.com/) which will be discussed later.
 
 Compiled CSS string can be imported:
 
@@ -116,7 +118,7 @@ style.textContent = globalCss;
 document.head.append(style);
 
 // or use with JSX
-document.head.append(<style>{globalCss}</style>);
+document.head.append(VM.m(<style>{globalCss}</style>));
 ```
 
 ### CSS Modules
@@ -127,8 +129,8 @@ CSS modules is enabled automatically for `src/**/*.module.css`. When importing f
 // CSS modules
 import styles, { stylesheet } from './style.module.css';
 
-document.head.append(<style>{stylesheet}</style>);
-document.body.append(<div className={styles.container}>hello, world</div>);
+document.head.append(VM.m(<style>{stylesheet}</style>));
+document.body.append(VM.m(<div className={styles.container}>hello, world</div>));
 ```
 
 ```css
@@ -138,9 +140,9 @@ document.body.append(<div className={styles.container}>hello, world</div>);
 }
 ```
 
-### TailwindCSS
+### Tailwind CSS
 
-[TailwindCSS](https://tailwindcss.com/) is enabled by default, so you can easily compose classes to build your own CSS.
+[Tailwind CSS](https://tailwindcss.com/) is enabled by default, so you can easily compose tailwindcss utilities to build your own CSS.
 
 ```css
 body {
@@ -148,7 +150,7 @@ body {
 }
 ```
 
-However, we are building a userscript which should not pollute the global context too much, so we should not use TailwindCSS classes directly in JavaScript or HTML templates.
+However, we are building a userscript which should not pollute the global context too much, so we should only use Tailwind CSS directives in CSS, but not as classes directly in JavaScript or HTML templates.
 
 ## Recap
 
@@ -156,6 +158,5 @@ Thanks to Babel and Rollup, we can use a lot of modern features in a userscript:
 
 - ESNext features
 - React-like JSX syntax
-- Sass-like CSS features
 - CSS modules
-- TailwindCSS
+- Tailwind CSS
