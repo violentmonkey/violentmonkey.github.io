@@ -34,8 +34,9 @@ document.addEventListener('click', e => {
     });
   }
 
-  const action = target.closest('[data-action]')?.dataset.action;
-  if (action === 'install-beta-ff') {
+  const a = target.closest('a');
+  const beta = a?.closest('[data-ga-category=webext-beta]');
+  if (beta && a.textContent.includes('Firefox')) {
     e.preventDefault();
     installBetaFirefox();
   }

@@ -15,10 +15,10 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
 <div class="button-list" data-ga-category="webext-stable">
 
-- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
-- [![Firefox](../../assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
-- [![Edge](../../assets/browsers/edge.png) Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
-- [![GitHub](../../assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey/releases)
+- [![Chrome](../../src/assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
+- [![Firefox](../../src/assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
+- [![Edge](../../src/assets/browsers/edge.png) Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
+- [![GitHub](../../src/assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey/releases)
 
 </div>
 
@@ -33,8 +33,8 @@ However it may have bugs and lead to data loss. Please **back up your data** and
 
 <div class="button-list" data-ga-category="webext-beta">
 
-- [![Chrome](../../assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
-- <span data-action="install-beta-ff">[![Firefox](../../assets/browsers/firefox.png) Firefox AMO](https://github.com/violentmonkey/violentmonkey/releases)</span>
+- [![Chrome](../../src/assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
+- [![Firefox](../../src/assets/browsers/firefox.png) Firefox AMO](https://github.com/violentmonkey/violentmonkey/releases)
 
 </div>
 
@@ -46,8 +46,8 @@ Maxthon 4 and 5.
 
 <div class="button-list" data-ga-category="maxthon">
 
-- [![Maxthon](../../assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
-- [![GitHub](../../assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
+- [![Maxthon](../../src/assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
+- [![GitHub](../../src/assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
 
 </div>
 

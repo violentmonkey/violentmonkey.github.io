@@ -1,14 +1,15 @@
 ---
 title: Violentmonkey
 date: 2017-03-13 18:15:24
-path: /
-type: home
-subtitle: An open source userscript manager.
 ---
+
+import ProjectInfo from '../src/components/project-info';
+
+<ProjectInfo title="Violentmonkey" subtitle="An open source userscript manager." />
 
 <div class="home-buttons" data-ga-category="home-buttons">
   <a href="/get-it/" class="button-primary" data-ga-label="get-started">Get Started</a>
-  <a href="/donate/" class="button-white" data-ga-label="donate">Donate</a>
+  <a href="https://gera2ld.space/donate/" class="button-white" target="_blank" rel="noopener noreferrer" data-ga-label="donate">Donate</a>
   <a href="https://github.com/violentmonkey/violentmonkey" class="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
 </div>
 
@@ -44,12 +45,12 @@ Violentmonkey is built with web extension APIs, thus supports many browsers.
 
 <div class="icon-list">
 
-- ![Chrome](../../assets/browsers/chrome.png) Chrome
-- ![Firefox](../../assets/browsers/firefox.png) Firefox
-- ![Edge](../../assets/browsers/edge.png) Edge
-- ![Opera](../../assets/browsers/opera.png) Opera
-- ![Vivaldi](../../assets/browsers/vivaldi.png) Vivaldi
-- ![Chromium](../../assets/browsers/chromium.png) More Chromium based browsers
+- ![Chrome](../src/assets/browsers/chrome.png) Chrome
+- ![Firefox](../src/assets/browsers/firefox.png) Firefox
+- ![Edge](../src/assets/browsers/edge.png) Edge
+- ![Opera](../src/assets/browsers/opera.png) Opera
+- ![Vivaldi](../src/assets/browsers/vivaldi.png) Vivaldi
+- ![Chromium](../src/assets/browsers/chromium.png) More Chromium based browsers
 
 </div>
 
@@ -57,8 +58,8 @@ Violentmonkey is built with web extension APIs, thus supports many browsers.
 
 <div class="icon-list">
 
-- ![Greasemonkey](../../assets/alternatives/greasemonkey.png) Greasemonkey
-- ![Tampermonkey](../../assets/alternatives/tampermonkey.png) Tampermonkey
+- ![Greasemonkey](../src/assets/alternatives/greasemonkey.png) Greasemonkey
+- ![Tampermonkey](../src/assets/alternatives/tampermonkey.png) Tampermonkey
 
 </div>
 
