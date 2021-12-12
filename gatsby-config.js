@@ -4,7 +4,6 @@ module.exports = {
     title: 'Violentmonkey',
     subtitle: 'An open source userscript manager.',
     copyright: '© All rights reserved.',
-    disqusShortname: '',
     menu: [
       {
         label: 'Get it',
@@ -35,42 +34,7 @@ module.exports = {
     ],
   },
   plugins: [
-    ...['pages', 'posts', 'assets'].map(type => ({
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/content/${type}`,
-        name: type,
-      },
-    })),
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-autolink-headers',
-            options: {
-              offsetY: 70,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 600,
-              withWebp: true,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: {
-              wrapperStyle: 'margin-bottom: 1.0725rem',
-            },
-          },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-external-links',
-        ],
-      },
-    },
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -79,6 +43,8 @@ module.exports = {
         exclude: ['/auth_**'],
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -87,13 +53,61 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    'gatsby-remark-images',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.md', '.mdx'],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              offsetY: 70,
+            },
+          },
+          'gatsby-remark-prismjs',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              rel: 'noopener noreferrer',
+            },
+          },
+          'gatsby-remark-images',
+        ],
+      },
+    },
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-postcss',
-    // Put sharp after postcss so that its CSS will be kept
     'gatsby-plugin-sharp',
-    'gatsby-redirect-from',
-    'gatsby-plugin-meta-redirect',
-    'gatsby-plugin-layout',
+    'gatsby-transformer-sharp',
+    // {
+    //   resolve: 'gatsby-redirect-from',
+    //   options: {
+    //     query: 'allMdx',
+    //   },
+    // },
+    // 'gatsby-plugin-meta-redirect',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/assets/',
+      },
+      __key: 'images',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: './src/pages/',
+      },
+      __key: 'pages',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: './content',
+      }
+    },
   ],
 };

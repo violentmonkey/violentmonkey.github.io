@@ -3,27 +3,27 @@ import { Link } from 'gatsby';
 import { SidebarContainer } from '#/common/sidebar';
 
 export default function Sidebar() {
-  const { items, setShow } = SidebarContainer.useContainer();
+  const { matchedNodes, setShow } = SidebarContainer.useContainer();
   useEffect(() => {
-    if (items) {
+    if (matchedNodes) {
       const onClick = () => {
         setShow(false);
       };
       document.addEventListener('click', onClick);
       return () => document.removeEventListener('click', onClick);
     }
-  }, [items, setShow]);
-  if (!items) return null;
+  }, [matchedNodes, setShow]);
+  if (!matchedNodes) return null;
   return (
     <aside className="sidebar">
       <ul>
-        {items.map((item, i) => (
+        {matchedNodes.map((node, i) => (
           <li key={i}>
             <Link
-              to={item.node.fields.slug}
+              to={node.fields.slug}
               activeClassName="active"
             >
-              {item.node.frontmatter.title}
+              {node.frontmatter.title}
             </Link>
           </li>
         ))}

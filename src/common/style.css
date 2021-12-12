@@ -262,17 +262,14 @@ pre code {
   margin-bottom: 80px;
   a {
     @apply inline-block mx-2 mb-2 px-8 py-3 rounded-full border border-current uppercase;
-    &[target=_blank]:not(:hover) {
-      color: gray;
-    }
     &.button-primary {
-      @apply bg-blue-600 border-blue-600 text-white;
+      @apply bg-blue-500 border-blue-500 text-white hover:bg-blue-600 hover:border-blue-600;
     }
     &.button-white {
-      @apply text-blue-600 border-blue-600;
+      @apply text-blue-500 border-blue-500 hover:bg-gray-100;
     }
     &.button-gray {
-      @apply bg-gray-300 border-gray-300 text-gray-700;
+      @apply bg-gray-200 border-gray-200 text-gray-600 hover:bg-gray-300 hover:border-gray-300;
     }
   }
 }
@@ -288,7 +285,7 @@ pre code {
     > li {
       @apply flex-1 p-4;
       > ul {
-        @apply mb-0 text-gray-500;
+        @apply mt-2 mb-0 text-gray-500;
       }
       > p {
         @apply font-semibold text-gray-600;

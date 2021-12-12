@@ -53,7 +53,7 @@ function Banner() {
 }
 
 function Header(props) {
-  const { items, toggle } = SidebarContainer.useContainer();
+  const { matchedNodes, toggle } = SidebarContainer.useContainer();
   const { data } = props;
   const onToggle = (e) => {
     e.stopPropagation();
@@ -67,7 +67,7 @@ function Header(props) {
             <path d="M12 0l-12 12h4v12h5v-8h6v8h5v-12h4z" />
           </svg>
         </Link>
-        {items && (
+        {matchedNodes && (
           <a className="nav-icon lg:hidden" onClick={onToggle}>
             <svg viewBox="0 0 24 24">
               <path d="M0 2h24v4h-24zM0 10h24v4h-24zM0 18h24v4h-24z" />

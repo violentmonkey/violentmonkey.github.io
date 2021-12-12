@@ -1,28 +1,38 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 
 function useSidebar() {
-  const [edges, setEdges] = useState(null);
-  const [items, setItems] = useState(null);
+  const [nodes, setNodes] = useState(null);
+  const [matchedNodes, setMatchedNodes] = useState(null);
   const [show, setShow] = useState(false);
   const [data, setData] = useState(null);
   const toggle = () => {
     setShow(!show);
   };
   useEffect(() => {
-    let items;
-    if (data?.match && edges) {
-      items = edges.filter(edge => edge.node.frontmatter.sidebar?.match === data.match)
-        .sort((a, b) => a.node.frontmatter.sidebar.order - b.node.frontmatter.sidebar.order);
+    let matched;
+    if (data?.match && nodes) {
+      matched = nodes.filter(node => node.frontmatter.sidebar?.match === data.match)
+        .sort((a, b) => a.frontmatter.sidebar.order - b.frontmatter.sidebar.order);
     }
-    setItems(items);
-  }, [data, edges]);
+    setMatchedNodes(matched);
+  }, [data, nodes]);
   return {
-    items, setItems,
-    show, setShow, toggle,
-    edges, setEdges,
-    data, setData,
+    matchedNodes,
+    show,
+    setShow,
+    toggle,
+    setNodes,
+    setData,
   };
 }
 
 export const SidebarContainer = createContainer(useSidebar);
+
+export function withProvider(Component) {
+  return (props) => (
+    <SidebarContainer.Provider>
+      <Component {...props} />
+    </SidebarContainer.Provider>
+  );
+}
