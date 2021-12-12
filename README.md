@@ -6,13 +6,16 @@ This is the website of Violentmonkey.
 
 ```
 ├── content
-│   ├── pages  # documentation
+│   ├── api
+│   ├── faq
+│   ├── ...
 │   └── posts  # blog posts about Violentmonkey
 └── src        # theme
 ```
 
 ## Development
-```sh
+
+```bash
 $ yarn
 $ yarn dev
 ```
