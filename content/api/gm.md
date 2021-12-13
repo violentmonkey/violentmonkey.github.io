@@ -192,13 +192,13 @@ let blobOrDataUrl = GM_getResourceURL(name, isBlobUrl);
 
     Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
-- `isBlobUrl` *boolean* *(since VM2.13.1)*, default: `true`
+- `isBlobUrl` *boolean* (*since VM2.13.1*, optional, default: `true`)
 
-    * `true` returns a `blob:` URL, which is short and cacheable, so it'll be fast when used in multiple elements.
+    * `true` returns a `blob:` URL. It's short and cacheable, so it's good for reusing in multiple DOM elements.
 
-    * `false` returns a `data:` URL, which is long so reusing it in DOM may be less performant due to the lack of caching, but it's particularly handy for direct synchronous decoding of the data on sites that forbid fetching `blob:` in their CSP.
+    * `false` returns a `data:` URL. It's long so reusing it in DOM may be less performant due to the lack of caching, but it's particularly handy for direct synchronous decoding of the data on sites that forbid fetching `blob:` in their CSP.
 
-    Note that using this URL as `src` or `href` of an element may fail on some pages that use CSP to block `blob:` or `data:` URLs. The workaround in Chrome is to use our `GM_addElement`, whereas in Firefox you'll have to disable CSP either globally via `about:config` or by using an additional extension that modifies HTTP headers selectively.
+Note: when setting this URL as `src` or `href` of a DOM element, it may fail on some sites with a particularly strict CSP that forbids `blob:` or `data:` URLs. Such sites are rare though. The workaround in Chrome is to use `GM_addElement`, whereas in Firefox you'll have to disable CSP either globally via `about:config` or by using an additional extension that modifies HTTP headers selectively.
 
 ### GM_addElement
 
