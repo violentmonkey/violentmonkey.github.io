@@ -7,10 +7,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: jitterbit/get-changed-files@v1
-        id: filter
+      - uses: Ana06/get-changed-files@v2.0.0
+        id: files
         with:
           format: 'json'
+          filter: '!content/**'
 
       - id: script
         uses: actions/github-script@v3
@@ -19,8 +20,8 @@ jobs:
             const isPr = [ 'pull_request', 'pull_request_target' ].includes(context.eventName);
             core.setOutput('ref', isPr ? context.payload.pull_request.head.ref : context.ref);
             core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name);
-            const changedFiles = ${{ steps.filter.outputs.all }};
-            core.setOutput('valid', changedFiles.every(file => /^content\//.test(file)));
+            const changedCode = ${{ steps.files.outputs.all }};
+            core.setOutput('valid', changedCode.length === 0);
 
       # For security, continue only if files outside content are unchanged
 
