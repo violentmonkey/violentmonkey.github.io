@@ -1,16 +1,42 @@
 name: Preview
 
 on:
-  - pull_request
+  - pull_request_target
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: amondnet/vercel-action@v20
+      - uses: jitterbit/get-changed-files@v1
+        id: filter
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          format: 'json'
+
+      - id: script
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const isPr = [ 'pull_request', 'pull_request_target' ].includes(context.eventName);
+            core.setOutput('ref', isPr ? context.payload.pull_request.head.ref : context.ref);
+            core.setOutput('repo', isPr ? context.payload.pull_request.head.repo.full_name : context.repo.full_name);
+            const changedFiles = ${{ steps.filter.outputs.all }};
+            core.setOutput('valid', changedFiles.every(file => /^content\//.test(file)));
+
+      # For security, continue only if files outside content are unchanged
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        if: steps.script.outputs.valid == 'true'
+        with:
+          ref: ${{ steps.script.outputs.ref }}
+          repository: ${{ steps.script.outputs.repo }}
+
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@develop
+        if: steps.script.outputs.valid == 'true'
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DEPLOY_PR_FROM_FORK: true
