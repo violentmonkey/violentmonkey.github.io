@@ -235,3 +235,16 @@ If supplied, the question mark icon in the user scripts list will link to this.
 
 If supplied, the home icon in the user scripts list will link to this.
 
+
+### @unwrap
+
+Since VM2.13.1.
+
+If supplied, the script will be injected as is into the global scope of the page, i.e. without our standard wrapper like `window.VMxxx=function(){...}`.
+
+The [`@grant`](#grant) key is ignored so the script won't have access to `GM.*` or `GM_*` API.
+The [`@inject-into`](#inject-into) key is supported as usual.
+
+A typical use case is direct access to global page variables declared as `const` or `let`. In a standard userscript you would have to create a `script` element yourself explicitly by using `document.createElement` or  [`GM_addElement`](/api/gm/#gm_addelement), then transfer the result via a `CustomEvent` or `unsafeWindow.foo`.
+
+Another use case is migration from other extensions that run your JavaScript code as is, without userscript API.
