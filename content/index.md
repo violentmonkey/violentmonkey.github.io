@@ -65,7 +65,9 @@ Violentmonkey is built with web extension APIs, thus supports many browsers.
 
 ## Contribution
 
-You are absolutely welcome to contribute code to [GitHub](https://github.com/violentmonkey).
+You are absolutely welcome to contribute to this project by:
 
-You are welcome to help with this website too. Documents, improvements, articles
-about Violentmonkey, etc.
+- contributing code to [GitHub](https://github.com/violentmonkey)
+- helping with [translation](/localization/)
+- improving [the documentation](https://github.com/violentmonkey/violentmonkey.github.io)
+- writing articles about Violentmonkey
