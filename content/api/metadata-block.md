@@ -179,6 +179,13 @@ If no `@grant` is present, `@grant none` is assumed.
     // @grant GM_getValue
     // @grant GM_setValue
     ```
+    
+    …or for the new `GM.*` API methods *(Since VM2.12.10)*:
+    
+    ```js
+    // @grant GM.getValue
+    // @grant GM.setValue
+    ```
 
 In addition to [GM API](../gm/) the following privileges may be granted:
 
