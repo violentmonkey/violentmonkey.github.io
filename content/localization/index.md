@@ -9,12 +9,8 @@ We have automated weekly synchronization from Transifex, so the translations wil
 
 ## Transifex (Recommended)
 
-Click the picture below to start translating into your language:
-  
-[
-![Transifex](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/chart/image_png)
-👉🏻 Start Translating
-](https://www.transifex.com/projects/p/violentmonkey-nex/resource/messagesjson/)
+[👉🏻 Start translating or fix an existing translation.
+](https://www.transifex.com/violentmonkey/violentmonkey-nex/)
 
 ## Pull Requests
 
