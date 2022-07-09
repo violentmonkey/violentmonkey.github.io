@@ -4,40 +4,8 @@ import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { SidebarContainer } from '#/common/sidebar';
 import ScrollIndicator from '#/components/scroll-indicator';
 
-const hiring = 'https://cdn.jsdelivr.net/gh/gxcl/x@master/hiring.min.js';
-
-function loadScript(url) {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = url;
-    s.onload = resolve;
-    s.onerror = reject;
-    document.body.append(s);
-    s.remove();
-  });
-}
-
-async function loadBanner() {
-  await loadScript(hiring);
-  const html = await window.initializeBanner?.();
-  return html;
-}
-
 function Banner() {
   const [banner, setBanner] = useState(null);
-  useEffect(() => {
-    loadBanner().then(html => {
-      if (html) {
-        setBanner(html);
-        trackCustomEvent({
-          category: 'banner',
-          action: 'show',
-          label: 'show',
-          transport: 'beacon',
-        });
-      }
-    });
-  }, []);
   const handleClose = () => {
     setBanner(null);
   };
