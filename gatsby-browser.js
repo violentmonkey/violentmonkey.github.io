@@ -8,17 +8,6 @@ WebFont.load({
   },
 });
 
-window.gitter = {
-  chat: {
-    options: {
-      room: 'violentmonkey/violentmonkey',
-    },
-  },
-};
-const s = document.createElement('script');
-s.src = 'https://sidecar.gitter.im/dist/sidecar.v1.js';
-document.body.append(s);
-
 document.addEventListener('click', e => {
   const { target } = e;
   const data = collectData(target, {

@@ -76,7 +76,7 @@ ol {
 }
 
 li {
-  margin-bottom: 10px;
+  @apply mb-2;
 }
 
 nav {
@@ -287,8 +287,8 @@ pre code {
       > ul {
         @apply mt-2 mb-0 text-gray-500;
       }
-      > p {
-        @apply font-semibold text-gray-600;
+      li {
+        @apply mb-0;
       }
     }
   }

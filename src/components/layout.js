@@ -4,9 +4,10 @@ import { useStaticQuery, graphql } from 'gatsby';
 import icon from '#/assets/vm.png';
 import '#/common/style.css';
 import { SidebarContainer } from '#/common/sidebar';
-import Header from '#/components/header';
-import Footer from '#/components/footer';
-import Sidebar from '#/components/sidebar';
+import Header from './header';
+import Footer from './footer';
+import Sidebar from './sidebar';
+import DiscordButton from './discord';
 
 export default function Layout(props) {
   const {
@@ -68,6 +69,7 @@ export default function Layout(props) {
         {children}
       </div>
       <Footer />
+      <DiscordButton />
     </>
   );
 }
