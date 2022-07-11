@@ -25,26 +25,31 @@ export default function TOC(props) {
   useEffect(() => {
     if (!data) return;
     const list = Array.from(ref.current.querySelectorAll('a'));
-    list.forEach(a => {
+    list.forEach((a) => {
       a.dataset.id = decodeURIComponent(a.href.split('#')[1] || '');
     });
     const listener = () => {
       const { articleRef } = props;
       if (!articleRef.current || !ref.current) return;
       const { scrollTop } = document.body;
-      const headings = list.map(a => {
-        const { id } = a.dataset;
-        const el = articleRef.current.querySelector(`#${id}`);
-        return el && {
-          id,
-          a,
-          offset: el.getBoundingClientRect().top - scrollTop - 70,
-        };
-      }).filter(Boolean);
-      const { a } = headings.find((_, i) => {
-        const next = headings[i + 1];
-        return next && next.offset > 0;
-      }) || {};
+      const headings = list
+        .map((a) => {
+          const { id } = a.dataset;
+          const el = articleRef.current.querySelector(`#${id}`);
+          return (
+            el && {
+              id,
+              a,
+              offset: el.getBoundingClientRect().top - scrollTop - 70,
+            }
+          );
+        })
+        .filter(Boolean);
+      const { a } =
+        headings.find((_, i) => {
+          const next = headings[i + 1];
+          return next && next.offset > 0;
+        }) || {};
       if (refActive.current) refActive.current.className = '';
       if (a) a.className = 'active';
       refActive.current = a;

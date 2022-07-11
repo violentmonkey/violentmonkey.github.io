@@ -12,8 +12,11 @@ function useSidebar() {
   useEffect(() => {
     let matched;
     if (data?.match && nodes) {
-      matched = nodes.filter(node => node.frontmatter.sidebar?.match === data.match)
-        .sort((a, b) => a.frontmatter.sidebar.order - b.frontmatter.sidebar.order);
+      matched = nodes
+        .filter((node) => node.frontmatter.sidebar?.match === data.match)
+        .sort(
+          (a, b) => a.frontmatter.sidebar.order - b.frontmatter.sidebar.order
+        );
     }
     setMatchedNodes(matched);
   }, [data, nodes]);
@@ -30,9 +33,11 @@ function useSidebar() {
 export const SidebarContainer = createContainer(useSidebar);
 
 export function withProvider(Component) {
-  return (props) => (
-    <SidebarContainer.Provider>
-      <Component {...props} />
-    </SidebarContainer.Provider>
-  );
+  return function WithSidebarProvider(props) {
+    return (
+      <SidebarContainer.Provider>
+        <Component {...props} />
+      </SidebarContainer.Provider>
+    );
+  };
 }

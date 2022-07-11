@@ -12,14 +12,9 @@ import DiscordButton from './discord';
 export default function Layout(props) {
   const {
     site: {
-      siteMetadata: {
-        title,
-        subtitle,
-      },
+      siteMetadata: { title, subtitle },
     },
-    allMdx: {
-      nodes,
-    },
+    allMdx: { nodes },
   } = useStaticQuery(graphql`
     query {
       site {
@@ -45,9 +40,7 @@ export default function Layout(props) {
     }
   `);
   const {
-    location: {
-      pathname,
-    },
+    location: { pathname },
     children,
   } = props;
   const { show, setNodes } = SidebarContainer.useContainer();
@@ -60,7 +53,10 @@ export default function Layout(props) {
       <Helmet defer={false}>
         <title>{title}</title>
         <meta name="description" content={subtitle} />
-        <meta name="google-site-verification" content="OKMYmcVuMfm9H_UjfNXPzRb2c0QoBtmZ7v1KwHNXnRQ" />
+        <meta
+          name="google-site-verification"
+          content="OKMYmcVuMfm9H_UjfNXPzRb2c0QoBtmZ7v1KwHNXnRQ"
+        />
         <link rel="shortcut icon" type="image/png" href={icon} />
       </Helmet>
       <Header />

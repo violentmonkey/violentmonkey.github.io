@@ -19,10 +19,7 @@ export default function Sidebar() {
       <ul>
         {matchedNodes.map((node, i) => (
           <li key={i}>
-            <Link
-              to={node.fields.slug}
-              activeClassName="active"
-            >
+            <Link to={node.fields.slug} activeClassName="active">
               {node.frontmatter.title}
             </Link>
           </li>

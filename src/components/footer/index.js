@@ -5,26 +5,15 @@ function Footer(props) {
   const {
     data: {
       site: {
-        siteMetadata: {
-          copyright,
-          footer,
-        },
+        siteMetadata: { copyright, footer },
       },
     },
   } = props;
   return (
     <footer className="flex mt-10 p-6 pb-16 border-t border-gray-400 lg:pb-6">
-      <div>
-        Violentmonkey
-        {' '}
-        {copyright}
-      </div>
-      {footer.map(item => (
-        <Link
-          className="mx-2"
-          key={item.path}
-          to={item.path}
-        >
+      <div>Violentmonkey {copyright}</div>
+      {footer.map((item) => (
+        <Link className="mx-2" key={item.path} to={item.path}>
           {item.label}
         </Link>
       ))}
@@ -32,7 +21,7 @@ function Footer(props) {
   );
 }
 
-export default props => (
+export default (props) => (
   <StaticQuery
     query={graphql`
       query {
@@ -47,6 +36,6 @@ export default props => (
         }
       }
     `}
-    render={data => <Footer {...props} data={data} />}
+    render={(data) => <Footer {...props} data={data} />}
   />
 );

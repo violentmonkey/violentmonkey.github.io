@@ -15,7 +15,10 @@ export default function ScrollIndicator() {
   });
   return (
     <div className="w-full h-px">
-      <div className="w-full h-full origin-left bg-yellow-500 scale-x-0" ref={ref} />
+      <div
+        className="w-full h-full origin-left bg-yellow-500 scale-x-0"
+        ref={ref}
+      />
     </div>
   );
 }

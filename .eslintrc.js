@@ -10,8 +10,8 @@ module.exports = {
     },
   },
   rules: {
-    'prefer-arrow-callback': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'react/display-name': 'off',
+    'react/prop-types': 'off',
   },
   settings: {
     react: {

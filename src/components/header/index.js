@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { SidebarContainer } from '@/common/sidebar';
 import ScrollIndicator from '@/components/scroll-indicator';
 
@@ -13,7 +12,11 @@ function Banner() {
   return (
     <div className="bg-orange-200 px-4 text-sm flex" data-ga-category="banner">
       <div className="flex-1" dangerouslySetInnerHTML={{ __html: banner }} />
-      <div onClick={handleClose} className="cursor-pointer text-gray-600" data-ga-label="hide">
+      <div
+        onClick={handleClose}
+        className="cursor-pointer text-gray-600"
+        data-ga-label="hide"
+      >
         ✗
       </div>
     </div>
@@ -47,7 +50,7 @@ function Header(props) {
         </Link>
         <span className="flex-1" />
         <div className="overflow-auto min-w-0 flex whitespace-no-wrap">
-          {data.site.siteMetadata.menu.map(item => (
+          {data.site.siteMetadata.menu.map((item) => (
             <Link
               className="nav-item"
               key={item.path}
@@ -65,7 +68,7 @@ function Header(props) {
   );
 }
 
-export default props => (
+export default (props) => (
   <StaticQuery
     query={graphql`
       query {
@@ -79,13 +82,10 @@ export default props => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <>
         <Banner />
-        <Header
-          {...props}
-          data={data}
-        />
+        <Header {...props} data={data} />
       </>
     )}
   />

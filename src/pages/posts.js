@@ -6,18 +6,12 @@ import { withProvider } from '@/common/sidebar';
 
 export default withProvider(function PostsPage({ location }) {
   const {
-    allMdx: {
-      nodes,
-    },
+    allMdx: { nodes },
   } = useStaticQuery(graphql`
     query {
       allMdx(
         limit: 100
-        filter: {
-          fields: {
-            slug: {regex: "/^\/posts\//"}
-          }
-        }
+        filter: { fields: { slug: { regex: "/^/posts//" } } }
         sort: { order: DESC, fields: [frontmatter___date] }
       ) {
         nodes {

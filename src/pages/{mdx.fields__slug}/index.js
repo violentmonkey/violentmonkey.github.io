@@ -6,9 +6,7 @@ import { SidebarContainer, withProvider } from '@/common/sidebar';
 import Layout from '@/components/layout';
 
 export default withProvider(function PostPage({ location, data }) {
-  const {
-    mdx: post,
-  } = data;
+  const { mdx: post } = data;
   const articleRef = useRef();
   const { setData } = SidebarContainer.useContainer();
   useEffect(() => {
@@ -32,9 +30,7 @@ export default withProvider(function PostPage({ location, data }) {
             <TOC data={post.tableOfContents} articleRef={articleRef} />
           )}
           <article className="flex-1 min-w-0 mr-4" ref={articleRef}>
-            <MDXRenderer>
-              {post.body}
-            </MDXRenderer>
+            <MDXRenderer>{post.body}</MDXRenderer>
           </article>
         </section>
         <section>
@@ -52,7 +48,7 @@ export default withProvider(function PostPage({ location, data }) {
 
 export const query = graphql`
   query ($id: String) {
-    mdx(id: {eq: $id}) {
+    mdx(id: { eq: $id }) {
       fields {
         slug
       }
