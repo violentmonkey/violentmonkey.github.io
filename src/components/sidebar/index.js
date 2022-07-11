@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'gatsby';
-import { SidebarContainer } from '#/common/sidebar';
+import { SidebarContainer } from '@/common/sidebar';
 
 export default function Sidebar() {
   const { matchedNodes, setShow } = SidebarContainer.useContainer();

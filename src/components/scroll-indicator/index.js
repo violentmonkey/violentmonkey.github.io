@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import onScroll from '#/common/scroller';
+import onScroll from '@/common/scroller';
 
 export default function ScrollIndicator() {
   const ref = useRef();

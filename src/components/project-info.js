@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '#/assets/vm.png';
+import logo from '@/assets/vm.png';
 
 export default function ProjectInfo({ title, subtitle }) {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import PostItem from '#/components/post-item';
-import Layout from '#/components/layout';
-import { withProvider } from '#/common/sidebar';
+import PostItem from '@/components/post-item';
+import Layout from '@/components/layout';
+import { withProvider } from '@/common/sidebar';
 
 export default withProvider(function PostsPage({ location }) {
   const {

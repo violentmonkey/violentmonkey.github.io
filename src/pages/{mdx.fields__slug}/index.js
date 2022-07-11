@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import TOC from '#/components/toc';
-import { SidebarContainer, withProvider } from '#/common/sidebar';
-import Layout from '#/components/layout';
+import TOC from '@/components/toc';
+import { SidebarContainer, withProvider } from '@/common/sidebar';
+import Layout from '@/components/layout';
 
 export default withProvider(function PostPage({ location, data }) {
   const {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '#/components/layout';
-import { withProvider } from '#/common/sidebar';
+import Layout from '@/components/layout';
+import { withProvider } from '@/common/sidebar';
 
 export default withProvider(function NotFoundRoute({ location }) {
   return (

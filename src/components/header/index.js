@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
-import { SidebarContainer } from '#/common/sidebar';
-import ScrollIndicator from '#/components/scroll-indicator';
+import { SidebarContainer } from '@/common/sidebar';
+import ScrollIndicator from '@/components/scroll-indicator';
 
 function Banner() {
   const [banner, setBanner] = useState(null);

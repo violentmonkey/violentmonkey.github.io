@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import icon from '#/assets/vm.png';
-import '#/common/style.css';
-import { SidebarContainer } from '#/common/sidebar';
+import icon from '@/assets/vm.png';
+import '@/common/style.css';
+import { SidebarContainer } from '@/common/sidebar';
 import Header from './header';
 import Footer from './footer';
 import Sidebar from './sidebar';

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import onScroll from '#/common/scroller';
+import onScroll from '@/common/scroller';
 
 function TOCList({ items }) {
   return (

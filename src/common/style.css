@@ -132,14 +132,9 @@ main {
 }
 
 .toc {
-  @apply mb-5;
-  @screen lg {
-    @apply order-3 sticky overflow-auto;
-    width: var(--toc-width);
-    top: 80px;
-    h2 {
-      @apply hidden;
-    }
+  @apply mb-5 lg:order-3 lg:sticky lg:overflow-auto lg:w-[var(--toc-width)] lg:top-[80px];
+  h2 {
+    @apply lg:hidden;
   }
   ul {
     @apply m-0 pl-4 text-sm list-none;
@@ -164,7 +159,8 @@ main {
 }
 
 :not(pre) > code[class*="language-"] {
-  @apply mx-1 break-words;
+  @apply px-1 break-words text-gray-600;
+  background-color: #f5f2f0;
 }
 
 .gatsby-highlight-code-line {
@@ -279,9 +275,7 @@ pre code {
     @apply p-0 list-none;
   }
   > ul {
-    @screen lg {
-      @apply flex;
-    }
+    @apply lg:flex;
     > li {
       @apply flex-1 p-4;
       > ul {
@@ -296,13 +290,10 @@ pre code {
 
 .sidebar {
   @apply absolute top-0 left-0 bottom-0 bg-white z-10 transition-transform duration-300 transform -translate-x-full p-4;
+  @apply lg:static lg:min-w-0 lg:p-8 lg:pt-16 lg:translate-x-0 lg:border-none lg:pt-[60px];
   width: 240px;
   .sidebar-open & {
     @apply translate-x-0 border-r border-gray-200;
-  }
-  @screen lg {
-    @apply static min-w-0 p-4 pt-16 translate-x-0 border-none;
-    padding-top: 60px;
   }
   ul {
     @apply sticky list-none p-0;

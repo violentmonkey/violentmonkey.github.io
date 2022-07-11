@@ -15,9 +15,15 @@
   ],
   "author": "Gerald <i@gerald.top>",
   "license": "MIT",
+  "engines": {
+    "node": "16"
+  },
   "devDependencies": {
-    "@gera2ld/plaid": "~2.4.0",
-    "@gera2ld/plaid-common-react": "^2.4.0"
+    "@gera2ld/plaid": "~2.5.5",
+    "@gera2ld/plaid-common-react": "~2.5.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
@@ -42,7 +48,7 @@
     "gatsby-source-filesystem": "^4.3.0",
     "gatsby-transformer-sharp": "^4.3.0",
     "lodash": "^4.17.21",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.28.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",

@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: [
     require.resolve('@gera2ld/plaid/eslint'),
-    require.resolve('@gera2ld/plaid-common-react/eslint'),
+    'plugin:react/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -12,5 +12,10 @@ module.exports = {
   rules: {
     'prefer-arrow-callback': 'off',
     'react/jsx-props-no-spreading': 'off',
+  },
+  settings: {
+    react: {
+      version: '17.0.2',
+    },
   },
 };
