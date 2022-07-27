@@ -32,20 +32,20 @@ Add `@violentmonkey/dom` to the [meta block](/api/metadata-block/) of your scrip
 // ==UserScript==
 // ...
 // highlight-next-line
-// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
+// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
 ```
 
-If the project is generated from [our generator](https://github.com/violentmonkey/generator-userscript), it probably already has this included.
+If the project is initiated from [our generator](https://github.com/violentmonkey/generator-userscript), it's likely that the dependency is already included.
 
 ### Observing
 
-After preparing the requirements, we can observe elements by `VM.observe` ([doc](https://violentmonkey.github.io/vm-dom/modules.html#observe)), which utilizes `MutationObserver` under the hood.
+After preparing the requirements, we can observe elements by `VM.observe` ([doc](https://violentmonkey.github.io/vm-dom/functions/observe.html)), which utilizes `MutationObserver` under the hood.
 
 For example, prepend `<h1>Profile</h1>` to the dynamically created `<div class="profile">`:
 
 ```js
-VM.observe(document.body, () => {
+const disconnect = VM.observe(document.body, () => {
   // Find the target node
   const node = document.querySelector('.profile');
 
@@ -58,15 +58,20 @@ VM.observe(document.body, () => {
     return true;
   }
 });
+
+// You can also disconnect the observer explicitly when it's not used any more
+disconnect();
 ```
 
-Note that `return true` in the last is needed to disconnect the observer once we find the target node. Otherwise the detection continues and makes useless callbacks.
+Note that `return true` in the end is needed to disconnect the observer once we find the target node. Otherwise the detection continues and makes useless callbacks.
 
 To observe `document.body` we must make sure `document.body` exists. This should not be a problem if `@run-at` is omitted or set to a value other than `document-start`.
 
 ### Using jQuery
 
-It is quite simple to integrate jQuery with the observer. Before we begin we have to include jQuery as a dependency:
+This is not recommended though, we put it here just in case some people are big fans of jQuery.
+
+It is quite simple to integrate jQuery with the observer. Before we begin we must include jQuery as a dependency:
 
 ```js
 // ==UserScript==
