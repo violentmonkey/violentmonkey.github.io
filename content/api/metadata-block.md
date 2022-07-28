@@ -24,7 +24,7 @@ Labels:
 
 ### @name
 
-<span class="label">required</span><span class="label">multilingual</span>
+<p><span class="label">required</span><span class="label">multilingual</span></p>
 
 The name of the script, shown in script list and menus. It must be unique within a `@namespace`. If a script is being installed, and a script with the same `@namespace` and `@name` already exists, it will be replaced by the new one. Creating a script with same `@namespace` and `@name` will cause a conflict error.
 
@@ -47,7 +47,7 @@ Examples:
 
 ### @match / @exclude-match
 
-<span class="label">multiple</span>
+<p><span class="label">multiple</span></p>
 
 Define rules to decide whether a script should be executed. It is recommended to use `@match` instead of `@include`.
 
@@ -55,7 +55,7 @@ See [more about matching](../matching/).
 
 ### @include / @exclude
 
-<span class="label">multiple</span>
+<p><span class="label">multiple</span></p>
 
 The old way to decide whether a script should be executed.
 
@@ -77,7 +77,7 @@ Examples:
 
 ### @description
 
-<span class="label">multilingual</span>
+<p><span class="label">multilingual</span></p>
 
 A brief summary to describe the script.
 
@@ -100,7 +100,7 @@ Examples:
 
 ### @require
 
-<span class="label">multiple</span>
+<p><span class="label">multiple</span></p>
 
 Require another script to execute before the current one. The value is the URL to the required script, which may be relative to the URL the script is being installed from.
 
@@ -116,7 +116,7 @@ Examples:
 
 ### @resource
 
-<span class="label">multiple</span>
+<p><span class="label">multiple</span></p>
 
 Some static resources that can be accessed in the script by `GM_getResourceText` and `GM_getResourceURL`. The value is composed of two parts, joined with one or more white spaces. The first part is the name of the resource, no white space is allowed in it. The second part is the URL to the resource, which may be relative to the URL the script is being installed from.
 
@@ -159,7 +159,7 @@ When present, the script will execute only in top level document, but not in nes
 
 ### @grant
 
-<span class="label">multiple</span>
+<p><span class="label">multiple</span></p>
 
 Specify which special APIs should be granted and can be used when the script executes.
 

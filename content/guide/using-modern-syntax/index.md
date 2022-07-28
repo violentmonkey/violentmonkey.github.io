@@ -10,7 +10,7 @@ A userscript runs in a browser, so it can only contain syntax that is supported 
 
 Violentmonkey itself is built for modern browsers, to be precise, for Chrome >= 55 and Firefox >= 53. So if your browser has Violentmonkey, it is likely it also supports many ES6 features natively, for example, arrow functions (`=>`), Promises, block-scoped variables, template literals (`` `hello, ${name}` ``), etc.
 
-However, there are many more cool features that are not fully supported by browsers, or some features such as ES modules that won't be supported in userscripts.
+However, there are many more cool features that are not fully supported by browsers, or some features such as TypeScript and ES modules that won't be supported in userscripts natively.
 
 In this tutorial we are going to create a project to compile ESNext and other modern syntax to browser compliant code.
 
@@ -28,7 +28,7 @@ $ cd my-script
 $ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @violentmonkey/userscript
 ```
 
-Under the hood, we are using Yeoman to create a project with JavaScript toolchain, compiling source code with Babel, and bundling them with Rollup.
+Under the hood, we use Yeoman to create a project with JavaScript toolchain, compiling source code with Babel, and bundling them with Rollup.
 
 ## Development
 
@@ -56,8 +56,6 @@ Source code files are kept in `src`, and will be compiled to `dist/index.user.js
 ### Compiling and Watching
 
 ```bash
-$ yarn dev
-# or
 $ npm run dev
 ```
 
@@ -68,8 +66,6 @@ By installing the compiled userscript from `dist`, we can test and keep up with 
 ### Building
 
 ```bash
-$ yarn build
-# or
 $ npm run build
 ```
 

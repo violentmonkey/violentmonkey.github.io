@@ -20,11 +20,15 @@ You can stop reading this now if you are familiar with `MutationObserver` and pr
 
 If you are looking for an easy and friendly way to observe elements, [@violentmonkey/dom][vm-dom] might be what you want.
 
+<div class="info-box">
+
 [@violentmonkey/dom][vm-dom] is a library provided by the Violentmonkey team. Nevertheless, it is just pure JavaScript and can be used with other script managers.
+
+</div>
 
 Once the library is required, we can use its methods under the `VM` namespace. See [the documentation](https://violentmonkey.github.io/vm-dom/) for more details.
 
-### Requirements
+## Requirements
 
 Add `@violentmonkey/dom` to the [meta block](/api/metadata-block/) of your script:
 
@@ -38,7 +42,7 @@ Add `@violentmonkey/dom` to the [meta block](/api/metadata-block/) of your scrip
 
 If the project is initiated from [our generator](https://github.com/violentmonkey/generator-userscript), it's likely that the dependency is already included.
 
-### Observing
+## Observing
 
 After preparing the requirements, we can observe elements by `VM.observe` ([doc](https://violentmonkey.github.io/vm-dom/functions/observe.html)), which utilizes `MutationObserver` under the hood.
 
@@ -67,7 +71,7 @@ Note that `return true` in the end is needed to disconnect the observer once we 
 
 To observe `document.body` we must make sure `document.body` exists. This should not be a problem if `@run-at` is omitted or set to a value other than `document-start`.
 
-### Using jQuery
+## (Optionally) Using jQuery
 
 This is not recommended though, we put it here just in case some people are big fans of jQuery.
 

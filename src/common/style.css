@@ -299,11 +299,18 @@ pre code {
     @apply sticky list-none p-0;
     top: 90px;
   }
-  a:not(.active) {
+  a:not(.active):not(:hover) {
     @apply text-gray-500;
   }
 }
 
 .label {
-  @apply inline-block leading-none mr-1 p-1 text-xs bg-gray-300 border border-gray-300 rounded;
+  @apply inline-block leading-none mr-1 p-1 text-xs bg-blue-100 border border-blue-200 rounded;
+}
+
+.info-box {
+  @apply my-4 px-4 py-2 bg-blue-100 border border-blue-200 rounded;
+  > p:last-child {
+    @apply mb-0;
+  }
 }
