@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 export default function DiscordButton() {
   const [open, setOpen] = useState(false);
   return open ? (
-    <div
-      className="fixed bottom-0 right-0 w-full h-full flex flex-col items-end z-10"
-      style={{ maxWidth: '350px', maxHeight: '600px' }}
-    >
+    <div className="fixed bottom-0 right-0 w-full h-full flex flex-col items-end z-10 max-w-[320px] max-h-[450px]">
       <div className="p-2 cursor-pointer" onClick={() => setOpen(false)}>
         <svg viewBox="0 0 12 12" className="w-4 h-4">
           <path
