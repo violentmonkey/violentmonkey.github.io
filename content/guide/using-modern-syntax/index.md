@@ -20,15 +20,20 @@ In this tutorial we are going to create a project to compile ESNext and other mo
 
 ## Initialization
 
-Thanks to `npx`, we can generate the new project with a one-line command:
+Create a new directory for your script:
 
 ```bash
 $ mkdir my-script
 $ cd my-script
-$ npx -p https://github.com/violentmonkey/generator-userscript.git -p yo yo @violentmonkey/userscript
 ```
 
-Under the hood, we use Yeoman to create a project with JavaScript toolchain, compiling source code with Babel, and bundling them with Rollup.
+Thanks to `npx`, we can generate the new project with a one-line command:
+
+```bash
+$ npx -p github:violentmonkey/generator-userscript -p yo yo @violentmonkey/userscript
+```
+
+Under the hood, we use Yeoman to create a project with JavaScript toolchain, compiling source code with Babel, and bundling them with Rollup. See [generator-userscript](https://github.com/violentmonkey/generator-userscript) for more details.
 
 ## Development
 
