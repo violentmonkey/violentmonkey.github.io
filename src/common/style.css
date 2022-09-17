@@ -158,12 +158,22 @@ main {
   }
 }
 
-:not(pre) > code[class*="language-"] {
+:not(pre) > code {
   @apply px-1 break-words text-gray-600;
   background-color: #f5f2f0;
 }
 
-.gatsby-highlight-code-line {
+/**
+ * Inspired by gatsby remark prism - https://www.gatsbyjs.com/plugins/gatsby-remark-prismjs/
+ * 1. Make the element just wide enough to fit its content.
+ * 2. Always fill the visible space in .code-highlight.
+ */
+.code-highlight {
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.highlight-line {
   background-color: #0001;
   display: block;
   margin-right: -1em;
@@ -171,36 +181,6 @@ main {
   padding-right: 1em;
   padding-left: 0.75em;
   border-left: 0.25em solid #f99;
-}
-
-/**
- * Add back the container background-color, border-radius, padding, margin
- * and overflow that we removed from <pre>.
- */
-.gatsby-highlight {
-  background-color: #f5f2f0;
-  border-radius: 0.3em;
-  margin-bottom: 16px;
-  padding: 0;
-}
-
-/**
- * Remove the default PrismJS theme background-color, border-radius, margin,
- * padding and overflow.
- */
-.gatsby-highlight pre[class*="language-"] {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-}
-
-pre code {
-  /* Make the element just wide enough to fit its content. */
-  float: left;
-  /* Always fill the visible space in .gatsby-highlight. */
-  min-width: 100%;
-  padding: 1em;
 }
 
 .mermaid {
@@ -219,11 +199,11 @@ pre code {
     align-items: center;
     margin-right: 60px;
     margin-top: 24px;
-    > .gatsby-resp-image-wrapper {
-      width: 48px;
-      height: 48px;
-      margin-right: 8px !important;
-    }
+  }
+  .gatsby-resp-image-wrapper {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px !important;
   }
 }
 

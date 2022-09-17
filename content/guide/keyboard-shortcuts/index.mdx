@@ -6,15 +6,15 @@ sidebar:
   order: 3
 ---
 
+import { InfoBox } from '@/components/box';
+
 It is a common case to provide a keyboard shortcut for a function in a userscript.
 
 We provided an easy way to achieve this by introducing [@violentmonkey/shortcut][vm-shortcut].
 
-<div class="info-box">
-
-Note: [@violentmonkey/shortcut][vm-shortcut] is a library provided by the Violentmonkey team, but it is just JavaScript and can be used with other script managers as well.
-
-</div>
+<InfoBox>
+  Note: [@violentmonkey/shortcut][vm-shortcut] is a library provided by the Violentmonkey team, but it is just JavaScript and can be used with other script managers as well.
+</InfoBox>
 
 See [the documentation](https://violentmonkey.github.io/vm-shortcut/) for more details.
 
@@ -24,10 +24,9 @@ See [the documentation](https://violentmonkey.github.io/vm-shortcut/) for more d
 
 Add `@violentmonkey/shortcut` to the [meta block](/api/metadata-block/) of our script:
 
-```js
+```js {3}
 // ==UserScript==
 // ...
-// highlight-next-line
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1
 // ==/UserScript==
 ```

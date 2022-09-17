@@ -7,6 +7,8 @@ sidebar:
   order: 1
 ---
 
+import { Label, LabelGroup } from '@/components/label';
+
 The metadata must follow the format:
 ```js
 // ==UserScript==
@@ -18,13 +20,13 @@ Each line of the block must start with `//`, the first line must be `// ==UserSc
 Some of the keys can be localized for multiple languages, by adding a colon and the locale code to the key, e.g. `@name:zh-CN`. The locale code is case insensitive.
 
 Labels:
-- <span class="label">required</span> The key must be set.
-- <span class="label">multilingual</span> The key can be localized by appending a colon and the locale code, e.g. `@name:zh-CN`.
-- <span class="label">multiple</span> The key can be set multiple times.
+- <Label name="required" /> The key must be set.
+- <Label name="multilingual" /> The key can be localized by appending a colon and the locale code, e.g. `@name:zh-CN`.
+- <Label name="multiple" /> The key can be set multiple times.
 
 ### @name
 
-<p><span class="label">required</span><span class="label">multilingual</span></p>
+<LabelGroup names={["required", "multilingual"]} />
 
 The name of the script, shown in script list and menus. It must be unique within a `@namespace`. If a script is being installed, and a script with the same `@namespace` and `@name` already exists, it will be replaced by the new one. Creating a script with same `@namespace` and `@name` will cause a conflict error.
 
@@ -47,7 +49,7 @@ Examples:
 
 ### @match / @exclude-match
 
-<p><span class="label">multiple</span></p>
+<LabelGroup names={["multiple"]} />
 
 Define rules to decide whether a script should be executed. It is recommended to use `@match` instead of `@include`.
 
@@ -55,7 +57,7 @@ See [more about matching](../matching/).
 
 ### @include / @exclude
 
-<p><span class="label">multiple</span></p>
+<LabelGroup names={["multiple"]} />
 
 The old way to decide whether a script should be executed.
 
@@ -77,7 +79,7 @@ Examples:
 
 ### @description
 
-<p><span class="label">multilingual</span></p>
+<LabelGroup names={["multiple"]} />
 
 A brief summary to describe the script.
 
@@ -100,7 +102,7 @@ Examples:
 
 ### @require
 
-<p><span class="label">multiple</span></p>
+<LabelGroup names={["multiple"]} />
 
 Require another script to execute before the current one. The value is the URL to the required script, which may be relative to the URL the script is being installed from.
 
@@ -116,7 +118,7 @@ Examples:
 
 ### @resource
 
-<p><span class="label">multiple</span></p>
+<LabelGroup names={["multiple"]} />
 
 Some static resources that can be accessed in the script by `GM_getResourceText` and `GM_getResourceURL`. The value is composed of two parts, joined with one or more white spaces. The first part is the name of the resource, no white space is allowed in it. The second part is the URL to the resource, which may be relative to the URL the script is being installed from.
 
@@ -135,7 +137,7 @@ Decide when the script will execute.
 
 Several values can be set for `@run-at`:
 
-- `document-end` <span class="label">default</span>
+- `document-end` <Label name="default" />
 
   The script executes when `DOMContentLoaded` is fired. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
 
@@ -159,7 +161,7 @@ When present, the script will execute only in top level document, but not in nes
 
 ### @grant
 
-<p><span class="label">multiple</span></p>
+<LabelGroup names={["multiple"]} />
 
 Specify which special APIs should be granted and can be used when the script executes.
 
@@ -210,7 +212,7 @@ However, you can change the default value in Violentmonkey settings.
 
 Possible values:
 
-- `page` <span class="label">default</span>
+- `page` <Label name="default" />
 
     Inject into context of the web page.
 

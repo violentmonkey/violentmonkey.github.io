@@ -67,7 +67,13 @@ function collectData(target, defaults) {
 }
 
 export function onRouteUpdate() {
-  const target = document.querySelector(':target');
+  const { hash } = window.location;
+  let target;
+  try {
+    target = hash && document.querySelector(hash);
+  } catch {
+    // ignore
+  }
   if (target) {
     const rect = target.getBoundingClientRect();
     const el = document.scrollingElement;

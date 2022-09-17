@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'gatsby';
 import onScroll from '@/common/scroller';
 
 function TOCList({ items }) {
@@ -9,7 +10,7 @@ function TOCList({ items }) {
         const url = j < 0 ? '#' : item.url.slice(j);
         return (
           <li key={i}>
-            <a href={url}>{item.title}</a>
+            <Link to={url}>{item.title}</Link>
             {item.items && <TOCList items={item.items} />}
           </li>
         );

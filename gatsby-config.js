@@ -1,3 +1,12 @@
+function esmRequire(name) {
+  return function plugin(opts) {
+    return async (...args) => {
+      const { default: plugin } = await import(name);
+      return plugin(opts)(...args);
+    };
+  };
+}
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://violentmonkey.github.io/',
@@ -44,7 +53,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-image',
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -53,7 +61,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
-    'gatsby-remark-images',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -65,15 +72,24 @@ module.exports = {
               offsetY: 70,
             },
           },
-          'gatsby-remark-prismjs',
           {
             resolve: 'gatsby-remark-external-links',
             options: {
               rel: 'noopener noreferrer',
             },
           },
-          'gatsby-remark-images',
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              backgroundColor: 'transparent',
+            },
+          },
+          '@gera2ld/gatsby-remark-emoji',
         ],
+        mdxOptions: {
+          remarkPlugins: [require('remark-gfm')],
+          rehypePlugins: [esmRequire('rehype-prism-plus')],
+        },
       },
     },
     'gatsby-plugin-catch-links',
@@ -89,18 +105,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: './src/assets/',
+        name: 'src',
+        path: './src',
       },
-      __key: 'images',
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'pages',
-        path: './src/pages/',
-      },
-      __key: 'pages',
     },
     {
       resolve: 'gatsby-source-filesystem',

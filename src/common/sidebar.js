@@ -1,43 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import { createContainer } from 'unstated-next';
 
-function useSidebar() {
-  const [nodes, setNodes] = useState(null);
-  const [matchedNodes, setMatchedNodes] = useState(null);
+function useSidebar(data) {
+  const {
+    allMdx: { nodes },
+  } = useStaticQuery(graphql`
+    query {
+      allMdx {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            sidebar {
+              match
+              order
+            }
+          }
+        }
+      }
+    }
+  `);
+  const matchedNodes = useMemo(
+    () =>
+      data?.match &&
+      nodes
+        ?.filter((node) => node.frontmatter.sidebar?.match === data.match)
+        .sort(
+          (a, b) => a.frontmatter.sidebar.order - b.frontmatter.sidebar.order
+        ),
+    [data, nodes]
+  );
   const [show, setShow] = useState(false);
-  const [data, setData] = useState(null);
   const toggle = () => {
     setShow(!show);
   };
-  useEffect(() => {
-    let matched;
-    if (data?.match && nodes) {
-      matched = nodes
-        .filter((node) => node.frontmatter.sidebar?.match === data.match)
-        .sort(
-          (a, b) => a.frontmatter.sidebar.order - b.frontmatter.sidebar.order
-        );
-    }
-    setMatchedNodes(matched);
-  }, [data, nodes]);
   return {
     matchedNodes,
     show,
     setShow,
     toggle,
-    setNodes,
-    setData,
   };
 }
 
 export const SidebarContainer = createContainer(useSidebar);
-
-export function withProvider(Component) {
-  return function WithSidebarProvider(props) {
-    return (
-      <SidebarContainer.Provider>
-        <Component {...props} />
-      </SidebarContainer.Provider>
-    );
-  };
-}

@@ -39,7 +39,7 @@ Under the hood, we use Yeoman to create a project with JavaScript toolchain, com
 
 Now we should get a project with following structure:
 
-```
+```text
 ├── dist
 ├── src
 │  ├── app.js
@@ -88,10 +88,9 @@ With Babel and plenty of plugins, we can easily use cool ESNext features. All fe
 
 To use JSX, we need to require a JSX runtime first. Add this in `src/meta.js`:
 
-```js
+```js {3}
 // ==UserScript==
 // ...
-// highlight-next-line
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
 ```

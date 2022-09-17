@@ -7,17 +7,17 @@ import ProjectInfo from '../src/components/project-info';
 
 <ProjectInfo title="Violentmonkey" subtitle="An open source userscript manager." />
 
-<div class="home-buttons" data-ga-category="home-buttons">
-  <a href="/get-it/" class="button-primary" data-ga-label="get-started">Get Started</a>
-  <a href="https://gera2ld.space/donate/" class="button-white" target="_blank" rel="noopener noreferrer" data-ga-label="donate">Donate</a>
-  <a href="https://github.com/violentmonkey/violentmonkey" class="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
+<div className="home-buttons" data-ga-category="home-buttons">
+  <a href="/get-it/" className="button-primary" data-ga-label="get-started">Get Started</a>
+  <a href="https://gera2ld.space/donate/" className="button-white" target="_blank" rel="noopener noreferrer" data-ga-label="donate">Donate</a>
+  <a href="https://github.com/violentmonkey/violentmonkey" className="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
 </div>
 
 Violentmonkey provides userscripts support for browsers.
 
 ## Features
 
-<div class="home-features">
+<div className="home-features">
 
 - Powerful
   - Customize web pages.
@@ -31,7 +31,7 @@ Violentmonkey provides userscripts support for browsers.
 
 </div>
 
-<div class="px-4 pt-6 pb-4 bg-gray-100 text-gray-600">
+<div className="px-4 pt-6 pb-4 bg-gray-100 text-gray-600">
 
 **Note:** This extension does not contain any ads and does not modify web pages automatically.
 Any changes and modifications on the sites are done by installed scripts.
@@ -43,7 +43,7 @@ Therefore, please install only scripts that you trust.
 
 Violentmonkey is built with web extension APIs, thus supports many browsers.
 
-<div class="icon-list">
+<div className="icon-list">
 
 - ![Chrome](../src/assets/browsers/chrome.png) Chrome
 - ![Firefox](../src/assets/browsers/firefox.png) Firefox
@@ -56,7 +56,7 @@ Violentmonkey is built with web extension APIs, thus supports many browsers.
 
 ## Alternatives
 
-<div class="icon-list">
+<div className="icon-list">
 
 - ![Greasemonkey](../src/assets/alternatives/greasemonkey.png) Greasemonkey
 - ![Tampermonkey](../src/assets/alternatives/tampermonkey.png) Tampermonkey

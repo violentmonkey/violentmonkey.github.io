@@ -1,14 +1,16 @@
-const { createFilePath } = require('gatsby-source-filesystem');
-
 exports.onCreateNode = async ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
-  if (node.internal.type === `Mdx`) {
-    const slug = createFilePath({ node, getNode, basePath: 'pages' });
-    createNodeField({
+  if (node.internal.type === 'Mdx') {
+    const parent = getNode(node.parent);
+    let slug = [
+      parent.relativeDirectory,
+      parent.name === 'index' ? '' : parent.name,
+    ].filter(Boolean).join('/') + '/';
+    if (!slug.startsWith('/')) slug = `/${slug}`;
+    actions.createNodeField({
       node,
       name: 'slug',
       value: slug,
-    })
+    });
   }
 };
 
@@ -21,7 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     },
   } = await graphql(`
-    {
+    query {
       allMdx {
         nodes {
           fields {

@@ -1,24 +1,17 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import TOC from '@/components/toc';
-import { SidebarContainer, withProvider } from '@/common/sidebar';
 import Layout from '@/components/layout';
 
-export default withProvider(function PostPage({ location, data }) {
+export { Head } from '@/components/head';
+
+export default function PostPage({ location, data, children }) {
   const { mdx: post } = data;
   const articleRef = useRef();
-  const { setData } = SidebarContainer.useContainer();
-  useEffect(() => {
-    setData(post.frontmatter.sidebar);
-    return () => {
-      setData(null);
-    };
-  }, [post.frontmatter.sidebar, setData]);
   const { pathname } = location;
   const isHome = pathname === '/';
   return (
-    <Layout location={location}>
+    <Layout location={location} sidebar={post.frontmatter.sidebar}>
       <main className="flex-1 has-toc">
         {!isHome && (
           <section className="mb-10 pt-1">
@@ -30,7 +23,7 @@ export default withProvider(function PostPage({ location, data }) {
             <TOC data={post.tableOfContents} articleRef={articleRef} />
           )}
           <article className="flex-1 min-w-0 mr-4" ref={articleRef}>
-            <MDXRenderer>{post.body}</MDXRenderer>
+            {children}
           </article>
         </section>
         <section>
@@ -44,7 +37,7 @@ export default withProvider(function PostPage({ location, data }) {
       </main>
     </Layout>
   );
-});
+}
 
 export const query = graphql`
   query ($id: String) {
@@ -60,7 +53,6 @@ export const query = graphql`
           order
         }
       }
-      body
       tableOfContents(maxDepth: 3)
     }
   }

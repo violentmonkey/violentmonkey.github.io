@@ -6,6 +6,8 @@ sidebar:
   order: 2
 ---
 
+import { InfoBox } from '@/components/box';
+
 ## Background
 
 It is a common case to operate on elements that are created dynamically, which may not be ready even on `document-end`.
@@ -20,11 +22,9 @@ You can stop reading this now if you are familiar with `MutationObserver` and pr
 
 If you are looking for an easy and friendly way to observe elements, [@violentmonkey/dom][vm-dom] might be what you want.
 
-<div class="info-box">
-
-[@violentmonkey/dom][vm-dom] is a library provided by the Violentmonkey team. Nevertheless, it is just pure JavaScript and can be used with other script managers.
-
-</div>
+<InfoBox>
+  [@violentmonkey/dom][vm-dom] is a library provided by the Violentmonkey team. Nevertheless, it is just pure JavaScript and can be used with other script managers.
+</InfoBox>
 
 Once the library is required, we can use its methods under the `VM` namespace. See [the documentation](https://violentmonkey.github.io/vm-dom/) for more details.
 
@@ -32,10 +32,9 @@ Once the library is required, we can use its methods under the `VM` namespace. S
 
 Add `@violentmonkey/dom` to the [meta block](/api/metadata-block/) of your script:
 
-```js
+```js {3}
 // ==UserScript==
 // ...
-// highlight-next-line
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
 ```
@@ -77,11 +76,10 @@ This is not recommended though, we put it here just in case some people are big 
 
 It is quite simple to integrate jQuery with the observer. Before we begin we must include jQuery as a dependency:
 
-```js
+```js {4}
 // ==UserScript==
 // ...
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@1
-// highlight-next-line
 // @require https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
 // ==/UserScript==
 ```

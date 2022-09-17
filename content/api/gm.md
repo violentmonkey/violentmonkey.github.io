@@ -9,6 +9,9 @@ sidebar:
   order: 0
 ---
 
+import { Field } from '@/components/field';
+import { InfoBox } from '@/components/box';
+
 Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them work the same way, `GM.*` [Greasemonkey v4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases were added in VM2.12.0.
 
 ## GM_*
@@ -19,59 +22,59 @@ Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them w
 
 An object that exposes information about the current userscript. It has following properties:
 
-- `uuid` *string*
+- <Field name="uuid" type="string" />
 
     A unique ID of the script.
 
-- `scriptMetaStr` *string*
+- <Field name="scriptMetaStr" type="string" />
 
     The meta block of the script.
 
-- `scriptWillUpdate` *boolean*
+- <Field name="scriptWillUpdate" type="boolean" />
 
     Whether the script will be updated automatically.
 
-- `scriptHandler` *string*
+- <Field name="scriptHandler" type="string" />
 
     The name of userscript manager, which should be the string `Violentmonkey`.
 
-- `version` *string*
+- <Field name="version" type="string" />
 
     Version of Violentmonkey.
 
-- `platform` *object* *(since VM2.12.4)*
+- <Field name="platform" type="object" comment="since VM2.12.4" />
 
     Unlike `navigator.userAgent`, which can be overriden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
 
-    - `arch` *string*
+    - <Field name="arch" type="string" />
     
         One of "arm", "mips", "mips64", "x86-32", "x86-64".
             
-    - `browserName` *string*
+    - <Field name="browserName" type="string" />
     
         "chrome", "firefox" or whatever was returned by the API.
 
-    - `browserVersion` *string*
+    - <Field name="browserVersion" type="string" />
 
-    - `os` *string*
+    - <Field name="os" type="string" />
     
         One of "android", "cros", "linux", "mac", "openbsd", "win".
              
-- `script` *object*
+- <Field name="script" type="object" />
 
     Contains structured fields from the [Metadata Block](../metadata-block/):
 
-    - `description` *string*
-    - `excludes` *array of string*
-    - `includes` *array of string*
-    - `matches` *array of string*
-    - `name` *string*
-    - `namespace` *string*
-    - `resources` *array of {name, url}*
-    - `runAt` *string*
-    - `version` *string*
+    - <Field name="description" type="string" />
+    - <Field name="excludes" type="string[]" />
+    - <Field name="includes" type="string[]" />
+    - <Field name="matches" type="string[]" />
+    - <Field name="name" type="string" />
+    - <Field name="namespace" type="string" />
+    - <Field name="resources" type="Array<{name, url}>" />
+    - <Field name="runAt" type="string" />
+    - <Field name="version" type="string" />
 
-- `injectInto` *string* *(since VM2.10.0)*
+- <Field name="injectInto" type="string" comment="since VM2.10.0" />
 
     The injection mode of current script. See [`@inject-mode`](/api/metadata-block/#inject-into) for more information.
 
@@ -83,11 +86,11 @@ Retrieves a value for current script from storage.
 let value = GM_getValue(key, defaultValue)
 ```
 
-- `key` *string*
+- <Field name="key" type="string" />
 
     The name for `value` to load.
 
-- `defaultValue` *any*
+- <Field name="defaultValue" type="any" />
 
     The default value to return if no value exists in the storage.
 
@@ -99,11 +102,11 @@ Sets a key / value pair for current script to storage.
 GM_setValue(key, value)
 ```
 
-- `key` *string*
+- <Field name="key" type="string" />
 
     The unique name for `value` within this script.
 
-- `value` *any*
+- <Field name="value" type="any" />
 
     The value to be stored, which must be *JSON serializable* (string, number, boolean, null, or an array/object consisting of these types) so for example you can't store DOM elements or objects with cyclic dependencies.
 
@@ -115,7 +118,7 @@ Deletes an existing key / value pair for current script from storage.
 GM_deleteValue(key)
 ```
 
-- `key` *string*
+- <Field name="key" type="string" />
 
     The unique name for `value` within this script.
 
@@ -135,25 +138,25 @@ Adds a change listener to the storage and returns the listener ID.
 let listenerId = GM_addValueChangeListener(name, callback)
 ```
 
-* `name` *string*
+* <Field name="name" type="string" />
 
     The name of the observed variable
 
-* `callback` *function(name, oldValue, newValue, remote) {}*
+* <Field name="callback" type="(name, oldValue, newValue, remote) => void" />
 
-    * `name` *string*
+    * <Field name="name" type="string" />
 
         The name of the observed variable
 
-    * `oldValue` *any*
+    * <Field name="oldValue" type="any" />
 
         The old value of the observed variable (`undefined` if it was created)
 
-    * `newValue` *any*
+    * <Field name="newValue" type="any" />
 
         The new value of the observed variable (`undefined` if it was deleted)
 
-    * `remote` *boolean*
+    * <Field name="remote" type="boolean" />
 
         `true` if modified by the userscript instance of another tab or `false` for this script instance. Can be used by scripts of different browser tabs to communicate with each other.
 
@@ -165,7 +168,7 @@ Removes a change listener by its ID.
 GM_removeValueChangeListener(listenerId)
 ```
 
-- `listenerId` *string*
+- <Field name="listenerId" type="string" />
 
 ### GM_getResourceText
 
@@ -175,7 +178,7 @@ Retrieves a text resource from the metadata block.
 let text = GM_getResourceText(name)
 ```
 
-- `name` *string*
+- <Field name="name" type="string" />
 
     Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
@@ -188,11 +191,11 @@ let blobUrl = GM_getResourceURL(name);
 let blobOrDataUrl = GM_getResourceURL(name, isBlobUrl);
 ```
 
-- `name` *string*
+- <Field name="name" type="string" />
 
     Name of a resource defined in the [metadata block](../metadata-block/#resource).
 
-- `isBlobUrl` *boolean* (*since VM2.13.1*, optional, default: `true`)
+- <Field name="isBlobUrl" type="boolean" comment="since VM2.13.1" defaultValue="true" />
 
     * `true` returns a `blob:` URL. It's short and cacheable, so it's good for reusing in multiple DOM elements.
 
@@ -211,7 +214,7 @@ let element1 = GM_addElement(tagName, attributes);
 let element2 = GM_addElement(parentNode, tagName, attributes);
 ```
 
-* `parentNode` *Node | Element | ShadowRoot* (optional)
+* <Field name="parentNode?" type="Node | Element | ShadowRoot" />
 
     The parent node to which the new node will be appended.
 
@@ -222,11 +225,11 @@ let element2 = GM_addElement(parentNode, tagName, attributes);
     2. `document.body` (`<body>`) for other tags or when there's no `<head>`.
     3. `document.documentElement` (`<html>` or an XML root node) otherwise.
 
-* `tagName` *string*
+* <Field name="tagName" type="string" />
 
     A tag name like `'script'`. Any valid HTML tag can be used, but the only motivation for this API was to add `script`, `link`, `style` elements when they are disallowed by a strict `Content-Security-Policy` of the site e.g. github.com, twitter.com.
 
-* `attributes` *object* (optional)
+* <Field name="attributes?" type="object" />
 
     The keys are HTML attributes, not DOM properties, except `textContent` which sets DOM property `textContent`. The values are strings so if you want to assign a private function to `onload` you can do it after the element is created. 
   
@@ -257,7 +260,7 @@ Appends and returns a `<style>` element with the specified CSS.
 let styleElement = GM_addStyle(css);
 ```
 
-- `css` *string*
+- <Field name="css" type="string" />
 
     The CSS code to inject.
 
@@ -275,29 +278,29 @@ Opens URL in a new tab.
     let tabControl = GM_openInTab(url, options)
     ```
 
-    - `url` *string*
+    - <Field name="url" type="string" />
 
         The URL to open in a new tab. URL relative to current page is also allowed.
         Note: Firefox does not support data URLs.
 
-    - `options` *object* (optional)
+    - <Field name="options?" type="object" />
 
-        - `active` *boolean*, default: `true` 
+        - <Field name="active" type="boolean" defaultValue="true" />
 
             Make the new tab active (i.e. open in foreground).
             
-        - `container` *number* *(since VM2.12.5, Firefox-only)*
+        - <Field name="container?" type="number" comment="since VM2.12.5, Firefox-only" />
                   
             Set [tab's container](https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers) in Firefox:
             * not specified = reuse script's tab container
             * `0` = default (main) container
             * `1`, `2`, etc. = internal container index
 
-        - `insert` *boolean* *(since VM2.11.0)*, default: `true`
+        - <Field name="insert" type="boolean" comment="since VM2.11.0" defaultValue="true" />
          
             Insert the new tab next to the current tab and set its "openerTab" so when it's closed the original tab will be focused automatically. When `false` or not specified, the usual browser behavior is to open the tab at the end of the tab list.
 
-        - `pinned` *boolean* *(since VM2.12.5)*, default: `false`
+        - <Field name="pinned" type="boolean" comment="since VM2.12.5" defaultValue="false" />
                   
             Pin the tab (i.e. show without a title at the beginning of the tab list).
             
@@ -307,21 +310,22 @@ Opens URL in a new tab.
     let tabControl = GM_openInTab(url, openInBackground)
     ```
 
-    - `openInBackground` *boolean*
+    - <Field name="openInBackground" type="boolean" />
 
         Open the tab in background.
         Note, this is a reverse of the first usage method so for example `true` is the same as `{ active: false }`.
 
 Returns an object with following properties:
-- `onclose`
+
+- <Field name="onclose?" type="() => void" />
 
     Сan be assigned to a function. If provided, it will be called when the opened tab is closed.
 
-- `closed` *boolean*
+- <Field name="closed" type="boolean" />
 
     Whether the opened tab is closed.
 
-- `close` *function*
+- <Field name="close" type="() => void" />
 
     A function to explicitly close the opened tab.
 
@@ -341,15 +345,15 @@ GM_registerMenuCommand(caption, onClick)
 const id = GM_registerMenuCommand(caption, onClick)
 ```
 
-- `caption` *string*
+- <Field name="caption" type="string" />
 
     The name to show in the popup menu.
 
-- `onClick` *function*
+- <Field name="onClick" type="() => void" />
 
     When the command is clicked in the menu, this function will run with the following parameter:
 
-    * `event` *[MouseEvent](https://developer.mozilla.org/docs/Web/API/MouseEvent) | [KeyboardEvent](https://developer.mozilla.org/docs/Web/API/KeyboardEvent)* *(since VM2.13.1)* is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on. 
+    * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on. 
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
 
@@ -361,7 +365,7 @@ Unregisters a command which has been registered to Violentmonkey popup menu.
 GM_unregisterMenuCommand(caption)
 ```
 
-- `caption` *string*
+- <Field name="caption" type="string" />
 
     The name of command to unregister.
 
@@ -375,25 +379,25 @@ Shows an HTML5 desktop notification.
     let control = GM_notification(options)
     ```
 
-    - `options` *object*
+    - <Field name="options" type="object" />
 
-        - `text` *string* (required)
+        - <Field name="text" type="string" />
 
             Main text of the notification.
 
-        - `title` *string*
+        - <Field name="title?" type="string" />
 
             Title of the notification.
 
-        - `image` *string*
+        - <Field name="image?" type="string" />
 
             URL of an image to show in the notification.
 
-        - `onclick` *function*
+        - <Field name="onclick?" type="() => void" />
 
             Callback when the notification is clicked by user.
 
-        - `ondone` *function*
+        - <Field name="ondone?" type="() => void" />
 
             Callback when the notification is closed, either by user or by system.
 
@@ -403,25 +407,25 @@ Shows an HTML5 desktop notification.
     GM_notification(text, title, image, onclick)
     ```
 
-    - `text` *string* (required)
+    - <Field name="text" type="string" />
 
         Main text of the notification.
 
-    - `title` *string*
+    - <Field name="title?" type="string" />
 
         Title of the notification.
 
-    - `image` *string*
+    - <Field name="image?" type="string" />
 
         URL of an image to show in the notification.
 
-    - `onclick` *function*
+    - <Field name="onclick?" type="() => void" />
 
         Callback when the notification is clicked by user.
 
 **As of VM2.12.8** returns a control object with the following properties:
 
-- `remove` *function(): Promise*
+- <Field name="remove" type="() => Promise<void>" />
 
     A function to remove the notification.
 
@@ -433,100 +437,100 @@ Sets data to system clipboard.
 GM_setClipboard(data, type)
 ```
 
-- `data` *string*
+- <Field name="data" type="string" />
 
     The data to be copied to system clipboard.
 
-- `type` *string*
+- <Field name="type" type="string" defaultValue="'text/plain'" />
 
-    The MIME type of data to copy. Default as `text/plain`.
+    The MIME type of data to copy.
 
 ### GM_xmlhttpRequest
 
 Makes a request like XMLHttpRequest, with some special capabilities, not restricted by same-origin policy.
 
-**Note:** `h` is lowercase (the historical spelling)
+Note: `h` is lowercase (the historical spelling).
 
 ```js
 let control = GM_xmlhttpRequest(details)
 ```
 
-- `details` *object*:
+- <Field name="details" type="object" />:
 
-    - `url` *string* (required)
+  - <Field name="url" type="string" />
 
-        URL relative to current page is also allowed.
+    URL relative to current page is also allowed.
 
-    - `method` *string*
+  - <Field name="method?" type="string" />
 
-        Usually `GET`.
+    Usually `GET`.
 
-    - `user` *string*
+  - <Field name="user?" type="string" />
 
-        User for authentication.
+    User for authentication.
 
-    - `password` *string*
+  - <Field name="password?" type="string" />
 
-        Password for authentication.
+    Password for authentication.
 
-    - `overrideMimeType` *string*
+  - <Field name="overrideMimeType?" type="string" />
 
-        A MIME type to specify with the request.
+    A MIME type to specify with the request.
 
-    - `headers` *object*
+  - <Field name="headers?" type="object" />
 
-        For example `{ 'name1': 'value1', 'name2': 'value2' }`.
+    For example `{ 'name1': 'value1', 'name2': 'value2' }`.
 
-        Some special headers are also allowed:
+    Some special headers are also allowed:
 
-        - `'Cookie'`
-        - `'Host'`
-        - `'Origin'`
-        - `'Referer'`
-        - `'User-Agent'`
+    - `'Cookie'`
+    - `'Host'`
+    - `'Origin'`
+    - `'Referer'`
+    - `'User-Agent'`
 
-    - `responseType` *string*
+  - <Field name="responseType?" type="string" />
 
-        One of the following:
+    One of the following:
 
-        - `'text'` *(default value)*
-        - `'json'`
-        - `'blob'`
-        - `'arraybuffer'`
-        - `'document'` *(since VM2.12.0)*
+    - `'text'` :point_left: default
+    - `'json'`
+    - `'blob'`
+    - `'arraybuffer'`
+    - `'document'` *(since VM2.12.0)*
 
-    - `timeout` *number* *(since VM2.9.5)*
+  - <Field name="timeout?" type="number" comment="since VM2.9.5" />
 
-        Time to wait for the request, none by default.
+    Time to wait for the request, none by default.
 
-    - `data` *string | FormData | Blob*
+  - <Field name="data?" type="string | FormData | Blob" />
 
-        Data to send with the request, usually for `POST` and `PUT` requests.
+    Data to send with the request, usually for `POST` and `PUT` requests.
 
-    - `binary` *boolean* *(since VM2.12.2)*
+  - <Field name="binary?" type="boolean" comment="since VM2.12.2" />
 
-        Send the `data` string as a `blob`. This is for compatibility with Tampermonkey/Greasemonkey, where only `string` type is allowed in `data`.
+    Send the `data` string as a `blob`. This is for compatibility with Tampermonkey/Greasemonkey, where only `string` type is allowed in `data`.
 
-    - `context` *any*
+  - <Field name="context?" type="any" />
 
-        Can be an object and will be assigned to `context` of the response object.
+    Can be an object and will be assigned to `context` of the response object.
 
-    - `anonymous` *boolean* *(since VM2.10.1)*
+  - <Field name="anonymous?" type="boolean" comment="since VM2.10.1" defaultValue="false" />
 
-        When set to `true`, no cookie will be sent with the request and since VM2.12.5 the response cookies will be ignored. The default value is `false`.
+    When set to `true`, no cookie will be sent with the request and since VM2.12.5 the response cookies will be ignored.
 
-    Event handlers:
+  Event handlers:
 
-    - `onabort`
-    - `onerror`
-    - `onload`
-    - `onloadend`
-    - `onloadstart` *(since VM2.12.5)*
-    - `onprogress`
-    - `onreadystatechange`
-    - `ontimeout`
-    
-    Each event handler is a *function* that accepts one argument `responseObject`
+  - <Field name="onabort?" type="() => void" />
+  - <Field name="onerror?" type="() => void" />
+  - <Field name="onload?" type="() => void" />
+  - <Field name="onloadend?" type="() => void" />
+  - <Field name="onloadstart?" type="() => void" comment="since VM2.12.5" />
+  - <Field name="onprogress?" type="() => void" />
+  - <Field name="onreadystatechange?" type="() => void" />
+  - <Field name="ontimeout?" type="() => void" />
+  
+  Each event handler is a *function* that accepts one argument `responseObject`
 
 > Note:
 >
@@ -534,20 +538,20 @@ let control = GM_xmlhttpRequest(details)
 
 Returns a control object with the following properties:
 
-- `abort` *function()*
+- <Field name="abort" type="() => void" />
 
-    A function to abort the request.
+  A function to abort the request.
 
 The response object is passed to each event handler with the following properties, most of which are identical to those provided by the standard [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest):
 
-- `status` *number*
-- `statusText` *string*
-- `readyState` *number*
-- `responseHeaders` *string*
-- `response` *string | Blob | ArrayBuffer | Document | Object | null*
-- `responseText` *string | undefined*, only provided when available
-- `finalUrl` *string*, the final URL after redirection
-- `context` *any*, the same `context` object you specified in `details`
+- <Field name="status" type="number" />
+- <Field name="statusText" type="string" />
+- <Field name="readyState" type="number" />
+- <Field name="responseHeaders" type="string" />
+- <Field name="response" type="string | Blob | ArrayBuffer | Document | object | null" />
+- <Field name="responseText" type="string | undefined" />, only provided when available
+- <Field name="finalUrl" type="string" />, the final URL after redirection
+- <Field name="context" type="any" />, the same `context` object you specified in `details`
 
 ### GM_download
 
@@ -561,27 +565,27 @@ Downloads a URL to a local file.
     GM_download(options)
     ```
 
-    - `options` *object*:
+    - <Field name="options" type="object" />:
 
-        - `url` *string* (required)
-
+        - <Field name="url" type="string" />
+  
             The URL to download.
-
-        - `name` *string*
-
+  
+        - <Field name="name?" type="string" />
+  
             The filename to save to. Folders/subpaths aren't supported yet.
-
-        - `onload` *function*
-
+  
+        - <Field name="onload?" type="() => void" />
+  
             Called after the data is downloaded from URL, before writing the file.
-
+  
         These are the same as in [GM_xmlhttpRequest](#gm_xmlhttprequest):
-
-        - `headers` *object*
-        - `timeout` *number*
-        - `onerror` *function*
-        - `onprogress` *function*
-        - `ontimeout` *function*
+  
+        - <Field name="headers?" type="object" />
+        - <Field name="timeout?" type="number" />
+        - <Field name="onerror?" type="() => void" />
+        - <Field name="onprogress?" type="() => void" />
+        - <Field name="ontimeout?" type="() => void" />
 
 2. using separate parameters:
 
@@ -589,13 +593,13 @@ Downloads a URL to a local file.
     GM_download(url, name)
     ```
 
-    - `url` *string* (required)
+    - <Field name="url" type="string" />
 
-        The URL to download.
+      The URL to download.
 
-    - `name` *string*
+    - <Field name="name?" type="string" />
 
-        The filename to save to. Folders/subpaths aren't supported yet.
+      The filename to save to. Folders/subpaths aren't supported yet.
 
 ## GM.*
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import Layout from '@/components/layout';
-import { withProvider } from '@/common/sidebar';
 
-export default withProvider(function NotFoundRoute({ location }) {
+export { Head } from '@/components/head';
+
+export default function NotFoundRoute({ location }) {
   return (
     <Layout location={location}>
       <main>
@@ -11,4 +12,4 @@ export default withProvider(function NotFoundRoute({ location }) {
       </main>
     </Layout>
   );
-});
+}
