@@ -569,11 +569,11 @@ Downloads a URL to a local file.
 
         - `name` *string*
 
-            The filename to save as.
+            The filename to save to. Folders/subpaths aren't supported yet.
 
         - `onload` *function*
 
-            The function to call when download starts successfully.
+            Called after the data is downloaded from URL, before writing the file.
 
         These are the same as in [GM_xmlhttpRequest](#gm_xmlhttprequest):
 
@@ -595,7 +595,7 @@ Downloads a URL to a local file.
 
     - `name` *string*
 
-        The filename to save as.
+        The filename to save to. Folders/subpaths aren't supported yet.
 
 ## GM.*
 
