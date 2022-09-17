@@ -20,17 +20,23 @@ function TOCList({ items }) {
 }
 
 export default function TOC(props) {
-  const { className, data } = props;
+  const { className, data, articleRef } = props;
   const ref = useRef();
   const refActive = useRef();
   useEffect(() => {
     if (!data) return;
     const list = Array.from(ref.current.querySelectorAll('a'));
     list.forEach((a) => {
-      a.dataset.id = decodeURIComponent(a.href.split('#')[1] || '');
+      const id = decodeURIComponent(a.href.split('#')[1] || '');
+      a.dataset.id = id;
+      // `tableOfContents` from MDX does not support inline markups,
+      // as a result the text content may be truncated.
+      if (articleRef.current) {
+        const h = articleRef.current.querySelector(`#${id}`);
+        if (h) a.textContent = h.textContent.trim();
+      }
     });
     const listener = () => {
-      const { articleRef } = props;
       if (!articleRef.current || !ref.current) return;
       const { scrollTop } = document.body;
       const headings = list
