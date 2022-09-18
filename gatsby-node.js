@@ -1,11 +1,10 @@
 exports.onCreateNode = async ({ node, getNode, actions }) => {
   if (node.internal.type === 'Mdx') {
     const parent = getNode(node.parent);
-    let slug = [
+    const slug = [
       parent.relativeDirectory,
       parent.name === 'index' ? '' : parent.name,
     ].filter(Boolean).join('/') + '/';
-    if (!slug.startsWith('/')) slug = `/${slug}`;
     actions.createNodeField({
       node,
       name: 'slug',
@@ -37,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
   nodes.forEach(node => {
-    const toPath = node.fields.slug;
+    const toPath = `/${node.fields.slug}`;
     node.frontmatter.redirect_from?.forEach(fromPath => {
       createRedirect({
         fromPath,
