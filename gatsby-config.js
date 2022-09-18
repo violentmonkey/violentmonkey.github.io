@@ -82,6 +82,7 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               backgroundColor: 'transparent',
+              linkImagesToOriginal: false,
             },
           },
           '@gera2ld/gatsby-remark-emoji',

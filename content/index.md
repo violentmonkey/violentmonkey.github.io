@@ -4,6 +4,7 @@ date: 2017-03-13 18:15:24
 ---
 
 import ProjectInfo from '../src/components/project-info';
+import InstallStable from '@/components/install-stable.mdx';
 
 <ProjectInfo title="Violentmonkey" subtitle="An open source userscript manager." />
 
@@ -39,29 +40,13 @@ Therefore, please install only scripts that you trust.
 
 </div>
 
-## Supported Browsers
+## Installation
 
 Violentmonkey is built with web extension APIs, thus supports many browsers.
 
-<div className="icon-list">
+<InstallStable />
 
-- ![Chrome](../src/assets/browsers/chrome.png) Chrome
-- ![Firefox](../src/assets/browsers/firefox.png) Firefox
-- ![Edge](../src/assets/browsers/edge.png) Edge
-- ![Opera](../src/assets/browsers/opera.png) Opera
-- ![Vivaldi](../src/assets/browsers/vivaldi.png) Vivaldi
-- ![Chromium](../src/assets/browsers/chromium.png) More Chromium based browsers
-
-</div>
-
-## Alternatives
-
-<div className="icon-list">
-
-- ![Greasemonkey](../src/assets/alternatives/greasemonkey.png) Greasemonkey
-- ![Tampermonkey](../src/assets/alternatives/tampermonkey.png) Tampermonkey
-
-</div>
+View all versions (including Beta) [here](/get-it/).
 
 ## Contribution
 

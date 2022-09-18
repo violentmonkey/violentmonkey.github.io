@@ -455,7 +455,7 @@ Note: `h` is lowercase (the historical spelling).
 let control = GM_xmlhttpRequest(details)
 ```
 
-- <Field name="details" type="object" />:
+- <Field name="details" type="object" />
 
   - <Field name="url" type="string" />
 

@@ -3,6 +3,9 @@ title: Get Violentmonkey
 date: 2017-03-13 18:16:24
 ---
 
+import InstallStable from '@/components/install-stable.mdx';
+import InstallBeta from '@/components/install-beta.mdx';
+
 Violentmonkey is built with WebExtension APIs. It supports a lot of browsers.
 
 You can either install it from web stores or build from source code.
@@ -13,14 +16,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
 ### Stable Release
 
-<div className="button-list" data-ga-category="webext-stable">
-
-- [![Chrome](../../src/assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
-- [![Firefox](../../src/assets/browsers/firefox.png) Firefox AMO](https://addons.mozilla.org/firefox/addon/violentmonkey/)
-- [![Edge](../../src/assets/browsers/edge.png) Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
-- [![GitHub](../../src/assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey/releases)
-
-</div>
+<InstallStable />
 
 **Note**
 
@@ -31,12 +27,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 The beta version is published more frequently than the stable release, with bug fixes and new features that will be included in the next stable release.
 However it may have bugs and lead to data loss. Please **back up your data** and use it at your own risk.
 
-<div className="button-list" data-ga-category="webext-beta">
-
-- [![Chrome](../../src/assets/browsers/chrome.png) Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg)
-- [![Firefox](../../src/assets/browsers/firefox.png) Firefox AMO](https://github.com/violentmonkey/violentmonkey/releases)
-
-</div>
+<InstallBeta />
 
 ---
 

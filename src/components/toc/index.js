@@ -66,7 +66,7 @@ export default function TOC(props) {
 
   return (
     <section className={`toc ${className || ''}`} ref={ref}>
-      {data && (
+      {data?.items && (
         <>
           <h2>Table of Contents</h2>
           <TOCList items={data.items} />

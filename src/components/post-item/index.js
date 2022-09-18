@@ -11,7 +11,7 @@ export default function PostItem(props) {
   return (
     <div className="mb-8">
       <h2>
-        <Link className="text-gray-700" to={slug}>
+        <Link className="text-gray-700" to={`/${slug}`}>
           {title}
         </Link>
       </h2>

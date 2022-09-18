@@ -12,7 +12,7 @@ export default function PostsPage({ location }) {
     query {
       allMdx(
         limit: 100
-        filter: { fields: { slug: { regex: "/^/posts//" } } }
+        filter: { fields: { slug: { regex: "/^posts//" } } }
         sort: { order: DESC, fields: [frontmatter___date] }
       ) {
         nodes {
