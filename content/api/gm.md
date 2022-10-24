@@ -519,6 +519,8 @@ let control = GM_xmlhttpRequest(details)
 
     When set to `true`, no cookie will be sent with the request and since VM2.12.5 the response cookies will be ignored.
 
+    When absent, an inverted value of Greasemonkey4-compatible `withCredentials` is used. Note that Violentmonkey sends cookies by default, like Tampermonkey, but unlike Greasemonkey4 (same-origin `url` only).
+
   Event handlers:
 
   - <Field name="onabort?" type="() => void" />
@@ -550,6 +552,10 @@ The response object is passed to each event handler with the following propertie
 - <Field name="responseHeaders" type="string" />
 - <Field name="response" type="string | Blob | ArrayBuffer | Document | object | null" />
 - <Field name="responseText" type="string | undefined" />, only provided when available
+- <Field name="responseXML" type="Document | null" comment="since VM2.13.4" />, only provided when available
+- <Field name="lengthComputable" type="boolean" />, only provided when available
+- <Field name="loaded" type="number" />, only provided when available
+- <Field name="total" type="number" />, only provided when available
 - <Field name="finalUrl" type="string" />, the final URL after redirection
 - <Field name="context" type="any" />, the same `context` object you specified in `details`
 
