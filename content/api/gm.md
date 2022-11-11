@@ -503,7 +503,7 @@ let control = GM_xmlhttpRequest(details)
 
     Time to wait for the request, none by default.
 
-  - <Field name="data?" type="string | FormData | Blob" />
+  - <Field name="data?" type="string | ArrayBuffer | Blob | DataView | FormData | ReadableStream | TypedArray | URLSearchParams" />
 
     Data to send with the request, usually for `POST` and `PUT` requests.
 
@@ -577,21 +577,28 @@ Downloads a URL to a local file.
   
             The URL to download.
   
-        - <Field name="name?" type="string" />
+        - <Field name="name" type="string" />
   
             The filename to save to. Folders/subpaths aren't supported yet.
   
-        - <Field name="onload?" type="() => void" />
-  
-            Called after the data is downloaded from URL, before writing the file.
-  
-        These are the same as in [GM_xmlhttpRequest](#gm_xmlhttprequest):
+        Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported. 
   
         - <Field name="headers?" type="object" />
-        - <Field name="timeout?" type="number" />
+        - <Field name="timeout?" type="number" comment="since VM2.9.5" />
+        - <Field name="context?" type="any" comment="since VM2.13.4" />
+        - <Field name="user?" type="string" comment="since VM2.13.4" />
+        - <Field name="password?" type="string" comment="since VM2.13.4" />
+        - <Field name="anonymous?" type="boolean" comment="since VM2.13.4" defaultValue="false" />
+        - <Field name="onabort?" type="() => void" comment="since VM2.13.4" />
         - <Field name="onerror?" type="() => void" />
+        - <Field name="onload?" type="() => void" />
+        - <Field name="onloadend?" type="() => void" comment="since VM2.13.4" />
+        - <Field name="onloadstart?" type="() => void" comment="since VM2.13.4" />
         - <Field name="onprogress?" type="() => void" />
+        - <Field name="onreadystatechange?" type="() => void" comment="since VM2.13.4" />
         - <Field name="ontimeout?" type="() => void" />
+
+       The `onload` event handler is called after the data is downloaded from URL, before writing the file.
 
 2. using separate parameters:
 
@@ -603,9 +610,15 @@ Downloads a URL to a local file.
 
       The URL to download.
 
-    - <Field name="name?" type="string" />
+    - <Field name="name" type="string" />
 
       The filename to save to. Folders/subpaths aren't supported yet.
+
+Returns a control object with the following properties, same as [GM_xmlhttpRequest](#gm_xmlhttprequest):
+
+- <Field name="abort" type="() => void" />
+
+  A function to abort the request.
 
 ## GM.*
 
