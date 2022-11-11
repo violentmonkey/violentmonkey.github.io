@@ -503,7 +503,7 @@ let control = GM_xmlhttpRequest(details)
 
     Time to wait for the request, none by default.
 
-  - <Field name="data?" type="string | ArrayBuffer | Blob | DataView | FormData | ReadableStream | Typed Arrays | URLSearchParams" />
+  - <Field name="data?" type="string | ArrayBuffer | Blob | DataView | FormData | ReadableStream | TypedArray | URLSearchParams" />
 
     Data to send with the request, usually for `POST` and `PUT` requests.
 
