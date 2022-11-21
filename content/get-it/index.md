@@ -38,7 +38,7 @@ Maxthon 4 and 5.
 <div className="button-list" data-ga-category="maxthon">
 
 - [![Maxthon](../../src/assets/browsers/maxthon.png) Maxthon extensions](http://extension.maxthon.com/detail/index.php?view_id=1680)
-- [![GitHub](../../src/assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey-mx/releases)
+- [![GitHub](../../src/assets/github.png) GitHub Releases](https://github.com/violentmonkey/violentmonkey/releases)
 
 </div>
 
