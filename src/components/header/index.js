@@ -26,6 +26,12 @@ function Banner() {
 function Header(props) {
   const { matchedNodes, toggle } = SidebarContainer.useContainer();
   const { data } = props;
+  const redirections = data.allMdx.nodes.reduce((prev, item) => {
+    item.frontmatter.redirect_from.forEach(fromUrl => {
+      prev[fromUrl] = `/${item.fields.slug}`;
+    });
+    return prev;
+  }, {});
   const onToggle = (e) => {
     e.stopPropagation();
     toggle();
@@ -54,7 +60,7 @@ function Header(props) {
             <Link
               className="nav-item"
               key={item.path}
-              to={item.path}
+              to={redirections[item.path] || item.path}
               activeClassName="active"
               partiallyActive
             >
@@ -77,6 +83,16 @@ export default (props) => (
             menu {
               label
               path
+            }
+          }
+        }
+        allMdx(filter: { frontmatter: { redirect_from: { ne: null } } }) {
+          nodes {
+            fields {
+              slug
+            }
+            frontmatter {
+              redirect_from
             }
           }
         }
