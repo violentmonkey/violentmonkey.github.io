@@ -45,24 +45,15 @@ async function installBetaFirefox() {
 }
 
 function collectData(target, defaults) {
-  const fields = new Set(['action', 'category', 'label']);
-  const data = {};
-  while (target && fields.size) {
-    for (const field of fields) {
-      const capitalizedField = field[0].toUpperCase() + field.slice(1);
-      const key = `ga${capitalizedField}`;
-      const value = target.dataset?.[key];
-      if (value) {
-        fields.delete(key);
-        data[field] = value;
-      }
-    }
-    target = target.parentNode;
-  }
+  const category = target.closest('[data-ga-category]')?.dataset.gaCategory;
+  const action = target.closest('[data-ga-action]')?.dataset.gaAction;
+  const label = target.closest('[data-ga-label]')?.dataset.gaLabel;
   return {
     category: 'global',
     ...defaults,
-    ...data,
+    ...category && { category },
+    ...action && { action },
+    ...label && { label },
   };
 }
 

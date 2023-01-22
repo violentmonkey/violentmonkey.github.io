@@ -16,17 +16,15 @@ export default function DiscordButton() {
       <iframe
         className="flex-1 w-full"
         src="https://discord.com/widget?id=995346102003965952&theme=dark"
-        allowtransparency="true"
-        frameBorder="0"
         sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
       />
     </div>
   ) : (
-    <div
-      className="fixed bottom-0 right-8 px-8 py-2 bg-blue-500 text-white rounded-t-lg uppercase cursor-pointer"
+    <a
+      className="fixed bottom-0 right-8 px-8 py-2 bg-blue-500 hover:bg-blue-600 text-white hover:text-white rounded-t-lg uppercase cursor-pointer"
       onClick={() => setOpen(true)}
     >
       Open Chat
-    </div>
+    </a>
   );
 }
