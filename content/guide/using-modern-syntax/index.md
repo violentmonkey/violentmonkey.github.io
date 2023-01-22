@@ -16,7 +16,8 @@ In this tutorial we are going to create a project to compile ESNext and other mo
 
 ## Prerequisites
 
-- Make sure you have Node.js >= v12 installed.
+- Node >= 16
+- NPM >= 8.15.0
 
 ## Initialization
 
@@ -54,7 +55,7 @@ Now we should get a project with following structure:
 
 Source code files are kept in `src`, and will be compiled to `dist/index.user.js`.
 
-`src/meta.js` contains the metadata of our script, see [Metadata Block](/api/metadata-block/) for more details.
+`src/meta.js` contains the metadata of our script, see [Metadata Block](/api/metadata-block/) for more details. Do not add actual code to this file.
 
 `src/index.js` is the entrance of our script, other files in `src` can be imported.
 
