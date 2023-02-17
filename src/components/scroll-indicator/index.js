@@ -9,7 +9,8 @@ export default function ScrollIndicator() {
       const scrollTop = document.body.scrollTop || docEl.scrollTop;
       const height = docEl.scrollHeight - docEl.clientHeight;
       const scrolled = scrollTop / height;
-      ref.current.style.transform = `scaleX(${scrolled})`;
+      const scaleX = Math.min(1, scrolled);
+      ref.current.style.transform = `scaleX(${scaleX})`;
     };
     return onScroll(listener);
   });
