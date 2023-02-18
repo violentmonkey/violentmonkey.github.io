@@ -45,11 +45,17 @@ module.exports = {
   plugins: [
     'gatsby-plugin-postcss',
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: 'UA-93752732-1',
-        anonymize: true,
-        exclude: ['/auth_**'],
+        trackingIds: [
+          'G-2E0X3LSCBM',
+        ],
+        gtagConfig: {
+          anonymize_ip: true,
+        },
+        pluginConfig: {
+          exclude: ['/auth_**'],
+        },
       },
     },
     'gatsby-plugin-image',
@@ -88,7 +94,6 @@ module.exports = {
           '@gera2ld/gatsby-remark-emoji',
         ],
         mdxOptions: {
-          remarkPlugins: [require('remark-gfm')],
           rehypePlugins: [esmRequire('rehype-prism-plus')],
         },
       },

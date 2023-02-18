@@ -1,5 +1,4 @@
 import WebFont from 'webfontloader';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import 'prismjs/themes/prism.css';
 
 WebFont.load({
@@ -15,11 +14,9 @@ document.addEventListener('click', e => {
   });
   if (data.category && !data.label) data.label = target.closest('a')?.textContent;
   if (data.label) {
-    trackCustomEvent({
+    window.gtag?.('event', 'click', {
       category: data.category,
-      action: data.action,
       label: data.label,
-      transport: 'beacon',
     });
   }
 

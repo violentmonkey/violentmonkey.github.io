@@ -10,7 +10,6 @@ import InstallStable from '@/components/install-stable.mdx';
 
 <div className="home-buttons" data-ga-category="home-buttons">
   <a href="/get-it/" className="button-primary" data-ga-label="get-started">Get Started</a>
-  <a href="https://gera2ld.space/donate/" className="button-white" target="_blank" rel="noopener noreferrer" data-ga-label="donate">Donate</a>
   <a href="https://github.com/violentmonkey/violentmonkey" className="button-gray" target="_blank" rel="noopener noreferrer" data-ga-label="github">GitHub</a>
 </div>
 

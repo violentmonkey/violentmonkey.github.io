@@ -16,11 +16,9 @@ jobs:
         persist-credentials: false
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
-    - name: Install dependencies
-      run: yarn
+        node-version: 18
     - name: Build
-      run: yarn build
+      run: yarn && yarn build
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
