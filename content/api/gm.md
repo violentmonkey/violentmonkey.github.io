@@ -281,7 +281,8 @@ Opens URL in a new tab.
     - <Field name="url" type="string" />
 
         The URL to open in a new tab. URL relative to current page is also allowed.
-        Note: Firefox does not support data URLs.
+
+        Note that [Firefox disallows](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/create#:~:text=security%20reasons) `data:`, `blob:`, `chrome:`, `file:`, and many `about:` URLs.
 
     - <Field name="options?" type="object" />
 
