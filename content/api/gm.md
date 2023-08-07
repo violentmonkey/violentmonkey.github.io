@@ -394,9 +394,13 @@ Shows an HTML5 desktop notification.
 
             URL of an image to show in the notification.
 
+        - <Field name="silent?" type="boolean" comment="since VM2.15.2, Chrome 70" defaultValue="false" />
+
+            No sounds/vibrations when showing the notification. Only for Chromium-based browsers as of Aug 2023.
+
         - <Field name="onclick?" type="() => void" />
 
-            Callback when the notification is clicked by user.
+            Callback when the notification is clicked by user. As of VM2.15.2 it also forces the notification to be visible until clicked in Chrome which by default hides the notification after a few seconds.
 
         - <Field name="ondone?" type="() => void" />
 
