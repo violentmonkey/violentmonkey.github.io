@@ -1,10 +1,9 @@
 node_modules/
 .cache/
 public/
-npm-debug.log
+*.log
 .eslintcache
 .gatsby-context.js
 .idea
 gatsby-starter-lumen.iml
-yarn.lock
 .vercel

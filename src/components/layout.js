@@ -1,4 +1,5 @@
 import React from 'react';
+import '@unocss/reset/tailwind.css';
 import '@/common/style.css';
 import { SidebarContainer } from '@/common/sidebar';
 import Header from './header';
