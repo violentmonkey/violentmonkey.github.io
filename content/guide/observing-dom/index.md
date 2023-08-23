@@ -26,7 +26,7 @@ If you are looking for an easy and friendly way to observe elements, [@violentmo
   [@violentmonkey/dom][vm-dom] is a library provided by the Violentmonkey team. Nevertheless, it is just pure JavaScript and can be used with other script managers.
 </InfoBox>
 
-Once the library is required, we can use its methods under the `VM` namespace. See [the documentation](https://violentmonkey.github.io/vm-dom/) for more details.
+Once the library is required, we can use its methods under the `VM` namespace. See [the documentation](https://www.jsdocs.io/package/@violentmonkey/dom) for more details.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ If the project is initiated from [our generator](https://github.com/violentmonke
 
 ## Observing
 
-After preparing the requirements, we can observe elements by `VM.observe` ([doc](https://violentmonkey.github.io/vm-dom/functions/observe.html)), which utilizes `MutationObserver` under the hood.
+After preparing the requirements, we can observe elements by `VM.observe` ([doc](https://www.jsdocs.io/package/@violentmonkey/dom#observe)), which utilizes `MutationObserver` under the hood.
 
 For example, prepend `<h1>Profile</h1>` to the dynamically created `<div class="profile">`:
 

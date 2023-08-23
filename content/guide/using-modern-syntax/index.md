@@ -1,14 +1,12 @@
 ---
-title: Modern syntax
-date: 2020-03-08 23:31:12+0800
+title: Modern Syntax
+date: 2023-08-23 23:31:12+0800
 sidebar:
   match: /guide/
   order: 1
 ---
 
-A userscript runs in a browser, so it can only contain syntax that is supported by the browser.
-
-Violentmonkey itself is built for modern browsers, to be precise, for Chrome >= 55 and Firefox >= 53. So if your browser has Violentmonkey, it is likely it also supports many ES6 features natively, for example, arrow functions (`=>`), Promises, block-scoped variables, template literals (`` `hello, ${name}` ``), etc.
+Violentmonkey itself is built for modern browsers, to be precise, for Chrome >= 57 and Firefox >= 57. So if your browser has Violentmonkey, it is likely it also supports many ES6 features natively, for example, async / await, block-scoped variables, etc.
 
 However, there are many more cool features that are not fully supported by browsers, or some features such as TypeScript and ES modules that won't be supported in userscripts natively.
 
@@ -16,7 +14,7 @@ In this tutorial we are going to create a project to compile ESNext and other mo
 
 ## Prerequisites
 
-- Node >= 16
+- Node >= 18
 - NPM >= 8.15.0
 
 ## Initialization
@@ -36,20 +34,22 @@ $ npx -p github:violentmonkey/generator-userscript -p yo yo @violentmonkey/users
 
 Under the hood, we use Yeoman to create a project with JavaScript toolchain, compiling source code with Babel, and bundling them with Rollup. See [generator-userscript](https://github.com/violentmonkey/generator-userscript) for more details.
 
-## Development
-
-Now we should get a project with following structure:
+Now we should get a project with the following structure:
 
 ```text
 ├── dist
 ├── src
-│  ├── app.js
-│  ├── index.js
+│  ├── app.tsx
+│  ├── index.ts
 │  ├── meta.js
+│  ├── style.css
 │  └── style.module.css
 ├── babel.config.js
-├── .eslintrc.js
 ├── package.json
+├── postcss.config.cjs
+├── rollup.config.mjs
+├── tsconfig.json
+├── uno.config.ts
 └── README.md
 ```
 
@@ -57,9 +57,9 @@ Source code files are kept in `src`, and will be compiled to `dist/index.user.js
 
 `src/meta.js` contains the metadata of our script, see [Metadata Block](/api/metadata-block/) for more details. Do not add actual code to this file.
 
-`src/index.js` is the entrance of our script, other files in `src` can be imported.
+`src/index.ts` is the entrance of our script, other files in `src` can be imported.
 
-### Compiling and Watching
+### Development
 
 ```bash
 $ npm run dev
@@ -81,83 +81,68 @@ The version and author of our userscript will be synced with that in `package.js
 
 ## Features
 
-With Babel and plenty of plugins, we can easily use cool ESNext features. All features included in [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) are supported.
+We have quite a few lovely features enabled by default:
 
-### JSX
+- TypeScript
+- CSS modules (applied to files ending with `.module.css`)
+- [UnoCSS](https://unocss.dev/)
+- [SolidJS](https://www.solidjs.com/)
 
-[JSX](https://facebook.github.io/jsx/) is usually bound with React, compiled to React Nodes. However, we can port the syntax to DOM and facilitate DOM operations, which is exactly what [@violentmonkey/dom](https://github.com/violentmonkey/vm-dom) does.
+Of course you don't have to use all these features. If you don't like them, you can simply ignore them or opt out by removing the plugins.
 
-To use JSX, we need to require a JSX runtime first. Add this in `src/meta.js`:
+### CSS modules
 
-```js {3}
-// ==UserScript==
-// ...
-// @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
-// ==/UserScript==
-```
+Both global CSS (e.g. `style.css`) and CSS modules (e.g. `style.module.css`) are supported.
 
-Then we can operate DOM elements easily:
+A userscript usually works in different websites which may not be maintained by the script developer. So if the script provides independent UI in the website, it must be careful not to break the website and not to be broken by the website. We have two choices, shadow DOM and CSS modules.
 
-```js
-document.body.append(VM.m(<div>hello, world</div>));
-```
+- Shadow DOM:
+  - Pros: Neat class names, no repeated prefix.
+  - Cons: It doesn't always work because the CSS can only be injected inside the shadow DOM root, which **may be blocked by the CSP**.
+- CSS modules:
+  - Pros: It can **bypass the CSP issue** because the CSS can be injected with the `GM_addStyle` API.
+  - Cons: More code required, less readable class names in the DOM.
 
-Note that `VM.m` is required to transform virtual DOM to real DOM elements. See [documentation](https://violentmonkey.github.io/vm-dom/) for more details.
+So if you expect your script to work in many different websites including those protected by CSP, CSS modules might be a better choice. Otherwise use global CSS with shadow DOM for simplicity.
 
-### CSS
+### UnoCSS
 
-CSS in this project will be handled by [rollup-plugin-postcss](https://github.com/egoist/rollup-plugin-postcss), enhanced by [Tailwind CSS](https://tailwindcss.com/) which will be discussed later.
+UnoCSS is similar to TailwindCSS but arguably more flexible and reliable.
 
-Compiled CSS string can be imported:
+At the time of writing, TailwindCSS does not work well for userscripts, because it either injects reset CSS breaking the style of the host, or misses default values leading to invalid CSS output. This is a bug and has occurred before.
 
-```js
-// global CSS
-import globalCss from './style.css';
+By using UnoCSS or its alternatives, **the effort of maintaining CSS code is significantly reduced**.
 
-const style = document.createElement('style');
-style.textContent = globalCss;
-document.head.append(style);
+We just write class names based on what we need, and the CSS code will be generated automatically. If later we don't need this class name any more, the related CSS code will also be pruned.
 
-// or use with JSX
-document.head.append(VM.m(<style>{globalCss}</style>));
-```
+### SolidJS
 
-### CSS Modules
+SolidJS is a light-weight UI library. It has some similarities with React, but much lighter and easier to use for a small project like a userscript.
 
-CSS modules is enabled automatically for `src/**/*.module.css`. When importing from a `.module.css` file, we get an object as default export, mapping from original class names to hashed class names. The CSS string is imported from a named export `stylesheet`.
+However, SolidJS doesn't have an official UMD or IIFE package. In other words, there is no easy way for us to import SolidJS as a single file resource using `@require`.
 
-```js
-// CSS modules
-import styles, { stylesheet } from './style.module.css';
+We have several options here:
 
-document.head.append(VM.m(<style>{stylesheet}</style>));
-document.body.append(VM.m(<div className={styles.container}>hello, world</div>));
-```
+- Option 1: import it and bundle it in the userscript.
+  - Pros: Simple to go.
+  - Cons: **Bloated userscript size and worse readability**.
 
-```css
-/* style.module.css */
-.container {
-  padding: 8px;
-}
-```
+- Option 2: import it using dynamic import at runtime.
+  - Pros: Better readability, smaller file size.
+  - Cons: **An obvious delay before the UI appears**.
+  - Suggestion: If the delay is acceptable, this might be a good choice.
 
-### Tailwind CSS
+- Option 3: compile SolidJS as a UMD package and use it in different scripts.
 
-[Tailwind CSS](https://tailwindcss.com/) is enabled by default, so you can easily compose tailwindcss utilities to build your own CSS.
+  This is exactly what I have done in the generator. Check the compiled file at [jsdelivr](https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2/dist/solid.js) and the source code at [@violentmonkey/dom](https://github.com/violentmonkey/vm-dom/blob/master/src/solid.ts).
 
-```css
-body {
-  @apply bg-gray-200;
-}
-```
+  - Pros: Good readability, smaller file size, fast loading, reusable common assets between different scripts.
+  - Cons: Need to maintain an extra file, and it might not always be up-to-date.
 
-However, we are building a userscript which should not pollute the global context too much, so we should only use Tailwind CSS directives in CSS, but not as classes directly in JavaScript or HTML templates.
+Absolutely, every decision involves a trade-off, and ultimately, you have to make your own choices.
 
-## Recap
+## Summary
 
-Thanks to Babel and Rollup, we can use a lot of modern features in a userscript:
+Thanks to the powerful tools, the development of a userscript is getting much smoother.
 
-- ESNext features
-- React-like JSX syntax
-- CSS modules
-- Tailwind CSS
+We can use the generator above to quickly create a new userscript with modern tech stack.
