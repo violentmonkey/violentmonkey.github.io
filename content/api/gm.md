@@ -47,19 +47,19 @@ An object that exposes information about the current userscript. It has followin
     Unlike `navigator.userAgent`, which can be overriden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
 
     - <Field name="arch" type="string" />
-    
+
         One of "arm", "mips", "mips64", "x86-32", "x86-64".
-            
+
     - <Field name="browserName" type="string" />
-    
+
         "chrome", "firefox" or whatever was returned by the API.
 
     - <Field name="browserVersion" type="string" />
 
     - <Field name="os" type="string" />
-    
+
         One of "android", "cros", "linux", "mac", "openbsd", "win".
-             
+
 - <Field name="script" type="object" />
 
     Contains structured fields from the [Metadata Block](../metadata-block/):
@@ -231,8 +231,8 @@ let element2 = GM_addElement(parentNode, tagName, attributes);
 
 * <Field name="attributes?" type="object" />
 
-    The keys are HTML attributes, not DOM properties, except `textContent` which sets DOM property `textContent`. The values are strings so if you want to assign a private function to `onload` you can do it after the element is created. 
-  
+    The keys are HTML attributes, not DOM properties, except `textContent` which sets DOM property `textContent`. The values are strings so if you want to assign a private function to `onload` you can do it after the element is created.
+
 Examples:
 ```js
 // using a private function in `onload`
@@ -289,22 +289,22 @@ Opens URL in a new tab.
         - <Field name="active" type="boolean" defaultValue="true" />
 
             Make the new tab active (i.e. open in foreground).
-            
+
         - <Field name="container?" type="number" comment="since VM2.12.5, Firefox-only" />
-                  
+
             Set [tab's container](https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers) in Firefox:
             * not specified = reuse script's tab container
             * `0` = default (main) container
             * `1`, `2`, etc. = internal container index
 
         - <Field name="insert" type="boolean" comment="since VM2.11.0" defaultValue="true" />
-         
+
             Insert the new tab next to the current tab and set its "openerTab" so when it's closed the original tab will be focused automatically. When `false` or not specified, the usual browser behavior is to open the tab at the end of the tab list.
 
         - <Field name="pinned" type="boolean" comment="since VM2.12.5" defaultValue="false" />
-                  
+
             Pin the tab (i.e. show without a title at the beginning of the tab list).
-            
+
 2. Using a boolean, compatible with Greasemonkey:
 
     ```js
@@ -354,7 +354,7 @@ const id = GM_registerMenuCommand(caption, onClick)
 
     When the command is clicked in the menu, this function will run with the following parameter:
 
-    * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on. 
+    * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on.
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
 
@@ -397,6 +397,16 @@ Shows an HTML5 desktop notification.
         - <Field name="silent?" type="boolean" comment="since VM2.15.2, Chrome 70" defaultValue="false" />
 
             No sounds/vibrations when showing the notification. Only for Chromium-based browsers as of Aug 2023.
+
+        - <Field name="tag?" type="string" comment="since VM2.15.4"/>
+
+            Unique name of the notification, e.g. 'abc', same as the web Notification API. Names are scoped to each userscript i.e. your tag won't clash with another script's tag.
+
+            The purpose of a tagged notification is to replace an older notification with the same tag, even if it was shown in another tab (or before this tab was navigated elsewhere and your notification had `zombieTimeout`).
+
+        - <Field name="zombieTimeout?" type="number" comment="since VM2.15.4" defaultValue="0"/>
+
+            Number of milliseconds to keep the notification after the userscript "dies", i.e. when its tab or frame is reloaded/closed/navigated. If not specified or invalid, the default behavior is to immediately remove the notifications.
 
         - <Field name="onclick?" type="() => void" />
 
@@ -536,7 +546,7 @@ let control = GM_xmlhttpRequest(details)
   - <Field name="onprogress?" type="() => void" />
   - <Field name="onreadystatechange?" type="() => void" />
   - <Field name="ontimeout?" type="() => void" />
-  
+
   Each event handler is a *function* that accepts one argument `responseObject`
 
 > Note:
@@ -579,15 +589,15 @@ Downloads a URL to a local file.
     - <Field name="options" type="object" />:
 
         - <Field name="url" type="string" />
-  
+
             The URL to download.
-  
+
         - <Field name="name" type="string" />
-  
+
             The filename to save to. Folders/subpaths aren't supported yet.
-  
-        Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported. 
-  
+
+        Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported.
+
         - <Field name="headers?" type="object" />
         - <Field name="timeout?" type="number" comment="since VM2.9.5" />
         - <Field name="context?" type="any" comment="since VM2.13.4" />
