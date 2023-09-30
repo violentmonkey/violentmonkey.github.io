@@ -42,6 +42,10 @@ An object that exposes information about the current userscript. It has followin
 
     Version of Violentmonkey.
 
+- <Field name="isIncognito" type="boolean" comment="since VM2.12.4" />
+
+  Whether the browser is in Private mode.
+
 - <Field name="platform" type="object" comment="since VM2.12.4" />
 
     Unlike `navigator.userAgent`, which can be overriden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
