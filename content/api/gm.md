@@ -42,7 +42,7 @@ An object that exposes information about the current userscript. It has followin
 
     Version of Violentmonkey.
 
-- <Field name="isIncognito" type="boolean" comment="since VM2.12.4" />
+- <Field name="isIncognito" type="boolean" comment="since VM2.15.4" />
 
   Whether the browser is in Private mode.
 
