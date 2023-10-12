@@ -44,7 +44,7 @@ An object that exposes information about the current userscript. It has followin
 
 - <Field name="isIncognito" type="boolean" comment="since VM2.15.4" />
 
-  Whether the browser is in Private mode.
+    True when this is an incognito profile (Chrome) or private mode (Firefox).
 
 - <Field name="platform" type="object" comment="since VM2.12.4" />
 
