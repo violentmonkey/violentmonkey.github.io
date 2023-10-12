@@ -342,8 +342,14 @@ Registers a command in Violentmonkey popup menu.
 
 ```js
 GM_registerMenuCommand(caption, onClick)
+```
+```js
 // v2.12.5 and newer return an `id` equal to `caption` for compatibility with TM
 const id = GM_registerMenuCommand(caption, onClick)
+```
+```js
+// v2.15.9 and newer return an `id` from options or a generated random id
+const id = GM_registerMenuCommand(caption, onClick, { id: 'foo' })
 ```
 
 - <Field name="caption" type="string" />
@@ -355,6 +361,19 @@ const id = GM_registerMenuCommand(caption, onClick)
     When the command is clicked in the menu, this function will run with the following parameter:
 
     * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on.
+
+- <Field name="options?" type="object" comment="since VM2.15.9" />
+
+    * <Field name="id?" type="string" />
+      If not specified, a new random id is generated.
+
+    * <Field name="title?" type="string" />
+      A hint shown in the status bar when hovering the command.
+
+    * <Field name="autoClose?" type="boolean" defaultValue="true" />
+      Whether to auto-close the popup after the user invoked the command.
+
+    The name to show in the popup menu.
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
 
