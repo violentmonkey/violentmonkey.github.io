@@ -349,13 +349,13 @@ const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
 v2.15.9 and newer returns a randomly generated id or the `id` specified in the third parameter (previously v2.12.5...2.15.8 returned an `id` equal to `caption`), which allows changing the command in-place without recreating it:
 ```js
 const id = 'status';
-const inplace = id === GM_registerMenuCommand('Enabled', callback, { id });
+const inplace = id === GM_registerMenuCommand('Enabled', onClick, { id });
 // .......later:
-if (inplace) { // change the command in-place
-  GM_registerMenuCommand('Disabled', callback, { id, title: 'Status' });
-} else { // re-create the command if in-place modification is not supported
+if (inplace) { // change the command in-place if supported
+  GM_registerMenuCommand('Disabled', onClick, { id, title: 'Status' });
+} else { // ...or re-create it otherwise
   GM_unregisterMenuCommand('Enabled');
-  GM_registerMenuCommand('Disabled', callback);
+  GM_registerMenuCommand('Disabled', onClick);
 }
 ```
 
