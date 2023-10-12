@@ -292,3 +292,11 @@ main {
     @apply mb-0;
   }
 }
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.operator,
+.token.url {
+  background: none; /* removing the weird highlighted background from prismjs default theme */
+}

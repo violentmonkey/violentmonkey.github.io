@@ -1,4 +1,5 @@
 import WebFont from 'webfontloader';
+// This theme defines a weird highlight on some tokens which we remove in our style.css
 import 'prismjs/themes/prism.css';
 
 WebFont.load({
