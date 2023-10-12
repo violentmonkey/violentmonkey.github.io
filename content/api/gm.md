@@ -345,20 +345,44 @@ tabControl.close();
 Registers a command in Violentmonkey popup menu.
 
 ```js
-GM_registerMenuCommand(caption, onClick)
-// v2.12.5 and newer return an `id` equal to `caption` for compatibility with TM
-const id = GM_registerMenuCommand(caption, onClick)
+GM_registerMenuCommand('Text', onClick)
+const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
+const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
+```
+
+v2.15.9 and newer returns a randomly generated id or the `id` specified in the third parameter (previously v2.12.5...2.15.8 returned an `id` equal to `caption`), which allows changing the command in-place without recreating it:
+```js
+const id = 'status';
+const inplace = id === GM_registerMenuCommand('Enabled', onClick, { id });
+// .......later:
+if (inplace) { // change the command in-place if supported
+  GM_registerMenuCommand('Disabled', onClick, { id, title: 'Status' });
+} else { // ...or re-create it otherwise
+  GM_unregisterMenuCommand('Enabled');
+  GM_registerMenuCommand('Disabled', onClick);
+}
 ```
 
 - <Field name="caption" type="string" />
 
-    The name to show in the popup menu.
+    This text will be shown in the popup menu.
 
-- <Field name="onClick" type="() => void" />
+- <Field name="onClick" type="(event) => void" />
 
     When the command is clicked in the menu, this function will run with the following parameter:
 
     * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on.
+
+- <Field name="options?" type="object" comment="since VM2.15.9" />
+
+    * <Field name="id?" type="string" />
+      If not specified, a new random id is generated.
+
+    * <Field name="title?" type="string" />
+      A hint shown in the status bar when hovering the command.
+
+    * <Field name="autoClose?" type="boolean" defaultValue="true" />
+      Whether to auto-close the popup after the user invoked the command.
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
 
@@ -367,12 +391,13 @@ If you want to add a shortcut, please see [vm.shortcut](https://github.com/viole
 Unregisters a command which has been registered to Violentmonkey popup menu.
 
 ```js
-GM_unregisterMenuCommand(caption)
+GM_unregisterMenuCommand(captionOrId)
 ```
 
-- <Field name="caption" type="string" />
+- <Field name="captionOrId" type="string" />
 
-    The name of command to unregister.
+    The caption or id of the command to unregister.
+    See [GM_registerMenuCommand](#gm_registermenucommand) for more info.
 
 ### GM_notification
 
