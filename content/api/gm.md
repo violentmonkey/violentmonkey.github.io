@@ -350,18 +350,7 @@ const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
 const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
 ```
 
-v2.15.9 and newer returns a randomly generated id or the `id` specified in the third parameter (previously v2.12.5...2.15.8 returned an `id` equal to `caption`), which allows changing the command in-place without recreating it:
-```js
-const id = 'status';
-const inplace = id === GM_registerMenuCommand('Enabled', onClick, { id });
-// .......later:
-if (inplace) { // change the command in-place if supported
-  GM_registerMenuCommand('Disabled', onClick, { id, title: 'Status' });
-} else { // ...or re-create it otherwise
-  GM_unregisterMenuCommand('Enabled');
-  GM_registerMenuCommand('Disabled', onClick);
-}
-```
+v2.15.9 and newer returns a randomly generated id or the `id` specified in the third parameter (previously v2.12.5...2.15.8 returned an `id` equal to `caption`), which allows changing the command in-place.
 
 - <Field name="caption" type="string" />
 
@@ -385,6 +374,24 @@ if (inplace) { // change the command in-place if supported
       Whether to auto-close the popup after the user invoked the command.
 
 If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
+
+Here's how you can change the command in-place, thus preserving its relative position in the list of multiple commands:
+```js
+const id = 'status';
+const inplace = id === GM_registerMenuCommand('Enabled', onClick, { id });
+if (inplace) {
+  // supported: change the command in-place using the same `id`
+  GM_registerMenuCommand('Disabled', onClick, { id, title: 'Status' });
+} else {
+  // not supported: recreate the commands
+  GM_unregisterMenuCommand('Enabled');
+  GM_unregisterMenuCommand('Foo');
+  GM_unregisterMenuCommand('Bar');
+  GM_registerMenuCommand('Disabled', onClick);
+  GM_registerMenuCommand('Foo', onClick2);
+  GM_registerMenuCommand('Bar', onClick3);
+}
+```
 
 ### GM_unregisterMenuCommand
 
