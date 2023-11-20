@@ -444,6 +444,10 @@ Shows an HTML5 desktop notification.
 
             Number of milliseconds to keep the notification after the userscript "dies", i.e. when its tab or frame is reloaded/closed/navigated. If not specified or invalid, the default behavior is to immediately remove the notifications.
 
+        - <Field name="zombieUrl?" type="string" comment="since VM2.16.1"/>
+
+            URL to open when a zombie notification is clicked, see `zombieTimeout` for more info.
+
         - <Field name="onclick?" type="() => void" />
 
             Callback when the notification is clicked by user. As of VM2.15.2 it also forces the notification to be visible until clicked in Chrome which by default hides the notification after a few seconds.
