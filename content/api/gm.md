@@ -350,7 +350,7 @@ const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
 const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
 ```
 
-v2.15.9 and newer returns a randomly generated id or the `id` specified in the third parameter (previously v2.12.5...2.15.8 returned an `id` equal to `caption`), which allows changing the command in-place.
+Returns the command's `caption` since VM2.12.5 or `id` since VM2.15.9.
 
 - <Field name="caption" type="string" />
 
@@ -365,7 +365,8 @@ v2.15.9 and newer returns a randomly generated id or the `id` specified in the t
 - <Field name="options?" type="object" comment="since VM2.15.9" />
 
     * <Field name="id?" type="string" />
-      If not specified, a new random id is generated.
+      Default: `caption` text since VM2.16.2.
+      Default in 2.15.9-2.16.1: a randomly generated string.
 
     * <Field name="title?" type="string" />
       A hint shown in the status bar when hovering the command.
