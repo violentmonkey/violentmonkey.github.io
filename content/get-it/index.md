@@ -12,7 +12,7 @@ You can either install it from web stores or build from source code.
 
 ## WebExtension-compatible browsers
 
-Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
+Chrome, Firefox 57+, Edge, Chromium, Brave, Cent, Orion, Opera 15+, Vivaldi, QQBrowser, etc.
 
 ### Stable Release
 
@@ -20,7 +20,7 @@ Chrome, Firefox 57+, Edge, Chromium, Opera 15+, Vivaldi, QQBrowser, etc.
 
 **Note**
 
-- **Opera users** please [install from Chrome Web Store](https://addons.opera.com/en/extensions/details/download-chrome-extension-9/) because the Opera team no longer reviews the extension because they think Violentmonkey is too complicated and they don't have time to review it. 😞
+- **Opera users** please **install from Chrome Web Store** because the Opera team no longer reviews the extension because they think Violentmonkey is too complicated and they don't have time to review it. 😞
 
 ### Beta Release
 
