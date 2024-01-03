@@ -207,12 +207,12 @@ In addition to [GM API](../gm/) the following privileges may be granted:
 
 Decide which context the script will be injected into.
 
-If not set in the metadata block, the default value `page` will be used.
+If not set in the metadata block, the default value `auto` will be used.
 However, you can change the default value in Violentmonkey settings.
 
 Possible values:
 
-- `page` <Label name="default" />
+- `page`
 
     Inject into context of the web page.
 
@@ -228,7 +228,7 @@ Possible values:
     As a result, the script can access and modify the page's DOM,
     but cannot access JavaScript objects of the web page.
 
-- `auto`
+- `auto` <Label name="default" />
 
     Try to inject into context of the web page. If blocked by CSP rules, inject as a content script.
 
