@@ -80,7 +80,7 @@ An object that exposes information about the current userscript. It has followin
 
 - <Field name="injectInto" type="string" comment="since VM2.10.0" />
 
-    The injection mode of current script. See [`@inject-mode`](/api/metadata-block/#inject-into) for more information.
+    The injection mode of current script. See [`@inject-into`](/api/metadata-block/#inject-into) for more information.
 
 ### GM_getValue
 
