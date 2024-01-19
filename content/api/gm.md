@@ -211,7 +211,7 @@ Note: when setting this URL as `src` or `href` of a DOM element, it may fail on 
 
 *Since VM2.13.1*
 
-Appends and returns an element with the specified attributes.
+Appends and returns an element with the specified attributes with the primary purpose of circumventing a strict `Content-Security-Policy` that forbids adding inline code or style.
 
 ```js
 let element1 = GM_addElement(tagName, attributes);
@@ -231,7 +231,7 @@ let element2 = GM_addElement(parentNode, tagName, attributes);
 
 * <Field name="tagName" type="string" />
 
-    A tag name like `'script'`. Any valid HTML tag can be used, but the only motivation for this API was to add `script`, `link`, `style` elements when they are disallowed by a strict `Content-Security-Policy` of the site e.g. github.com, twitter.com.
+    A tag name like `'script'`.
 
 * <Field name="attributes?" type="object" />
 
@@ -254,7 +254,6 @@ let el = GM_addElement(parentElement.shadowRoot, 'iframe', { src: url });
 Notes:
 * The element is returned immediately (synchronously) even with `GM.addElement`, no need for `.then()`, but you can use it if you want, just once though as it's auto-removed to avoid recursion. The API is synchronous because Violentmonkey runs scripts only when the root element appears, so there's always a node to serve as a parent.
 * Invalid arguments will raise an exception, which can be caught using `try {} catch (e) {}`, just like standard DOM API `document.createElement`.
-* This API is experimental in Tampermonkey, and hence subject to change.
 
 ### GM_addStyle
 
