@@ -36,40 +36,37 @@ Install a local script
 
 First make sure the local script is named with a suffix of `.user.js`.
 
-There are two ways to install a local script:
+Then use one of these methods:
 
-- *Easy way:* drag the file into the browser.
+- Drag the file into any Violentmonkey tab or popup.
 
-  It will be recognized by Violentmonkey and loaded in the confirmation page.
+  Requires Chrome/Chromium 86+ and Violentmonkey 2.16+.
 
-  Make sure *"Allow access to file URLs"* is checked in your *Chrome extension settings* (`chrome://extensions`).
+- Drag the file into the browser toolbar or tab label area.
 
-  ![](editor-6.png)
+  * In Chrome-like browsers you must enable *"Allow access to file URLs"* in Violentmonkey's details in `chrome://extensions` page first. Since this is dangerous (any userscript will be able to read any local file via GM_xmlhttpRequest), you may want to use the other methods instead.
 
-  **Note** that due to a [known issue](#known-issues), the *easy way* **won't work for Firefox users**.
+  * In modern Firefox-like browsers don't close the file tab while tracking as it's used to read the contents of the file.
 
-- *Hard way:* start a local HTTP server, then open the local script with a URL like `http://localhost:8080/my-script.user.js`.
+- Set up a server and navigate to `http://localhost:8080/my-script.user.js`.
 
-  One of the best way is to use node/npm's [indexzero/http-server](https://github.com/indexzero/http-server#readme). If you have it installed, just type `http-server -c5` at the directory of your script to start a server.
+  The port number `:8080` may be different or even omitted depending on the server you installed.
+
+  We recommend [indexzero/http-server](https://github.com/indexzero/http-server#readme). Once you install it, just type `http-server -c5` at the directory of your script to start a server. The `-c5` option sets cache time for max-age header to 5 seconds ([more info](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758)), thus forcing a browser to query the server URL every 5 seconds. The caching can be disabled with `-c-1` option.  
 
   Make sure the hostname is `localhost` and the script name ends with `.user.js`.
 
-  **Note** that due to a [known issue](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758), the *hard way* needs to handle caching. In `http-server -c5` option `-c5` sets cache time for max-age header to 5 seconds, thus forcing a browser to query the server URL every 5 seconds. The caching can be disabled with `-c-1` option.
-
 ![](editor-3.png)
 
-Make sure the `track local file` option is checked and then confirm installation.
-
-![](editor-4.png)
+Click `Track external edits` button to confirm installation. You can also make it the default button for local files by ticking the checkbox on the right.
 
 Edit and sync
 ---
 
 After installation, the confirmation page will keep watching the file before the page is closed. Once the file is changed, the new version will be installed automatically. As a result, you edit the script in your favorite editor, and the changes are synced to Violentmonkey immediately.
 
-![](editor-5.png)
+![](editor-4.png)
 
 Known issues
 ---
-- In Firefox Violentmonkey is not allowed to access local files, so we have to start a local HTTP server for tracking. See [this on bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1266960).
 - The older the file is, the more seldom a browser will query it. See [this Violentmonkey's issue](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758).
