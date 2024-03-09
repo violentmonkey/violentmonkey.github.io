@@ -1,13 +1,9 @@
-function esmRequire(name) {
-  return function plugin(opts) {
-    return async (...args) => {
-      const { default: plugin } = await import(name);
-      return plugin(opts)(...args);
-    };
-  };
-}
+import remarkGfm from 'remark-gfm';
+import remarkExternalLinks from 'remark-external-links';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
 
-module.exports = {
+export default {
   siteMetadata: {
     siteUrl: 'https://violentmonkey.github.io/',
     title: 'Violentmonkey',
@@ -66,7 +62,7 @@ module.exports = {
         icon: 'src/assets/vm.png',
       },
     },
-    'gatsby-plugin-offline',
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -79,12 +75,6 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              rel: 'noopener noreferrer',
-            },
-          },
-          {
             resolve: 'gatsby-remark-images',
             options: {
               backgroundColor: 'transparent',
@@ -94,7 +84,11 @@ module.exports = {
           '@gera2ld/gatsby-remark-emoji',
         ],
         mdxOptions: {
-          rehypePlugins: [esmRequire('rehype-prism-plus')],
+          remarkPlugins: [remarkGfm, remarkExternalLinks],
+          rehypePlugins: [
+            rehypeSlug,
+            [rehypePrism, { ignoreMissing: true }],
+          ],
         },
       },
     },
@@ -107,7 +101,6 @@ module.exports = {
     //     query: 'allMdx',
     //   },
     // },
-    // 'gatsby-plugin-meta-redirect',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
