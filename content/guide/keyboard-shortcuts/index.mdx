@@ -32,7 +32,7 @@ Add `@violentmonkey/shortcut` to the [meta block](/api/metadata-block/) of our s
 And access all exports under `VM.shortcut`:
 
 ```js
-VM.shortcut.register('c-i', () => {/* c-i pressed */});
+const { register } = VM.shortcut;
 ```
 
 ### Option 2. Installation
@@ -51,13 +51,11 @@ And use it in our code:
 
 ```js
 import { register } from '@violentmonkey/shortcut';
-
-register('c-i', () => {/* c-i pressed */});
 ```
 
-## Usage
+## Quick Start
 
-Now we can easily register a keyboard shortcut:
+Easily register a keyboard shortcut:
 
 ```js
 VM.shortcut.register('c-i', () => {
@@ -65,7 +63,7 @@ VM.shortcut.register('c-i', () => {
 });
 ```
 
-We can even register a key sequence:
+Register a key sequence:
 
 ```js
 VM.shortcut.register('c-a c-b', () => {
@@ -73,7 +71,7 @@ VM.shortcut.register('c-a c-b', () => {
 });
 ```
 
-We can disable and enable all key bindings at any time:
+Disable and enable all key bindings at any time:
 
 ```js
 // Disable all key bindings temporarily
@@ -82,5 +80,24 @@ VM.shortcut.disable();
 // Re-enable key bindings
 VM.shortcut.enable();
 ```
+
+## Shortcut for Menu Command
+
+Register a menu command with a shortcut:
+
+```js
+const shortcut = 'c-g c-g';
+const name = 'Good Game';
+const handler = () => alert('Good Game!');
+
+// Register menu command
+const menuName = `${name} (${VM.shortcut.reprShortcut(shortcut)})`;
+GM_registerMenuCommand(menuName, handler);
+
+// Register shortcut
+VM.shortcut.register(shortcut, handler);
+```
+
+See [@violentmonkey/shortcut][vm-shortcut] for more advanced usage.
 
 [vm-shortcut]: https://github.com/violentmonkey/vm-shortcut

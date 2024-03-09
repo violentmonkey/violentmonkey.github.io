@@ -373,7 +373,9 @@ Returns the command's `caption` since VM2.12.5 or `id` since VM2.15.9.
     * <Field name="autoClose?" type="boolean" defaultValue="true" />
       Whether to auto-close the popup after the user invoked the command.
 
-If you want to add a shortcut, please see [vm.shortcut](https://github.com/violentmonkey/vm-shortcut).
+<InfoBox>
+  If you want to add a shortcut, please refer to [keyboard shortcut](/guide/keyboard-shortcuts/#shortcut-for-menu-command).
+</InfoBox>
 
 Here's how you can change the command in-place, thus preserving its relative position in the list of multiple commands:
 ```js
