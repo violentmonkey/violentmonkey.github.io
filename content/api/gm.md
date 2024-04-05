@@ -1,5 +1,5 @@
 ---
-title: GM_* APIs
+title: Privileged APIs
 date: 2018-04-25 15:15:15
 path: "/api/gm/"
 redirect_from:
@@ -13,6 +13,26 @@ import { Field } from '@/components/field';
 import { InfoBox } from '@/components/box';
 
 Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them work the same way, `GM.*` [Greasemonkey v4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases were added in VM2.12.0.
+
+## unsafeWindow
+
+`unsafeWindow` is the actual `window` object of the page.
+
+It is useful when [`@grant`](/api/metadata-block/#grant) is declared with anything other than `none`.
+
+- If `@grant none` is declared, or no `@grant` is declared at all:
+
+  Sandbox is disabled, meaning the script can add/modify globals directly without the need to use `unsafeWindow`.
+
+  - **window**: the original `window` object
+  - **unsafeWindow**: the original `window` object
+
+- If any API is declared with `@grant`:
+
+  Sandbox is enabled, meaning the script is executed in an isolated context where `window` is a wrapper of the original `window` object. So you might need `unsafeWindow` if you want to modify a global variable.
+
+  - **window**: a wrapper of the original `window` object, adding a new attribute to `window` does not work if it is expected to be accessed by a script in the original world
+  - **unsafeWindow**: the original `window` object
 
 ## GM_*
 
