@@ -699,12 +699,13 @@ Returns a control object with the following properties, same as [GM_xmlhttpReque
 
 ## GM.*
 
-`GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases:
+`GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases, the `async` functions return a `Promise` that's resolved with the returned value.
 
 * [GM.addStyle](#gm_addstyle)
 * [GM.addElement](#gm_addelement) - *since VM2.13.1*
 * [GM.registerMenuCommand](#gm_registermenucommand) - *since VM2.12.10, GM4.11*
 * [GM.deleteValue](#gm_deletevalue) *(async)*
+* [GM.download](#gm_download) *(async since VM2.18.3)*
 * [GM.getResourceUrl](#gm_getresourceurl) *(async)* - in VM2.12.0...2.13.0 it was misspelled as `GM.getResourceURL`
 * [GM.getValue](#gm_getvalue) *(async)*
 * [GM.info](#gm_info)
@@ -713,6 +714,25 @@ Returns a control object with the following properties, same as [GM_xmlhttpReque
 * [GM.openInTab](#gm_openintab)
 * [GM.setClipboard](#gm_setclipboard)
 * [GM.setValue](#gm_setvalue) *(async)*
-* [GM.xmlHttpRequest](#gm_xmlhttprequest) - note `H` is uppercase
+* [GM.xmlHttpRequest](#gm_xmlhttprequest) *(async since VM2.18.3)*, `H` is uppercase
 
-The `async` functions return a `Promise` that's resolved with the returned value.
+  ```js
+  // compatible with multiple userscript managers
+  GM.xmlHttpRequest({ url, onload: res => {/*....*/} });
+  ```
+  ```js
+  // compatible with multiple userscript managers
+  const res = await new Promise((resolve, reject) => {
+    GM.xmlHttpRequest({ url, onload: resolve, onerror: reject });
+  });
+  ```
+  ```js
+  // VM2.18.3+, TM
+  const res = await GM.xmlHttpRequest({ url });
+  ```
+  ```js
+  // VM2.18.3+, TM
+  const control = GM.xmlHttpRequest({ url });
+  myButton.addEventListener('click', control.abort, { once: true });
+  const res = await control;
+  ```
