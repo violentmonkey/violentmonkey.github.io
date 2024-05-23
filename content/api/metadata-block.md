@@ -137,19 +137,30 @@ Decide when the script will execute.
 
 Several values can be set for `@run-at`:
 
-- `document-end` <Label name="default" />
-
-  The script executes when `DOMContentLoaded` is fired. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
-
 - `document-start`
 
-  The script executes as soon as possible. There is no guarantee for the script to execute before other scripts in the page.
+  The userscript executes as early as possible, `document.documentElement` is present, but may be without either `document.head` or `document.body` or both. Other scripts in the page may run earlier, see the note below.
 
-  Note: in Greasemonkey v3, the script may be ensured to execute even before HTML is loaded, but this is impossible for Violentmonkey as a web extension.
+- `document-body` *(since v2.12.10)*
+
+  The userscript executes after `document.body` appears, possibly with some child elements inside, because detection is asynchronous (using a one-time MutationObserver).
+
+- `document-end` <Label name="default" />
+
+  The userscript executes when `DOMContentLoaded` is fired synchronously. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
 
 - `document-idle`
 
-  The script executes after `DOMContentLoaded` is fired.
+  The userscript executes after `DOMContentLoaded` is fired asynchronously, i.e. after yielding to the previously scheduled callbacks or urgent tasks like rendering. Prefer this mode for scripts that take more than a couple of milliseconds to compile and run (you can see it in devtools performance profiler), so that they don't delay the moment the page becomes usable.
+
+When using `document-start` in Violentmonkey ManifestV2 there's a limited method of ensuring the userscript runs before other scripts in the page:
+
+  * the userscript must use the default [`page` injection mode](#inject-into)
+  * the user must enable `Synchronous page mode` (Chrome/Firefox) or `Alternative page mode` (Firefox only, enabled by default) in Violentmonkey's advanced settings;
+  * the user didn't change the injection mode to `content` in script's editor or script's settings or in Violentmonkey's settings;
+  * the cookies are not explicitly blocked for the site;
+  * it's not the incognito mode;
+  * Firefox-only: the site doesn't block script elements via its CSP;
 
 ### @noframes
 
@@ -174,16 +185,16 @@ If no `@grant` is present, `@grant none` is assumed.
     ```
 
     Sandbox is disabled in this mode, meaning the script can add/modify globals directly without the need to use `unsafeWindow`.
-    
+
 * In case any special API is used, it must be explicitly granted
 
     ```js
     // @grant GM_getValue
     // @grant GM_setValue
     ```
-    
+
     …or for the new `GM.*` API methods *(Since VM2.12.10)*:
-    
+
     ```js
     // @grant GM.getValue
     // @grant GM.setValue
@@ -193,12 +204,12 @@ In addition to [GM API](../gm/) the following privileges may be granted:
 
 * `// @grant window.close`
 
-  *Since VM2.6.2*  
+  *Since VM2.6.2*<br/>
   Allows closing the tab via `window.close()`
 
 * `// @grant window.focus`
 
-  *Since VM2.12.10*  
+  *Since VM2.12.10*<br/>
   Allows focusing the tab via `window.focus()` even if the user didn't interact with it first.
 
 ### @inject-into
