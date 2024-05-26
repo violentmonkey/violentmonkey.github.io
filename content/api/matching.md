@@ -92,3 +92,37 @@ Here is the long version:
 - If neither `@match` nor `@include` rule is defined, the script is assumed to match.
 
 ![match.png](match.png)
+
+Matching SPA sites like fb, github, twitter, youtube
+---
+
+Userscript extensions use the native behavior of the browser - it runs scripts defined by extensions only during the standard "hard" navigation, not during "soft" navigation via history.pushState or replaceState or #hash changes used by many modern [SPA sites](https://en.wikipedia.org/wiki/Single-page_application).
+
+You can verify the type by opening devtools network log, then navigate in this tab (e.g. click a link) and look at the type of the request for this navigation: a `Document` (Chrome) or `HTML` (Firefox) means "hard" navigation i.e. the browser creates a new environment for the page and loads its HTML from the server including its scripts and userscripts from extensions.
+
+**1. Run your userscript on the entire SPA site:**
+```js
+// @match *://www.youtube.com/*
+```
+**2. Then watch for changes** either using [vm-url](https://github.com/violentmonkey/vm-url) or manually:
+
+```js
+onUrlChange();
+
+if (self.navigation) {
+  navigation.addEventListener('navigatesuccess', onUrlChange);
+} else {
+  let u = location.href;
+  new MutationObserver(() => u !== (u = location.href) && onUrlChange())
+    .observe(document, {subtree: true, childList: true});
+}
+
+function onUrlChange() {
+  if (!location.pathname.startsWith('/watch')) {
+    // deactivate();
+    return;
+  }
+  console.log('processing', location.href);
+  // activate();
+}
+```
