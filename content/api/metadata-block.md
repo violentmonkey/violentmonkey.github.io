@@ -133,25 +133,23 @@ Examples:
 
 ### @run-at
 
-Decide when the script will execute.
-
-Several values can be set for `@run-at`:
+Specifies **when** the script will run.
 
 - `document-start`
 
-  The userscript executes as early as possible, `document.documentElement` is present, but may be without either `document.head` or `document.body` or both. Other scripts in the page may run earlier, see the note below.
+  Run as early as possible, `document.documentElement` is present, but may be without either `document.head` or `document.body` or both. Other scripts in the page may run earlier, see the note below.
 
 - `document-body` *(since v2.12.10)*
 
-  The userscript executes after `document.body` appears, possibly with some child elements inside, because detection is asynchronous (using a one-time MutationObserver).
+  Run after `document.body` appears, possibly with some child elements inside, because detection is asynchronous (using a one-time MutationObserver).
 
 - `document-end` <Label name="default" />
 
-  The userscript executes when `DOMContentLoaded` is fired synchronously. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
+  Run when `DOMContentLoaded` is fired, synchronously. At this time, the basic HTML of the page is ready and other resources like images might still be on the way.
 
 - `document-idle`
 
-  The userscript executes after `DOMContentLoaded` is fired asynchronously, i.e. after yielding to the previously scheduled callbacks or urgent tasks like rendering. Prefer this mode for scripts that take more than a couple of milliseconds to compile and run (you can see it in devtools performance profiler), so that they don't delay the moment the page becomes usable.
+  Run after `DOMContentLoaded` is fired, asynchronously, i.e. after yielding to the previously scheduled callbacks or urgent tasks like rendering. Prefer this mode for scripts that take more than a couple of milliseconds to compile and run (you can see it in devtools performance profiler), so that they don't delay the moment the page becomes usable.
 
 When using `document-start` in Violentmonkey ManifestV2 there's a limited method of ensuring the userscript runs before other scripts in the page:
 
