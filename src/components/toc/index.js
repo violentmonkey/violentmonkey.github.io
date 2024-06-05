@@ -32,7 +32,7 @@ export default function TOC(props) {
       // `tableOfContents` from MDX does not support inline markups,
       // as a result the text content may be truncated.
       if (articleRef.current) {
-        const h = articleRef.current.querySelector(`#${id}`);
+        const h = articleRef.current.querySelector(`#${CSS.escape(id)}`);
         if (h) a.textContent = h.textContent.trim();
       }
     });
@@ -42,7 +42,7 @@ export default function TOC(props) {
       const headings = list
         .map((a) => {
           const { id } = a.dataset;
-          const el = articleRef.current.querySelector(`#${id}`);
+          const el = articleRef.current.querySelector(`#${CSS.escape(id)}`);
           return (
             el && {
               id,
