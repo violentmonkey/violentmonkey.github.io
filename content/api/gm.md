@@ -118,6 +118,28 @@ let value = GM_getValue(key, defaultValue)
 
     The default value to return if no value exists in the storage.
 
+### GM_getValues
+
+Retrieves multiple values for current script from storage.
+
+```js
+let values = GM_getValues(['foo', 'bar'])
+let values2 = GM_getValues({ foo: 1, bar: [2] })
+```
+
+- <Field name="what" type="string[] | Object" />
+
+    When providing an array of keys to read, the output will only contain keys that exist in storage:
+    ```js
+    res = { foo: 123, bar: [1, 2, 3] } // all values were in storage
+    res = { foo: 123 } // `bar` is missing
+    ```
+    When providing an object, its keys are names to read from storage and values are the defaults to be used in the output object if the value was not in storage:
+    ```js
+    res = { foo: 123, bar: [1, 2, 3] } // all values were in storage
+    res = { foo: 123, bar: [2] } // `bar` is missing, so your default value is used
+    ```
+
 ### GM_setValue
 
 Sets a key / value pair for current script to storage.
@@ -134,6 +156,20 @@ GM_setValue(key, value)
 
     The value to be stored, which must be *JSON serializable* (string, number, boolean, null, or an array/object consisting of these types) so for example you can't store DOM elements or objects with cyclic dependencies.
 
+### GM_setValues
+
+Writes multiple values to current script's storage.
+
+```js
+GM_setValues({ foo: 1, bar: [1, 2, 3] })
+```
+
+- <Field name="data" type="Object" />
+
+    Each `key:value` pair in the object will be stored individually, so the example above is basically a more efficient version of `GM_setValue('foo', 1); GM_setValue('bar', [1, 2, 3]);`
+
+    Must be *JSON serializable* (see [GM_setValue](#gm_setvalue)).
+
 ### GM_deleteValue
 
 Deletes an existing key / value pair for current script from storage.
@@ -145,6 +181,18 @@ GM_deleteValue(key)
 - <Field name="key" type="string" />
 
     The unique name for `value` within this script.
+
+### GM_deleteValues
+
+Deletes values with the specified keys in current script's storage.
+
+```js
+GM_deleteValues(['foo', 'bar'])
+```
+
+- <Field name="keys" type="string[]" />
+
+    Array of keys to delete.
 
 ### GM_listValues
 
@@ -705,15 +753,18 @@ Returns a control object with the following properties, same as [GM_xmlhttpReque
 * [GM.addElement](#gm_addelement) - *since VM2.13.1*
 * [GM.registerMenuCommand](#gm_registermenucommand) - *since VM2.12.10, GM4.11*
 * [GM.deleteValue](#gm_deletevalue) *(async)*
+* [GM.deleteValues](#gm_deletevalues) *since VM2.19.1 (async)*
 * [GM.download](#gm_download) *(async since VM2.18.3)*
 * [GM.getResourceUrl](#gm_getresourceurl) *(async)* - in VM2.12.0...2.13.0 it was misspelled as `GM.getResourceURL`
 * [GM.getValue](#gm_getvalue) *(async)*
+* [GM.getValues](#gm_getvalues) *since VM2.19.1 (async)*
 * [GM.info](#gm_info)
 * [GM.listValues](#gm_listvalues) *(async)*
 * [GM.notification](#gm_notification)
 * [GM.openInTab](#gm_openintab)
 * [GM.setClipboard](#gm_setclipboard)
 * [GM.setValue](#gm_setvalue) *(async)*
+* [GM.setValues](#gm_setvalues) *since VM2.19.1 (async)*
 * [GM.xmlHttpRequest](#gm_xmlhttprequest) *(async since VM2.18.3)*, `H` is uppercase
 
   ```js
