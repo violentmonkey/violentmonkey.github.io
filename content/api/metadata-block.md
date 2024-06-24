@@ -253,7 +253,6 @@ If supplied, the question mark icon in the user scripts list will link to this.
 
 If supplied, the home icon in the user scripts list will link to this.
 
-
 ### @unwrap
 
 Since VM2.13.1.
@@ -266,3 +265,12 @@ The [`@inject-into`](#inject-into) key is supported as usual.
 A typical use case is direct access to global page variables declared as `const` or `let`. In a standard userscript you would have to create a `script` element yourself explicitly by using `document.createElement` or  [`GM_addElement`](/api/gm/#gm_addelement), then transfer the result via a `CustomEvent` or `unsafeWindow.foo`.
 
 Another use case is migration from other extensions that run your JavaScript code as is, without userscript API.
+
+### @top-level-await
+
+Since VM2.19.2.
+
+Enables top-level `await` in your script. Useful when the rest of your script's code depends on some external event e.g. when waiting for an element using MutationObserver or fetching data from network.
+
+* Avoid using it to import dependencies that should always run; prefer using `@require` and `@resource`.
+* Can't be used with `@unwrap`.
