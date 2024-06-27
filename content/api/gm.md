@@ -120,6 +120,8 @@ let value = GM_getValue(key, defaultValue)
 
 ### GM_getValues
 
+*Since VM2.19.1*
+
 Retrieves multiple values for current script from storage.
 
 ```js
@@ -158,6 +160,8 @@ GM_setValue(key, value)
 
 ### GM_setValues
 
+*Since VM2.19.1*
+
 Writes multiple values to current script's storage.
 
 ```js
@@ -183,6 +187,8 @@ GM_deleteValue(key)
     The unique name for `value` within this script.
 
 ### GM_deleteValues
+
+*Since VM2.19.1*
 
 Deletes values with the specified keys in current script's storage.
 
