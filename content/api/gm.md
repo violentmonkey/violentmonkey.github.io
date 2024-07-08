@@ -124,23 +124,29 @@ let value = GM_getValue(key, defaultValue)
 
 Retrieves multiple values for current script from storage.
 
-```js
-let values = GM_getValues(['foo', 'bar'])
-let values2 = GM_getValues({ foo: 1, bar: [2] })
-```
+1. **Using an array of keys.**
 
-- <Field name="what" type="string[] | Object" />
+    ```js
+    let values = GM_getValues(['foo', 'bar'])
+    ```
 
-    When providing an array of keys to read, the output will only contain keys that exist in storage:
+    | Keys in storage | Result |
+    |-|-|
+    | foo, bar | `{ foo: 123, bar: [1, 2, 3] }` |
+    | foo | `{ foo: 123 }` |
+
+2. **Using an object.**
+
+    Each key is a name to read from storage, the value is the default to be used in the result if the key was not in storage.
+
     ```js
-    res = { foo: 123, bar: [1, 2, 3] } // all values were in storage
-    res = { foo: 123 } // `bar` is missing
+    let values = GM_getValues({ foo: 1, bar: [2] })
     ```
-    When providing an object, its keys are names to read from storage and values are the defaults to be used in the output object if the value was not in storage:
-    ```js
-    res = { foo: 123, bar: [1, 2, 3] } // all values were in storage
-    res = { foo: 123, bar: [2] } // `bar` is missing, so your default value is used
-    ```
+
+    | Keys in storage | Result |
+    |-|-|
+    | foo, bar | `{ foo: 123, bar: [1, 2, 3] }` |
+    | foo | `{ foo: 123, bar: [2] }` |
 
 ### GM_setValue
 
