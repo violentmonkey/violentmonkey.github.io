@@ -77,6 +77,11 @@ li {
   @apply mb-2;
 }
 
+th, td {
+  padding: .25ex 1ex;
+  border-width: 1px;
+}
+
 nav {
   @apply flex items-center h-16 px-4 shadow text-gray-600;
   a {
