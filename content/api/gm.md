@@ -84,6 +84,23 @@ An object that exposes information about the current userscript. It has followin
 
         One of "android", "cros", "linux", "mac", "openbsd", "win".
 
+- <Field name="userAgent" type="string" comment="since VM2.20.2" />
+
+  A safe copy of `navigator.userAgent` from the content script of the extension, so it cannot be overriden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
+
+- <Field name="userAgentData" type="object" comment="since VM2.20.2" />
+
+  A safe copy of `navigator.userAgentData` from the content script of the extension, so it cannot be overriden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
+
+  Only present if the browser actually implements it ([currently](https://caniuse.com/mdn-api_navigator_useragentdata) Chromium-based 90+), because there's no reliable/official polyfill.
+
+  - <Field name="brands" type="Array<{brand: string, version: string}>" />
+  - <Field name="mobile" type="boolean" />
+  - <Field name="platform" type="string" />
+  - <Field name="getHighEntropyValues" type="(hints: string[]) => Promise<Object>" />
+
+  Violentmonkey implements the [official API](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData), including [getHighEntropyValues](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/getHighEntropyValues) function to obtain the extra info asynchronously.
+
 - <Field name="script" type="object" />
 
     Contains structured fields from the [Metadata Block](../metadata-block/):
