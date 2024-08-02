@@ -68,7 +68,7 @@ An object that exposes information about the current userscript. It has followin
 
 - <Field name="platform" type="object" comment="since VM2.12.4" />
 
-    Unlike `navigator.userAgent`, which can be overriden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
+    Unlike `navigator.userAgent`, which can be overridden by other extensions/userscripts or by devtools in device-emulation mode, `GM_info.platform` is more reliable as the data is obtained in the background page of Violentmonkey using a specialized extension API (browser.runtime.getPlatformInfo and getBrowserInfo).
 
     - <Field name="arch" type="string" />
 
@@ -86,11 +86,11 @@ An object that exposes information about the current userscript. It has followin
 
 - <Field name="userAgent" type="string" comment="since VM2.20.2" />
 
-  A safe copy of `navigator.userAgent` from the content script of the extension, so it cannot be overriden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
+  A safe copy of `navigator.userAgent` from the content script of the extension, so it cannot be overridden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
 
 - <Field name="userAgentData" type="object" comment="since VM2.20.2" />
 
-  A safe copy of `navigator.userAgentData` from the content script of the extension, so it cannot be overriden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
+  A safe copy of `navigator.userAgentData` from the content script of the extension, so it cannot be overridden by other extensions/userscripts, but unlike `GM_info.platform` it can be customized in devtools "device emulation" or "network conditions" for this tab.
 
   Only present if the browser actually implements it ([currently](https://caniuse.com/mdn-api_navigator_useragentdata) Chromium-based 90+), because there's no reliable/official polyfill.
 
