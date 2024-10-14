@@ -84,3 +84,16 @@ Known issues
 ---
 
 - Firefox may throttle detection: the older the file is, the longer it takes to detect the changes. See [this report](https://github.com/violentmonkey/violentmonkey/issues/460#issuecomment-434335758).
+- A workaround for instant un-throtteled updates:
+```js
+(...)
+// @grant       GM.xmlHttpRequest
+(...)
+GM.xmlHttpRequest({
+        method: "GET",
+        url: "file:///C:/path/to/script.js",
+        onload: function (response) {
+            eval(response.responseText);
+        }
+});
+```
