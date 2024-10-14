@@ -15,7 +15,17 @@ The metadata must follow the format:
 // @key value
 // ==/UserScript==
 ```
-Each line of the block must start with `//`, the first line must be `// ==UserScript==` and the last line must be `// ==/UserScript==`. No extra space is allowed at the beginning or ending of line.
+Each line of the block must start with `//`, the first line must be `// ==UserScript==` and the last line must be `// ==/UserScript==`.
+
+Make sure to maintain compatibility with various browsers and extensions that can install userscripts:
+
+1. Don't add extraneous text or spaces at the beginning or ending of the metadata comments.
+2. Use exactly one space after `//` in every metadata comment.
+3. Put the metadata comment at the very beginning of the file to support engines like ScriptCat.
+
+Violentmonkey 2.12.0 and newer ignores spaces around the metadata comments.
+
+Violentmonkey 2.26.1 and newer ignores any extraneous text around the metadata comments, just like Tampermonkey or Firemonkey, but there'll be an error message about the broken syntax when installing or editing the script.
 
 Some of the keys can be localized for multiple languages, by adding a colon and the locale code to the key, e.g. `@name:zh-CN`. The locale code is case insensitive.
 
