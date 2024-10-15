@@ -99,5 +99,24 @@ VM.observe(document.body, () => {
   }
 });
 ```
+To add options to the same code one can use the following:
+
+```js
+VM.observe(document.body, () => {
+  // Find the target node
+  const $node = $('.profile');
+
+  if ($node.length) {
+    $node.prepend('<h1>Profile</h1>');
+
+    // disconnect observer
+    return true;
+  }
+}, {
+  childList: true,
+  subtree: true,
+  // any other options here
+});
+```
 
 [vm-dom]: https://github.com/violentmonkey/vm-dom
