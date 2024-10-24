@@ -80,6 +80,14 @@ An object that exposes information about the current userscript. It has followin
 
     - <Field name="browserVersion" type="string" />
 
+    - <Field name="fullVersionList" type="{brand: string, version: string}[]" comment="since VM2.27.0" />
+    
+      A safe copy from `navigator.userAgentData.getHighEntropyValues()` (Chromium 90+).
+
+    - <Field name="mobile" type="boolean" comment="since VM2.27.0" />
+
+      A safe copy from `navigator.userAgentData` (Chromium 90+).
+
     - <Field name="os" type="string" />
 
         One of "android", "cros", "linux", "mac", "openbsd", "win".
