@@ -81,7 +81,7 @@ An object that exposes information about the current userscript. It has followin
     - <Field name="browserVersion" type="string" />
 
     - <Field name="fullVersionList" type="{brand: string, version: string}[]" comment="since VM2.27.0" />
-    
+
       A safe copy from `navigator.userAgentData.getHighEntropyValues()` (Chromium 90+).
 
     - <Field name="mobile" type="boolean" comment="since VM2.27.0" />
@@ -515,7 +515,7 @@ GM_unregisterMenuCommand(captionOrId)
 
 ### GM_notification
 
-Shows an HTML5 desktop notification.
+Shows a desktop notification using the [browser.notifications API](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/notifications).
 
 1. using an object:
 
