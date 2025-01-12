@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          curl -fsS \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -H 'Content-type: application/json' \
+          -H "Authorization: Bearer $GH_PAT_ORG" \
+          -X POST \
+          -d '{"event_type":"build"}' \
+          https://api.github.com/repos/$GH_REPO/dispatches
+        env:
+          GH_PAT_ORG: ${{ secrets.GH_PAT_ORG }}
+          GH_REPO: violentmonkey/violentmonkey-astro
