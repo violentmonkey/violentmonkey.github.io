@@ -1,0 +1,100 @@
+---
+title: Keyboard Shortcuts
+date: 2022-07-29 01:03:04+0800
+sidebar:
+  order: 3
+---
+
+It is a common case to provide a keyboard shortcut for a function in a userscript.
+
+We provided an easy way to achieve this by introducing [@violentmonkey/shortcut][vm-shortcut].
+
+<InfoBox>
+  Note: [@violentmonkey/shortcut][vm-shortcut] is a library provided by the Violentmonkey team, but it is just JavaScript and can be used with other script managers as well. You can find the API reference in its README page.
+</InfoBox>
+
+## Preparation
+
+### Option 1. `@require`
+
+Add `@violentmonkey/shortcut` to the [meta block](/api/metadata-block/) of our script:
+
+```js {3}
+// ==UserScript==
+// ...
+// @require https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1
+// ==/UserScript==
+```
+
+And access all exports under `VM.shortcut`:
+
+```js
+const { register } = VM.shortcut;
+```
+
+### Option 2. Installation
+
+Another way to use this library is to install it with NPM and import it. TypeScript IntelliSense should work out of box in this way, but we will need a bundler to compile our script.
+
+It is highly recommended to use [our generator](https://github.com/violentmonkey/generator-userscript) to initiate a userscript project with modern syntax support.
+
+If we are done with the bundler, we can install [@violentmonkey/shortcut][vm-shortcut] as a dependency:
+
+```bash
+$ npm i @violentmonkey/shortcut
+```
+
+And use it in our code:
+
+```js
+import { register } from '@violentmonkey/shortcut';
+```
+
+## Quick Start
+
+Easily register a keyboard shortcut:
+
+```js
+VM.shortcut.register('c-i', () => {
+  console.log('You just pressed Ctrl-I');
+});
+```
+
+Register a key sequence:
+
+```js
+VM.shortcut.register('c-a c-b', () => {
+  console.log('You just pressed Ctrl-A Ctrl-B sequence');
+});
+```
+
+Disable and enable all key bindings at any time:
+
+```js
+// Disable all key bindings temporarily
+VM.shortcut.disable();
+
+// Re-enable key bindings
+VM.shortcut.enable();
+```
+
+## Shortcut for Menu Command
+
+Register a menu command with a shortcut:
+
+```js
+const shortcut = 'c-g c-g';
+const name = 'Good Game';
+const handler = () => alert('Good Game!');
+
+// Register menu command
+const menuName = `${name} (${VM.shortcut.reprShortcut(shortcut)})`;
+GM_registerMenuCommand(menuName, handler);
+
+// Register shortcut
+VM.shortcut.register(shortcut, handler);
+```
+
+See [@violentmonkey/shortcut][vm-shortcut] for more advanced usage.
+
+[vm-shortcut]: https://github.com/violentmonkey/vm-shortcut

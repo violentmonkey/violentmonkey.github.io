@@ -3,13 +3,6 @@ title: How to edit scripts with your favorite editor?
 date: 2017-03-14 14:37:09
 tags:
   - editor
-  - crx
-  - nex
-  - oex
-  - mx
-path: /posts/how-to-edit-scripts-with-your-favorite-editor/
-redirect_from:
-  - /2017/03/14/How-to-edit-scripts-with-your-favorite-editor/
 ---
 
 Since Violentmonkey is a lightweight script manager by design, its editor is simple and offers just a few options. It doesn't try to replicate a full-featured editor or IDE, which is problematic anyway due to browser's hardcoded hotkeys and other restrictions.
