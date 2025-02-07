@@ -37,7 +37,7 @@ You can use any of these methods listed in the order of increasing complexity:
 
 ⚠ Only implemented in Chrome/Chromium 86 or newer and Violentmonkey 2.16 or newer.
 
-⚡ In up-to-date Chrome you can improve performance of detection using the cutting edge FileSystemObserver API: navigate to `chrome://flags/#enable-experimental-web-platform-features` and enable the flag, then restart the browser. This is a one-time setup until the API becomes stable.
+⚡ Chromium 133 and newer improves performance of detection via `FileSystemObserver` API. Chromium 129-132 can use it too if you go to `chrome://flags/#enable-experimental-web-platform-features` and enable this flag, then restart the browser.
 
 ⚡ If you assigned a hotkey to activate Violentmonkey in the browser's options for extensions, you can press it while dragging the file, which opens the extension's popup into which you can drop the dragged file.
 
