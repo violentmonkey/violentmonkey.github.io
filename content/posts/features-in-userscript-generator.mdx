@@ -6,9 +6,9 @@ path: /posts/features-in-userscript-generator/
 
 [Userscript Generator](https://github.com/violentmonkey/generator-userscript) is a Yeoman generator to quickly initiate a new project for a userscript.
 
-<InfoBox>
-See [Using modern syntax](/guide/using-modern-syntax/) for the usage.
-</InfoBox>
+> [!TIP]
+>
+> See [Using modern syntax](/guide/using-modern-syntax/) for the usage.
 
 In this post we will dive into each feature and see why and how we use it, and whether we have different choices.
 
@@ -46,10 +46,12 @@ However, SolidJS doesn't have an official UMD or IIFE package. In other words, t
 We have several options here:
 
 - Option 1: import it and bundle it in the userscript.
+
   - Pros: Simple to go.
   - Cons: **Bloated userscript size and worse readability**.
 
 - Option 2: import it using dynamic import at runtime.
+
   - Pros: Better readability, smaller file size.
   - Cons: **An obvious delay before the UI appears**.
   - Suggestion: If the delay is acceptable, this might be a good choice.
