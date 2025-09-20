@@ -10,7 +10,7 @@ We have automated weekly synchronization from Transifex, so the translations wil
 ## Transifex (Recommended)
 
 [👉🏻 Start translating or fix an existing translation.
-](https://www.transifex.com/violentmonkey/violentmonkey-nex/)
+](https://explore.transifex.com/violentmonkey/violentmonkey-nex/)
 
 ## Pull Requests
 
