@@ -594,7 +594,7 @@ let control = GM_xmlhttpRequest(details)
 
     When absent, an inverted value of Greasemonkey4-compatible `withCredentials` is used. Note that Violentmonkey sends cookies by default, like Tampermonkey, but unlike Greasemonkey4 (same-origin `url` only).
 
-  Event handlers:
+  Event handlers are functions that receive the response object detailed further down below:
 
   - <Field name="onabort?" type="() => void" />
   - <Field name="onerror?" type="() => void" />
@@ -605,7 +605,9 @@ let control = GM_xmlhttpRequest(details)
   - <Field name="onreadystatechange?" type="() => void" />
   - <Field name="ontimeout?" type="() => void" />
 
-  Each event handler is a *function* that accepts one argument `responseObject`
+  - <Field name="upload?" type="Object" comment="since VM2.32.0" />
+
+    Contains event handlers to track upload progress of your `data`, same as the event handlers above.
 
 > [!NOTE]
 >
