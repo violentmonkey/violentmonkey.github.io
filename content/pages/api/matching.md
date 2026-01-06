@@ -89,7 +89,44 @@ Here is the long version:
 - If no `@match` rule is defined, we fallback to `@include` rules and the script matches only if some of the `@include` rules match.
 - If neither `@match` nor `@include` rule is defined, the script is assumed to match.
 
-![match.png](match.png)
+```mermaid
+graph TD
+    Start([A script]) --> D1{ }
+
+    %% Exclude Match Decision
+    D1 -- "Any `@exclude-match` rule matches?" --> D1_Result{ }
+    D1_Result -- Yes --> Unmatch
+    D1_Result -- No --> D2
+
+    %% Exclude Decision
+    D2{ } -- "Any `@exclude` rule matches?" --> D2_Result{ }
+    D2_Result -- Yes --> Unmatch
+    D2_Result -- No --> D3
+
+    %% Match Defined Decision
+    D3{ } -- "Any `@match` rule defined?" --> D3_Result{ }
+
+    %% Path: Match is defined
+    D3_Result -- Yes --> D4{ }
+    D4 -- "Any `@match` rule matches?" --> D4_Result{ }
+    D4_Result -- Yes --> Match
+    D4_Result -- No --> Unmatch
+
+    %% Path: Match is NOT defined
+    D3_Result -- No --> D5{ }
+    D5 -- "Any `@include` rule defined?" --> D5_Result{ }
+
+    D5_Result -- No --> Match
+    D5_Result -- Yes --> D6{ }
+
+    D6 -- "Any `@include` rule matches?" --> D6_Result{ }
+    D6_Result -- Yes --> Match
+    D6_Result -- No --> Unmatch
+
+    %% Final Nodes
+    Match["Match<br/>(should execute)"]
+    Unmatch["Unmatch<br/>(should not execute)"]
+```
 
 Matching SPA sites like fb, github, twitter, youtube
 ---
