@@ -180,7 +180,7 @@ When present, the script will execute only in top level document, but not in nes
 
 Specify which special APIs should be granted and can be used when the script executes.
 
-If no `@grant` is present, `@grant none` is assumed.
+* If no `@grant` is present, the script is sandboxed with minimum API access: `GM_info`, `GM.info`, and `unsafeWindow` necessary to modify globals of the webpage. Note that this behavior was only introduced in Violentmonkey 2.32.0 to improve compatibility and match Tampermonkey, whereas previously `@grant none` was assumed.
 
 * In case you don't need special API or sandboxing
 
