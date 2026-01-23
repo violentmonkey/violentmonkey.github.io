@@ -1,0 +1,1 @@
+import{o as r}from"./scroller.CbJqCWlR.js";const c=document.querySelector("[data-scroll-indicator]"),t=()=>{if(!c)return;const o=document.documentElement,l=document.body.scrollTop||o.scrollTop,e=o.scrollHeight-o.clientHeight,n=l/e,s=Math.min(1,n);c.style.scale=`${s} 1`};t();r(t);
