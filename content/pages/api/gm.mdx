@@ -9,23 +9,9 @@ Violentmonkey APIs are derived from those in Greasemonkey v3, and most of them w
 
 ## unsafeWindow
 
-`unsafeWindow` is the actual `window` object of the page.
+It's the original `window` object of the webpage that allows reading or modifying global variables, necessary when the script is sandboxed, because its `window` becomes a wrapper that confines modifications like `window.foo = 123` to this script's scope.
 
-It is useful when [`@grant`](/api/metadata-block/#grant) is declared with anything other than `none`.
-
-- If `@grant none` is declared, or no `@grant` is declared at all:
-
-  Sandbox is disabled, meaning the script can add/modify globals directly without the need to use `unsafeWindow`.
-
-  - **window**: the original `window` object
-  - **unsafeWindow**: the original `window` object
-
-- If any API is declared with `@grant`:
-
-  Sandbox is enabled, meaning the script is executed in an isolated context where `window` is a wrapper of the original `window` object. So you might need `unsafeWindow` if you want to modify a global variable.
-
-  - **window**: a wrapper of the original `window` object, adding a new attribute to `window` does not work if it is expected to be accessed by a script in the original world
-  - **unsafeWindow**: the original `window` object
+Sandboxing is enabled by default and disabled only if `@grant none` is specified, just like in Tampermonkey. Note that in older versions of Violentmonkey (before v2.32) sandboxing was also disabled when there were no `@grant` keys.
 
 ## GM_*
 
