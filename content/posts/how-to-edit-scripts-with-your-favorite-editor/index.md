@@ -5,43 +5,26 @@ tags:
   - editor
 ---
 
-Since Violentmonkey is a lightweight script manager by design, its editor is simple and offers just a few options. It doesn't try to replicate a full-featured editor or IDE, which is problematic anyway due to browser's hardcoded hotkeys and other restrictions.
+Since Violentmonkey is lightweight by design with a simple built-in editor featuring just a few customizations in the extension's options, we encourage you to use an external editor or IDE that's not restricted by browser quirks like the hardcoded hotkeys or performance limitations.
 
-<details>
-<summary>Screenshot of the built-in editor and its options</summary>
+⚡ Simply open the local `.user.js` file in Violentmonkey and enable tracking, so each time you save the file in your external editor the changes are automatically incorporated.
 
-![](editor-1.png)
-
-Customization in the extension's settings:
-
-![](editor-2.png)
-
-</details>
-
-<br/>
-
-Excellent external editors exist and using one to edit scripts in Violentmonkey is relatively simple, no need to reinvent the wheel.
+Now let's dive into the details.
 
 ## 1. One-time preparation
 
 1. Copy the code of the script from Violentmonkey into your editor.
 2. Save it to a file and give it a name ending with `.user.js`
 
-## 2. Open this file in Violentmonkey installer
+## 2. Open `.user.js` file in Violentmonkey installer
 
-⚠ The local file's name must end with `.user.js`, otherwise it won't be recognized by Violentmonkey. The only exception is method 2.1, which recognizes any `.js` file because you explicitly drag it into the extension.
+#### 2.1. Drag `.user.js` file into any Violentmonkey UI page [Chrome only]
 
-You can use any of these methods listed in the order of increasing complexity:
+* Chrome [86 or newer](https://caniuse.com/mdn-api_datatransferitem_getasfilesystemhandle), Violentmonkey 2.16 or newer. This is the most performant method since Chrome 133 that implemented `FileSystemObserver` API to notify of file changes.
 
-#### 2.1. Drag the file into any Violentmonkey tab or popup
+* If you assign a hotkey to activate Violentmonkey in the browser's options for extensions, you can press it *while dragging the file*.
 
-⚠ Only implemented in Chrome/Chromium 86 or newer and Violentmonkey 2.16 or newer.
-
-⚡ Chromium 133 and newer improves performance of detection via `FileSystemObserver` API. Chromium 129-132 can use it too if you go to `chrome://flags/#enable-experimental-web-platform-features` and enable this flag, then restart the browser.
-
-⚡ If you assigned a hotkey to activate Violentmonkey in the browser's options for extensions, you can press it while dragging the file, which opens the extension's popup into which you can drop the dragged file.
-
-#### 2.2. Drag the file into the browser toolbar or tab label area
+#### 2.2. Drag `.user.js` file into the browser toolbar or tab label area
 
   * In Chrome-like browsers you must enable *"Allow access to file URLs"* in Violentmonkey's details in `chrome://extensions` page first. Since this is dangerous (any userscript will be able to read any local file via GM_xmlhttpRequest), you may want to use the other methods instead.
 
@@ -59,7 +42,7 @@ You can use any of these methods listed in the order of increasing complexity:
 
 ## 3. Enable tracking
 
-![](editor-3.png)
+![](track.png)
 
 Click `Track external edits` button to confirm installation and start tracking.
 
@@ -71,9 +54,9 @@ As long as the installer tab is open it will track your local file and install t
 
 * The `Stop tracking` button may be useful for example when temporarily switching branches in your git repo. When finished, you can click `Track external edits` again.
 
-* The `Reload tab` option allows you to switch to another tab with a website [matched](/api/matching/) by this script, so that this tab will be reloaded automatically when changes are detected and this script still matches the tab's URL.
+* The `Reload tab` option will automatically reload the active tab if it contains a website [matched](/api/matching/) by this script when changes are detected.
 
-![](editor-4.png)
+![](tracking.png)
 
 Known issues
 ---
