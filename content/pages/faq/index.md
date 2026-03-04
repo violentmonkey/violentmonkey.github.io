@@ -17,7 +17,7 @@ On Chrome, the extension can write to clipboard in the background even without `
 
 Because `browser.storage.sync` is designed to sync preferences instead of large data, and it cannot sync data between different browsers. In some browsers there is no such API implemented.
 
-According to [the document](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/sync), `browser.storage.sync` is designed to store preferences and sync them to different instances of the same browser with the same user logged in. And something more, up to 100KB of data can be stored and synced.
+According to [the document](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/storage/sync), `browser.storage.sync` is designed to store preferences and sync them to different instances of the same browser with the same user logged in. And something more, up to 100KB of data can be stored and synced.
 
 So the limitations are:
 1. Up to 100KB of data can be stored, even smaller than size of a feature-rich script.
