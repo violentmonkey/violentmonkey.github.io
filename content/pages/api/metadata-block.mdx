@@ -272,6 +272,16 @@ A typical use case is direct access to global page variables declared as `const`
 
 Another use case is migration from other extensions that run your JavaScript code as is, without userscript API.
 
+### @tag
+
+Since VM2.35.2.
+
+    ```js
+    // @tag foo
+    // @tag bar
+    ```
+The tags are shown in the dashboard, in the script editor, and in `GM_info.script.options`.
+
 ### @top-level-await
 
 Since VM2.19.2.
