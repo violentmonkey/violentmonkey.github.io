@@ -8,11 +8,13 @@ redirect_from:
   - /2018/11/23/inject-into-context/
 ---
 
-Since Violentmonkey v2.10.0, a new type of metadata named [`@inject-into`](/api/metadata-block/#inject-into) is introduced. With its help, **scripts can be injected into CSP restricted pages in Firefox now!**
+Violentmonkey v2.10.0 and newer supports [`// @inject-into`](/api/metadata-block/#inject-into) metadata comment so that **the script can be injected into CSP restricted pages in Firefox without suppressing CSP and lowering website security**, although if the scripts accesses global variables of the webpage it will have to add a few tricks as described in [`content`](#mode-content) section below.
+
+The default mode is [`auto`](#mode-auto), you can change it in Violentmonkey's settings. The actual mode can be seen by a userscript in [GM_info.injectInto](/api/#gm_info). The popup also shows a `@` mark since Violentmonkey v2.38.0 for scripts in `content` mode.
 
 ## Contexts
 
-As we know, there are two types of context for a script to execute in:
+Violentmonkey supports 2 types of context for a script to execute in:
 
 - context of a web page
 
@@ -24,77 +26,31 @@ As we know, there are two types of context for a script to execute in:
 
 ## Injection Modes
 
-In earlier versions of Violentmonkey, all scripts will be injected into the *page context*.
-
-This works well at most times in Chrome. However, Firefox works differently. All scripts will be blocked in websites with CSP rules blocking inline scripts, like [GitHub](https://github.com). See issue [#173](https://github.com/violentmonkey/violentmonkey/issues/173), [#408](https://github.com/violentmonkey/violentmonkey/issues/408).
-
-By introducing `@inject-into`, userscripts can be injected in Firefox now. In pages with CSP restrictions, we can inject userscripts into the *content context*.
+In earlier versions of Violentmonkey, all scripts were injected into the *page context*. This works well in Chrome and usually in Firefox except for websites with strict CSP that blocks inline scripts created by a WebExtension, like [GitHub](https://github.com). As a workaround, Violentmonkey can inject userscripts into the *content context*.
 
 ### Mode: `page`
 
-This is the default mode, as the behavior in Violentmonkey v2.9.x.
-
-`unsafeWindow` refers to `window` of the web page.
-
-**Example usage:**
-
-```js
-// ==UserScript==
-// ...
-// @inject-into page
-// ==/UserScript==
-
-// `@inject-into` should be set to `page` since we need to access `window` of page context.
-
-// Accessing objects attached to `window` of page
-alert('Hi, ' + unsafeWindow.context.user);
-```
+Same behavior as in older Violentmonkey. Injection fails in Firefox on sites with strict CSP that forbids inline scripts.
 
 ### Mode: `content`
 
-```js
-// ==UserScript==
-// @inject-into content
-// ==/UserScript==
-```
+Scripts run in the *content context*, a secure "isolated world".
 
-In this mode, scripts will be injected into the *content context*.
+Content userscripts can't access JavaScript objects of the webpage in Chrome and by default in Firefox, but the latter allows you to use `wrappedJSObject`, optionally `cloneInto` and `exportFunction` (see [MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Sharing_objects_with_page_scripts)).
 
-The *content context* is an isolated world, scripts in this context have no access to JavaScript objects from *page context*. But they can communicate with DOM APIs such as `addEventListener`.
+* Universal workaround: DOM messaging via `CustomEvent` (synchronous) or `window.postMessage` (asynchronous).
 
-`unsafeWindow` refers to the `global` object of *content context*.
+* Firefox-only workaround:
 
-**Scripts requiring access to JavaScript objects in the web page will not work in this mode.** For example, `unsafeWindow.jQuery` becomes inaccessible even if jQuery is introduced in the page.
-
+    ```js
+    if (typeof exportFunction === 'function') {
+      const wnd = typeof unsafeWindow === 'object' ? unsafeWindow : window;
+      wnd.wrappedJSObject.foo = 1;
+      wnd.wrappedJSObject.bar = exportFunction(function myFancyApi(x) {
+        return cloneInto({ test: () => x }, wnd, { cloneFunctions: true });
+      });
+    }
+    ```
 ### Mode: `auto`
 
-```js
-// ==UserScript==
-// @inject-into auto
-// ==/UserScript==
-```
-
 In this mode, scripts will be injected into the *page context* if possible. If blocked by CSP, they will be injected into the *content context*. It is the script author's job to check the environments.
-
-**Example usage:**
-
-```js
-// ==UserScript==
-// ...
-// @inject-into auto
-// ==/UserScript==
-
-// `@inject-into` can be set to `auto` if we don't need to access any JavaScript object from page context.
-
-// Accessing JavaScript objects shared in both contexts
-alert('The current page link is ' + window.location.href);
-
-// Accessing DOM
-document.body.style = 'background: orange';
-```
-
-## Violentmonkey Settings
-
-By default, a script will try to execute in the *page context*. In Firefox, this may fail in CSP restricted pages.
-
-You can change the default behavior in the settings tab of Violentmonkey. By changing the *default injection mode* to `auto`, scripts that do not depend on traditional `unsafeWindow` will work again in Firefox.
