@@ -8,7 +8,7 @@ redirect_from:
   - /2018/11/23/inject-into-context/
 ---
 
-Violentmonkey v2.10.0 and newer supports [`// @inject-into`](/api/metadata-block/#inject-into) metadata comment so that **the script can be injected into CSP restricted pages in Firefox without suppressing CSP and lowering website security**, although if the scripts accesses global variables of the webpage it will have to add a few tricks as described in [`content`](#mode-content) section below.
+Violentmonkey v2.10.0 and newer supports [`// @inject-into`](/api/metadata-block/#inject-into) metadata comment to **enable injection on CSP restricted pages in Firefox without suppressing CSP and lowering website security**, although if your script accesses/modifies variables of the webpage you need to make some changes as described in [`content`](#mode-content) section below.
 
 The default mode is [`auto`](#mode-auto), you can change it in Violentmonkey's settings. The actual mode can be seen by a userscript in [GM_info.injectInto](/api/#gm_info). The popup also shows a `C` mark since Violentmonkey v2.38.0 for scripts in `content` mode.
 
