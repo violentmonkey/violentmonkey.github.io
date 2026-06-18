@@ -626,6 +626,13 @@ The response object is passed to each event handler with the following propertie
 
 Downloads a URL to a local file.
 
+By default the download is performed via XMLHttpRequest (like `GM_xmlhttpRequest`).
+When the `nativeDownload` option is enabled, the download is delegated to the browser's
+native download manager instead, skipping XHR entirely.
+
+The native download path can be enabled globally in Violentmonkey's Advanced settings
+or on a per-call basis with the `nativeDownload` option.
+
 1. using an object:
 
     ```js
@@ -644,6 +651,19 @@ Downloads a URL to a local file.
 
         Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported.
 
+        - <Field name="nativeDownload?" type="boolean" comment="since VM2.42.0" defaultValue="false" />
+
+            When `true`, the download is delegated to the browser's native download
+            manager (`browser.downloads.download`).
+
+            Event handlers (`onload`, `onprogress`, etc.) are **not called** when
+            native download is used — there is no XHR response object. Use `onerror`
+            to catch failures, or await the returned Promise when using `GM.download`.
+
+            This option can also be enabled globally in Violentmonkey's settings,
+            in which case every `GM_download` call uses the native path unless
+            `nativeDownload: false` is explicitly set.
+
         - <Field name="headers?" type="object" />
         - <Field name="timeout?" type="number" comment="since VM2.9.5" />
         - <Field name="context?" type="any" comment="since VM2.13.4" />
@@ -659,7 +679,8 @@ Downloads a URL to a local file.
         - <Field name="onreadystatechange?" type="() => void" comment="since VM2.13.4" />
         - <Field name="ontimeout?" type="() => void" />
 
-       The `onload` event handler is called after the data is downloaded from URL, before writing the file.
+       The `onload` event handler is called after the data is downloaded from URL,
+       before writing the file (XHR path only; ignored for native downloads).
 
 2. using separate parameters:
 
@@ -680,6 +701,9 @@ Returns a control object with the following properties, same as [GM_xmlhttpReque
 - <Field name="abort" type="() => void" />
 
   A function to abort the request.
+
+When using `GM.download`, the returned Promise resolves when the download completes
+(on the XHR path) or when the browser starts the native download (on the native path).
 
 ## GM.*
 
