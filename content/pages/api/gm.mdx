@@ -627,11 +627,11 @@ The response object is passed to each event handler with the following propertie
 Downloads a URL to a local file.
 
 By default the download is performed via XMLHttpRequest (like `GM_xmlhttpRequest`).
-When the `nativeDownload` option is enabled, the download is delegated to the browser's
-native download manager instead, skipping XHR entirely.
 
-The native download path can be enabled globally in Violentmonkey's Advanced settings
-or on a per-call basis with the `nativeDownload` option.
+When the **"Use browser download API"** option is enabled in Violentmonkey's Advanced
+settings, the download is delegated to the browser's native download manager
+(`browser.downloads.download`) instead, skipping XHR. This mode allows
+filenames with subfolders and to show progress in the browser's download bar.
 
 1. using an object:
 
@@ -647,22 +647,30 @@ or on a per-call basis with the `nativeDownload` option.
 
         - <Field name="name" type="string" />
 
-            The filename to save to. Folders/subpaths aren't supported yet.
+            The filename to save to. When using the browser download API, subfolder
+            paths (e.g. `"sub/file.txt"`) are supported if using the browser download api.
 
         Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported.
 
-        - <Field name="nativeDownload?" type="boolean" comment="since VM2.42.0" defaultValue="false" />
+        When using the browser download API, the following additional options
+        are also available:
 
-            When `true`, the download is delegated to the browser's native download
-            manager (`browser.downloads.download`).
+        - <Field name="saveAs?" type="boolean" />
 
-            Event handlers (`onload`, `onprogress`, etc.) are **not called** when
-            native download is used — there is no XHR response object. Use `onerror`
-            to catch failures, or await the returned Promise when using `GM.download`.
+            Show a "Save As" dialog regardless of the browser's download preferences.
 
-            This option can also be enabled globally in Violentmonkey's settings,
-            in which case every `GM_download` call uses the native path unless
-            `nativeDownload: false` is explicitly set.
+        - <Field name="conflictAction?" type="string" />
+
+            Action when a file with the same name already exists:
+            `"uniquify"` (default), `"overwrite"`, or `"prompt"`.
+
+        - <Field name="method?" type="string" />
+
+            HTTP method for the download request (e.g. `"GET"`, `"POST"`).
+
+        - <Field name="body?" type="string" />
+
+            Request body to send with the download request.
 
         - <Field name="headers?" type="object" />
         - <Field name="timeout?" type="number" comment="since VM2.9.5" />
@@ -680,7 +688,7 @@ or on a per-call basis with the `nativeDownload` option.
         - <Field name="ontimeout?" type="() => void" />
 
        The `onload` event handler is called after the data is downloaded from URL,
-       before writing the file (XHR path only; ignored for native downloads).
+       before writing the file (XHR path only; ignored when using the browser API).
 
 2. using separate parameters:
 
@@ -694,16 +702,15 @@ or on a per-call basis with the `nativeDownload` option.
 
     - <Field name="name" type="string" />
 
-      The filename to save to. Folders/subpaths aren't supported yet.
+      The filename to save to.
 
 Returns a control object with the following properties, same as [GM_xmlhttpRequest](#gm_xmlhttprequest):
 
 - <Field name="abort" type="() => void" />
 
-  A function to abort the request.
+  A function to abort the request (XHR path only; no-op when using the browser API).
 
-When using `GM.download`, the returned Promise resolves when the download completes
-(on the XHR path) or when the browser starts the native download (on the native path).
+When using `GM.download`, the returned Promise resolves when the download completes.
 
 ## GM.*
 
