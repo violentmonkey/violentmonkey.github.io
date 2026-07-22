@@ -21,6 +21,10 @@ Sandboxing is enabled by default and disabled only if `@grant none` is specified
 
 <TypeDetail name="GM_info" />
 
+### GM_info
+
+<TypeDetail name="GM_cookie" />
+
 ### GM_getValue
 
 Retrieves a value for current script from storage.
@@ -620,60 +624,22 @@ The response object is passed to each event handler with the following propertie
 - <Field name="finalUrl" type="string" />, the final URL after redirection
 - <Field name="context" type="any" />, the same `context` object you specified in `details`
 
-### GM_download
-
 *Since VM2.9.5*
+<TypeDetail name="GM_download" />
 
-Downloads a URL to a local file.
+Using separate parameters:
 
-1. using an object:
+```js
+GM_download(url, name)
+```
 
-    ```js
-    GM_download(options)
-    ```
+- <Field name="url" type="string" />
 
-    - <Field name="options" type="object" />:
+  The URL to download.
 
-        - <Field name="url" type="string" />
+- <Field name="name" type="string" />
 
-            The URL to download.
-
-        - <Field name="name" type="string" />
-
-            The filename to save to. Folders/subpaths aren't supported yet.
-
-        Most [GM_xmlhttpRequest](#gm_xmlhttprequest) options are supported.
-
-        - <Field name="headers?" type="object" />
-        - <Field name="timeout?" type="number" comment="since VM2.9.5" />
-        - <Field name="context?" type="any" comment="since VM2.13.4" />
-        - <Field name="user?" type="string" comment="since VM2.13.4" />
-        - <Field name="password?" type="string" comment="since VM2.13.4" />
-        - <Field name="anonymous?" type="boolean" comment="since VM2.13.4" defaultValue="false" />
-        - <Field name="onabort?" type="() => void" comment="since VM2.13.4" />
-        - <Field name="onerror?" type="() => void" />
-        - <Field name="onload?" type="() => void" />
-        - <Field name="onloadend?" type="() => void" comment="since VM2.13.4" />
-        - <Field name="onloadstart?" type="() => void" comment="since VM2.13.4" />
-        - <Field name="onprogress?" type="() => void" />
-        - <Field name="onreadystatechange?" type="() => void" comment="since VM2.13.4" />
-        - <Field name="ontimeout?" type="() => void" />
-
-       The `onload` event handler is called after the data is downloaded from URL, before writing the file.
-
-2. using separate parameters:
-
-    ```js
-    GM_download(url, name)
-    ```
-
-    - <Field name="url" type="string" />
-
-      The URL to download.
-
-    - <Field name="name" type="string" />
-
-      The filename to save to. Folders/subpaths aren't supported yet.
+  The filename to save to. Folders/subpaths aren't supported yet.
 
 Returns a control object with the following properties, same as [GM_xmlhttpRequest](#gm_xmlhttprequest):
 
@@ -687,6 +653,7 @@ Returns a control object with the following properties, same as [GM_xmlhttpReque
 
 * [GM.addStyle](#gm_addstyle)
 * [GM.addElement](#gm_addelement) - *since VM2.13.1*
+* [GM.cookie](#gm_cookie) - *since VM2.35.1*
 * [GM.registerMenuCommand](#gm_registermenucommand) - *since VM2.12.10, GM4.11*
 * [GM.deleteValue](#gm_deletevalue) *(async)*
 * [GM.deleteValues](#gm_deletevalues) *since VM2.19.1 (async)*
