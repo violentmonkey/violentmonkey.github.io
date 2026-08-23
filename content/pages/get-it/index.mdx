@@ -13,7 +13,15 @@ Chrome, Firefox 57+, Edge, Chromium, Brave, Cent, Orion, Opera 15+, Vivaldi, QQB
 
 ### Stable Release
 
-<InstallStable />
+<div className="install-list" data-ga-category="webext-stable">
+
+<InstallRow href="https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag" icon="i-simple-icons-googlechrome" iconColor="text-[#4285F4]" name="Chrome Web Store" desc="Manifest V3 · for Chrome and Chromium-based browsers" />
+<InstallRow href="https://addons.mozilla.org/firefox/addon/violentmonkey/" icon="i-simple-icons-firefox" iconColor="text-[#FF7139]" name="Firefox Add-ons" desc="Manifest V2 · for Firefox" />
+<InstallRow href="https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao" icon="i-simple-icons-microsoftedge" iconColor="text-[#0078D7]" name="Microsoft Edge Add-ons" desc="Manifest V3 · for Microsoft Edge" />
+<InstallRow href="https://github.com/violentmonkey/violentmonkey/releases" icon="i-simple-icons-googlechrome" iconColor="text-[#4285F4]" name="Signed MV2 (legacy)" desc="Manifest V2 · for legacy or Chromium-based browsers that require MV2" meta="Asset: violentmonkey-mv2-*.crx" redirect="mv2" />
+<InstallRow href="https://github.com/violentmonkey/violentmonkey/releases" icon="i-simple-icons-github" name="GitHub Releases" desc="Builds for every platform" />
+
+</div>
 
 **Note**
 
@@ -24,7 +32,12 @@ Chrome, Firefox 57+, Edge, Chromium, Brave, Cent, Orion, Opera 15+, Vivaldi, QQB
 The beta version is published more frequently than the stable release, with bug fixes and new features that will be included in the next stable release.
 However it may have bugs and lead to data loss. Please **back up your data** and use it at your own risk.
 
-<InstallBeta />
+<div className="install-list" data-ga-category="webext-beta">
+
+<InstallRow href="https://chrome.google.com/webstore/detail/violentmonkey-beta/opokoaglpekkimldnlggpoagmjegichg" icon="i-simple-icons-googlechrome" iconColor="text-[#4285F4]" name="Chrome Web Store" desc="Beta channel · newer features, less stable" />
+<InstallRow href="https://github.com/violentmonkey/violentmonkey/releases" icon="i-simple-icons-firefox" iconColor="text-[#FF7139]" name="Firefox Add-ons" desc="Beta channel · newer features, less stable" redirect="xpi" meta="Asset: violentmonkey-*.xpi" />
+
+</div>
 
 ### Test builds
 
