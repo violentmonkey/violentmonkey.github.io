@@ -7,6 +7,11 @@ sidebar:
 
 Violentmonkey can be managed by AI agents such as Claude through the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Instead of copying code back and forth, you can simply ask the agent to list, create, edit, or fix your userscripts, and it will do so directly.
 
+## Prerequisites
+
+- Violentmonkey >= 2.49.5
+- Node.js >= 24
+
 ## Setup
 
 ### 1. Add the server to your agent
