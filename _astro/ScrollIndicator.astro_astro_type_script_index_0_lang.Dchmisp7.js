@@ -1,0 +1,1 @@
+import{t as e}from"./scroller.CgrPlcP8.js";var t=document.querySelector(`[data-scroll-indicator]`),n=()=>{if(!t)return;let e=document.documentElement,n=(document.body.scrollTop||e.scrollTop)/(e.scrollHeight-e.clientHeight),r=Math.min(1,n);t.style.scale=`${r} 1`};n(),e(n);
