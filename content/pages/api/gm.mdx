@@ -99,31 +99,7 @@ Returns an array of keys of all available values within this script.
 
 Adds a change listener to the storage and returns the listener ID.
 
-```js
-let listenerId = GM_addValueChangeListener(name, callback)
-```
-
-* <Field name="name" type="string" />
-
-    The name of the observed variable
-
-* <Field name="callback" type="(name, oldValue, newValue, remote) => void" />
-
-    * <Field name="name" type="string" />
-
-        The name of the observed variable
-
-    * <Field name="oldValue" type="any" />
-
-        The old value of the observed variable (`undefined` if it was created)
-
-    * <Field name="newValue" type="any" />
-
-        The new value of the observed variable (`undefined` if it was deleted)
-
-    * <Field name="remote" type="boolean" />
-
-        `true` if modified by the userscript instance of another tab or `false` for this script instance. Can be used by scripts of different browser tabs to communicate with each other.
+<TypeDetail name="GM_addValueChangeListener" />
 
 ### GM_removeValueChangeListener
 
@@ -154,7 +130,7 @@ Appends and returns an element with the specified attributes with the primary pu
 <TypeDetail name="GM_addElement" />
 
 Examples:
-```js twoslash
+```js
 // using a private function in `onload`
 const script = GM_addElement('script', { src: 'https://....' });
 script.onload = () => console.log('loaded', script);
@@ -183,63 +159,7 @@ which is still maintained for compatibility, so don't be surprised if you see co
 
 Opens URL in a new tab.
 
-1. using an object
-
-    ```js
-    let tabControl = GM_openInTab(url, options)
-    ```
-
-    - <Field name="url" type="string" />
-
-        The URL to open in a new tab. URL relative to current page is also allowed.
-
-        Note that [Firefox disallows](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/create#:~:text=security%20reasons) `data:`, `blob:`, `chrome:`, `file:`, and many `about:` URLs.
-
-    - <Field name="options?" type="object" />
-
-        - <Field name="active" type="boolean" defaultValue="true" />
-
-            Make the new tab active (i.e. open in foreground).
-
-        - <Field name="container?" type="number" comment="since VM2.12.5, Firefox-only" />
-
-            Set [tab's container](https://wiki.mozilla.org/Security/Contextual_Identity_Project/Containers) in Firefox:
-            * not specified = reuse script's tab container
-            * `0` = default (main) container
-            * `1`, `2`, etc. = internal container index
-
-        - <Field name="insert" type="boolean" comment="since VM2.11.0" defaultValue="true" />
-
-            Insert the new tab next to the current tab and set its "openerTab" so when it's closed the original tab will be focused automatically. When `false` or not specified, the usual browser behavior is to open the tab at the end of the tab list.
-
-        - <Field name="pinned" type="boolean" comment="since VM2.12.5" defaultValue="false" />
-
-            Pin the tab (i.e. show without a title at the beginning of the tab list).
-
-2. Using a boolean, compatible with Greasemonkey:
-
-    ```js
-    let tabControl = GM_openInTab(url, openInBackground)
-    ```
-
-    - <Field name="openInBackground" type="boolean" />
-
-        Open the tab in background.
-        Note, this is a reverse of the first usage method so for example `true` is the same as `{ active: false }`.
-
-Returns an object with following properties:
-
-- <Field name="onclose?" type="() => void" />
-
-    Сan be assigned to a function. If provided, it will be called when the opened tab is closed.
-
-- <Field name="closed" type="boolean" />
-
-    Whether the opened tab is closed.
-
-- <Field name="close" type="() => void" />
-
-    A function to explicitly close the opened tab.
+<TypeDetail name="GM_openInTab" />
 
 ```js
 let tabControl = GM_openInTab(url);
@@ -253,7 +173,7 @@ Registers a command in Violentmonkey popup menu.
 
 <TypeDetail name="GM_registerMenuCommand" />
 
-```js twoslash
+```js
 GM_registerMenuCommand('Text', onClick)
 const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
 const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
@@ -293,79 +213,7 @@ Unregisters a command which has been registered to Violentmonkey popup menu.
 
 Shows a desktop notification using the [browser.notifications API](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/notifications).
 
-1. using an object:
-
-    ```js
-    let control = GM_notification(options)
-    ```
-
-    - <Field name="options" type="object" />
-
-        - <Field name="text" type="string" />
-
-            Main text of the notification.
-
-        - <Field name="title?" type="string" />
-
-            Title of the notification.
-
-        - <Field name="image?" type="string" />
-
-            URL of an image to show in the notification.
-
-        - <Field name="silent?" type="boolean" comment="since VM2.15.2, Chrome 70" defaultValue="false" />
-
-            No sounds/vibrations when showing the notification. Only for Chromium-based browsers as of Aug 2023.
-
-        - <Field name="tag?" type="string" comment="since VM2.15.4"/>
-
-            Unique name of the notification, e.g. 'abc', same as the web Notification API. Names are scoped to each userscript i.e. your tag won't clash with another script's tag.
-
-            The purpose of a tagged notification is to replace an older notification with the same tag, even if it was shown in another tab (or before this tab was navigated elsewhere and your notification had `zombieTimeout`).
-
-        - <Field name="zombieTimeout?" type="number" comment="since VM2.15.4" defaultValue="0"/>
-
-            Number of milliseconds to keep the notification after the userscript "dies", i.e. when its tab or frame is reloaded/closed/navigated. If not specified or invalid, the default behavior is to immediately remove the notifications.
-
-        - <Field name="zombieUrl?" type="string" comment="since VM2.16.1"/>
-
-            URL to open when a zombie notification is clicked, see `zombieTimeout` for more info.
-
-        - <Field name="onclick?" type="() => void" />
-
-            Callback when the notification is clicked by user. As of VM2.15.2 it also forces the notification to be visible until clicked in Chrome which by default hides the notification after a few seconds.
-
-        - <Field name="ondone?" type="() => void" />
-
-            Callback when the notification is closed, either by user or by system.
-
-2. Using separate parameters, compatible with Greasemonkey:
-
-    ```js
-    GM_notification(text, title, image, onclick)
-    ```
-
-    - <Field name="text" type="string" />
-
-        Main text of the notification.
-
-    - <Field name="title?" type="string" />
-
-        Title of the notification.
-
-    - <Field name="image?" type="string" />
-
-        URL of an image to show in the notification.
-
-    - <Field name="onclick?" type="() => void" />
-
-        Callback when the notification is clicked by user.
-
-**As of VM2.12.8** returns a control object with the following properties:
-
-- <Field name="remove" type="() => Promise<void>" />
-
-    A function to remove the notification.
+<TypeDetail name="GM_notification" />
 
 ### GM_setClipboard
 
@@ -379,138 +227,25 @@ Makes a request like XMLHttpRequest, with some special capabilities, not restric
 
 Note: `h` is lowercase (the historical spelling).
 
-```js
-let control = GM_xmlhttpRequest(details)
-```
+<TypeDetail name="GM_xmlhttpRequest" />
 
-- <Field name="details" type="object" />
-
-  - <Field name="url" type="string" />
-
-    URL relative to current page is also allowed.
-
-  - <Field name="method?" type="string" />
-
-    Usually `GET`.
-
-  - <Field name="user?" type="string" />
-
-    User for authentication.
-
-  - <Field name="password?" type="string" />
-
-    Password for authentication.
-
-  - <Field name="overrideMimeType?" type="string" />
-
-    A MIME type to specify with the request.
-
-  - <Field name="headers?" type="object" />
-
-    For example `{ 'name1': 'value1', 'name2': 'value2' }`.
-
-    Some special headers are also allowed:
-
-    - `'Cookie'`
-    - `'Host'`
-    - `'Origin'`
-    - `'Referer'`
-    - `'User-Agent'`
-
-  - <Field name="responseType?" type="string" />
-
-    One of the following:
-
-    - `'text'` :point_left: default
-    - `'json'`
-    - `'blob'`
-    - `'arraybuffer'`
-    - `'document'` *(since VM2.12.0)*
-
-  - <Field name="timeout?" type="number" comment="since VM2.9.5" />
-
-    Time to wait for the request, none by default.
-
-  - <Field name="data?" type="string | ArrayBuffer | Blob | DataView | FormData | ReadableStream | TypedArray | URLSearchParams" />
-
-    Data to send with the request, usually for `POST` and `PUT` requests.
-
-  - <Field name="binary?" type="boolean" comment="since VM2.12.2" />
-
-    Send the `data` string as a `blob`. This is for compatibility with Tampermonkey/Greasemonkey, where only `string` type is allowed in `data`.
-
-  - <Field name="context?" type="any" />
-
-    Can be an object and will be assigned to `context` of the response object.
-
-  - <Field name="anonymous?" type="boolean" comment="since VM2.10.1" defaultValue="false" />
-
-    When set to `true`, no cookie will be sent with the request and since VM2.12.5 the response cookies will be ignored.
-
-    When absent, an inverted value of Greasemonkey4-compatible `withCredentials` is used. Note that Violentmonkey sends cookies by default, like Tampermonkey, but unlike Greasemonkey4 (same-origin `url` only).
-
-  Event handlers are functions that receive the response object detailed further down below:
-
-  - <Field name="onabort?" type="() => void" />
-  - <Field name="onerror?" type="() => void" />
-  - <Field name="onload?" type="() => void" />
-  - <Field name="onloadend?" type="() => void" />
-  - <Field name="onloadstart?" type="() => void" comment="since VM2.12.5" />
-  - <Field name="onprogress?" type="() => void" />
-  - <Field name="onreadystatechange?" type="() => void" />
-  - <Field name="ontimeout?" type="() => void" />
-
-  - <Field name="upload?" type="Object" comment="since VM2.32.0" />
-
-    Contains event handlers to track upload progress of your `data`, same as the event handlers above.
+Event handlers are functions that receive the response object detailed further down below.
 
 > [!NOTE]
 >
 > - `synchronous` is not supported.
 
-Returns a control object with the following properties:
-
-- <Field name="abort" type="() => void" />
-
-  A function to abort the request.
-
 The response object is passed to each event handler with the following properties, most of which are identical to those provided by the standard [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest):
 
-- <Field name="status" type="number" />
-- <Field name="statusText" type="string" />
-- <Field name="readyState" type="number" />
-- <Field name="responseHeaders" type="string" />
-- <Field name="response" type="string | Blob | ArrayBuffer | Document | object | null" />
-- <Field name="responseText" type="string | undefined" />, only provided when available
-- <Field name="responseXML" type="Document | null" comment="since VM2.13.4" />, only provided when available
-- <Field name="lengthComputable" type="boolean" />, only provided when available
-- <Field name="loaded" type="number" />, only provided when available
-- <Field name="total" type="number" />, only provided when available
-- <Field name="finalUrl" type="string" />, the final URL after redirection
-- <Field name="context" type="any" />, the same `context` object you specified in `details`
+<TypeDetail name="VMScriptResponseObject" />
+
+### GM_download
 
 *Since VM2.9.5*
+
+Downloads a URL to a local file.
+
 <TypeDetail name="GM_download" />
-
-Using separate parameters:
-
-```js
-GM_download(url, name)
-```
-
-- <Field name="url" type="string" />
-
-  The URL to download.
-
-- <Field name="name" type="string" />
-
-  The filename to save to. Folders/subpaths aren't supported yet.
-
-Returns a control object with the following properties, same as [GM_xmlhttpRequest](#gm_xmlhttprequest):
-
-- <Field name="abort" type="() => void" />
-
-  A function to abort the request.
 
 ## GM.*
 
