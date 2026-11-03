@@ -29,23 +29,15 @@ Sandboxing is enabled by default and disabled only if `@grant none` is specified
 
 Retrieves a value for current script from storage.
 
-```js
-let value = GM_getValue(key, defaultValue)
-```
-
-- <Field name="key" type="string" />
-
-    The name for `value` to load.
-
-- <Field name="defaultValue" type="any" />
-
-    The default value to return if no value exists in the storage.
+<TypeDetail name="GM_getValue" />
 
 ### GM_getValues
 
 *Since VM2.19.1*
 
 Retrieves multiple values for current script from storage.
+
+<TypeDetail name="GM_getValues" />
 
 1. **Using an array of keys.**
 
@@ -60,8 +52,6 @@ Retrieves multiple values for current script from storage.
 
 2. **Using an object.**
 
-    Each key is a name to read from storage, the value is the default to be used in the result if the key was not in storage.
-
     ```js
     let values = GM_getValues({ foo: 1, bar: [2] })
     ```
@@ -75,17 +65,7 @@ Retrieves multiple values for current script from storage.
 
 Sets a key / value pair for current script to storage.
 
-```js
-GM_setValue(key, value)
-```
-
-- <Field name="key" type="string" />
-
-    The unique name for `value` within this script.
-
-- <Field name="value" type="any" />
-
-    The value to be stored, which must be *JSON serializable* (string, number, boolean, null, or an array/object consisting of these types) so for example you can't store DOM elements or objects with cyclic dependencies.
+<TypeDetail name="GM_setValue" />
 
 ### GM_setValues
 
@@ -93,27 +73,13 @@ GM_setValue(key, value)
 
 Writes multiple values to current script's storage.
 
-```js
-GM_setValues({ foo: 1, bar: [1, 2, 3] })
-```
-
-- <Field name="data" type="Object" />
-
-    Each `key:value` pair in the object will be stored individually, so the example above is basically a more efficient version of `GM_setValue('foo', 1); GM_setValue('bar', [1, 2, 3]);`
-
-    Must be *JSON serializable* (see [GM_setValue](#gm_setvalue)).
+<TypeDetail name="GM_setValues" />
 
 ### GM_deleteValue
 
 Deletes an existing key / value pair for current script from storage.
 
-```js
-GM_deleteValue(key)
-```
-
-- <Field name="key" type="string" />
-
-    The unique name for `value` within this script.
+<TypeDetail name="GM_deleteValue" />
 
 ### GM_deleteValues
 
@@ -121,21 +87,13 @@ GM_deleteValue(key)
 
 Deletes values with the specified keys in current script's storage.
 
-```js
-GM_deleteValues(['foo', 'bar'])
-```
-
-- <Field name="keys" type="string[]" />
-
-    Array of keys to delete.
+<TypeDetail name="GM_deleteValues" />
 
 ### GM_listValues
 
 Returns an array of keys of all available values within this script.
 
-```js
-let arrayOfKeys = GM_listValues()
-```
+<TypeDetail name="GM_listValues" />
 
 ### GM_addValueChangeListener
 
@@ -171,23 +129,13 @@ let listenerId = GM_addValueChangeListener(name, callback)
 
 Removes a change listener by its ID.
 
-```js
-GM_removeValueChangeListener(listenerId)
-```
-
-- <Field name="listenerId" type="string" />
+<TypeDetail name="GM_removeValueChangeListener" />
 
 ### GM_getResourceText
 
 Retrieves a text resource from the metadata block.
 
-```js
-let text = GM_getResourceText(name)
-```
-
-- <Field name="name" type="string" />
-
-    Name of a resource defined in the [metadata block](../metadata-block/#resource).
+<TypeDetail name="GM_getResourceText" />
 
 ### GM_getResourceURL
 
@@ -262,13 +210,7 @@ Notes:
 
 Appends and returns a `<style>` element with the specified CSS.
 
-```js
-let styleElement = GM_addStyle(css);
-```
-
-- <Field name="css" type="string" />
-
-    The CSS code to inject.
+<TypeDetail name="GM_addStyle" />
 
 Older versions of Violentmonkey (prior to 2.12.0) returned an imitation of Promise,
 which is still maintained for compatibility, so don't be surprised if you see code like
@@ -405,14 +347,7 @@ if (inplace) {
 
 Unregisters a command which has been registered to Violentmonkey popup menu.
 
-```js
-GM_unregisterMenuCommand(captionOrId)
-```
-
-- <Field name="captionOrId" type="string" />
-
-    The caption or id of the command to unregister.
-    See [GM_registerMenuCommand](#gm_registermenucommand) for more info.
+<TypeDetail name="GM_unregisterMenuCommand" />
 
 ### GM_notification
 
@@ -496,17 +431,7 @@ Shows a desktop notification using the [browser.notifications API](https://devel
 
 Sets data to system clipboard.
 
-```js
-GM_setClipboard(data, type)
-```
-
-- <Field name="data" type="string" />
-
-    The data to be copied to system clipboard.
-
-- <Field name="type" type="string" defaultValue="'text/plain'" />
-
-    The MIME type of data to copy.
+<TypeDetail name="GM_setClipboard" />
 
 ### GM_xmlhttpRequest
 
