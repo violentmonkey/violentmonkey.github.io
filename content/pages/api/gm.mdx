@@ -141,20 +141,7 @@ Retrieves a text resource from the metadata block.
 
 Retrieves a `blob:` or `data:` URL of a resource from the metadata block.
 
-```js
-let blobUrl = GM_getResourceURL(name);
-let blobOrDataUrl = GM_getResourceURL(name, isBlobUrl);
-```
-
-- <Field name="name" type="string" />
-
-    Name of a resource defined in the [metadata block](../metadata-block/#resource).
-
-- <Field name="isBlobUrl" type="boolean" comment="since VM2.13.1" defaultValue="true" />
-
-    * `true` returns a `blob:` URL. It's short and cacheable, so it's good for reusing in multiple DOM elements.
-
-    * `false` returns a `data:` URL. It's long so reusing it in DOM may be less performant due to the lack of caching, but it's particularly handy for direct synchronous decoding of the data on sites that forbid fetching `blob:` in their CSP.
+<TypeDetail name="GM_getResourceURL" />
 
 Note: when setting this URL as `src` or `href` of a DOM element, it may fail on some sites with a particularly strict CSP that forbids `blob:` or `data:` URLs. Such sites are rare though. The workaround in Chrome is to use `GM_addElement`, whereas in Firefox you'll have to disable CSP either globally via `about:config` or by using an additional extension that modifies HTTP headers selectively.
 
@@ -164,29 +151,7 @@ Note: when setting this URL as `src` or `href` of a DOM element, it may fail on 
 
 Appends and returns an element with the specified attributes with the primary purpose of circumventing a strict `Content-Security-Policy` that forbids adding inline code or style.
 
-```js
-let element1 = GM_addElement(tagName, attributes);
-let element2 = GM_addElement(parentNode, tagName, attributes);
-```
-
-* <Field name="parentNode?" type="Node | Element | ShadowRoot" />
-
-    The parent node to which the new node will be appended.
-
-    It can be inside ShadowDOM: `someElement.shadowRoot`.
-
-    When omitted, it'll be determined automatically:
-    1. `document.head` (`<head>`) for `script`, `link`, `style`, `meta` tags.
-    2. `document.body` (`<body>`) for other tags or when there's no `<head>`.
-    3. `document.documentElement` (`<html>` or an XML root node) otherwise.
-
-* <Field name="tagName" type="string" />
-
-    A tag name like `'script'`.
-
-* <Field name="attributes?" type="object" />
-
-    The keys are HTML attributes, not DOM properties, except `textContent` which sets DOM property `textContent`. The values are strings so if you want to assign a private function to `onload` you can do it after the element is created.
+<TypeDetail name="GM_addElement" />
 
 Examples:
 ```js
@@ -288,6 +253,8 @@ tabControl.close();
 
 Registers a command in Violentmonkey popup menu.
 
+<TypeDetail name="GM_registerMenuCommand" />
+
 ```js
 GM_registerMenuCommand('Text', onClick)
 const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
@@ -295,31 +262,6 @@ const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
 ```
 
 Returns the command's `caption` since VM2.12.5 or `id` since VM2.15.9.
-
-- <Field name="caption" type="string" />
-
-    This text will be shown in the popup menu.
-
-- <Field name="onClick" type="(event) => void" />
-
-    When the command is clicked in the menu, this function will run with the following parameter:
-
-    * <Field name="event" type={<><a href="https://developer.mozilla.org/docs/Web/API/MouseEvent">MouseEvent</a> | <a href="https://developer.mozilla.org/docs/Web/API/KeyboardEvent">KeyboardEvent</a></>} comment="since VM2.13.1" /> is the event that activated the command so you can check `event.button`, `event.shiftKey`, `event.key`, and so on.
-
-- <Field name="options?" type="object" comment="since VM2.15.9" />
-
-    * <Field name="id?" type="string" />
-      Default: `caption` text since VM2.16.2.
-      Default in 2.15.9-2.16.1: a randomly generated string.
-
-    * <Field name="icon?" type="string" comment="since VM2.31.1" />
-      URL of the icon.
-
-    * <Field name="title?" type="string" />
-      A hint shown in the status bar when hovering the command.
-
-    * <Field name="autoClose?" type="boolean" defaultValue="true" />
-      Whether to auto-close the popup after the user invoked the command.
 
 > [!TIP]
 >
