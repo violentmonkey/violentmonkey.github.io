@@ -154,18 +154,16 @@ Appends and returns an element with the specified attributes with the primary pu
 <TypeDetail name="GM_addElement" />
 
 Examples:
-```js
+```js twoslash
 // using a private function in `onload`
-let el = GM_addElement('script', { src: 'https://....' });
-el.onload = () => console.log('loaded', el);
-```
-```js
+const script = GM_addElement('script', { src: 'https://....' });
+script.onload = () => console.log('loaded', script);
+
 // same as GM_addStyle('a { color:red }')
-let el = GM_addElement('style', { textContent: 'a { color:red }' });
-```
-```js
+const style = GM_addElement('style', { textContent: 'a { color:red }' });
+
 // appending to an arbitrary node
-let el = GM_addElement(parentElement.shadowRoot, 'iframe', { src: url });
+const iframe = GM_addElement(parentElement.shadowRoot, 'iframe', { src: url });
 ```
 Notes:
 * The element is returned immediately (synchronously) even with `GM.addElement`, no need for `.then()`, but you can use it if you want, just once though as it's auto-removed to avoid recursion. The API is synchronous because Violentmonkey runs scripts only when the root element appears, so there's always a node to serve as a parent.
@@ -255,7 +253,7 @@ Registers a command in Violentmonkey popup menu.
 
 <TypeDetail name="GM_registerMenuCommand" />
 
-```js
+```js twoslash
 GM_registerMenuCommand('Text', onClick)
 const id2 = GM_registerMenuCommand('Text2', onClick, { title: 'Two' })
 const id3 = GM_registerMenuCommand('Text3', onClick, { autoClose: false })
