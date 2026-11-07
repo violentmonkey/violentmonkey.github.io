@@ -1,0 +1,1 @@
+import{t as e}from"./scroller.CgrPlcP8.js";var t;e(()=>{let e=[...document.querySelectorAll(`.toc li`)].reverse().find(e=>{let t=e.querySelector(`a`)?.getAttribute(`href`),n=(t?document.getElementById(t.slice(1)):void 0)?.getBoundingClientRect();return n&&n.top<=64});t!==e&&(t&&(t.className=``),t=e,t&&(t.className=`active`))});
