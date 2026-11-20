@@ -15,7 +15,7 @@ Violentmonkey can be managed by AI agents such as Claude through the [Model Cont
 
 ## Prerequisites
 
-- Violentmonkey >= 2.49.5
+- Violentmonkey >= 2.50.1
 - Node.js >= 24
 
 ## Setup
@@ -51,28 +51,25 @@ https://violentmonkey.github.io/mcp_connect.html?port=5678&token=<generated_toke
 
 Open it in your browser. Violentmonkey intercepts the URL and takes you to the **AI agent access (MCP)** section in settings, where you can approve the request. After approval, the extension connects to the server and the agent can manage your scripts.
 
-### 3. Use it
+### 3. Grant tabs (optional)
 
-> "List my userscripts", "Create a script that hides the sidebar on example.com", "Fix the bug in my GitHub script".
+To let the agent check scripts on a page, open **AI agent access (MCP)** in Violentmonkey settings and tick the tab under **Grant tab access**. The agent can only see the tabs you grant.
 
-## Connecting from another device
+### 4. Use it
 
-By default the server runs in stdio mode: your agent starts it as a child process, and everything stays on your own machine. If your agent runs elsewhere — for example on a remote server or a mobile device — use the HTTP mode instead:
+> "List my userscripts", "Create a script that hides the sidebar on example.com", "Why doesn't my script run on this tab?"
 
-```bash
-VM_MCP_TOKEN=secret npx -y @violentmonkey/mcp -p 5678 --transport http
-```
+Scripts can also register handlers for the agent to call with [`GM_mcp`](/api/gm/#gm_mcp).
 
-Then register it with your agent:
+For other options, such as running the server over HTTP or in read-only mode, see the [MCP server docs](https://github.com/violentmonkey/mcp#readme).
 
-```bash
-claude mcp add --transport http violentmonkey http://127.0.0.1:5678/mcp --header "Authorization: Bearer secret"
-```
+## How is this different from browser automation?
 
-A few things to know about this mode:
-
-- The token acts as a password. The server generates a random one on each start, so set a fixed token with `--token` or the `VM_MCP_TOKEN` environment variable — otherwise the agent's saved credentials stop working after a restart, and the extension can no longer connect either.
-- The server only listens on your own machine (`127.0.0.1`) by default. If you open it up with `--host 0.0.0.0`, put it behind HTTPS and keep the token secret, like any password exposed to the network.
+| | Violentmonkey MCP | Browser automation (CDP) |
+| --- | --- | --- |
+| Setup | Approve a connect URL | Launch a separate browser, or enable remote debugging in Chrome |
+| Browser | Your own Chrome or Firefox | A separate profile by default |
+| Agent can | Manage scripts, inspect granted tabs | Control any page |
 
 ## Notes
 

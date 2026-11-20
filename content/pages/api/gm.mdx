@@ -247,6 +247,62 @@ Downloads a URL to a local file.
 
 <TypeDetail name="GM_download" />
 
+### GM_mcp
+
+*Since VM2.50.1*
+
+Lets an AI agent connected through [AI Agent Access (MCP)](/guide/ai-agent-access/) call named handlers in the script and read the results it reports. Use it to test a parser, validator or calculation with different inputs without reinstalling the script or reloading the page.
+
+Requires `@grant GM_mcp` or `@grant GM.mcp`. `GM.mcp` is the same object.
+
+<TypeDetail name="GM_mcp" />
+
+Each handler is defined as follows:
+
+<TypeDetail name="VMScriptGMMcpHandler" />
+
+Example:
+
+```js
+// ==UserScript==
+// @name        MCP example
+// @namespace   mcp-example
+// @match       https://example.com/*
+// @grant       GM.mcp
+// ==/UserScript==
+
+GM.mcp.register({
+  sum: {
+    description: 'Adds two numbers',
+    inputSchema: {
+      type: 'object',
+      properties: { a: { type: 'number' }, b: { type: 'number' } },
+      required: ['a', 'b'],
+    },
+    handle({ params, report }) {
+      if (typeof params?.a !== 'number' || typeof params?.b !== 'number') {
+        throw new Error('Expected numeric a and b');
+      }
+      // reports can be added during or after the call
+      setTimeout(() => report({ note: 'checked later' }), 1000);
+      return { sum: params.a + params.b };
+    },
+  },
+});
+
+// not tied to any call
+GM.mcp.report({ event: 'ready' });
+```
+
+The agent lists the handlers with the `script_handlers` tool, calls one with `script_call`, and reads the returned values and reports with `script_results`.
+
+> [!NOTE]
+>
+> - The agent can only reach tabs the user granted it in the extension's settings.
+> - Handlers belong to the current document. Navigating or reloading the page drops them and cancels unfinished calls, so register them every time the script runs. They survive restoring the page from the back/forward cache.
+> - A timeout only stops the agent waiting. The handler keeps running and its side effects are not undone.
+> - Values and reports are kept for up to five minutes, and are cleared when access to the tab is revoked, the tab is closed or the agent disconnects.
+
 ## GM.*
 
 `GM` *(since VM2.12.0)* is a single variable with [Greasemonkey4-compatible](https://wiki.greasespot.net/Greasemonkey_Manual:API) aliases, the `async` functions return a `Promise` that's resolved with the returned value.
@@ -263,6 +319,7 @@ Downloads a URL to a local file.
 * [GM.getValues](#gm_getvalues) *since VM2.19.1 (async)*
 * [GM.info](#gm_info)
 * [GM.listValues](#gm_listvalues) *(async)*
+* [GM.mcp](#gm_mcp) - *since VM2.50.1*
 * [GM.notification](#gm_notification)
 * [GM.openInTab](#gm_openintab)
 * [GM.setClipboard](#gm_setclipboard)
